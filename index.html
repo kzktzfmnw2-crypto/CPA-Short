@@ -170,7 +170,7 @@ button:disabled{cursor:not-allowed}
 </head>
 <body>
 <div class="app">
-<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 1.3.1</span></div><div class="date" id="todayLabel"></div></header>
+<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 1.4</span></div><div class="date" id="todayLabel"></div></header>
 <main>
 <section id="home" class="screen active">
   <h1>毎回ちがう短答を、<br>判断基準で解く。</h1>
@@ -236,7 +236,7 @@ button:disabled{cursor:not-allowed}
   </div>
 
   <div class="section card">
-    <div class="section-title"><h2>出題形式</h2><span class="gen-badge">AUTO · 重複なし</span></div>
+    <div class="section-title"><h2>出題形式</h2><span class="gen-badge">AUTO · 文面も生成</span></div>
     <div class="gen-format-grid" id="genFormatGrid">
       <button class="gen-format selected" data-gen-format="mix"><b>自動MIX</b><small>○×・2記述・3記述・対応する計算を自動で混ぜる</small></button>
       <button class="gen-format" data-gen-format="single"><b>○×</b><small>1つの記述をすばやく判定</small></button>
@@ -262,7 +262,7 @@ button:disabled{cursor:not-allowed}
     <p class="sub" style="margin-bottom:12px">固定問題のスマート復習・苦手回収・今日の範囲設定はこちら。</p>
     <button class="secondary" data-screen="setup">精選問題バンクを開く</button>
   </div>
-  <p class="section gen-engine-note">理論問題は、アプリ内の正誤が確定した知識カードを組み合わせて生成します。同一セッションでは同じ問題を除外し、可能な限り同じ知識カード自体も再利用しません。計算問題は定義済みの数式テンプレートから問題と正答を同時生成します。</p>
+  <p class="section gen-engine-note">理論問題は、正誤が確定した知識カードの「元記述・正しい解説・一般原則」を材料に文面を内部生成します。直近の生成文は端末内に記録し、別セッションでも同一文言を避けます。計算問題は数式テンプレートから数値・問題文・正答を同時生成します。</p>
 </section>
 
 <section id="genPractice" class="screen">
@@ -302,7 +302,7 @@ button:disabled{cursor:not-allowed}
     <button class="primary" id="startMock" style="margin-top:16px">ミニ模試を開始</button>
   </div>
   <div class="section card"><div class="section-title"><h2>English drill</h2><span class="pill english">令和9年対応</span></div><p class="sub" style="margin-bottom:12px">財務・管理・監査のオリジナル英語問題。答えた後に日本語で判断軸を確認する。</p><button class="tonal" id="startEnglish" style="width:100%">英語問題を10問</button></div>
-  <div class="section official-note">令和9年短答では、英語問題は財務会計論・管理会計論・監査論の3科目で出題され、3科目合計で総点数の5〜6％程度。FINAL 1.3.1の英語問題は公式公表の重点範囲を参考にしたオリジナル問題です。</div>
+  <div class="section official-note">令和9年短答では、英語問題は財務会計論・管理会計論・監査論の3科目で出題され、3科目合計で総点数の5〜6％程度。FINAL 1.4の英語問題は公式公表の重点範囲を参考にしたオリジナル問題です。</div>
   <div class="section"><h2>英語重点テーマ</h2><div class="english-focus"><span class="focus-chip">Consolidation</span><span class="focus-chip">Impairment</span><span class="focus-chip">Foreign currency</span><span class="focus-chip">CVP / Contribution margin</span><span class="focus-chip">Variance analysis</span><span class="focus-chip">Investment appraisal</span><span class="focus-chip">Audit objective</span><span class="focus-chip">Audit planning</span><span class="focus-chip">Audit report</span></div></div>
 </section>
 
@@ -343,7 +343,7 @@ button:disabled{cursor:not-allowed}
       <div class="about-row"><b>学習データ</b><span>v1〜v4から自動移行</span></div>
     </div>
   </div>
-  <div class="section final-banner">FINAL 1.3.1は、4科目・全65大項目の内部生成を標準モードにし、同一セッション内の問題重複を防止した運用版です。</div>
+  <div class="section final-banner">FINAL 1.4は、4科目・全65大項目の知識カードから文章そのものを内部変形し、過去セッションの同一文言も避ける生成版です。</div>
   <div class="section note">無限短答の理論生成は、アプリ内の正誤が確定したオリジナル知識カードを再構成する方式です。自由生成AIではないため、未知の細目を新規創作するものではありません。</div>
   <div class="section"><button class="secondary" id="resetData" style="color:var(--bad)">学習記録をすべてリセット</button></div>
 </section>
@@ -418,7 +418,7 @@ const EXTRA_QUESTIONS=[{"s":"F","topic":"財務会計の意義と機能","q":"�
 QUESTIONS.push(...EXTRA_QUESTIONS);
 const STORAGE='cpa-short-final', OLD4='cpa-short-v4', OLD3='cpa-short-v3', OLD2='cpa-short-v2', OLD='cpa-short-v1';
 const fresh=()=>({answered:0,correct:0,weak:[],uncertain:[],history:{},topic:{},subject:{},question:{},review:{},todayRange:[],selectedSubjects:['F'],selectedTopics:[],sessionLog:[],english:{answered:0,correct:0},mockLog:[],infinite:{answered:0,correct:0,topic:{}},generated:{answered:0,correct:0,subject:{},topic:{},format:{}},migrated:false,migratedFrom:null});
-function normalizeState(x){const base={...fresh(),...x};base.review=base.review||{};base.infinite=base.infinite||{answered:0,correct:0,topic:{}};base.infinite.topic=base.infinite.topic||{};base.generated=base.generated||{answered:0,correct:0,subject:{},topic:{},format:{}};base.generated.subject=base.generated.subject||{};base.generated.topic=base.generated.topic||{};base.generated.format=base.generated.format||{};return base}
+function normalizeState(x){const base={...fresh(),...x};base.review=base.review||{};base.infinite=base.infinite||{answered:0,correct:0,topic:{}};base.infinite.topic=base.infinite.topic||{};base.generated=base.generated||{answered:0,correct:0,subject:{},topic:{},format:{}};base.generated.subject=base.generated.subject||{};base.generated.topic=base.generated.topic||{};base.generated.format=base.generated.format||{};base.generated.seenVariants=Array.isArray(base.generated.seenVariants)?base.generated.seenVariants:[];return base}
 function load(){try{const final=JSON.parse(localStorage.getItem(STORAGE)||'null');if(final)return normalizeState(final);const v4=JSON.parse(localStorage.getItem(OLD4)||'null');if(v4)return {...normalizeState(v4),migrated:true,migratedFrom:'v4'};const v3=JSON.parse(localStorage.getItem(OLD3)||'null');if(v3)return {...normalizeState(v3),migrated:true,migratedFrom:'v3'};const v2=JSON.parse(localStorage.getItem(OLD2)||'null');if(v2)return {...normalizeState(v2),migrated:true,migratedFrom:'v2'};const v1=JSON.parse(localStorage.getItem(OLD)||'null');if(v1){const oldTopic={};Object.entries(v1.topic||{}).forEach(([k,val])=>oldTopic[k.includes('|')?k:`F|${k}`]=val);return {...fresh(),answered:v1.answered||0,correct:v1.correct||0,weak:v1.weak||[],uncertain:v1.uncertain||[],history:v1.history||{},topic:oldTopic,subject:{F:{answered:v1.answered||0,correct:v1.correct||0}},migrated:true,migratedFrom:'v1'}}}catch(e){}return fresh()}
 let state=load(),session=[],sessionIndex=0,sessionCorrect=0,answeredCurrent=false,currentMode='daily',weakFilter='ALL';
 function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state))}catch(e){}renderAll()}
@@ -515,6 +515,7 @@ let genSubjects=new Set(['F','M','A','C']);
 let genTopics=new Set(Object.entries(OFFICIAL_SCOPE).flatMap(([s,ts])=>ts.map(t=>`${s}|${t}`)));
 let genFormat='mix',genCount=20,genSession=[],genIndex=0,genCorrect=0,genAnswered=false;
 
+
 function officialTheoryPool(subjects=[...genSubjects],topicKeys=[...genTopics]){
   const ss=new Set(subjects),keys=new Set(topicKeys);
   return QUESTIONS.filter(q=>q.lang!=='en'&&ss.has(q.s)&&keys.has(`${q.s}|${q.topic}`)&&OFFICIAL_SCOPE[q.s]?.includes(q.topic));
@@ -522,10 +523,112 @@ function officialTheoryPool(subjects=[...genSubjects],topicKeys=[...genTopics]){
 function subjectTopicKeys(s){return (OFFICIAL_SCOPE[s]||[]).map(t=>`${s}|${t}`)}
 function rand(a){return a[Math.floor(Math.random()*a.length)]}
 function sampleUnique(a,n){return shuffle(a).slice(0,Math.min(n,a.length))}
-function wrapperForSingle(){
-  return rand(['次の記述の正誤を判定してください。','短答式として、次の記述は正しいか。','次の説明が正しければ○、誤っていれば×。','判断基準に照らして、次の記述を判定してください。']);
+function cleanStatement(s){
+  return String(s||'').replace(/\s+/g,' ').trim().replace(/[。．]+$/,'')+'。';
 }
-function generateTheoryQuestion(format='mix',subjects=[...genSubjects],topicKeys=[...genTopics]){
+function normalizeGeneratedText(s){
+  return String(s||'').replace(/\s+/g,'').replace(/[「」『』（）()、。,.・：:]/g,'');
+}
+function lexicalVariant(s){
+  let x=cleanStatement(s);
+  const swaps=[
+    ['常に','いかなる場合でも'],['必ず','例外なく'],['一切','まったく'],
+    ['まったく','一切'],['重要である','重要となる'],['必要である','求められる'],
+    ['必要となる','求められる'],['異なる','同一ではない'],['同一である','同じである'],
+    ['考慮する','考慮に入れる'],['考慮しない','考慮に入れない'],
+    ['認識する','計上する'],['認識しない','計上しない'],
+    ['区別する','分けて考える'],['確認する','確かめる']
+  ];
+  const candidates=swaps.filter(([a])=>x.includes(a));
+  if(candidates.length){
+    const [a,b]=rand(candidates);x=x.replace(a,b);
+  }
+  return cleanStatement(x);
+}
+function safeNegate(s){
+  let x=cleanStatement(s);
+  const rules=[
+    [/である。$/,'ではない。'],
+    [/となる。$/,'とはならない。'],
+    [/になる。$/,'にはならない。'],
+    [/がある。$/,'はない。'],
+    [/を行う。$/,'を行わない。'],
+    [/を認識する。$/,'を認識しない。'],
+    [/を計上する。$/,'を計上しない。'],
+    [/を用いる。$/,'を用いない。'],
+    [/を含む。$/,'を含まない。'],
+    [/が必要である。$/,'は必要ない。'],
+    [/が重要である。$/,'は重要ではない。']
+  ];
+  for(const [re,to] of rules){
+    if(re.test(x))return x.replace(re,to);
+  }
+  return null;
+}
+function makeStatementVariants(base){
+  const raw=[];
+  // 1. Original statement with safe lexical alternatives
+  raw.push({q:cleanStatement(base.q),a:!!base.a,kind:'base'});
+  const lex=lexicalVariant(base.q);
+  if(normalizeGeneratedText(lex)!==normalizeGeneratedText(base.q))raw.push({q:lex,a:!!base.a,kind:'lex'});
+
+  // 2. Explanation is written as the correct accounting/legal principle.
+  if(base.ex){
+    const ex=cleanStatement(base.ex);
+    raw.push({q:ex,a:true,kind:'ex'});
+    const exLex=lexicalVariant(ex);
+    if(normalizeGeneratedText(exLex)!==normalizeGeneratedText(ex))raw.push({q:exLex,a:true,kind:'exlex'});
+    const neg=safeNegate(ex);
+    if(neg)raw.push({q:neg,a:false,kind:'exneg'});
+  }
+
+  // 3. General principle is also a verified positive rule.
+  if(base.general){
+    const g=cleanStatement(base.general);
+    if(g.length>=10){
+      raw.push({q:g,a:true,kind:'general'});
+      const gLex=lexicalVariant(g);
+      if(normalizeGeneratedText(gLex)!==normalizeGeneratedText(g))raw.push({q:gLex,a:true,kind:'genlex'});
+      const neg=safeNegate(g);
+      if(neg)raw.push({q:neg,a:false,kind:'genneg'});
+    }
+  }
+
+  const seen=new Set();
+  return raw.filter(v=>{
+    const k=`${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`;
+    if(seen.has(k))return false;seen.add(k);return true;
+  }).map((v,i)=>({
+    ...base,
+    q:v.q,
+    a:v.a,
+    variantKind:v.kind,
+    variantKey:`${base.s}|${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`
+  }));
+}
+function recentVariantSet(){
+  return new Set((state.generated?.seenVariants||[]).slice(-600));
+}
+function chooseVariantForBase(base,avoidRecent=true){
+  const variants=makeStatementVariants(base);
+  if(!variants.length)return {...base,variantKey:`${base.s}|${base.a?'T':'F'}|${normalizeGeneratedText(base.q)}`};
+  if(avoidRecent){
+    const recent=recentVariantSet();
+    const fresh=variants.filter(v=>!recent.has(v.variantKey));
+    if(fresh.length)return rand(fresh);
+  }
+  return rand(variants);
+}
+function wrapperForSingle(){
+  return rand([
+    '次の記述の正誤を判定してください。',
+    '短答式として、次の記述は正しいか。',
+    '次の説明が正しければ○、誤っていれば×。',
+    '判断基準に照らして、次の記述を判定してください。',
+    '次の記述について、会計・法令上の取扱いとして適切か判定してください。'
+  ]);
+}
+function generateTheoryQuestion(format='mix',subjects=[...genSubjects],topicKeys=[...genTopics],avoidRecent=true){
   const pool=officialTheoryPool(subjects,topicKeys);
   if(!pool.length)return null;
   let use=format;
@@ -534,20 +637,35 @@ function generateTheoryQuestion(format='mix',subjects=[...genSubjects],topicKeys
   if(use==='count2'&&pool.length<2)use='single';
 
   if(use==='single'){
-    const b=rand(pool);
+    // Try several bases to obtain a recently unseen wording.
+    const bases=sampleUnique(pool,Math.min(pool.length,30));
+    let b=null;
+    for(const base of bases){
+      const candidate=chooseVariantForBase(base,avoidRecent);
+      if(!recentVariantSet().has(candidate.variantKey)){b=candidate;break}
+      if(!b)b=candidate;
+    }
+    b=b||chooseVariantForBase(rand(pool),false);
     return {kind:'single',format:'single',s:b.s,topics:[b.topic],prompt:wrapperForSingle(),items:[b],answer:b.a,displayAnswer:b.a?'○':'×'};
   }
+
   const n=use==='count3'?3:2;
-  // Keep one generated question inside a single CPA subject.
   const availableSubjects=[...new Set(pool.map(x=>x.s))];
   const s=rand(availableSubjects);
   const subjectPool=pool.filter(x=>x.s===s);
   const actualN=Math.min(n,subjectPool.length);
-  const items=sampleUnique(subjectPool,actualN);
-  if(items.length<2)return generateTheoryQuestion('single',subjects,topicKeys);
+  const bases=sampleUnique(subjectPool,actualN);
+  if(bases.length<2)return generateTheoryQuestion('single',subjects,topicKeys,avoidRecent);
+
+  const items=bases.map(base=>chooseVariantForBase(base,avoidRecent));
   const answer=items.filter(x=>x.a).length;
   return {kind:'count',format:`count${items.length}`,s,topics:[...new Set(items.map(x=>x.topic))],
-    prompt:`次の${items.length}つの記述のうち、正しいものはいくつあるか。`,items,answer,displayAnswer:`${answer}個`};
+    prompt:rand([
+      `次の${items.length}つの記述のうち、正しいものはいくつあるか。`,
+      `A〜${String.fromCharCode(64+items.length)}の記述について、正しいものの個数を答えてください。`,
+      `次の各記述を判定した場合、正しい記述はいくつになるか。`
+    ]),
+    items,answer,displayAnswer:`${answer}個`};
 }
 function availableCalcTemplates(subjects=[...genSubjects],topicKeys=[...genTopics]){
   const ss=new Set(subjects),keys=new Set(topicKeys);
@@ -602,10 +720,10 @@ function generatedSignature(q){
   if(!q)return '';
   if(q.kind==='calc'){
     const c=q.calc||{};
-    return `calc|${q.s}|${c.template||''}|${c.q||''}|${c.answer}|${c.unit||''}`;
+    return `calc|${q.s}|${c.template||''}|${normalizeGeneratedText(c.q||'')}|${c.answer}|${c.unit||''}`;
   }
-  const ids=(q.items||[]).map(x=>x.id).sort((a,b)=>a-b).join(',');
-  return `${q.kind}|${q.format}|${q.s}|${ids}`;
+  const parts=(q.items||[]).map(x=>`${normalizeGeneratedText(x.q)}:${x.a?'T':'F'}`).sort().join('||');
+  return `${q.kind}|${q.format}|${q.s}|${parts}`;
 }
 function generatedCardIds(q){
   return q&&q.kind!=='calc'?(q.items||[]).map(x=>x.id):[];
@@ -618,20 +736,26 @@ function startGeneratedSession(opts={}){
 
   genSession=[];
   const seen=new Set();
+  const recent=recentVariantSet();
   const usedCards=new Set();
   let attempts=0;
   let allowCardReuse=false;
-  const maxAttempts=Math.max(1400,count*140);
+  let allowRecentReuse=false;
+  const maxAttempts=Math.max(1800,count*180);
 
   while(genSession.length<count && attempts<maxAttempts){
     attempts++;
-    if(attempts>Math.max(360,count*40))allowCardReuse=true;
+    if(attempts>Math.max(420,count*45))allowCardReuse=true;
+    if(attempts>Math.max(1100,count*110))allowRecentReuse=true;
 
     const q=generateOne(format,subjects,topics);
     if(!q)continue;
 
     const sig=generatedSignature(q);
     if(!sig||seen.has(sig))continue;
+
+    const variantKeys=q.kind==='calc'?[]:(q.items||[]).map(x=>x.variantKey).filter(Boolean);
+    if(!allowRecentReuse && variantKeys.some(k=>recent.has(k)))continue;
 
     const cardIds=generatedCardIds(q);
     if(!allowCardReuse && cardIds.some(id=>usedCards.has(id)))continue;
@@ -682,17 +806,21 @@ function submitGeneratedAnswer(ans){
   document.getElementById('genNext').onclick=()=>{genIndex++;renderGeneratedQuestion();window.scrollTo({top:0,behavior:'smooth'})};
 }
 function recordGenerated(q,ok){
-  state.generated=state.generated||{answered:0,correct:0,subject:{},topic:{},format:{}};
-  const g=state.generated;g.answered++;g.correct+=ok?1:0;g.subject[q.s]=g.subject[q.s]||{answered:0,correct:0};g.subject[q.s].answered++;g.subject[q.s].correct+=ok?1:0;g.format[q.format]=g.format[q.format]||{answered:0,correct:0};g.format[q.format].answered++;g.format[q.format].correct+=ok?1:0;
+  state.generated=state.generated||{answered:0,correct:0,subject:{},topic:{},format:{},seenVariants:[]};
+  const g=state.generated;g.seenVariants=Array.isArray(g.seenVariants)?g.seenVariants:[];g.answered++;g.correct+=ok?1:0;g.subject[q.s]=g.subject[q.s]||{answered:0,correct:0};g.subject[q.s].answered++;g.subject[q.s].correct+=ok?1:0;g.format[q.format]=g.format[q.format]||{answered:0,correct:0};g.format[q.format].answered++;g.format[q.format].correct+=ok?1:0;
   q.topics.forEach(t=>{const k=`${q.s}|${t}`;g.topic[k]=g.topic[k]||{answered:0,correct:0};g.topic[k].answered++;g.topic[k].correct+=ok?1:0});
   state.answered++;state.correct+=ok?1:0;const dk=dayKey();state.history[dk]=state.history[dk]||{answered:0,correct:0};state.history[dk].answered++;state.history[dk].correct+=ok?1:0;
   state.subject[q.s]=state.subject[q.s]||{answered:0,correct:0};state.subject[q.s].answered++;state.subject[q.s].correct+=ok?1:0;
   if(q.topics.length===1){const tk=`${q.s}|${q.topics[0]}`;state.topic[tk]=state.topic[tk]||{answered:0,correct:0};state.topic[tk].answered++;state.topic[tk].correct+=ok?1:0}
+  if(q.kind!=='calc'){
+    (q.items||[]).forEach(x=>{if(x.variantKey)g.seenVariants.push(x.variantKey)});
+    if(g.seenVariants.length>700)g.seenVariants=g.seenVariants.slice(-700);
+  }
   save();
 }
 function renderGeneratedEnd(){
   const rate=genSession.length?Math.round(genCorrect/genSession.length*100):0;
-  document.getElementById('genPracticeArea').innerHTML=`<div class="session-end"><div class="eyebrow">INFINITE SHORT COMPLETE</div><h1>生成セッション完了</h1><div class="big">${genCorrect}/${genSession.length}</div><p class="sub">正答率 ${rate}%。次のセッションでは記述の組み合わせ・順番・計算数値をもう一度生成します。同じセッション内では同一問題を重複させません。</p><button class="primary" id="genAgain">同じ設定でもう一度生成</button><button class="secondary" id="genBackSettings" style="margin-top:10px">生成条件を変更</button></div>`;
+  document.getElementById('genPracticeArea').innerHTML=`<div class="session-end"><div class="eyebrow">INFINITE SHORT COMPLETE</div><h1>生成セッション完了</h1><div class="big">${genCorrect}/${genSession.length}</div><p class="sub">正答率 ${rate}%。次のセッションでは記述の組み合わせ・順番・計算数値をもう一度生成します。同じセッション内はもちろん、最近の別セッションで出た同一文言も避けて生成します。</p><button class="primary" id="genAgain">同じ設定でもう一度生成</button><button class="secondary" id="genBackSettings" style="margin-top:10px">生成条件を変更</button></div>`;
   document.getElementById('genAgain').onclick=()=>startGeneratedSession();
   document.getElementById('genBackSettings').onclick=()=>go('generator');
 }
@@ -798,7 +926,7 @@ function updateExamCountdown(){
   e.textContent=days>0?`あと${days}日`:days===0?'今日':'試験日経過';
 }
 function exportLearningData(){
-  const payload={app:'CPA SHORT',version:'FINAL 1.3.1',exportedAt:new Date().toISOString(),state:normalizeState(state)};
+  const payload={app:'CPA SHORT',version:'FINAL 1.4',exportedAt:new Date().toISOString(),state:normalizeState(state)};
   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
@@ -851,7 +979,7 @@ function startMock(){mockQuestions=buildMock();mockIndex=0;mockAnswers={};mockRe
 function updateMockTimer(){const e=document.getElementById('mockClock');if(e)e.textContent=fmtTime(mockRemaining)}
 function currentMockSubject(){return mockQuestions[mockIndex]?.s}
 function renderMock(){if(mockFinished)return;if(mockIndex>=mockQuestions.length){finishMock(false);return}const q=mockQuestions[mockIndex],area=document.getElementById('mockArea'),isEn=q.lang==='en';const subjectStart={C:0,M:4,A:8,F:12}[q.s],subjectEnd={C:4,M:8,A:12,F:20}[q.s],subjectNo=mockIndex-subjectStart+1,subjectTotal=subjectEnd-subjectStart;const target=MOCK_PLAN.find(x=>x.s===q.s);area.innerHTML=`<div class=\"timer-shell\"><div class=\"timer\"><div><small>残り時間</small><br><strong id=\"mockClock\">${fmtTime(mockRemaining)}</strong></div><div style=\"text-align:right\"><small>${SUBJECTS[q.s].name}</small><br><b>${subjectNo} / ${subjectTotal}</b></div></div></div><div class=\"mock-progress\">${mockQuestions.map((_,i)=>`<span class=\"mock-dot ${i<mockIndex?'done':i===mockIndex?'current':''}\"></span>`).join('')}</div><div class=\"practice-meta\"><span>Q ${mockIndex+1} / 20</span><span>${target.seconds/60}分目安 / 科目</span></div><div class=\"question-card\"><div class=\"topic\">${SUBJECTS[q.s].name} ＞ ${q.topic} ${isEn?'<span class=\"pill english\" style=\"margin-left:6px\">ENGLISH</span>':''}</div><div class=\"question ${isEn?'en':''}\">${q.q}</div></div><div class=\"mock-choice\"><button data-mock-answer=\"true\" class=\"${mockAnswers[q.id]===true?'selected':''}\">○</button><button data-mock-answer=\"false\" class=\"${mockAnswers[q.id]===false?'selected':''}\">×</button></div><button class=\"primary\" id=\"mockNext\" style=\"margin-top:14px\">${mockIndex===19?'採点する':'次の問題'}</button><p class=\"sub\" style=\"font-size:12px;text-align:center;margin-top:12px\">模試中は正解・解説を表示しません</p>`;area.querySelectorAll('[data-mock-answer]').forEach(b=>b.onclick=()=>{mockAnswers[q.id]=b.dataset.mockAnswer==='true';renderMock()});document.getElementById('mockNext').onclick=()=>{mockIndex++;renderMock()};}
-function finishMock(timeUp){if(mockFinished)return;mockFinished=true;clearInterval(mockTimer);let total=0,by={C:0,M:0,A:0,F:0},enCorrect=0,enTotal=0;for(const q of mockQuestions){const ok=mockAnswers[q.id]===q.a;if(ok){total+=25;by[q.s]+=25}if(q.lang==='en'){enTotal++;if(ok)enCorrect++}}state.mockLog=state.mockLog||[];state.mockLog.unshift({date:new Date().toISOString(),score:total,timeUp,english:{correct:enCorrect,total:enTotal}});state.mockLog=state.mockLog.slice(0,20);save();document.getElementById('mockArea').innerHTML=`<div class=\"session-end\"><div class=\"eyebrow\">${timeUp?'TIME UP':'MINI MOCK COMPLETE'}</div><h1>採点結果</h1><div class=\"score\">${total}<small> / 500</small></div><p class=\"sub\">20問を各25点として換算したミニ模試スコア。実際の本試験の問題数・個別配点を再現したものではありません。</p><div class=\"result-grid\"><div class=\"result-tile\"><b>${by.C}/100</b><span>企業法</span></div><div class=\"result-tile\"><b>${by.M}/100</b><span>管理会計論</span></div><div class=\"result-tile\"><b>${by.A}/100</b><span>監査論</span></div><div class=\"result-tile\"><b>${by.F}/200</b><span>財務会計論</span></div></div><div class=\"official-note\" style=\"margin-top:14px\">英語問題 ${enCorrect}/${enTotal} 正解。FINAL 1.3.1の模試では、英語配点を全体の約5％になるよう1問だけ組み込んでいます。</div><button class=\"primary\" id=\"mockReview\" style=\"margin-top:16px\">間違えた問題を復習へ</button><button class=\"secondary\" data-screen=\"exam\" style=\"margin-top:10px\">実戦モードへ</button></div>`;for(const q of mockQuestions){if(mockAnswers[q.id]!==q.a&&!state.weak.includes(q.id))state.weak.push(q.id)}save();document.getElementById('mockReview').onclick=()=>go('weak')}
+function finishMock(timeUp){if(mockFinished)return;mockFinished=true;clearInterval(mockTimer);let total=0,by={C:0,M:0,A:0,F:0},enCorrect=0,enTotal=0;for(const q of mockQuestions){const ok=mockAnswers[q.id]===q.a;if(ok){total+=25;by[q.s]+=25}if(q.lang==='en'){enTotal++;if(ok)enCorrect++}}state.mockLog=state.mockLog||[];state.mockLog.unshift({date:new Date().toISOString(),score:total,timeUp,english:{correct:enCorrect,total:enTotal}});state.mockLog=state.mockLog.slice(0,20);save();document.getElementById('mockArea').innerHTML=`<div class=\"session-end\"><div class=\"eyebrow\">${timeUp?'TIME UP':'MINI MOCK COMPLETE'}</div><h1>採点結果</h1><div class=\"score\">${total}<small> / 500</small></div><p class=\"sub\">20問を各25点として換算したミニ模試スコア。実際の本試験の問題数・個別配点を再現したものではありません。</p><div class=\"result-grid\"><div class=\"result-tile\"><b>${by.C}/100</b><span>企業法</span></div><div class=\"result-tile\"><b>${by.M}/100</b><span>管理会計論</span></div><div class=\"result-tile\"><b>${by.A}/100</b><span>監査論</span></div><div class=\"result-tile\"><b>${by.F}/200</b><span>財務会計論</span></div></div><div class=\"official-note\" style=\"margin-top:14px\">英語問題 ${enCorrect}/${enTotal} 正解。FINAL 1.4の模試では、英語配点を全体の約5％になるよう1問だけ組み込んでいます。</div><button class=\"primary\" id=\"mockReview\" style=\"margin-top:16px\">間違えた問題を復習へ</button><button class=\"secondary\" data-screen=\"exam\" style=\"margin-top:10px\">実戦モードへ</button></div>`;for(const q of mockQuestions){if(mockAnswers[q.id]!==q.a&&!state.weak.includes(q.id))state.weak.push(q.id)}save();document.getElementById('mockReview').onclick=()=>go('weak')}
 document.getElementById('startMock').onclick=startMock;
 document.getElementById('quitMock').onclick=()=>{if(mockFinished||confirm('ミニ模試を終了しますか？')){clearInterval(mockTimer);mockFinished=true;go('exam')}};
 
