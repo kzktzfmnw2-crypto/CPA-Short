@@ -170,7 +170,7 @@ button:disabled{cursor:not-allowed}
 </head>
 <body>
 <div class="app">
-<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 1.3</span></div><div class="date" id="todayLabel"></div></header>
+<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 1.3.1</span></div><div class="date" id="todayLabel"></div></header>
 <main>
 <section id="home" class="screen active">
   <h1>毎回ちがう短答を、<br>判断基準で解く。</h1>
@@ -236,7 +236,7 @@ button:disabled{cursor:not-allowed}
   </div>
 
   <div class="section card">
-    <div class="section-title"><h2>出題形式</h2><span class="gen-badge">AUTO</span></div>
+    <div class="section-title"><h2>出題形式</h2><span class="gen-badge">AUTO · 重複なし</span></div>
     <div class="gen-format-grid" id="genFormatGrid">
       <button class="gen-format selected" data-gen-format="mix"><b>自動MIX</b><small>○×・2記述・3記述・対応する計算を自動で混ぜる</small></button>
       <button class="gen-format" data-gen-format="single"><b>○×</b><small>1つの記述をすばやく判定</small></button>
@@ -262,7 +262,7 @@ button:disabled{cursor:not-allowed}
     <p class="sub" style="margin-bottom:12px">固定問題のスマート復習・苦手回収・今日の範囲設定はこちら。</p>
     <button class="secondary" data-screen="setup">精選問題バンクを開く</button>
   </div>
-  <p class="section gen-engine-note">理論問題は、アプリ内の正誤が確定した知識カードを組み合わせて生成します。新しい法律・会計基準を自由作文する方式ではありません。計算問題は定義済みの数式テンプレートから問題と正答を同時生成します。</p>
+  <p class="section gen-engine-note">理論問題は、アプリ内の正誤が確定した知識カードを組み合わせて生成します。同一セッションでは同じ問題を除外し、可能な限り同じ知識カード自体も再利用しません。計算問題は定義済みの数式テンプレートから問題と正答を同時生成します。</p>
 </section>
 
 <section id="genPractice" class="screen">
@@ -302,7 +302,7 @@ button:disabled{cursor:not-allowed}
     <button class="primary" id="startMock" style="margin-top:16px">ミニ模試を開始</button>
   </div>
   <div class="section card"><div class="section-title"><h2>English drill</h2><span class="pill english">令和9年対応</span></div><p class="sub" style="margin-bottom:12px">財務・管理・監査のオリジナル英語問題。答えた後に日本語で判断軸を確認する。</p><button class="tonal" id="startEnglish" style="width:100%">英語問題を10問</button></div>
-  <div class="section official-note">令和9年短答では、英語問題は財務会計論・管理会計論・監査論の3科目で出題され、3科目合計で総点数の5〜6％程度。FINAL 1.3の英語問題は公式公表の重点範囲を参考にしたオリジナル問題です。</div>
+  <div class="section official-note">令和9年短答では、英語問題は財務会計論・管理会計論・監査論の3科目で出題され、3科目合計で総点数の5〜6％程度。FINAL 1.3.1の英語問題は公式公表の重点範囲を参考にしたオリジナル問題です。</div>
   <div class="section"><h2>英語重点テーマ</h2><div class="english-focus"><span class="focus-chip">Consolidation</span><span class="focus-chip">Impairment</span><span class="focus-chip">Foreign currency</span><span class="focus-chip">CVP / Contribution margin</span><span class="focus-chip">Variance analysis</span><span class="focus-chip">Investment appraisal</span><span class="focus-chip">Audit objective</span><span class="focus-chip">Audit planning</span><span class="focus-chip">Audit report</span></div></div>
 </section>
 
@@ -343,7 +343,7 @@ button:disabled{cursor:not-allowed}
       <div class="about-row"><b>学習データ</b><span>v1〜v4から自動移行</span></div>
     </div>
   </div>
-  <div class="section final-banner">FINAL 1.3は、4科目・全65大項目を対象に、短答問題をアプリ内部で継続生成することを標準モードにした運用版です。</div>
+  <div class="section final-banner">FINAL 1.3.1は、4科目・全65大項目の内部生成を標準モードにし、同一セッション内の問題重複を防止した運用版です。</div>
   <div class="section note">無限短答の理論生成は、アプリ内の正誤が確定したオリジナル知識カードを再構成する方式です。自由生成AIではないため、未知の細目を新規創作するものではありません。</div>
   <div class="section"><button class="secondary" id="resetData" style="color:var(--bad)">学習記録をすべてリセット</button></div>
 </section>
@@ -597,13 +597,53 @@ function renderGenerator(){
   document.querySelectorAll('[data-gen-count]').forEach(b=>b.classList.toggle('selected',Number(b.dataset.genCount)===genCount));
   const summary=document.getElementById('genSelectionSummary');if(summary)summary.textContent=`${genSubjects.size}科目・${genTopics.size}論点`;
 }
+
+function generatedSignature(q){
+  if(!q)return '';
+  if(q.kind==='calc'){
+    const c=q.calc||{};
+    return `calc|${q.s}|${c.template||''}|${c.q||''}|${c.answer}|${c.unit||''}`;
+  }
+  const ids=(q.items||[]).map(x=>x.id).sort((a,b)=>a-b).join(',');
+  return `${q.kind}|${q.format}|${q.s}|${ids}`;
+}
+function generatedCardIds(q){
+  return q&&q.kind!=='calc'?(q.items||[]).map(x=>x.id):[];
+}
+
 function startGeneratedSession(opts={}){
   const subjects=opts.subjects||[...genSubjects],topics=opts.topics||[...genTopics],format=opts.format||genFormat,count=opts.count||genCount;
   if(!subjects.length||!topics.length){showToast('科目・論点を1つ以上選んでください');return}
   if(format==='calc'&&!availableCalcTemplates(subjects,topics).length){showToast('選択範囲には計算テンプレートがありません');return}
+
   genSession=[];
-  for(let i=0;i<count;i++){const q=generateOne(format,subjects,topics);if(q)genSession.push(q)}
-  if(!genSession.length){showToast('この条件では問題を生成できません');return}
+  const seen=new Set();
+  const usedCards=new Set();
+  let attempts=0;
+  let allowCardReuse=false;
+  const maxAttempts=Math.max(1400,count*140);
+
+  while(genSession.length<count && attempts<maxAttempts){
+    attempts++;
+    if(attempts>Math.max(360,count*40))allowCardReuse=true;
+
+    const q=generateOne(format,subjects,topics);
+    if(!q)continue;
+
+    const sig=generatedSignature(q);
+    if(!sig||seen.has(sig))continue;
+
+    const cardIds=generatedCardIds(q);
+    if(!allowCardReuse && cardIds.some(id=>usedCards.has(id)))continue;
+
+    seen.add(sig);
+    cardIds.forEach(id=>usedCards.add(id));
+    genSession.push(q);
+  }
+
+  if(!genSession.length){showToast('この条件では重複なしの問題を生成できません');return}
+  if(genSession.length<count)showToast(`この条件では重複なしで${genSession.length}問生成しました`);
+
   genIndex=0;genCorrect=0;genAnswered=false;go('genPractice');renderGeneratedQuestion();
 }
 function renderGeneratedQuestion(){
@@ -652,7 +692,7 @@ function recordGenerated(q,ok){
 }
 function renderGeneratedEnd(){
   const rate=genSession.length?Math.round(genCorrect/genSession.length*100):0;
-  document.getElementById('genPracticeArea').innerHTML=`<div class="session-end"><div class="eyebrow">INFINITE SHORT COMPLETE</div><h1>生成セッション完了</h1><div class="big">${genCorrect}/${genSession.length}</div><p class="sub">正答率 ${rate}%。次のセッションでは記述の組み合わせ・順番・計算数値をもう一度生成します。</p><button class="primary" id="genAgain">同じ設定でもう一度生成</button><button class="secondary" id="genBackSettings" style="margin-top:10px">生成条件を変更</button></div>`;
+  document.getElementById('genPracticeArea').innerHTML=`<div class="session-end"><div class="eyebrow">INFINITE SHORT COMPLETE</div><h1>生成セッション完了</h1><div class="big">${genCorrect}/${genSession.length}</div><p class="sub">正答率 ${rate}%。次のセッションでは記述の組み合わせ・順番・計算数値をもう一度生成します。同じセッション内では同一問題を重複させません。</p><button class="primary" id="genAgain">同じ設定でもう一度生成</button><button class="secondary" id="genBackSettings" style="margin-top:10px">生成条件を変更</button></div>`;
   document.getElementById('genAgain').onclick=()=>startGeneratedSession();
   document.getElementById('genBackSettings').onclick=()=>go('generator');
 }
@@ -758,7 +798,7 @@ function updateExamCountdown(){
   e.textContent=days>0?`あと${days}日`:days===0?'今日':'試験日経過';
 }
 function exportLearningData(){
-  const payload={app:'CPA SHORT',version:'FINAL 1.3',exportedAt:new Date().toISOString(),state:normalizeState(state)};
+  const payload={app:'CPA SHORT',version:'FINAL 1.3.1',exportedAt:new Date().toISOString(),state:normalizeState(state)};
   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
@@ -811,7 +851,7 @@ function startMock(){mockQuestions=buildMock();mockIndex=0;mockAnswers={};mockRe
 function updateMockTimer(){const e=document.getElementById('mockClock');if(e)e.textContent=fmtTime(mockRemaining)}
 function currentMockSubject(){return mockQuestions[mockIndex]?.s}
 function renderMock(){if(mockFinished)return;if(mockIndex>=mockQuestions.length){finishMock(false);return}const q=mockQuestions[mockIndex],area=document.getElementById('mockArea'),isEn=q.lang==='en';const subjectStart={C:0,M:4,A:8,F:12}[q.s],subjectEnd={C:4,M:8,A:12,F:20}[q.s],subjectNo=mockIndex-subjectStart+1,subjectTotal=subjectEnd-subjectStart;const target=MOCK_PLAN.find(x=>x.s===q.s);area.innerHTML=`<div class=\"timer-shell\"><div class=\"timer\"><div><small>残り時間</small><br><strong id=\"mockClock\">${fmtTime(mockRemaining)}</strong></div><div style=\"text-align:right\"><small>${SUBJECTS[q.s].name}</small><br><b>${subjectNo} / ${subjectTotal}</b></div></div></div><div class=\"mock-progress\">${mockQuestions.map((_,i)=>`<span class=\"mock-dot ${i<mockIndex?'done':i===mockIndex?'current':''}\"></span>`).join('')}</div><div class=\"practice-meta\"><span>Q ${mockIndex+1} / 20</span><span>${target.seconds/60}分目安 / 科目</span></div><div class=\"question-card\"><div class=\"topic\">${SUBJECTS[q.s].name} ＞ ${q.topic} ${isEn?'<span class=\"pill english\" style=\"margin-left:6px\">ENGLISH</span>':''}</div><div class=\"question ${isEn?'en':''}\">${q.q}</div></div><div class=\"mock-choice\"><button data-mock-answer=\"true\" class=\"${mockAnswers[q.id]===true?'selected':''}\">○</button><button data-mock-answer=\"false\" class=\"${mockAnswers[q.id]===false?'selected':''}\">×</button></div><button class=\"primary\" id=\"mockNext\" style=\"margin-top:14px\">${mockIndex===19?'採点する':'次の問題'}</button><p class=\"sub\" style=\"font-size:12px;text-align:center;margin-top:12px\">模試中は正解・解説を表示しません</p>`;area.querySelectorAll('[data-mock-answer]').forEach(b=>b.onclick=()=>{mockAnswers[q.id]=b.dataset.mockAnswer==='true';renderMock()});document.getElementById('mockNext').onclick=()=>{mockIndex++;renderMock()};}
-function finishMock(timeUp){if(mockFinished)return;mockFinished=true;clearInterval(mockTimer);let total=0,by={C:0,M:0,A:0,F:0},enCorrect=0,enTotal=0;for(const q of mockQuestions){const ok=mockAnswers[q.id]===q.a;if(ok){total+=25;by[q.s]+=25}if(q.lang==='en'){enTotal++;if(ok)enCorrect++}}state.mockLog=state.mockLog||[];state.mockLog.unshift({date:new Date().toISOString(),score:total,timeUp,english:{correct:enCorrect,total:enTotal}});state.mockLog=state.mockLog.slice(0,20);save();document.getElementById('mockArea').innerHTML=`<div class=\"session-end\"><div class=\"eyebrow\">${timeUp?'TIME UP':'MINI MOCK COMPLETE'}</div><h1>採点結果</h1><div class=\"score\">${total}<small> / 500</small></div><p class=\"sub\">20問を各25点として換算したミニ模試スコア。実際の本試験の問題数・個別配点を再現したものではありません。</p><div class=\"result-grid\"><div class=\"result-tile\"><b>${by.C}/100</b><span>企業法</span></div><div class=\"result-tile\"><b>${by.M}/100</b><span>管理会計論</span></div><div class=\"result-tile\"><b>${by.A}/100</b><span>監査論</span></div><div class=\"result-tile\"><b>${by.F}/200</b><span>財務会計論</span></div></div><div class=\"official-note\" style=\"margin-top:14px\">英語問題 ${enCorrect}/${enTotal} 正解。FINAL 1.3の模試では、英語配点を全体の約5％になるよう1問だけ組み込んでいます。</div><button class=\"primary\" id=\"mockReview\" style=\"margin-top:16px\">間違えた問題を復習へ</button><button class=\"secondary\" data-screen=\"exam\" style=\"margin-top:10px\">実戦モードへ</button></div>`;for(const q of mockQuestions){if(mockAnswers[q.id]!==q.a&&!state.weak.includes(q.id))state.weak.push(q.id)}save();document.getElementById('mockReview').onclick=()=>go('weak')}
+function finishMock(timeUp){if(mockFinished)return;mockFinished=true;clearInterval(mockTimer);let total=0,by={C:0,M:0,A:0,F:0},enCorrect=0,enTotal=0;for(const q of mockQuestions){const ok=mockAnswers[q.id]===q.a;if(ok){total+=25;by[q.s]+=25}if(q.lang==='en'){enTotal++;if(ok)enCorrect++}}state.mockLog=state.mockLog||[];state.mockLog.unshift({date:new Date().toISOString(),score:total,timeUp,english:{correct:enCorrect,total:enTotal}});state.mockLog=state.mockLog.slice(0,20);save();document.getElementById('mockArea').innerHTML=`<div class=\"session-end\"><div class=\"eyebrow\">${timeUp?'TIME UP':'MINI MOCK COMPLETE'}</div><h1>採点結果</h1><div class=\"score\">${total}<small> / 500</small></div><p class=\"sub\">20問を各25点として換算したミニ模試スコア。実際の本試験の問題数・個別配点を再現したものではありません。</p><div class=\"result-grid\"><div class=\"result-tile\"><b>${by.C}/100</b><span>企業法</span></div><div class=\"result-tile\"><b>${by.M}/100</b><span>管理会計論</span></div><div class=\"result-tile\"><b>${by.A}/100</b><span>監査論</span></div><div class=\"result-tile\"><b>${by.F}/200</b><span>財務会計論</span></div></div><div class=\"official-note\" style=\"margin-top:14px\">英語問題 ${enCorrect}/${enTotal} 正解。FINAL 1.3.1の模試では、英語配点を全体の約5％になるよう1問だけ組み込んでいます。</div><button class=\"primary\" id=\"mockReview\" style=\"margin-top:16px\">間違えた問題を復習へ</button><button class=\"secondary\" data-screen=\"exam\" style=\"margin-top:10px\">実戦モードへ</button></div>`;for(const q of mockQuestions){if(mockAnswers[q.id]!==q.a&&!state.weak.includes(q.id))state.weak.push(q.id)}save();document.getElementById('mockReview').onclick=()=>go('weak')}
 document.getElementById('startMock').onclick=startMock;
 document.getElementById('quitMock').onclick=()=>{if(mockFinished||confirm('ミニ模試を終了しますか？')){clearInterval(mockTimer);mockFinished=true;go('exam')}};
 
