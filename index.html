@@ -97,28 +97,110 @@ button:disabled{cursor:not-allowed}
 .scope-note{font-size:11px;color:var(--muted);line-height:1.65;margin-top:10px}
 @media(max-width:370px){.scope-grid{grid-template-columns:1fr}}
 
+
+/* FINAL 1.2 — Infinite calculation drill */
+.infinity-hero{background:linear-gradient(145deg,#101828,#1d2939);color:#fff;border-radius:22px;padding:20px;box-shadow:var(--shadow)}
+.infinity-hero .eyebrow{color:#84adff}.infinity-hero .sub{color:#d0d5dd;margin-bottom:14px}
+.infinity-mark{font-size:42px;font-weight:950;letter-spacing:-.05em;line-height:1}
+.infinity-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.infinity-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px}
+.infinity-stat b{display:block;font-size:20px}.infinity-stat span{font-size:11px;color:#d0d5dd}
+.generator-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.generator-chip{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;text-align:left;min-height:67px}
+.generator-chip b{display:block;font-size:13px;margin-bottom:4px}.generator-chip small{color:var(--muted);font-size:10px;line-height:1.4}
+.generator-chip.selected{background:var(--brand-soft);border-color:#84adff;color:var(--brand)}
+.calc-input-wrap{display:flex;align-items:center;gap:8px;margin-top:14px}
+.calc-input{flex:1;min-width:0;border:1.5px solid #98a2b3;border-radius:16px;padding:16px 14px;font-size:22px;font-weight:850;background:#fff;color:var(--text);text-align:right}
+.calc-input:focus{border-color:var(--brand);outline:3px solid #d1e0ff}
+.calc-unit{min-width:42px;font-size:14px;font-weight:800;color:var(--muted)}
+.calc-feedback{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.calc-formula{background:#f2f4f7;border-radius:13px;padding:12px 13px;font-size:14px;font-weight:760;line-height:1.65;margin:10px 0}
+.infinity-badge{display:inline-flex;align-items:center;gap:6px;background:#eef4ff;color:#1849a9;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:850}
+.infinity-note{font-size:11px;color:var(--muted);line-height:1.65}
+.same-type{background:#eff8ff;border-color:#b2ddff;color:#175cd3}
+@media(max-width:370px){.generator-grid{grid-template-columns:1fr}}
+
+
+/* FINAL 1.3 — default infinite short-answer engine */
+.default-gen{background:linear-gradient(145deg,#0b1220,#162033);color:#fff;border-radius:26px;padding:22px;box-shadow:0 12px 36px rgba(16,24,40,.16);margin-bottom:14px}
+.default-gen .eyebrow{color:#84adff}.default-gen h2{color:#fff;font-size:27px;letter-spacing:-.035em;margin:5px 0 8px}
+.default-gen .sub{color:#d0d5dd;margin-bottom:16px}
+.gen-subject-row{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}
+.gen-mini{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.11);border-radius:13px;padding:10px 5px;text-align:center}
+.gen-mini b{font-size:12px;display:block}.gen-mini small{font-size:9px;color:#d0d5dd}
+.gen-badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;background:#eaf2ff;color:#1849a9;padding:6px 9px;font-size:10px;font-weight:900;letter-spacing:.02em}
+.gen-screen-head{background:linear-gradient(145deg,#101828,#1d2939);color:#fff;border-radius:22px;padding:20px;margin-bottom:16px}
+.gen-screen-head .sub{color:#d0d5dd}.gen-screen-head h1{color:#fff;margin-bottom:6px}
+.gen-filter-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.gen-subject-chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gen-sub-chip{border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px;text-align:left;min-height:60px}
+.gen-sub-chip.selected{background:var(--brand-soft);border-color:#84adff;color:var(--brand)}
+.gen-sub-chip b{display:block;font-size:14px}.gen-sub-chip small{font-size:10px;color:var(--muted)}
+.gen-topic-groups{display:grid;gap:12px}
+.gen-topic-group{border:1px solid var(--line);border-radius:17px;padding:12px;background:#fff}
+.gen-topic-group-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.gen-topic-group-head b{font-size:13px}
+.gen-topic-list{display:flex;flex-wrap:wrap;gap:7px}
+.gen-topic-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 10px;font-size:11px;font-weight:760}
+.gen-topic-chip.selected{background:#eef4ff;border-color:#84adff;color:#1849a9}
+.gen-format-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gen-format{border:1px solid var(--line);background:#fff;border-radius:15px;padding:12px;text-align:left;min-height:68px}
+.gen-format.selected{background:#eef4ff;border-color:#84adff;color:#1849a9}
+.gen-format b{display:block;font-size:13px}.gen-format small{font-size:10px;color:var(--muted);line-height:1.4}
+.gen-count-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.gen-count{border:1px solid var(--line);background:#fff;border-radius:13px;padding:11px;font-weight:850}
+.gen-count.selected{background:var(--brand);color:#fff;border-color:var(--brand)}
+.gen-question-list{display:grid;gap:10px;margin:14px 0}
+.gen-statement{display:grid;grid-template-columns:29px 1fr;gap:9px;align-items:start;background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px}
+.gen-statement .letter{width:29px;height:29px;border-radius:9px;background:#eaf2ff;color:#1849a9;display:grid;place-items:center;font-weight:900;font-size:12px}
+.gen-answer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:14px}
+.gen-answer{border:1.5px solid var(--line);background:#fff;border-radius:15px;padding:15px;font-size:15px;font-weight:900}
+.gen-answer:active{transform:scale(.99)}
+.gen-result-list{display:grid;gap:8px;margin:12px 0}
+.gen-result-item{border-radius:13px;padding:11px 12px;background:#f8fafc;border:1px solid var(--line);font-size:12px;line-height:1.55}
+.gen-result-item.good{background:#ecfdf3;border-color:#abefc6}.gen-result-item.bad{background:#fef3f2;border-color:#fecdca}
+.gen-engine-note{font-size:10px;color:var(--muted);line-height:1.65}
+.gen-stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.gen-stats-grid>div{border:1px solid var(--line);border-radius:14px;padding:11px;background:#fff}
+.gen-stats-grid b{display:block;font-size:17px}.gen-stats-grid span{font-size:9px;color:var(--muted)}
+.curated-card{border:1px dashed #98a2b3;background:#fafafa}
+@media(max-width:370px){.gen-subject-row{grid-template-columns:1fr 1fr}.gen-answer-grid{grid-template-columns:1fr}.gen-stats-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
 <div class="app">
-<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 1.1</span></div><div class="date" id="todayLabel"></div></header>
+<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 1.3</span></div><div class="date" id="todayLabel"></div></header>
 <main>
 <section id="home" class="screen active">
-  <h1>今日も、判断基準を<br>1つ増やそう。</h1>
-  <p class="sub">短答式を「正誤暗記」で終わらせず、初見でも使える判断軸に変える。</p>
+  <h1>毎回ちがう短答を、<br>判断基準で解く。</h1>
+  <p class="sub">4科目・全65大項目から、アプリ内部で問題を組み合わせて継続生成。固定問題の答え暗記を防ぐ。</p>
   <div class="exam-countdown" aria-label="短答式試験までの日数">
     <div><span>令和9年第Ⅰ回 短答式</span><br><b>2026.12.13</b></div>
     <div style="text-align:right"><span>試験まで</span><br><b class="days" id="examCountdown">—</b></div>
   </div>
-  <div class="card hero">
-    <div class="eyebrow">今日の学習</div>
-    <div class="progress-wrap"><div class="ring" id="todayRing"><span class="ring-val" id="todayProgress">0/20</span></div><div class="hero-copy"><strong id="todayCount">0問</strong><span>今日解いた問題</span></div></div>
-    <button class="primary" id="startDaily">4科目から今日の20問</button>
-    <button class="ghost" id="startTodayRange" style="margin-top:10px">今日の範囲だけ解く</button>
+  <div class="default-gen">
+    <div class="eyebrow">DEFAULT · INFINITE SHORT</div>
+    <h2>4科目・無限短答 ∞</h2>
+    <p class="sub">○×、複数記述、計算を内部生成。4科目MIXが標準です。</p>
+    <div class="progress-wrap"><div class="ring" id="todayRing"><span class="ring-val" id="todayProgress">0/20</span></div><div class="hero-copy"><strong id="todayCount" style="color:#fff">0問</strong><span style="color:#d0d5dd">今日解いた問題</span></div></div>
+    <div class="gen-subject-row">
+      <div class="gen-mini"><b>財務</b><small>23大項目</small></div>
+      <div class="gen-mini"><b>管理</b><small>16大項目</small></div>
+      <div class="gen-mini"><b>監査</b><small>7大項目</small></div>
+      <div class="gen-mini"><b>企業</b><small>19大項目</small></div>
+    </div>
+    <button class="primary" id="startDaily">∞ 今日の20問を生成</button>
+    <button class="ghost" id="openGenerator" style="margin-top:10px;color:#fff;border-color:rgba(255,255,255,.26)">科目・論点・形式を指定</button>
   </div>
   <div class="stats"><div class="stat"><b id="accuracyStat">—</b><span>正答率</span></div><div class="stat"><b id="streakStat">0日</b><span>連続学習</span></div><div class="stat"><b id="weakStat">0問</b><span>要復習</span></div></div>
-  <div class="section"><div class="section-title"><h2>スマート復習 <span class="smart-badge">SMART</span></h2><button class="text-btn" data-screen="weak">詳細</button></div><div class="smart-card"><div class="smart-head"><div><div class="eyebrow">TODAY'S PRIORITY</div><div class="smart-score" id="smartDueCount">0問</div><div class="smart-meta" id="smartMeta">学習履歴から今日の優先問題を選びます</div></div><span class="pill" id="smartLevel">準備中</span></div><div class="smart-reasons" id="smartReasons"></div><button class="primary" id="startSmart">優先10問を解く</button><div class="priority-note"><span class="priority-dot"></span>間違い・迷い・復習期限・未着手を組み合わせて出題</div></div></div>
+  <div class="section"><div class="section-title"><h2>精選問題のスマート復習 <span class="smart-badge">SMART</span></h2><button class="text-btn" data-screen="weak">詳細</button></div><div class="smart-card"><div class="smart-head"><div><div class="eyebrow">TODAY'S PRIORITY</div><div class="smart-score" id="smartDueCount">0問</div><div class="smart-meta" id="smartMeta">学習履歴から今日の優先問題を選びます</div></div><span class="pill" id="smartLevel">準備中</span></div><div class="smart-reasons" id="smartReasons"></div><button class="primary" id="startSmart">優先10問を解く</button><div class="priority-note"><span class="priority-dot"></span>間違い・迷い・復習期限・未着手を組み合わせて出題</div></div></div>
   <div class="section"><div class="section-title"><h2>実戦モード</h2><button class="text-btn" data-screen="exam">すべて見る</button></div><div class="feature-grid"><button class="feature-card" id="homeEnglish"><span class="feature-icon">A</span><b>英語問題</b><small>財務・管理・監査。基本論点を英語で判断する。</small></button><button class="feature-card" data-screen="exam"><span class="feature-icon">◷</span><b>ミニ短答模試</b><small>4科目20問・32分30秒。順番と時間感覚まで練習。</small></button></div></div>
+  <div class="section card curated-card">
+    <div class="section-title"><h2>精選問題バンク</h2><span class="pill">固定問題</span></div>
+    <p class="sub" style="margin-bottom:12px">解説・判断ポイントを固定した問題で復習したいときはこちら。スマート復習にも使います。</p>
+    <button class="secondary" id="openCurated">精選問題を選ぶ</button>
+  </div>
   <div class="section"><div class="section-title"><h2>4科目</h2><button class="text-btn" data-screen="setup">出題設定</button></div><div class="subject-grid" id="subjectCards"></div></div>
 <div class="section card">
   <div class="section-title"><h2>令和9年第Ⅰ回 出題範囲</h2><span class="pill">公式大項目</span></div>
@@ -130,8 +212,66 @@ button:disabled{cursor:not-allowed}
   <div class="section"><div class="section-title"><h2>重点チェック</h2><button class="text-btn" data-screen="weak">すべて見る</button></div><div class="card" id="focusTopics"></div></div>
 </section>
 
+
+<section id="generator" class="screen">
+  <div class="gen-screen-head">
+    <div class="eyebrow">INTERNAL GENERATOR</div>
+    <h1>無限短答を設定</h1>
+    <p class="sub">科目・論点・形式を選ぶ。内容は登録済みの正誤知識と計算式を材料に、端末内で毎回組み直します。</p>
+    <div class="gen-stats-grid">
+      <div><b id="genAllAnswered">0</b><span>生成問題 回答</span></div>
+      <div><b id="genAllAccuracy">—</b><span>生成問題 正答率</span></div>
+      <div><b>65/65</b><span>公式大項目</span></div>
+    </div>
+  </div>
+
+  <div class="section card">
+    <div class="gen-filter-title"><h2>科目</h2><button class="text-btn" id="genAllSubjects">4科目すべて</button></div>
+    <div class="gen-subject-chips" id="genSubjectChips"></div>
+  </div>
+
+  <div class="section card">
+    <div class="gen-filter-title"><h2>論点</h2><button class="text-btn" id="genAllTopics">選択科目を全選択</button></div>
+    <div class="gen-topic-groups" id="genTopicGroups"></div>
+  </div>
+
+  <div class="section card">
+    <div class="section-title"><h2>出題形式</h2><span class="gen-badge">AUTO</span></div>
+    <div class="gen-format-grid" id="genFormatGrid">
+      <button class="gen-format selected" data-gen-format="mix"><b>自動MIX</b><small>○×・2記述・3記述・対応する計算を自動で混ぜる</small></button>
+      <button class="gen-format" data-gen-format="single"><b>○×</b><small>1つの記述をすばやく判定</small></button>
+      <button class="gen-format" data-gen-format="count2"><b>2記述</b><small>A・Bのうち正しい記述はいくつか</small></button>
+      <button class="gen-format" data-gen-format="count3"><b>3記述</b><small>A〜Cのうち正しい記述はいくつか</small></button>
+      <button class="gen-format" data-gen-format="calc"><b>計算</b><small>財務・管理の対応論点で数値を毎回生成</small></button>
+      <button class="gen-format" data-gen-format="theory"><b>理論MIX</b><small>計算を除き、理論形式だけを混ぜる</small></button>
+    </div>
+  </div>
+
+  <div class="section card">
+    <div class="section-title"><h2>問題数</h2><span class="pill" id="genSelectionSummary">4科目・65論点</span></div>
+    <div class="gen-count-row" id="genCountRow">
+      <button class="gen-count" data-gen-count="10">10問</button>
+      <button class="gen-count selected" data-gen-count="20">20問</button>
+      <button class="gen-count" data-gen-count="30">30問</button>
+    </div>
+    <button class="primary" id="startGenerated" style="margin-top:12px">この設定で生成して開始</button>
+  </div>
+
+  <div class="section card curated-card">
+    <div class="section-title"><h2>精選問題に切り替える</h2><span class="pill">CURATED</span></div>
+    <p class="sub" style="margin-bottom:12px">固定問題のスマート復習・苦手回収・今日の範囲設定はこちら。</p>
+    <button class="secondary" data-screen="setup">精選問題バンクを開く</button>
+  </div>
+  <p class="section gen-engine-note">理論問題は、アプリ内の正誤が確定した知識カードを組み合わせて生成します。新しい法律・会計基準を自由作文する方式ではありません。計算問題は定義済みの数式テンプレートから問題と正答を同時生成します。</p>
+</section>
+
+<section id="genPractice" class="screen">
+  <div class="topbar"><button class="back" aria-label="終了" id="quitGenerated">‹</button><div class="top-title">無限短答</div></div>
+  <div id="genPracticeArea"></div>
+</section>
+
 <section id="setup" class="screen">
-  <h1>問題を選ぶ</h1><p class="sub">科目・論点・出題方法を決めて、狙ったところだけ回す。</p>
+  <h1>精選問題を選ぶ</h1><p class="sub">固定問題バンクから、スマート復習や狙った論点だけを回す。</p>
   <div class="setup-block"><h2>科目</h2><div class="chips" id="subjectChips"></div></div>
   <div class="setup-block section"><h2>論点</h2><div class="topic-select" id="topicChecks"></div></div>
   <div class="setup-block section"><h2>モード</h2><div class="mode-grid">
@@ -139,12 +279,19 @@ button:disabled{cursor:not-allowed}
     <button class="mode selected" data-mode="random"><b>ランダム</b><small>選択範囲から出題</small></button>
     <button class="mode" data-mode="weak"><b>苦手だけ</b><small>間違い・迷いを回収</small></button>
   </div></div>
+  <div class="section card"><div class="section-title"><h2>無限短答に戻る</h2><span class="gen-badge">DEFAULT</span></div><p class="sub" style="margin-bottom:12px">4科目・全論点の内部生成が標準モードです。</p><button class="secondary" id="setupInfinite">無限短答を開く</button></div>
   <div class="section card"><div class="section-title"><h2>今日の範囲</h2><span class="pill" id="todayRangeCount">0論点</span></div><p class="sub" style="margin-bottom:12px">チェック中の論点を「今日やった範囲」として保存できます。</p><button class="secondary" id="saveTodayRange">この範囲を保存</button></div>
   <div class="section"><button class="primary" id="startCustom">選択範囲から10問</button></div>
 </section>
 
 <section id="practice" class="screen"><div class="topbar"><button class="back" aria-label="戻る" data-screen="home">‹</button><div class="top-title">問題演習</div></div><div id="practiceArea"></div></section>
 
+
+
+<section id="infinite" class="screen">
+  <div class="topbar"><button class="back" aria-label="戻る" data-screen="home">‹</button><div class="top-title">財務・無限計算</div></div>
+  <div id="infiniteArea"></div>
+</section>
 
 <section id="exam" class="screen">
   <h1>実戦モード</h1><p class="sub">知識を覚えたかではなく、時間内に判断できるかを試す。</p>
@@ -155,7 +302,7 @@ button:disabled{cursor:not-allowed}
     <button class="primary" id="startMock" style="margin-top:16px">ミニ模試を開始</button>
   </div>
   <div class="section card"><div class="section-title"><h2>English drill</h2><span class="pill english">令和9年対応</span></div><p class="sub" style="margin-bottom:12px">財務・管理・監査のオリジナル英語問題。答えた後に日本語で判断軸を確認する。</p><button class="tonal" id="startEnglish" style="width:100%">英語問題を10問</button></div>
-  <div class="section official-note">令和9年短答では、英語問題は財務会計論・管理会計論・監査論の3科目で出題され、3科目合計で総点数の5〜6％程度。FINAL版の英語問題は公式公表の重点範囲を参考にしたオリジナル問題です。</div>
+  <div class="section official-note">令和9年短答では、英語問題は財務会計論・管理会計論・監査論の3科目で出題され、3科目合計で総点数の5〜6％程度。FINAL 1.3の英語問題は公式公表の重点範囲を参考にしたオリジナル問題です。</div>
   <div class="section"><h2>英語重点テーマ</h2><div class="english-focus"><span class="focus-chip">Consolidation</span><span class="focus-chip">Impairment</span><span class="focus-chip">Foreign currency</span><span class="focus-chip">CVP / Contribution margin</span><span class="focus-chip">Variance analysis</span><span class="focus-chip">Investment appraisal</span><span class="focus-chip">Audit objective</span><span class="focus-chip">Audit planning</span><span class="focus-chip">Audit report</span></div></div>
 </section>
 
@@ -173,7 +320,10 @@ button:disabled{cursor:not-allowed}
   <div class="summary"><div class="card"><b id="totalAnswered">0</b><span>累計回答</span></div><div class="card"><b id="overallAccuracy">—</b><span>累計正答率</span></div></div>
   <div class="section card"><div class="section-title"><h2>復習スケジュール</h2><span class="pill">SMART</span></div><div class="memory-grid"><div class="memory-tile"><b id="dueTodayStat">0</b><span>今日まで</span></div><div class="memory-tile"><b id="dueWeekStat">0</b><span>7日以内</span></div><div class="memory-tile"><b id="stableStat">0%</b><span>7日以上の間隔</span></div></div><div id="duePreview" style="margin-top:10px"></div></div>
   <div class="section card"><h2>直近14日</h2><div class="heatmap" id="heatmap"></div><div class="day-labels" id="dayLabels"></div></div>
-  <div class="section card"><h2>科目別</h2><div id="subjectStats"></div></div><div class="section card"><div class="section-title"><h2>英語問題</h2><span class="pill english">EN</span></div><div id="englishStat"></div></div>
+  <div class="section card"><h2>科目別</h2><div id="subjectStats"></div></div>
+  <div class="section card"><div class="section-title"><h2>無限短答</h2><span class="gen-badge">DEFAULT</span></div><div id="generatedStats"></div></div>
+  <div class="section card"><div class="section-title"><h2>財務・無限計算</h2><span class="infinity-badge">∞</span></div><div id="infiniteStats"></div></div>
+  <div class="section card"><div class="section-title"><h2>英語問題</h2><span class="pill english">EN</span></div><div id="englishStat"></div></div>
   <div class="section card"><h2>論点別・要注意</h2><div id="topicStats"></div></div>
   <div class="section card">
     <div class="section-title"><h2>ミニ模試履歴</h2><span class="pill" id="mockBest">未実施</span></div>
@@ -193,13 +343,13 @@ button:disabled{cursor:not-allowed}
       <div class="about-row"><b>学習データ</b><span>v1〜v4から自動移行</span></div>
     </div>
   </div>
-  <div class="section final-banner">FINAL 1.1は、令和9年第Ⅰ回短答の公式大項目を4科目すべて収録対象にした運用版です。</div>
-  <div class="section note">管理会計論・監査論・企業法および英語問題は学習用のオリジナル例題です。実戦用の問題バンクは、使用教材や最新基準に合わせて今後追加する前提です。</div>
+  <div class="section final-banner">FINAL 1.3は、4科目・全65大項目を対象に、短答問題をアプリ内部で継続生成することを標準モードにした運用版です。</div>
+  <div class="section note">無限短答の理論生成は、アプリ内の正誤が確定したオリジナル知識カードを再構成する方式です。自由生成AIではないため、未知の細目を新規創作するものではありません。</div>
   <div class="section"><button class="secondary" id="resetData" style="color:var(--bad)">学習記録をすべてリセット</button></div>
 </section>
 </main>
 </div>
-<nav aria-label="メインナビゲーション"><button class="nav-btn active" data-screen="home"><span class="ico">⌂</span>ホーム</button><button class="nav-btn" data-screen="setup"><span class="ico">□</span>問題</button><button class="nav-btn" data-screen="exam"><span class="ico">◷</span>実戦</button><button class="nav-btn" data-screen="weak"><span class="ico">◇</span>復習</button><button class="nav-btn" data-screen="record"><span class="ico">▥</span>分析</button></nav>
+<nav aria-label="メインナビゲーション"><button class="nav-btn active" data-screen="home"><span class="ico">⌂</span>ホーム</button><button class="nav-btn" data-screen="generator"><span class="ico">∞</span>無限</button><button class="nav-btn" data-screen="exam"><span class="ico">◷</span>実戦</button><button class="nav-btn" data-screen="weak"><span class="ico">◇</span>復習</button><button class="nav-btn" data-screen="record"><span class="ico">▥</span>分析</button></nav>
 <div class="toast" id="toast"></div>
 <script>
 const SUBJECTS={
@@ -267,8 +417,8 @@ const QUESTIONS=[
 const EXTRA_QUESTIONS=[{"s":"F","topic":"財務会計の意義と機能","q":"財務会計には、外部利害関係者の意思決定に役立つ情報を提供する機能がある。","a":true,"ex":"財務会計は投資家・債権者など外部利用者の意思決定に役立つ情報提供を重要な目的とします。","key":"誰のための情報かを見る。","general":"財務会計は外部報告、管理会計は内部意思決定という軸で整理する。","id":1001},{"s":"F","topic":"財務会計の意義と機能","q":"財務会計の機能は情報提供だけであり、利害調整の側面は含まれない。","a":false,"ex":"財務会計には情報提供機能だけでなく、利害関係者間の調整に関わる側面もあります。","key":"情報提供機能と利害調整機能を分けて押さえる。","general":"会計情報は意思決定だけでなく契約・配当等の利害調整にも関係する。","id":1002},{"s":"F","topic":"財務会計の基礎概念","q":"発生主義では、現金の収支時点だけで収益・費用を認識するわけではない。","a":true,"ex":"発生主義は経済事象の発生に基づき期間損益を捉えます。","key":"現金主義との対比で考える。","general":"期間損益はキャッシュの動きと必ずしも一致しない。","id":1003},{"s":"F","topic":"財務会計の基礎概念","q":"資産負債アプローチでは、資産・負債の変動と無関係に利益を定義する。","a":false,"ex":"資産負債アプローチでは、資産・負債の認識・測定を基礎に利益を捉えます。","key":"利益概念の起点を確認する。","general":"利益の捉え方は、収益費用中心か資産負債中心かで整理できる。","id":1004},{"s":"F","topic":"複式簿記の基本原理","q":"複式簿記では、1つの取引を借方と貸方の両面から記録する。","a":true,"ex":"複式簿記は取引の二面性に基づき、借方・貸方を同額で記録します。","key":"取引の二面性を見る。","general":"仕訳は勘定科目暗記より、何が増減したかを二面で捉える。","id":1005},{"s":"F","topic":"複式簿記の基本原理","q":"本支店会計では、本店と支店を常に別企業として扱い、内部取引をそのまま外部取引として表示する。","a":false,"ex":"本店と支店は同一企業内部の関係であり、決算では内部取引・内部勘定を調整します。","key":"内部取引か外部取引かを見る。","general":"内部取引は企業全体の財務諸表では二重計上を避ける。","id":1006},{"s":"F","topic":"企業会計制度と会計基準","q":"会社法会計と金融商品取引法会計は、目的や開示対象に違いがある。","a":true,"ex":"両制度は規律目的や対象が異なり、同じ企業会計でも制度的背景が異なります。","key":"制度の目的を分ける。","general":"会計処理だけでなく、どの制度の報告かを確認する。","id":1007},{"s":"F","topic":"企業会計制度と会計基準","q":"日本の会計基準を学ぶ際、企業会計基準だけを見ればよく、適用指針や実務対応報告は一切関係しない。","a":false,"ex":"基準の解釈・適用には適用指針や実務対応報告等が関係する場合があります。","key":"基準本体と周辺指針の役割を分ける。","general":"会計基準は単独ではなく、適用指針等と体系で理解する。","id":1008},{"s":"F","topic":"資産会計総論","q":"資産の評価では、取得原価・時価・現在価値など複数の測定属性が用いられうる。","a":true,"ex":"資産の性質や会計基準に応じて異なる測定属性が使われます。","key":"何を測っている金額かを見る。","general":"評価額の名称より、その測定目的と前提を確認する。","id":1009},{"s":"F","topic":"資産会計総論","q":"費用配分は、取得原価を複数期間に配分する考え方と関係がない。","a":false,"ex":"減価償却などの費用配分は取得原価を便益消費に応じて期間配分する考え方です。","key":"取得原価の期間配分かを見る。","general":"資産計上と費用化は時間軸でつながっている。","id":1010},{"s":"F","topic":"流動資産","q":"棚卸資産の期末評価では、収益性低下があれば帳簿価額を切り下げる場合がある。","a":true,"ex":"正味売却価額が取得原価を下回るなど収益性が低下した場合、切下げを行います。","key":"取得原価と回収見込額を比べる。","general":"資産評価は将来回収可能性の低下を反映する場面がある。","id":1011},{"s":"F","topic":"流動資産","q":"売掛金などの金銭債権について、貸倒れの可能性を会計上まったく考慮しない。","a":false,"ex":"回収不能見込額を貸倒引当金等で反映する考え方があります。","key":"回収可能性を見る。","general":"債権は額面だけでなく、将来回収できる金額の観点が重要。","id":1012},{"s":"F","topic":"固定資産","q":"減価償却は、固定資産の取得原価を使用期間にわたって配分する手続である。","a":true,"ex":"減価償却は時価下落の測定ではなく、取得原価の規則的な費用配分です。","key":"時価評価と原価配分を分ける。","general":"減価償却と減損は目的が異なる。","id":1013},{"s":"F","topic":"固定資産","q":"無形固定資産には、有形物ではないため一切償却の対象にならない資産しか含まれない。","a":false,"ex":"無形固定資産でも、耐用期間にわたり償却するものがあります。","key":"形がないことと償却不要は別。","general":"償却の有無は資産の性質・耐用期間・基準で判断する。","id":1014},{"s":"F","topic":"負債","q":"社債は企業にとって資金調達手段であり、原則として負債として扱われる。","a":true,"ex":"社債は返済義務を伴う資金調達であり、負債として認識されます。","key":"持分調達か負債調達かを見る。","general":"資金調達手段は返済義務の有無で大きく整理できる。","id":1015},{"s":"F","topic":"負債","q":"資産除去債務は、将来の除去支出が見込まれていても現在の法的・契約上の義務と無関係である。","a":false,"ex":"資産除去債務は有形固定資産の除去等に関する法令・契約等の義務を基礎に認識します。","key":"現在の義務があるかを見る。","general":"将来支出だけでなく、現在時点の義務の存在が負債認識の核。","id":1016},{"s":"F","topic":"繰延資産・引当金","q":"引当金の認識では、当期以前の事象に起因しているかが判断要素となる。","a":true,"ex":"将来の特定の費用・損失で、当期以前の事象に起因することなどが要件になります。","key":"引当金の4要件を確認する。","general":"未来の支出予定だけでは引当金にならない。","id":1017},{"s":"F","topic":"繰延資産・引当金","q":"発生可能性が低く金額も合理的に見積れない将来損失でも、必ず引当金を計上する。","a":false,"ex":"発生可能性や合理的見積可能性などの要件を満たす必要があります。","key":"要件を全部満たすかを見る。","general":"認識要件は1つだけでなく複数条件の組合せで判断する。","id":1018},{"s":"F","topic":"純資産","q":"自己株式は、取得時に純資産の控除項目として扱う。","a":true,"ex":"自己株式は資産としてではなく純資産の控除項目として表示します。","key":"自社持分の買戻しと捉える。","general":"形式的な『株式』という名称より経済的性質を見る。","id":1019},{"s":"F","topic":"純資産","q":"その他有価証券評価差額金は、常に当期純利益の構成要素としてのみ処理される。","a":false,"ex":"その他有価証券の評価差額は原則として純資産の部に計上される考え方があります。","key":"評価差額の行き先を見る。","general":"評価差額は損益に行くものと純資産に行くものを分類する。","id":1020},{"s":"F","topic":"財務諸表","q":"キャッシュ・フロー計算書では、営業・投資・財務の区分でキャッシュ・フローを示す。","a":true,"ex":"キャッシュ・フロー計算書は主に営業活動、投資活動、財務活動に区分します。","key":"取引の性質で区分する。","general":"同じ現金増減でも、何の活動で生じたかを区別する。","id":1021},{"s":"F","topic":"財務諸表","q":"会計方針の変更と会計上の見積りの変更は、常に同じ方法で会計処理する。","a":false,"ex":"両者は性質が異なり、適用方法も区別されます。","key":"変更の原因を分類する。","general":"方針変更・見積変更・誤謬訂正をまず識別する。","id":1022},{"s":"F","topic":"金融商品","q":"デリバティブは、基礎数値の変動に応じて価値が変動する金融商品である。","a":true,"ex":"先物、先渡、オプション、スワップなどが代表例です。","key":"何に連動して価値が変わるかを見る。","general":"金融商品は契約上の権利義務と評価方法をセットで理解する。","id":1023},{"s":"F","topic":"金融商品","q":"ヘッジ会計は、ヘッジ対象とヘッジ手段の損益認識時期のずれを無条件に無視する制度である。","a":false,"ex":"ヘッジ会計は所定の要件の下で、ヘッジ関係の経済実態を会計に反映するための処理です。","key":"ヘッジ関係と要件を見る。","general":"例外処理には適用要件がある。","id":1024},{"s":"F","topic":"ストック・オプション等","q":"ストック・オプションの会計では、付与・権利確定・行使・失効などの段階を区別する。","a":true,"ex":"各段階で会計処理上の論点が異なります。","key":"時間軸でイベントを分ける。","general":"複雑な制度はライフサイクル順に整理する。","id":1025},{"s":"F","topic":"ストック・オプション等","q":"ストック・オプションは現金支出を伴わないため、費用認識の対象になることはない。","a":false,"ex":"株式報酬でも、付与したサービスとの対応から費用認識が問題となります。","key":"現金支出の有無だけで費用を判断しない。","general":"費用認識は経済的な資源消費を基礎に考える。","id":1026},{"s":"F","topic":"リース","q":"リース取引の会計では、契約名称だけでなく実質的に資産の使用を支配しているかが重要になる。","a":true,"ex":"リースの識別では、資産の使用に関する権利の実質が重要です。","key":"契約名より実質を見る。","general":"会計は法形式だけでなく経済的実質を重視する。","id":1027},{"s":"F","topic":"リース","q":"貸手と借手では、リース取引の会計処理上の論点が常に完全に同一である。","a":false,"ex":"貸手と借手では認識・測定・表示の論点が異なります。","key":"取引当事者の立場を確認する。","general":"同じ契約でも立場が変われば会計処理も変わる。","id":1028},{"s":"F","topic":"退職給付","q":"退職給付債務の測定では、将来支払額を現在価値に割り引く考え方が用いられる。","a":true,"ex":"将来の退職給付を現在時点の債務として測定するため割引計算を行います。","key":"時間価値を見る。","general":"長期債務では支払時点と現在時点の価値差が重要。","id":1029},{"s":"F","topic":"退職給付","q":"数理計算上の差異と過去勤務費用は、発生原因がまったく同じである。","a":false,"ex":"数理計算上の差異は見積り差等、過去勤務費用は制度改訂等に起因し、原因が異なります。","key":"差異の発生原因を見る。","general":"退職給付の差異は原因別に分類する。","id":1030},{"s":"F","topic":"収益認識","q":"収益認識では、履行義務を識別した後に取引価格を算定し、その後に履行義務へ配分する。","a":true,"ex":"5ステップは契約識別→履行義務識別→取引価格算定→配分→収益認識の順です。","key":"5ステップの順番を固定する。","general":"各ステップが次のステップの前提になる。","id":1031},{"s":"F","topic":"収益認識","q":"変動対価は、将来の金額変動可能性があるため収益認識上まったく考慮しない。","a":false,"ex":"変動対価も制限等を踏まえて取引価格の算定に含めることがあります。","key":"取引価格の構成要素を見る。","general":"不確実性があるから除外ではなく、見積りと制約で扱う。","id":1032},{"s":"F","topic":"研究開発・ソフトウェア","q":"研究開発費は、将来収益に結び付く可能性があるという理由だけで常に資産計上するわけではない。","a":true,"ex":"研究開発費には費用処理を基本とする考え方があります。","key":"将来便益の可能性だけで資産認識しない。","general":"資産認識には基準上の要件が必要。","id":1033},{"s":"F","topic":"研究開発・ソフトウェア","q":"ソフトウェア制作費は、受注制作・市場販売目的・自社利用など目的が違っても会計処理は常に同じである。","a":false,"ex":"制作目的により会計処理や資産計上の考え方が異なります。","key":"何のためのソフトかを見る。","general":"同じ支出でも目的・回収方法で処理が変わる。","id":1034},{"s":"F","topic":"固定資産の減損","q":"減損会計では、兆候の把握、認識判定、測定を段階的に考える。","a":true,"ex":"兆候があれば直ちに損失計上ではなく、認識判定と測定を行います。","key":"段階を飛ばさない。","general":"入口条件・認識条件・測定を分ける。","id":1035},{"s":"F","topic":"固定資産の減損","q":"回収可能価額は、使用価値と正味売却価額のうち低い方をいう。","a":false,"ex":"回収可能価額は一般に使用価値と正味売却価額のいずれか高い方を基礎に考えます。","key":"回収できる上限を考える。","general":"資産回収は使用継続と売却の有利な方を基礎にする。","id":1036},{"s":"F","topic":"法人税等","q":"将来減算一時差異は、回収可能性があれば繰延税金資産の原因となる。","a":true,"ex":"将来の課税所得を減らす効果が見込まれるため、回収可能性の範囲で繰延税金資産を認識します。","key":"将来税額が減るかを見る。","general":"税効果は将来の税負担増減で資産・負債を判定する。","id":1037},{"s":"F","topic":"法人税等","q":"繰延税金資産は、将来減算一時差異が存在すれば回収可能性に関係なく全額計上する。","a":false,"ex":"繰延税金資産には回収可能性の検討が必要です。","key":"差異の存在と回収可能性を分ける。","general":"資産計上では将来回収できるかまで確認する。","id":1038},{"s":"F","topic":"連結財務諸表","q":"連結では、企業集団内部の債権債務や内部取引を相殺消去する。","a":true,"ex":"企業集団を一つの経済主体として表示するため内部取引を消去します。","key":"内部か外部かを見る。","general":"連結の基本はグループ内部を消し、外部との関係を残す。","id":1039},{"s":"F","topic":"連結財務諸表","q":"親会社が子会社株式を追加取得しても支配が継続する場合、新たなのれんを認識する。","a":false,"ex":"支配継続中の追加取得は資本取引として処理し、新たなのれんは認識しません。","key":"支配が変わったかを見る。","general":"支配獲得・喪失と支配継続中の持分変動を分ける。","id":1040},{"s":"F","topic":"企業結合・事業分離","q":"取得による企業結合では、取得企業が取得した識別可能資産・負債を適切に評価することが論点となる。","a":true,"ex":"取得法では取得日における資産・負債の評価やのれん等が重要です。","key":"取得日と取得企業を押さえる。","general":"企業結合は誰が取得者か、何を取得したかから整理する。","id":1041},{"s":"F","topic":"企業結合・事業分離","q":"事業分離では、分離元企業の投資が継続しているかどうかは会計処理に影響しない。","a":false,"ex":"投資の継続性は移転損益認識などを考える上で重要な判断軸です。","key":"投資継続か清算かを見る。","general":"組織再編は法形式だけでなく投資の経済的継続性を見る。","id":1042},{"s":"F","topic":"外貨換算","q":"外貨建金銭債権債務では、決算時の為替相場による換算が論点となる。","a":true,"ex":"外貨建金銭債権債務は決算時の換算と換算差額の処理が重要です。","key":"貨幣性項目かを見る。","general":"外貨換算は項目の性質と換算時点を対応させる。","id":1043},{"s":"F","topic":"外貨換算","q":"在外子会社の資産・負債・収益・費用・資本項目は、すべて同じ為替相場で換算する。","a":false,"ex":"項目の性質に応じて使用する為替相場が異なります。","key":"B/S・P/L・資本を分ける。","general":"外貨換算では項目別にレートを対応させる。","id":1044},{"s":"F","topic":"期中財務諸表","q":"期中財務諸表は、年度財務諸表より短い期間について企業の財政状態や経営成績等を報告する。","a":true,"ex":"中間・四半期など年度途中の期間に関する財務報告です。","key":"報告期間の長さを見る。","general":"年度決算との共通点と期中特有処理を分ける。","id":1045},{"s":"F","topic":"期中財務諸表","q":"期中財務諸表では、期中特有の会計処理や開示の論点は一切存在しない。","a":false,"ex":"期中特有の処理や簡素化、開示などが論点となります。","key":"年度決算との差を見る。","general":"期間の短さに由来する見積り・配分・開示の特徴を押さえる。","id":1046},{"s":"M","topic":"原価計算の基礎知識","q":"原価は、計算目的に応じて直接費・間接費、固定費・変動費など異なる分類が用いられる。","a":true,"ex":"原価分類は目的依存であり、管理目的によって見方が変わります。","key":"原価分類の目的を先に確認する。","general":"管理会計では『何の意思決定のためか』で分類を選ぶ。","id":1047},{"s":"M","topic":"原価計算の基礎知識","q":"固定費とは、操業度が変化すると総額も常に比例して変化する原価である。","a":false,"ex":"固定費は一定範囲では操業度が変化しても総額が固定的な原価です。","key":"総額と単位当たりを分ける。","general":"固定費・変動費は総額の動きで整理する。","id":1048},{"s":"M","topic":"実際原価計算","q":"実際原価計算では、実際に発生した原価を基礎として製品原価等を計算する。","a":true,"ex":"実際発生額を基礎に費目別・部門別・製品別に原価を集計します。","key":"実際値ベースか標準値ベースかを見る。","general":"原価計算は集計対象と配賦段階を順に追う。","id":1049},{"s":"M","topic":"実際原価計算","q":"費目別計算・部門別計算・製品別計算は、互いに無関係な独立した計算である。","a":false,"ex":"実際原価計算では段階的につながって製品原価へ集計されます。","key":"原価の流れを追う。","general":"材料等→部門→製品という原価集計の流れで整理する。","id":1050},{"s":"M","topic":"個別原価計算・製造間接費","q":"個別原価計算は、特定の製造指図や受注ごとに原価を集計する方法である。","a":true,"ex":"個別性の高い製品・受注に適した計算です。","key":"原価計算対象が個別か連続生産かを見る。","general":"生産形態に合う原価計算方法を選ぶ。","id":1051},{"s":"M","topic":"個別原価計算・製造間接費","q":"製造間接費は、合理的な配賦基準を用いずに常に均等配賦する。","a":false,"ex":"製造間接費は原価発生との関連性等を考慮した配賦基準を用います。","key":"配賦基準の合理性を見る。","general":"間接費は因果関係や受益関係を意識して配賦する。","id":1052},{"s":"M","topic":"総合原価計算","q":"総合原価計算では、月末仕掛品の完成度が製品原価計算に影響することがある。","a":true,"ex":"加工進捗度等に応じて完成品と月末仕掛品へ原価を配分します。","key":"完成度を確認する。","general":"連続生産では数量だけでなく加工進捗度が重要。","id":1053},{"s":"M","topic":"総合原価計算","q":"工程別総合原価計算では、前工程の原価が後工程へ引き継がれることはない。","a":false,"ex":"前工程費は後工程へ振り替えられ、累積して製品原価を形成します。","key":"工程間の原価移転を見る。","general":"工程別計算は原価が工程を流れる。","id":1054},{"s":"M","topic":"連産品・副産物","q":"同一工程から複数の主要製品が同時に生産される場合、連結原価の配分が論点となる。","a":true,"ex":"連産品では分離点までの共通原価を各製品へ配分します。","key":"分離点までの共通原価を見る。","general":"共通原価は合理的な基準で各成果物へ配分する。","id":1055},{"s":"M","topic":"連産品・副産物","q":"副産物は主産物とまったく同じ重要性を持つものとして必ず同一方法で原価計算する。","a":false,"ex":"副産物は主産物との重要性が異なり、処理方法も異なる場合があります。","key":"主産物か副産物かを見る。","general":"成果物の重要性によって原価処理が変わる。","id":1056},{"s":"M","topic":"標準原価計算","q":"標準原価計算では、標準と実際との差異を分析して原価管理に役立てる。","a":true,"ex":"差異の発生原因を把握し改善につなげることが重要です。","key":"標準→実際→差異→原因の流れ。","general":"差異は改善の入口として使う。","id":1057},{"s":"M","topic":"標準原価計算","q":"標準原価差異が生じた場合、その原因分析は管理上不要である。","a":false,"ex":"差異分析の目的は異常や改善余地を把握することです。","key":"差異の意味を考える。","general":"差異額だけでなく原因まで追う。","id":1058},{"s":"M","topic":"直接原価計算","q":"直接原価計算では、固定製造間接費を期間原価として扱う。","a":true,"ex":"変動製造原価を製品原価とし固定製造間接費を期間原価とする考え方です。","key":"固定製造間接費の扱いを見る。","general":"全部原価計算との違いは固定費の在庫化。","id":1059},{"s":"M","topic":"直接原価計算","q":"直接原価計算と全部原価計算では、在庫量が変化しても利益は常に一致する。","a":false,"ex":"固定製造間接費の繰延べの有無により利益が異なる場合があります。","key":"生産量・販売量・在庫増減を見る。","general":"利益差は在庫変動を通じて生じる。","id":1060},{"s":"M","topic":"管理会計の基礎知識","q":"管理会計は、経営者の意思決定や業績管理に役立つ情報を提供する。","a":true,"ex":"企業内部の計画・統制・意思決定を支援します。","key":"内部利用者向けかを見る。","general":"管理会計は目的適合性を重視する。","id":1061},{"s":"M","topic":"管理会計の基礎知識","q":"管理会計情報は外部公表用の財務諸表と同じ形式でなければならない。","a":false,"ex":"内部目的に応じて柔軟な形式・尺度を用いることができます。","key":"法定様式か内部管理用かを見る。","general":"内部情報は意思決定目的に合わせて設計する。","id":1062},{"s":"M","topic":"財務情報分析","q":"収益性分析では、利益と投下資本・売上高などの関係を見る。","a":true,"ex":"ROAや利益率などで収益獲得能力を評価します。","key":"分子と分母の意味を見る。","general":"比率分析は何を何で割っているかを理解する。","id":1063},{"s":"M","topic":"財務情報分析","q":"安全性分析では、短期支払能力や財務構造を考慮する必要はない。","a":false,"ex":"流動性や負債構成などは安全性分析の重要な対象です。","key":"支払能力を見る。","general":"収益性と安全性は別の観点。","id":1064},{"s":"M","topic":"短期利益計画","q":"損益分岐点では、限界利益が固定費に等しくなる。","a":true,"ex":"利益がゼロとなるため、限界利益で固定費をちょうど回収します。","key":"限界利益＝固定費。","general":"CVPは限界利益で固定費を回収して残りが利益。","id":1065},{"s":"M","topic":"短期利益計画","q":"限界利益率が高くなると、他条件一定なら損益分岐点売上高は高くなる。","a":false,"ex":"固定費÷限界利益率なので、限界利益率が高いほど損益分岐点売上高は低下します。","key":"式の分母に注目する。","general":"CVPは式を意味で理解する。","id":1066},{"s":"M","topic":"予算管理","q":"予算管理では、予算編成だけでなく実績との差異分析も重要である。","a":true,"ex":"計画と実績を比較し、原因把握や改善につなげます。","key":"計画→実績→差異→改善。","general":"予算は作って終わりではない。","id":1067},{"s":"M","topic":"予算管理","q":"予算は経営計画とは無関係に、各部門が独立して作ればよい。","a":false,"ex":"予算は企業全体の計画との整合性や部門間調整が重要です。","key":"全社目標とのつながりを見る。","general":"部分最適ではなく全体整合性を考える。","id":1068},{"s":"M","topic":"資金・キャッシュフロー管理","q":"運転資金管理では、売上債権・棚卸資産・仕入債務などの管理が重要になる。","a":true,"ex":"営業循環に伴う資金拘束と支払条件が資金需要に影響します。","key":"営業循環を見る。","general":"利益が出ていても資金繰りは別問題。","id":1069},{"s":"M","topic":"資金・キャッシュフロー管理","q":"利益が黒字であれば、企業の現金資金は必ず増加する。","a":false,"ex":"売掛金や在庫増加、投資、借入返済等により黒字でも現金は減り得ます。","key":"利益と現金を分ける。","general":"資金管理はキャッシュのタイミングを見る。","id":1070},{"s":"M","topic":"コスト・マネジメント","q":"原価企画は、製品の企画・設計段階から目標原価達成を図る考え方である。","a":true,"ex":"上流段階で価値と原価を作り込むことを重視します。","key":"製造後ではなく企画設計段階を見る。","general":"ライフサイクル上流で原価を管理する。","id":1071},{"s":"M","topic":"コスト・マネジメント","q":"活動基準原価管理では、活動やコストドライバーを分析する必要はない。","a":false,"ex":"活動とコスト発生要因を把握し、非付加価値活動等の改善に役立てます。","key":"活動→原価の因果を見る。","general":"コスト管理は金額だけでなく原因活動を管理する。","id":1072},{"s":"M","topic":"差額原価収益分析","q":"差額原価収益分析では、代替案間で異なる将来収益・原価に注目する。","a":true,"ex":"選択肢によって変化する関連収益・関連原価を比較します。","key":"将来・差額・回避可能性を見る。","general":"意思決定では変わる部分だけを見る。","id":1073},{"s":"M","topic":"差額原価収益分析","q":"すでに発生して回収不能な埋没原価は、通常、代替案比較の関連原価になる。","a":false,"ex":"埋没原価はどの案を選んでも変わらないため通常は除外します。","key":"過去か未来かを見る。","general":"過去の支出に引きずられず将来差額で判断する。","id":1074},{"s":"M","topic":"投資計画","q":"NPV法では、将来キャッシュ・フローを現在価値に割り引いて投資判断を行う。","a":true,"ex":"貨幣の時間価値を考慮して投資案の価値を評価します。","key":"時間価値を入れているかを見る。","general":"長期意思決定は金額と時点の両方を見る。","id":1075},{"s":"M","topic":"投資計画","q":"回収期間法は、投資後の全期間のキャッシュ・フローと時間価値を常に完全に反映する。","a":false,"ex":"回収期間法には回収後のキャッシュ・フローや時間価値を十分反映しない限界があります。","key":"手法ごとの限界を見る。","general":"投資評価手法は長所・短所を比較する。","id":1076},{"s":"M","topic":"分権化・グループ経営","q":"事業部制では、各責任単位の業績評価指標の設計が重要になる。","a":true,"ex":"分権化により権限委譲が進むため、責任と評価尺度の対応が重要です。","key":"責任範囲と評価指標を一致させる。","general":"コントロール可能性を意識して評価する。","id":1077},{"s":"M","topic":"分権化・グループ経営","q":"振替価格は、部門間取引の業績評価や意思決定に影響を与えない。","a":false,"ex":"振替価格は部門利益・意思決定・全社最適に影響します。","key":"部門利益への影響を見る。","general":"分権化では部門最適と全社最適の調整が重要。","id":1078},{"s":"A","topic":"公認会計士監査の基礎","q":"財務諸表の作成責任は経営者にあり、監査人はその財務諸表に対して意見を表明する。","a":true,"ex":"作成責任と監査責任は分離されています。","key":"作る人と監査する人を分ける。","general":"責任分担は監査論の基本。","id":1079},{"s":"A","topic":"公認会計士監査の基礎","q":"監査人の独立性は、監査に対する社会的信頼とは無関係である。","a":false,"ex":"独立性は公正不偏な監査を支える重要な前提です。","key":"能力だけでなく立場を見る。","general":"監査品質は専門能力と独立性の両方に依存する。","id":1080},{"s":"A","topic":"監査基準","q":"財務諸表監査が提供する保証は、絶対的保証ではなく合理的保証である。","a":true,"ex":"監査には固有の限界があるため、重要な虚偽表示がないことについて合理的保証を得ます。","key":"絶対ではなく合理的。","general":"重要性・監査リスクを前提に証拠を集める。","id":1081},{"s":"A","topic":"監査基準","q":"職業的懐疑心とは、経営者の説明を常に虚偽と決めつける態度をいう。","a":false,"ex":"証拠を批判的に評価し、虚偽表示の可能性に注意を払う姿勢です。","key":"疑う＝決めつけるではない。","general":"先入観を避けつつ裏付けを求める。","id":1082},{"s":"A","topic":"不正リスク対応","q":"不正リスクへの対応では、職業的懐疑心をより強く保持することが重要である。","a":true,"ex":"不正は意図的隠蔽を伴うことがあり、懐疑心を強く維持する必要があります。","key":"誤謬より意図性がある点を見る。","general":"不正は通常の誤りより発見困難性が高い。","id":1083},{"s":"A","topic":"不正リスク対応","q":"不正リスクが高い場合でも、通常より監査手続を強化する必要はない。","a":false,"ex":"識別した不正リスクに対応した監査手続を設計・実施します。","key":"リスク↑→対応↑。","general":"監査はリスク対応型で設計する。","id":1084},{"s":"A","topic":"中間監査・期中レビュー","q":"期中レビューは、年度財務諸表監査と同一の保証水準を提供する業務ではない。","a":true,"ex":"レビューは監査とは手続や保証水準が異なります。","key":"監査とレビューを分ける。","general":"業務種類ごとに保証水準と手続が異なる。","id":1085},{"s":"A","topic":"中間監査・期中レビュー","q":"中間監査・期中レビューでは、報告の対象期間が年度と異なることは論点にならない。","a":false,"ex":"対象期間や目的に応じて実施・報告の特徴があります。","key":"対象期間を見る。","general":"同じ財務情報でも業務目的で基準が変わる。","id":1086},{"s":"A","topic":"内部統制監査","q":"内部統制監査と財務諸表監査は相互に関連するが、評価対象は同一ではない。","a":true,"ex":"内部統制監査は財務報告に係る内部統制を対象とし、財務諸表監査と連携して実施されます。","key":"財務諸表そのものと統制を分ける。","general":"対象は違うがリスク評価でつながる。","id":1087},{"s":"A","topic":"内部統制監査","q":"内部統制が有効なら、財務諸表に重要な虚偽表示が生じる可能性は完全にゼロになる。","a":false,"ex":"内部統制には人為的誤謬や共謀など固有の限界があります。","key":"完全防御ではない。","general":"統制への依拠には限界を踏まえる。","id":1088},{"s":"A","topic":"品質管理","q":"監査事務所の品質管理には、職業倫理・独立性や業務の実施、モニタリングなどが含まれる。","a":true,"ex":"品質管理システムは複数の構成要素から成ります。","key":"個別監査だけでなく事務所全体を見る。","general":"品質は仕組みとして設計・運用・改善する。","id":1089},{"s":"A","topic":"品質管理","q":"品質管理は個々の監査担当者だけの問題であり、監査事務所全体の仕組みは不要である。","a":false,"ex":"事務所レベルの品質管理システムが必要です。","key":"個人と組織を分ける。","general":"監査品質は組織的管理に支えられる。","id":1090},{"s":"A","topic":"保証業務","q":"保証業務では、主題、規準、証拠、保証報告などの要素を整理することが重要である。","a":true,"ex":"保証業務の概念的枠組みでは業務の構成要素を明確にします。","key":"何を何に照らして保証するかを見る。","general":"主題と規準の適切性が保証の前提。","id":1091},{"s":"A","topic":"保証業務","q":"保証業務は、財務諸表監査だけを指し、それ以外の対象に対する保証は存在しない。","a":false,"ex":"保証業務は財務諸表監査以外の主題情報を対象とする場合もあります。","key":"監査は保証業務の一類型。","general":"広い保証概念の中に監査を位置付ける。","id":1092},{"s":"C","topic":"会社法：総論・総則","q":"株式会社は、株主とは別個の権利義務の主体となる法人である。","a":true,"ex":"会社は法人格を持ち、株主個人とは別の主体です。","key":"会社と株主を分ける。","general":"法人格を出発点に会社法を整理する。","id":1093},{"s":"C","topic":"会社法：総論・総則","q":"親会社・子会社の関係は、会社法上の基準と無関係に当事者が自由に決められる。","a":false,"ex":"親会社・子会社の該当性は法令上の基準により判断されます。","key":"定義規定を見る。","general":"会社法用語は法定定義から確認する。","id":1094},{"s":"C","topic":"会社法：設立","q":"株式会社の設立では、定款の作成が必要となる。","a":true,"ex":"定款は会社の根本規則として設立手続の中核です。","key":"設立手続の順序を見る。","general":"定款・出資・機関形成を流れで整理する。","id":1095},{"s":"C","topic":"会社法：設立","q":"設立手続に瑕疵があっても、設立に関する責任や会社成立への影響は一切問題にならない。","a":false,"ex":"設立の瑕疵や発起人の責任は会社法上の重要論点です。","key":"誰の責任かを見る。","general":"設立論点は手続・効力・責任を分ける。","id":1096},{"s":"C","topic":"会社法：株式・新株予約権","q":"会社は、定款により株式の譲渡について会社の承認を要する旨を定めることができる。","a":true,"ex":"譲渡制限株式を設けることができます。","key":"原則と定款による制限を分ける。","general":"株式は自由譲渡原則と例外で整理する。","id":1097},{"s":"C","topic":"会社法：株式・新株予約権","q":"自己株式の取得や募集株式の発行は、株主間の利害に影響しないため会社法上の規制対象にならない。","a":false,"ex":"既存株主の持分割合や会社財産に影響するため規制があります。","key":"株主平等・持分希薄化を見る。","general":"資金調達は既存株主との利害調整を伴う。","id":1098},{"s":"C","topic":"会社法：機関","q":"すべての株式会社が取締役会を設置しなければならないわけではない。","a":true,"ex":"会社の機関設計により取締役会非設置会社も存在します。","key":"会社類型と機関設計を見る。","general":"『すべて・必ず』は例外を疑う。","id":1099},{"s":"C","topic":"会社法：機関","q":"株主総会の権限は、会社の機関設計に関係なく常に完全に同一である。","a":false,"ex":"取締役会設置の有無等により株主総会の権限範囲は異なります。","key":"機関設計による権限配分を見る。","general":"意思決定・執行・監督の分担を整理する。","id":1100},{"s":"C","topic":"会社法：計算","q":"剰余金の配当は、会社財産保護の観点から分配可能額などの規制を受ける。","a":true,"ex":"債権者保護等のため無制限に配当できるわけではありません。","key":"会社財産の流出規制を見る。","general":"株主還元と債権者保護の調整がある。","id":1101},{"s":"C","topic":"会社法：計算","q":"株式会社の計算書類について、会社法上の承認・監査・開示は一切問題とならない。","a":false,"ex":"機関設計等に応じて監査・承認・開示が問題となります。","key":"作成後の手続を見る。","general":"計算は作成だけでなく監査・承認・開示まで一連。","id":1102},{"s":"C","topic":"会社法：持分会社","q":"持分会社では、株式会社と比べて社員の人的結合や所有と経営の一体性が強い制度設計がみられる。","a":true,"ex":"合名・合資・合同会社では社員と経営の関係が株式会社と異なります。","key":"社員の地位を見る。","general":"会社類型ごとに出資者と経営の関係を整理する。","id":1103},{"s":"C","topic":"会社法：持分会社","q":"持分会社の社員の責任は、すべての類型で必ず同一である。","a":false,"ex":"合名・合資・合同会社で社員の責任形態が異なります。","key":"会社類型を分ける。","general":"同じ持分会社でも責任形態に差がある。","id":1104},{"s":"C","topic":"会社法：社債","q":"社債権者は会社に対する債権者であり、株主とは法的地位が異なる。","a":true,"ex":"社債は負債性資金調達であり、株式とは権利内容が異なります。","key":"株式と社債を対比する。","general":"持分と債権を分ける。","id":1105},{"s":"C","topic":"会社法：社債","q":"社債は株式と同じく会社の所有者としての地位を与える。","a":false,"ex":"社債権者は原則として会社の債権者であり株主ではありません。","key":"所有権的地位か債権かを見る。","general":"資金調達手段の法的性質を区別する。","id":1106},{"s":"C","topic":"会社法：組織変更・組織再編等","q":"合併では、消滅会社の権利義務が存続会社等に包括承継される。","a":true,"ex":"合併は権利義務の包括承継を伴います。","key":"包括承継か個別承継かを見る。","general":"組織再編は法的効果で整理する。","id":1107},{"s":"C","topic":"会社法：組織変更・組織再編等","q":"事業譲渡は、合併と同じく当然にすべての権利義務が包括承継される。","a":false,"ex":"事業譲渡は合併のような包括承継ではなく、移転対象ごとの承継が問題となります。","key":"再編手法の効果を比較する。","general":"合併・会社分割・事業譲渡を承継方式で区別する。","id":1108},{"s":"C","topic":"会社法：外国会社","q":"外国会社が日本で継続して取引をする場合、会社法上の規律が問題となる。","a":true,"ex":"外国会社にも日本での活動に関する会社法上の規定があります。","key":"設立準拠法と活動地を分ける。","general":"外国会社にも国内活動ルールがある。","id":1109},{"s":"C","topic":"会社法：外国会社","q":"外国会社は、日本会社と完全に同一の設立手続を日本でやり直さなければ一切取引できない。","a":false,"ex":"外国法により設立された会社としての地位を前提に、日本での活動規律が定められます。","key":"外国会社の定義を見る。","general":"外国法人性と国内規制を分ける。","id":1110},{"s":"C","topic":"会社法：定款変更・解散・清算等","q":"会社が解散しても、清算目的の範囲で法人格が直ちに消滅しない場合がある。","a":true,"ex":"清算会社は清算の目的の範囲で存続します。","key":"解散と法人格消滅を分ける。","general":"解散→清算→消滅の流れで整理する。","id":1111},{"s":"C","topic":"会社法：定款変更・解散・清算等","q":"定款変更は、会社の根本規則に関わるため会社法上の手続が問題となる。","a":true,"ex":"定款変更には所定の機関決定等が必要です。","key":"根本規則の変更と見る。","general":"重要事項ほど厳格な意思決定手続が置かれる。","id":1112},{"s":"C","topic":"商法：総論","q":"商法の適用を考える際、商人や商行為の概念が重要となる。","a":true,"ex":"商法総則は商人・商行為などの基本概念を扱います。","key":"誰のどの行為かを見る。","general":"商法は商人と営業活動を軸に整理する。","id":1113},{"s":"C","topic":"商法：総論","q":"商法は会社法と完全に同一の法律であり、独立した法源として存在しない。","a":false,"ex":"会社法と商法は別個の法律であり、商法総則・商行為が出題範囲です。","key":"法源を区別する。","general":"企業法では会社法・商法・金商法を分ける。","id":1114},{"s":"C","topic":"商法：商人・商行為","q":"商人の営業を補助する者や商取引の特則は、商法上の論点となる。","a":true,"ex":"商業使用人等や商事売買・運送・寄託などが対象となります。","key":"企業活動の補助制度を見る。","general":"営業組織と商取引ルールをセットで整理する。","id":1115},{"s":"C","topic":"商法：商人・商行為","q":"商行為に関する規律は、企業活動の迅速性や信用保護と無関係である。","a":false,"ex":"商取引特有の迅速性・安全性・信用保護等を背景に特則があります。","key":"商法の制度趣旨を見る。","general":"条文暗記だけでなく商取引の特性から理解する。","id":1116},{"s":"C","topic":"金商法：総則","q":"金融商品取引法は、投資者保護や公正な市場の確保などを重要な目的としている。","a":true,"ex":"開示制度等を通じて投資判断の基盤整備と市場の公正を図ります。","key":"制度目的を見る。","general":"金商法は市場と投資者の保護を軸に整理する。","id":1117},{"s":"C","topic":"金商法：総則","q":"企業内容開示を理解する上で、金融商品取引法の基本概念や定義は不要である。","a":false,"ex":"有価証券等の基本概念は開示規制の適用範囲を考える前提です。","key":"適用対象の定義を見る。","general":"規制はまず誰・何に適用されるかから確認する。","id":1118},{"s":"C","topic":"金商法：企業内容等の開示","q":"発行市場での開示と流通市場での継続開示は、目的や提出書類の場面が異なる。","a":true,"ex":"証券発行時の開示と上場後等の継続開示を区別します。","key":"発行開示か継続開示かを見る。","general":"いつ投資者へ情報を出す制度かで分類する。","id":1119},{"s":"C","topic":"金商法：企業内容等の開示","q":"内部統制報告制度は、企業内容等の開示制度とまったく無関係である。","a":false,"ex":"金融商品取引法上の開示制度の一部として内部統制報告が問題となります。","key":"財務報告との接続を見る。","general":"開示制度は財務諸表だけでなく内部統制情報も含む。","id":1120},{"s":"C","topic":"金商法：公開買付け","q":"公開買付規制は、一定の株券等取得について投資者への情報開示や手続の公正を図る制度である。","a":true,"ex":"市場外等の一定の取得について公開性・公平性を確保します。","key":"取得方法と情報開示を見る。","general":"支配権取得局面では市場透明性が重要。","id":1121},{"s":"C","topic":"金商法：公開買付け","q":"公開買付けでは、買付条件等の情報開示は必要ない。","a":false,"ex":"公開買付けは買付条件等を開示して手続を進める制度です。","key":"公開性が制度の核。","general":"取引条件を投資者に示すことが前提。","id":1122},{"s":"C","topic":"金商法：大量保有","q":"大量保有報告制度は、一定割合以上の株券等保有状況を市場に開示する制度である。","a":true,"ex":"大口保有者の状況を投資者に提供することが目的です。","key":"保有割合と市場情報を見る。","general":"支配・影響力に関わる保有情報を透明化する。","id":1123},{"s":"C","topic":"金商法：大量保有","q":"大量保有報告制度は、発行会社自身の財務諸表作成ルールを定める制度である。","a":false,"ex":"大口保有者の保有状況の開示に関する制度であり、財務諸表作成ルールとは別です。","key":"誰が何を開示するかを見る。","general":"開示主体と開示対象を混同しない。","id":1124},{"s":"C","topic":"金商法：電子開示手続","q":"EDINET等の電子開示手続は、開示書類の提出・閲覧を電子的に行う仕組みに関係する。","a":true,"ex":"金融商品取引法上の開示手続の電子化が規定されています。","key":"提出方法の特例を見る。","general":"開示制度は内容だけでなく提出手続も論点。","id":1125},{"s":"C","topic":"金商法：電子開示手続","q":"電子開示制度があるため、開示書類の内容に関する法的責任は一切なくなる。","a":false,"ex":"提出方法が電子化されても、開示内容に関する責任は別途問題となります。","key":"手続と内容責任を分ける。","general":"デジタル化は責任構造を消さない。","id":1126},{"s":"C","topic":"金商法：特定証券情報等","q":"特定証券情報等の制度は、一定の市場・勧誘形態に応じた情報提供の枠組みである。","a":true,"ex":"一般的な有価証券届出書とは異なる情報提供制度が設けられています。","key":"対象となる市場・勧誘を見る。","general":"開示制度には複数のルートがある。","id":1127},{"s":"C","topic":"金商法：特定証券情報等","q":"特定証券情報等の制度は、企業内容開示とはまったく関係しない税務申告制度である。","a":false,"ex":"金融商品取引法上の証券情報の提供・公表に関する制度です。","key":"制度分野を確認する。","general":"法制度を目的と対象で識別する。","id":1128},{"s":"C","topic":"金商法：開示に関する責任","q":"虚偽記載等の開示違反については、民事責任・刑事責任・行政上の措置が問題となりうる。","a":true,"ex":"開示の実効性確保のため複数の責任・制裁制度があります。","key":"違反時の責任類型を見る。","general":"開示制度は提出義務と責任がセット。","id":1129},{"s":"C","topic":"金商法：開示に関する責任","q":"開示書類に虚偽記載があっても、投資者保護の観点から法的責任が問題になることはない。","a":false,"ex":"虚偽記載等には法的責任や行政上の措置が問題となります。","key":"正確な開示を担保する仕組みを見る。","general":"制度の実効性は違反時の責任によって支えられる。","id":1130}];
 QUESTIONS.push(...EXTRA_QUESTIONS);
 const STORAGE='cpa-short-final', OLD4='cpa-short-v4', OLD3='cpa-short-v3', OLD2='cpa-short-v2', OLD='cpa-short-v1';
-const fresh=()=>({answered:0,correct:0,weak:[],uncertain:[],history:{},topic:{},subject:{},question:{},review:{},todayRange:[],selectedSubjects:['F'],selectedTopics:[],sessionLog:[],english:{answered:0,correct:0},mockLog:[],migrated:false,migratedFrom:null});
-function normalizeState(x){const base={...fresh(),...x};base.review=base.review||{};return base}
+const fresh=()=>({answered:0,correct:0,weak:[],uncertain:[],history:{},topic:{},subject:{},question:{},review:{},todayRange:[],selectedSubjects:['F'],selectedTopics:[],sessionLog:[],english:{answered:0,correct:0},mockLog:[],infinite:{answered:0,correct:0,topic:{}},generated:{answered:0,correct:0,subject:{},topic:{},format:{}},migrated:false,migratedFrom:null});
+function normalizeState(x){const base={...fresh(),...x};base.review=base.review||{};base.infinite=base.infinite||{answered:0,correct:0,topic:{}};base.infinite.topic=base.infinite.topic||{};base.generated=base.generated||{answered:0,correct:0,subject:{},topic:{},format:{}};base.generated.subject=base.generated.subject||{};base.generated.topic=base.generated.topic||{};base.generated.format=base.generated.format||{};return base}
 function load(){try{const final=JSON.parse(localStorage.getItem(STORAGE)||'null');if(final)return normalizeState(final);const v4=JSON.parse(localStorage.getItem(OLD4)||'null');if(v4)return {...normalizeState(v4),migrated:true,migratedFrom:'v4'};const v3=JSON.parse(localStorage.getItem(OLD3)||'null');if(v3)return {...normalizeState(v3),migrated:true,migratedFrom:'v3'};const v2=JSON.parse(localStorage.getItem(OLD2)||'null');if(v2)return {...normalizeState(v2),migrated:true,migratedFrom:'v2'};const v1=JSON.parse(localStorage.getItem(OLD)||'null');if(v1){const oldTopic={};Object.entries(v1.topic||{}).forEach(([k,val])=>oldTopic[k.includes('|')?k:`F|${k}`]=val);return {...fresh(),answered:v1.answered||0,correct:v1.correct||0,weak:v1.weak||[],uncertain:v1.uncertain||[],history:v1.history||{},topic:oldTopic,subject:{F:{answered:v1.answered||0,correct:v1.correct||0}},migrated:true,migratedFrom:'v1'}}}catch(e){}return fresh()}
 let state=load(),session=[],sessionIndex=0,sessionCorrect=0,answeredCurrent=false,currentMode='daily',weakFilter='ALL';
 function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state))}catch(e){}renderAll()}
@@ -288,7 +438,7 @@ function scheduleReview(q,ok,confidence='medium',base=null){const today=dayKey()
 function qKey(q){return `${q.s}|${q.topic}`}
 function topicsFor(subjects){return unique(QUESTIONS.filter(q=>subjects.includes(q.s)).map(q=>qKey(q)))}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._toast);window._toast=setTimeout(()=>t.classList.remove('show'),1500)}
-function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));document.getElementById('mainHeader').style.display=(id==='practice'||id==='mock')?'none':'flex';document.querySelector('nav').style.display=id==='mock'?'none':'grid';window.scrollTo({top:0,behavior:'smooth'});if(id==='setup')renderSetup();if(id==='weak')renderWeak();if(id==='record')renderRecord()}
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));document.getElementById('mainHeader').style.display=(id==='practice'||id==='mock'||id==='infinite'||id==='genPractice')?'none':'flex';document.querySelector('nav').style.display=(id==='mock'||id==='infinite'||id==='genPractice')?'none':'grid';window.scrollTo({top:0,behavior:'smooth'});if(id==='generator')renderGenerator();if(id==='setup')renderSetup();if(id==='weak')renderWeak();if(id==='record')renderRecord()}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-screen]');if(b)go(b.dataset.screen)});
 function candidateByTopics(keys,includeEnglish=false){return QUESTIONS.filter(q=>keys.includes(qKey(q))&&(includeEnglish||q.lang!=='en'))}
 function startSession(mode,opts={}){currentMode=mode;sessionIndex=0;sessionCorrect=0;answeredCurrent=false;let pool=[];let count=opts.count||20;
@@ -322,12 +472,279 @@ function renderScopeCoverage(){
   grid.innerHTML=htmlParts.join('');
 }
 
-function renderHome(){const td=todayData(),rate=pct(state.correct,state.answered);document.getElementById('todayCount').textContent=`${td.answered}問`;document.getElementById('todayProgress').textContent=`${Math.min(td.answered,20)}/20`;document.getElementById('todayRing').style.setProperty('--p',Math.min(td.answered/20*100,100));document.getElementById('accuracyStat').textContent=rate===null?'—':`${rate}%`;document.getElementById('streakStat').textContent=`${calcStreak()}日`;document.getElementById('weakStat').textContent=`${unique([...state.weak,...state.uncertain]).length}問`;document.getElementById('startTodayRange').textContent=state.todayRange.length?`今日の範囲だけ解く（${state.todayRange.length}論点）`:'今日の範囲を設定する';const smart=smartPool(),today=dayKey();const due=smart.filter(q=>reviewData(q).due&&reviewData(q).due<=today).length;const weakN=smart.filter(q=>state.weak.includes(q.id)).length;const unseen=smart.filter(q=>!(state.question[q.id]?.answered)).length;const top=smart.slice(0,10);document.getElementById('smartDueCount').textContent=`${top.length}問`;document.getElementById('smartMeta').textContent=state.answered?`今日が期限 ${due}問 ・ ミス残り ${weakN}問 ・ 未着手 ${unseen}問`:'まずは未着手問題から、基準データを作ります';document.getElementById('smartLevel').textContent=due>=10?'優先度 高':due>0?'復習あり':'新規中心';const rs=[];if(due)rs.push(`<span class="reason-chip due">期限 ${due}</span>`);if(weakN)rs.push(`<span class="reason-chip weak">ミス ${weakN}</span>`);if(state.uncertain.length)rs.push(`<span class="reason-chip">迷い ${state.uncertain.length}</span>`);if(unseen)rs.push(`<span class="reason-chip">未着手 ${unseen}</span>`);document.getElementById('smartReasons').innerHTML=rs.join('')||'<span class="reason-chip">学習履歴を作成中</span>';document.getElementById('subjectCards').innerHTML=Object.entries(SUBJECTS).map(([s,o])=>{const st=state.subject[s]||{answered:0,correct:0},r=pct(st.correct,st.answered);return `<button class="subject-card" data-subject-start="${s}"><div class="subject-line"><b><span class="subject-dot"></span>${o.name}</b><span class="pill">${r===null?'未実施':r+'%'}</span></div><small>${st.answered}問回答 ・ ${topicsFor([s]).length}論点</small></button>`}).join('');renderScopeCoverage();document.querySelectorAll('[data-subject-start]').forEach(b=>b.onclick=()=>{state.selectedSubjects=[b.dataset.subjectStart];state.selectedTopics=topicsFor(state.selectedSubjects);save();go('setup')});let entries=Object.entries(state.topic).map(([key,st])=>({key,rate:pct(st.correct,st.answered),answered:st.answered})).filter(x=>x.answered).sort((a,b)=>(a.rate??101)-(b.rate??101)||b.answered-a.answered).slice(0,3);document.getElementById('focusTopics').innerHTML=entries.length?entries.map(x=>{const [s,t]=x.key.split('|');return `<div class="topic-row"><div><div class="topic-name">${t}</div><div class="topic-meta">${SUBJECTS[s].name} ・ ${x.answered}問</div></div><span class="pill ${x.rate<70?'warn':''}">${x.rate}%</span></div>`}).join(''):`<div class="topic-row"><div><div class="topic-name">まず20問、解いてみよう</div><div class="topic-meta">回答すると弱い論点がここに出ます</div></div><span class="pill">START</span></div>`}
+
+function renderInfiniteHome(){
+  const inf=state.infinite||{answered:0,correct:0,topic:{}};
+  const a=document.getElementById('infiniteHomeAnswered'),r=document.getElementById('infiniteHomeAccuracy');
+  if(a)a.textContent=inf.answered||0;
+  if(r)r.textContent=inf.answered?`${Math.round((inf.correct||0)/inf.answered*100)}%`:'—';
+}
+function renderHome(){const td=todayData(),rate=pct(state.correct,state.answered);document.getElementById('todayCount').textContent=`${td.answered}問`;document.getElementById('todayProgress').textContent=`${Math.min(td.answered,20)}/20`;document.getElementById('todayRing').style.setProperty('--p',Math.min(td.answered/20*100,100));document.getElementById('accuracyStat').textContent=rate===null?'—':`${rate}%`;document.getElementById('streakStat').textContent=`${calcStreak()}日`;document.getElementById('weakStat').textContent=`${unique([...state.weak,...state.uncertain]).length}問`;const smart=smartPool(),today=dayKey();const due=smart.filter(q=>reviewData(q).due&&reviewData(q).due<=today).length;const weakN=smart.filter(q=>state.weak.includes(q.id)).length;const unseen=smart.filter(q=>!(state.question[q.id]?.answered)).length;const top=smart.slice(0,10);document.getElementById('smartDueCount').textContent=`${top.length}問`;document.getElementById('smartMeta').textContent=state.answered?`今日が期限 ${due}問 ・ ミス残り ${weakN}問 ・ 未着手 ${unseen}問`:'まずは未着手問題から、基準データを作ります';document.getElementById('smartLevel').textContent=due>=10?'優先度 高':due>0?'復習あり':'新規中心';const rs=[];if(due)rs.push(`<span class="reason-chip due">期限 ${due}</span>`);if(weakN)rs.push(`<span class="reason-chip weak">ミス ${weakN}</span>`);if(state.uncertain.length)rs.push(`<span class="reason-chip">迷い ${state.uncertain.length}</span>`);if(unseen)rs.push(`<span class="reason-chip">未着手 ${unseen}</span>`);document.getElementById('smartReasons').innerHTML=rs.join('')||'<span class="reason-chip">学習履歴を作成中</span>';document.getElementById('subjectCards').innerHTML=Object.entries(SUBJECTS).map(([s,o])=>{const st=state.subject[s]||{answered:0,correct:0},r=pct(st.correct,st.answered);return `<button class="subject-card" data-subject-start="${s}"><div class="subject-line"><b><span class="subject-dot"></span>${o.name}</b><span class="pill">${r===null?'未実施':r+'%'}</span></div><small>${st.answered}問回答 ・ ${topicsFor([s]).length}論点</small></button>`}).join('');renderScopeCoverage();renderInfiniteHome();document.querySelectorAll('[data-subject-start]').forEach(b=>b.onclick=()=>{const s=b.dataset.subjectStart;genSubjects=new Set([s]);genTopics=new Set(subjectTopicKeys(s));genFormat='mix';genCount=20;go('generator')});let entries=Object.entries(state.topic).map(([key,st])=>({key,rate:pct(st.correct,st.answered),answered:st.answered})).filter(x=>x.answered).sort((a,b)=>(a.rate??101)-(b.rate??101)||b.answered-a.answered).slice(0,3);document.getElementById('focusTopics').innerHTML=entries.length?entries.map(x=>{const [s,t]=x.key.split('|');return `<div class="topic-row"><div><div class="topic-name">${t}</div><div class="topic-meta">${SUBJECTS[s].name} ・ ${x.answered}問</div></div><span class="pill ${x.rate<70?'warn':''}">${x.rate}%</span></div>`}).join(''):`<div class="topic-row"><div><div class="topic-name">まず20問、解いてみよう</div><div class="topic-meta">回答すると弱い論点がここに出ます</div></div><span class="pill">START</span></div>`}
 function renderSetup(){document.getElementById('subjectChips').innerHTML=Object.entries(SUBJECTS).map(([s,o])=>`<button class="chip ${state.selectedSubjects.includes(s)?'selected':''}" data-subject-chip="${s}">${o.name}</button>`).join('');document.querySelectorAll('[data-subject-chip]').forEach(b=>b.onclick=()=>{const s=b.dataset.subjectChip;if(state.selectedSubjects.includes(s)&&state.selectedSubjects.length>1)state.selectedSubjects=state.selectedSubjects.filter(x=>x!==s);else if(!state.selectedSubjects.includes(s))state.selectedSubjects.push(s);state.selectedTopics=state.selectedTopics.filter(k=>state.selectedSubjects.includes(k.split('|')[0]));save();renderSetup()});const keys=topicsFor(state.selectedSubjects);if(!state.selectedTopics.length)state.selectedTopics=[...keys];document.getElementById('topicChecks').innerHTML=keys.map(k=>{const [s,t]=k.split('|'),n=QUESTIONS.filter(q=>qKey(q)===k).length;return `<div class="checkrow"><input type="checkbox" id="ck-${s}-${t}" data-topic="${k}" ${state.selectedTopics.includes(k)?'checked':''}><label for="ck-${s}-${t}">${t}<br><small>${SUBJECTS[s].name}</small></label><small>${n}問</small></div>`}).join('');document.querySelectorAll('[data-topic]').forEach(c=>c.onchange=()=>{const k=c.dataset.topic;if(c.checked&&!state.selectedTopics.includes(k))state.selectedTopics.push(k);if(!c.checked)state.selectedTopics=state.selectedTopics.filter(x=>x!==k);save();document.getElementById('todayRangeCount').textContent=`${state.selectedTopics.length}論点`});document.getElementById('todayRangeCount').textContent=`${state.selectedTopics.length}論点`}
 function renderWeak(){document.getElementById('weakSubjectFilter').innerHTML=`<button class="chip ${weakFilter==='ALL'?'selected':''}" data-wf="ALL">すべて</button>`+Object.entries(SUBJECTS).map(([s,o])=>`<button class="chip ${weakFilter===s?'selected':''}" data-wf="${s}">${o.short}</button>`).join('');document.querySelectorAll('[data-wf]').forEach(b=>b.onclick=()=>{weakFilter=b.dataset.wf;renderWeak()});let ids=unique([...state.weak,...state.uncertain]);let qs=QUESTIONS.filter(q=>ids.includes(q.id)&&(weakFilter==='ALL'||q.s===weakFilter));document.getElementById('weakList').innerHTML=qs.length?qs.map(q=>`<div class="list-item"><div class="list-top"><div class="list-title">${q.q}</div><span class="pill">${SUBJECTS[q.s].short}・${q.topic}</span></div><div class="list-sub">${state.weak.includes(q.id)?'間違い':''}${state.weak.includes(q.id)&&state.uncertain.includes(q.id)?' ・ ':''}${state.uncertain.includes(q.id)?'迷った':''}</div></div>`).join(''):`<div class="empty">この条件の復習問題はありません。<br>間違い・迷った問題が自動で集まります。</div>`}
-function renderRecord(){document.getElementById('totalAnswered').textContent=state.answered;const r=pct(state.correct,state.answered);document.getElementById('overallAccuracy').textContent=r===null?'—':`${r}%`;const today=dayKey();const reviewed=QUESTIONS.filter(q=>state.review[q.id]);const dueToday=reviewed.filter(q=>reviewData(q).due<=today).length;const dueWeek=reviewed.filter(q=>{const d=reviewData(q).due;return d&&d>today&&daysBetween(today,d)<=7}).length;const stable=reviewed.length?Math.round(reviewed.filter(q=>(reviewData(q).interval||0)>=7).length/reviewed.length*100):0;document.getElementById('dueTodayStat').textContent=dueToday;document.getElementById('dueWeekStat').textContent=dueWeek;document.getElementById('stableStat').textContent=`${stable}%`;const dueRows=smartPool().filter(q=>reviewData(q).due).slice(0,3);document.getElementById('duePreview').innerHTML=dueRows.length?dueRows.map(q=>{const rd=reviewData(q);return `<div class="due-row"><div><b>${q.topic}</b><br><span>${SUBJECTS[q.s].short} ・ ${smartReason(q)}</span></div><span>次回 ${rd.due}</span></div>`}).join(''):'<div class="empty">問題を解くと復習日が自動で組まれます。</div>';const days=[];for(let i=13;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const n=state.history[dayKey(d)]?.answered||0;days.push({d,n})}document.getElementById('heatmap').innerHTML=days.map(x=>`<div class="day ${x.n>=20?'l4':x.n>=10?'l3':x.n>=5?'l2':x.n>0?'l1':''}" title="${x.n}問"></div>`).join('');document.getElementById('dayLabels').innerHTML=days.slice(-7).map(x=>`<span>${new Intl.DateTimeFormat('ja-JP',{weekday:'narrow'}).format(x.d)}</span>`).join('');const en=state.english||{answered:0,correct:0},enr=pct(en.correct,en.answered);document.getElementById('englishStat').innerHTML=`<div class="statline"><b>${enr===null?'未実施':enr+'%'}</b><span>${en.answered}問回答</span></div><div class="bar"><div style="width:${enr||0}%"></div></div>`;document.getElementById('subjectStats').innerHTML=Object.entries(SUBJECTS).map(([s,o])=>{const st=state.subject[s]||{answered:0,correct:0},rr=pct(st.correct,st.answered);return `<div class="subject-stat"><div class="statline"><b>${o.name}</b><span>${rr===null?'—':rr+'%'} ・ ${st.answered}問</span></div><div class="bar"><div style="width:${rr||0}%"></div></div></div>`}).join('');const entries=Object.entries(state.topic).filter(([,st])=>st.answered).map(([k,st])=>({k,st,r:pct(st.correct,st.answered)})).sort((a,b)=>a.r-b.r||b.st.answered-a.st.answered).slice(0,8);document.getElementById('topicStats').innerHTML=entries.length?entries.map(x=>{const [s,t]=x.k.split('|');return `<div class="subject-stat"><div class="statline"><b>${t}</b><span>${SUBJECTS[s].short} ・ ${x.r}% ・ ${x.st.answered}問</span></div><div class="bar"><div style="width:${x.r}%"></div></div></div>`}).join(''):`<div class="empty">まだ分析データがありません。</div>`;const logs=(state.mockLog||[]).slice(0,5);const best=logs.length?Math.max(...(state.mockLog||[]).map(x=>x.score||0)):null;document.getElementById('mockBest').textContent=best===null?'未実施':`BEST ${best}/500`;document.getElementById('mockHistory').innerHTML=logs.length?logs.map(x=>{const dt=new Date(x.date);const label=new Intl.DateTimeFormat('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(dt);return `<div class="mock-history-row"><div><b>${label}</b><small>${x.timeUp?'時間切れ':'完走'} ・ 英語 ${x.english?.correct||0}/${x.english?.total||0}</small></div><div class="mock-history-score">${x.score}/500</div></div>`}).join(''):`<div class="empty">まだ模試履歴がありません。<br>実戦モードから20問のミニ模試を受けられます。</div>`}
+function renderRecord(){document.getElementById('totalAnswered').textContent=state.answered;const r=pct(state.correct,state.answered);document.getElementById('overallAccuracy').textContent=r===null?'—':`${r}%`;const today=dayKey();const reviewed=QUESTIONS.filter(q=>state.review[q.id]);const dueToday=reviewed.filter(q=>reviewData(q).due<=today).length;const dueWeek=reviewed.filter(q=>{const d=reviewData(q).due;return d&&d>today&&daysBetween(today,d)<=7}).length;const stable=reviewed.length?Math.round(reviewed.filter(q=>(reviewData(q).interval||0)>=7).length/reviewed.length*100):0;document.getElementById('dueTodayStat').textContent=dueToday;document.getElementById('dueWeekStat').textContent=dueWeek;document.getElementById('stableStat').textContent=`${stable}%`;const dueRows=smartPool().filter(q=>reviewData(q).due).slice(0,3);document.getElementById('duePreview').innerHTML=dueRows.length?dueRows.map(q=>{const rd=reviewData(q);return `<div class="due-row"><div><b>${q.topic}</b><br><span>${SUBJECTS[q.s].short} ・ ${smartReason(q)}</span></div><span>次回 ${rd.due}</span></div>`}).join(''):'<div class="empty">問題を解くと復習日が自動で組まれます。</div>';const days=[];for(let i=13;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const n=state.history[dayKey(d)]?.answered||0;days.push({d,n})}document.getElementById('heatmap').innerHTML=days.map(x=>`<div class="day ${x.n>=20?'l4':x.n>=10?'l3':x.n>=5?'l2':x.n>0?'l1':''}" title="${x.n}問"></div>`).join('');document.getElementById('dayLabels').innerHTML=days.slice(-7).map(x=>`<span>${new Intl.DateTimeFormat('ja-JP',{weekday:'narrow'}).format(x.d)}</span>`).join('');const en=state.english||{answered:0,correct:0},enr=pct(en.correct,en.answered);document.getElementById('englishStat').innerHTML=`<div class="statline"><b>${enr===null?'未実施':enr+'%'}</b><span>${en.answered}問回答</span></div><div class="bar"><div style="width:${enr||0}%"></div></div>`;document.getElementById('subjectStats').innerHTML=Object.entries(SUBJECTS).map(([s,o])=>{const st=state.subject[s]||{answered:0,correct:0},rr=pct(st.correct,st.answered);return `<div class="subject-stat"><div class="statline"><b>${o.name}</b><span>${rr===null?'—':rr+'%'} ・ ${st.answered}問</span></div><div class="bar"><div style="width:${rr||0}%"></div></div></div>`}).join('');const entries=Object.entries(state.topic).filter(([,st])=>st.answered).map(([k,st])=>({k,st,r:pct(st.correct,st.answered)})).sort((a,b)=>a.r-b.r||b.st.answered-a.st.answered).slice(0,8);document.getElementById('topicStats').innerHTML=entries.length?entries.map(x=>{const [s,t]=x.k.split('|');return `<div class="subject-stat"><div class="statline"><b>${t}</b><span>${SUBJECTS[s].short} ・ ${x.r}% ・ ${x.st.answered}問</span></div><div class="bar"><div style="width:${x.r}%"></div></div></div>`}).join(''):`<div class="empty">まだ分析データがありません。</div>`;const logs=(state.mockLog||[]).slice(0,5);const best=logs.length?Math.max(...(state.mockLog||[]).map(x=>x.score||0)):null;document.getElementById('mockBest').textContent=best===null?'未実施':`BEST ${best}/500`;document.getElementById('mockHistory').innerHTML=logs.length?logs.map(x=>{const dt=new Date(x.date);const label=new Intl.DateTimeFormat('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(dt);return `<div class="mock-history-row"><div><b>${label}</b><small>${x.timeUp?'時間切れ':'完走'} ・ 英語 ${x.english?.correct||0}/${x.english?.total||0}</small></div><div class="mock-history-score">${x.score}/500</div></div>`}).join(''):`<div class="empty">まだ模試履歴がありません。<br>実戦モードから20問のミニ模試を受けられます。</div>`;renderInfiniteStats();renderGeneratedStats()}
+
+
+// --- FINAL 1.3: all-subject internal infinite short-answer engine ---
+const M_INF_TEMPLATES=[
+ {id:'m_cvp',s:'M',name:'損益分岐点',topic:'短期利益計画',desc:'固定費÷限界利益率',gen(){
+   const rate=[20,25,40,50][ri(0,3)],sales=ri(1000,5000,100),cm=sales*rate/100,fixed=ri(2,8)*cm,ans=fixed/(rate/100);
+   return infQ(this,`固定費は${fmt(fixed)}万円、限界利益率は${rate}%である。損益分岐点売上高はいくらか。`,ans,'万円',
+   `${fmt(fixed)} ÷ ${rate}% ＝ ${fmt(ans)}万円`,'損益分岐点では限界利益＝固定費。','損益分岐点売上高＝固定費÷限界利益率。')}},
+ {id:'m_cm',s:'M',name:'限界利益',topic:'短期利益計画',desc:'売上高－変動費',gen(){
+   const sales=ri(1000,5000,100),vr=[40,50,60,70][ri(0,3)],variable=sales*vr/100,ans=sales-variable;
+   return infQ(this,`売上高は${fmt(sales)}万円、変動費率は${vr}%である。限界利益はいくらか。`,ans,'万円',
+   `${fmt(sales)}－${fmt(variable)}＝${fmt(ans)}万円`,'売上高から変動費を控除する。','限界利益は固定費回収と利益獲得に使える金額。')}},
+ {id:'m_direct',s:'M',name:'直接原価計算',topic:'直接原価計算',desc:'限界利益－固定費',gen(){
+   const sales=ri(1500,6000,100),vr=[40,50,60][ri(0,2)],fixed=ri(300,1000,50),cm=sales*(100-vr)/100,ans=cm-fixed;
+   return infQ(this,`売上高${fmt(sales)}万円、変動費率${vr}%、固定費${fmt(fixed)}万円である。直接原価計算による営業利益はいくらか。`,ans,'万円',
+   `${fmt(sales)}×${100-vr}%－${fmt(fixed)}＝${fmt(ans)}万円`,'限界利益から固定費を控除する。','直接原価計算は変動費と固定費を分離して利益を捉える。')}},
+ {id:'m_matvar',s:'M',name:'材料価格差異',topic:'標準原価計算',desc:'実際数量×価格差',gen(){
+   const aq=ri(1000,5000,100),sp=ri(80,140,10),d=[5,10,15,20][ri(0,3)],favorable=Math.random()<.5,ap=favorable?sp-d:sp+d,ans=aq*d;
+   return infQ(this,`材料の実際消費量は${fmt(aq)}kg、標準価格は1kg${fmt(sp)}円、実際価格は1kg${fmt(ap)}円である。材料価格差異の絶対額はいくらか。`,ans,'円',
+   `${fmt(aq)}×|${fmt(ap)}－${fmt(sp)}|＝${fmt(ans)}円`,'価格差異は実際数量に価格差を掛ける。','数量差異と価格差異では掛ける数量が異なる。')}},
+ {id:'m_relevant',s:'M',name:'差額原価',topic:'差額原価収益分析',desc:'関連原価比較',gen(){
+   const makeVar=ri(400,900,50),avoidable=ri(100,400,50),buy=makeVar+avoidable+ri(-150,250,50),make=makeVar+avoidable,ans=Math.abs(make-buy);
+   const choose=make<=buy?'自製':'購入';
+   return infQ(this,`ある部品について、自製の変動原価は${fmt(makeVar)}万円、自製をやめれば回避できる固定費は${fmt(avoidable)}万円、外部購入価格は${fmt(buy)}万円である。その他の条件を無視すると、有利な案によるコスト節約額はいくらか。`,ans,'万円',
+   `自製関連原価${fmt(make)}万円と購入原価${fmt(buy)}万円の差＝${fmt(ans)}万円（${choose}が有利）`,'変わらない固定費は除外し、案によって変わる将来原価だけ比べる。','意思決定では差額・将来・回避可能性が判断軸。')}}
+];
+const ALL_CALC_TEMPLATES=()=>[...INF_TEMPLATES,...M_INF_TEMPLATES];
+
+let genSubjects=new Set(['F','M','A','C']);
+let genTopics=new Set(Object.entries(OFFICIAL_SCOPE).flatMap(([s,ts])=>ts.map(t=>`${s}|${t}`)));
+let genFormat='mix',genCount=20,genSession=[],genIndex=0,genCorrect=0,genAnswered=false;
+
+function officialTheoryPool(subjects=[...genSubjects],topicKeys=[...genTopics]){
+  const ss=new Set(subjects),keys=new Set(topicKeys);
+  return QUESTIONS.filter(q=>q.lang!=='en'&&ss.has(q.s)&&keys.has(`${q.s}|${q.topic}`)&&OFFICIAL_SCOPE[q.s]?.includes(q.topic));
+}
+function subjectTopicKeys(s){return (OFFICIAL_SCOPE[s]||[]).map(t=>`${s}|${t}`)}
+function rand(a){return a[Math.floor(Math.random()*a.length)]}
+function sampleUnique(a,n){return shuffle(a).slice(0,Math.min(n,a.length))}
+function wrapperForSingle(){
+  return rand(['次の記述の正誤を判定してください。','短答式として、次の記述は正しいか。','次の説明が正しければ○、誤っていれば×。','判断基準に照らして、次の記述を判定してください。']);
+}
+function generateTheoryQuestion(format='mix',subjects=[...genSubjects],topicKeys=[...genTopics]){
+  const pool=officialTheoryPool(subjects,topicKeys);
+  if(!pool.length)return null;
+  let use=format;
+  if(use==='mix'||use==='theory')use=rand(['single','count2','count3']);
+  if(use==='count3'&&pool.length<3)use=pool.length>=2?'count2':'single';
+  if(use==='count2'&&pool.length<2)use='single';
+
+  if(use==='single'){
+    const b=rand(pool);
+    return {kind:'single',format:'single',s:b.s,topics:[b.topic],prompt:wrapperForSingle(),items:[b],answer:b.a,displayAnswer:b.a?'○':'×'};
+  }
+  const n=use==='count3'?3:2;
+  // Keep one generated question inside a single CPA subject.
+  const availableSubjects=[...new Set(pool.map(x=>x.s))];
+  const s=rand(availableSubjects);
+  const subjectPool=pool.filter(x=>x.s===s);
+  const actualN=Math.min(n,subjectPool.length);
+  const items=sampleUnique(subjectPool,actualN);
+  if(items.length<2)return generateTheoryQuestion('single',subjects,topicKeys);
+  const answer=items.filter(x=>x.a).length;
+  return {kind:'count',format:`count${items.length}`,s,topics:[...new Set(items.map(x=>x.topic))],
+    prompt:`次の${items.length}つの記述のうち、正しいものはいくつあるか。`,items,answer,displayAnswer:`${answer}個`};
+}
+function availableCalcTemplates(subjects=[...genSubjects],topicKeys=[...genTopics]){
+  const ss=new Set(subjects),keys=new Set(topicKeys);
+  return ALL_CALC_TEMPLATES().filter(t=>ss.has(t.s||'F')&&keys.has(`${t.s||'F'}|${t.topic}`));
+}
+function generateCalcQuestion(subjects=[...genSubjects],topicKeys=[...genTopics]){
+  const list=availableCalcTemplates(subjects,topicKeys);
+  if(!list.length)return null;
+  const q=rand(list).gen(); const t=ALL_CALC_TEMPLATES().find(x=>x.id===q.template);
+  return {kind:'calc',format:'calc',s:t?.s||'F',topics:[q.topic],calc:q,answer:q.answer,displayAnswer:`${fmt(q.answer)}${q.unit}`};
+}
+function generateOne(format=genFormat,subjects=[...genSubjects],topicKeys=[...genTopics]){
+  if(format==='calc')return generateCalcQuestion(subjects,topicKeys)||generateTheoryQuestion('mix',subjects,topicKeys);
+  if(format==='theory')return generateTheoryQuestion('theory',subjects,topicKeys);
+  if(format==='mix'){
+    const calcs=availableCalcTemplates(subjects,topicKeys);
+    const pickCalc=calcs.length&&Math.random()<0.22;
+    return pickCalc?generateCalcQuestion(subjects,topicKeys):generateTheoryQuestion('mix',subjects,topicKeys);
+  }
+  return generateTheoryQuestion(format,subjects,topicKeys);
+}
+function generatedQuestionTitle(q){
+  return `${SUBJECTS[q.s].name} ＞ ${q.topics.length===1?q.topics[0]:'複合論点'}`;
+}
+function renderGenerator(){
+  const g=state.generated||{answered:0,correct:0,subject:{},topic:{},format:{}};
+  const ga=document.getElementById('genAllAnswered'),gr=document.getElementById('genAllAccuracy');
+  if(ga)ga.textContent=g.answered||0;if(gr)gr.textContent=g.answered?`${Math.round(g.correct/g.answered*100)}%`:'—';
+
+  const sc=document.getElementById('genSubjectChips');
+  if(sc)sc.innerHTML=Object.entries(SUBJECTS).map(([s,o])=>`<button class="gen-sub-chip ${genSubjects.has(s)?'selected':''}" data-gen-sub="${s}"><b>${o.name}</b><small>${OFFICIAL_SCOPE[s].length}大項目</small></button>`).join('');
+  sc?.querySelectorAll('[data-gen-sub]').forEach(b=>b.onclick=()=>{
+    const s=b.dataset.genSub;
+    if(genSubjects.has(s)){if(genSubjects.size>1){genSubjects.delete(s);subjectTopicKeys(s).forEach(k=>genTopics.delete(k))}}
+    else{genSubjects.add(s);subjectTopicKeys(s).forEach(k=>genTopics.add(k))}
+    renderGenerator();
+  });
+
+  const groups=document.getElementById('genTopicGroups');
+  if(groups)groups.innerHTML=[...genSubjects].map(s=>`<div class="gen-topic-group"><div class="gen-topic-group-head"><b>${SUBJECTS[s].name}</b><button class="text-btn" data-gen-topic-all="${s}">すべて</button></div><div class="gen-topic-list">${OFFICIAL_SCOPE[s].map(t=>{const k=`${s}|${t}`;return `<button class="gen-topic-chip ${genTopics.has(k)?'selected':''}" data-gen-topic="${encodeURIComponent(k)}">${t}</button>`}).join('')}</div></div>`).join('');
+  groups?.querySelectorAll('[data-gen-topic]').forEach(b=>b.onclick=()=>{
+    const k=decodeURIComponent(b.dataset.genTopic);if(genTopics.has(k)){if(genTopics.size>1)genTopics.delete(k)}else genTopics.add(k);renderGenerator();
+  });
+  groups?.querySelectorAll('[data-gen-topic-all]').forEach(b=>b.onclick=()=>{subjectTopicKeys(b.dataset.genTopicAll).forEach(k=>genTopics.add(k));renderGenerator()});
+
+  document.querySelectorAll('[data-gen-format]').forEach(b=>b.classList.toggle('selected',b.dataset.genFormat===genFormat));
+  document.querySelectorAll('[data-gen-count]').forEach(b=>b.classList.toggle('selected',Number(b.dataset.genCount)===genCount));
+  const summary=document.getElementById('genSelectionSummary');if(summary)summary.textContent=`${genSubjects.size}科目・${genTopics.size}論点`;
+}
+function startGeneratedSession(opts={}){
+  const subjects=opts.subjects||[...genSubjects],topics=opts.topics||[...genTopics],format=opts.format||genFormat,count=opts.count||genCount;
+  if(!subjects.length||!topics.length){showToast('科目・論点を1つ以上選んでください');return}
+  if(format==='calc'&&!availableCalcTemplates(subjects,topics).length){showToast('選択範囲には計算テンプレートがありません');return}
+  genSession=[];
+  for(let i=0;i<count;i++){const q=generateOne(format,subjects,topics);if(q)genSession.push(q)}
+  if(!genSession.length){showToast('この条件では問題を生成できません');return}
+  genIndex=0;genCorrect=0;genAnswered=false;go('genPractice');renderGeneratedQuestion();
+}
+function renderGeneratedQuestion(){
+  const area=document.getElementById('genPracticeArea');if(!area)return;
+  if(genIndex>=genSession.length){renderGeneratedEnd();return}
+  const q=genSession[genIndex],progress=Math.round(genIndex/genSession.length*100);
+  let body='';
+  if(q.kind==='calc'){
+    const c=q.calc;
+    body=`<div class="question-card"><div class="topic">${generatedQuestionTitle(q)} <span class="gen-badge">数値生成</span></div><div class="question">${c.q}</div></div><div class="calc-input-wrap"><input id="genCalcAnswer" class="calc-input" inputmode="decimal" autocomplete="off" placeholder="答えを入力"><span class="calc-unit">${c.unit}</span></div><button class="primary" id="genCalcSubmit" style="margin-top:12px">解答する</button>`;
+  }else{
+    body=`<div class="question-card"><div class="topic">${generatedQuestionTitle(q)} <span class="gen-badge">内部生成</span></div><div class="question" style="font-size:15px">${q.prompt}</div><div class="gen-question-list">${q.items.map((x,i)=>`<div class="gen-statement"><div class="letter">${String.fromCharCode(65+i)}</div><div>${x.q}</div></div>`).join('')}</div></div>`;
+    if(q.kind==='single')body+=`<div class="answer-grid"><button class="answer" data-gen-answer="true">○</button><button class="answer" data-gen-answer="false">×</button></div>`;
+    else body+=`<div class="gen-answer-grid">${Array.from({length:q.items.length+1},(_,i)=>`<button class="gen-answer" data-gen-answer="${i}">${i}個</button>`).join('')}</div>`;
+  }
+  area.innerHTML=`<div class="practice-meta"><span>無限短答 ・ ${SUBJECTS[q.s].short}</span><span>${genIndex+1} / ${genSession.length}</span></div><div class="bar"><div style="width:${progress}%"></div></div>${body}<div id="genFeedback"></div>`;
+  genAnswered=false;
+  area.querySelectorAll('[data-gen-answer]').forEach(b=>b.onclick=()=>{
+    const raw=b.dataset.genAnswer,ans=q.kind==='single'?raw==='true':Number(raw);submitGeneratedAnswer(ans);
+  });
+  const calc=document.getElementById('genCalcSubmit');
+  if(calc){calc.onclick=()=>{const v=parseCalcValue(document.getElementById('genCalcAnswer').value);if(!Number.isFinite(v)){showToast('数値を入力してください');return}submitGeneratedAnswer(v)};setTimeout(()=>document.getElementById('genCalcAnswer')?.focus(),50)}
+}
+function submitGeneratedAnswer(ans){
+  if(genAnswered)return;genAnswered=true;const q=genSession[genIndex],ok=q.kind==='single'?ans===q.answer:Math.abs(Number(ans)-Number(q.answer))<1e-9;if(ok)genCorrect++;
+  recordGenerated(q,ok);
+  document.querySelectorAll('[data-gen-answer]').forEach(b=>b.disabled=true);const cs=document.getElementById('genCalcSubmit');if(cs)cs.disabled=true;const ci=document.getElementById('genCalcAnswer');if(ci)ci.disabled=true;
+  const fb=document.getElementById('genFeedback');fb.className='calc-feedback';
+  let details='';
+  if(q.kind==='calc'){
+    details=`<p class="explain">正答：<b>${q.displayAnswer}</b></p><div class="calc-formula">${q.calc.formula}</div><div class="keybox"><small>判断ポイント</small><div>${q.calc.key}</div></div><div class="keybox" style="background:#f9f5ff"><small style="color:#6941c6">一般化</small><div>${q.calc.general}</div></div>`;
+  }else{
+    details=`<p class="explain">正答：<b>${q.displayAnswer}</b></p><div class="gen-result-list">${q.items.map((x,i)=>`<div class="gen-result-item ${x.a?'good':'bad'}"><b>${String.fromCharCode(65+i)}：${x.a?'○':'×'}</b><br>${x.ex}<br><span style="color:var(--muted)">判断：${x.key}</span></div>`).join('')}</div><div class="keybox"><small>一般化</small><div>${q.items.map(x=>x.general).filter(Boolean).slice(0,2).join(' ／ ')}</div></div>`;
+  }
+  fb.innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?'○ 正解':'× 不正解'}</div>${details}<button class="primary" id="genNext" style="margin-top:12px">${genIndex===genSession.length-1?'結果を見る':'次の問題'}</button>`;
+  document.getElementById('genNext').onclick=()=>{genIndex++;renderGeneratedQuestion();window.scrollTo({top:0,behavior:'smooth'})};
+}
+function recordGenerated(q,ok){
+  state.generated=state.generated||{answered:0,correct:0,subject:{},topic:{},format:{}};
+  const g=state.generated;g.answered++;g.correct+=ok?1:0;g.subject[q.s]=g.subject[q.s]||{answered:0,correct:0};g.subject[q.s].answered++;g.subject[q.s].correct+=ok?1:0;g.format[q.format]=g.format[q.format]||{answered:0,correct:0};g.format[q.format].answered++;g.format[q.format].correct+=ok?1:0;
+  q.topics.forEach(t=>{const k=`${q.s}|${t}`;g.topic[k]=g.topic[k]||{answered:0,correct:0};g.topic[k].answered++;g.topic[k].correct+=ok?1:0});
+  state.answered++;state.correct+=ok?1:0;const dk=dayKey();state.history[dk]=state.history[dk]||{answered:0,correct:0};state.history[dk].answered++;state.history[dk].correct+=ok?1:0;
+  state.subject[q.s]=state.subject[q.s]||{answered:0,correct:0};state.subject[q.s].answered++;state.subject[q.s].correct+=ok?1:0;
+  if(q.topics.length===1){const tk=`${q.s}|${q.topics[0]}`;state.topic[tk]=state.topic[tk]||{answered:0,correct:0};state.topic[tk].answered++;state.topic[tk].correct+=ok?1:0}
+  save();
+}
+function renderGeneratedEnd(){
+  const rate=genSession.length?Math.round(genCorrect/genSession.length*100):0;
+  document.getElementById('genPracticeArea').innerHTML=`<div class="session-end"><div class="eyebrow">INFINITE SHORT COMPLETE</div><h1>生成セッション完了</h1><div class="big">${genCorrect}/${genSession.length}</div><p class="sub">正答率 ${rate}%。次のセッションでは記述の組み合わせ・順番・計算数値をもう一度生成します。</p><button class="primary" id="genAgain">同じ設定でもう一度生成</button><button class="secondary" id="genBackSettings" style="margin-top:10px">生成条件を変更</button></div>`;
+  document.getElementById('genAgain').onclick=()=>startGeneratedSession();
+  document.getElementById('genBackSettings').onclick=()=>go('generator');
+}
+function renderGeneratedStats(){
+  const el=document.getElementById('generatedStats');if(!el)return;
+  const g=state.generated||{answered:0,correct:0,subject:{},topic:{},format:{}},rate=g.answered?Math.round(g.correct/g.answered*100):null;
+  const bySubject=Object.entries(SUBJECTS).map(([s,o])=>{const st=g.subject?.[s]||{answered:0,correct:0};return {s,o,st,r:st.answered?Math.round(st.correct/st.answered*100):null}});
+  el.innerHTML=`<div class="statline"><b>${rate===null?'未実施':rate+'%'}</b><span>${g.answered||0}問回答</span></div><div class="bar"><div style="width:${rate||0}%"></div></div><div style="margin-top:10px">${bySubject.map(x=>`<div class="due-row"><div><b>${x.o.short}</b><br><span>${x.st.answered}問</span></div><span>${x.r===null?'—':x.r+'%'}</span></div>`).join('')}</div>`;
+}
+
+// --- FINAL 1.2: formula-driven infinite calculation drill ---
+const INF_TEMPLATES=[
+ {id:'depr',s:'F',name:'減価償却',topic:'固定資産',desc:'定額法・年額',gen(){
+   const life=ri(3,10),annual=ri(40,260,10),residual=ri(0,80,10),cost=annual*life+residual;
+   return infQ(this,`備品を期首に${fmt(cost)}万円で取得した。残存価額は${fmt(residual)}万円、耐用年数は${life}年、定額法で償却する。年間の減価償却費はいくらか。`,annual,'万円',
+   `（${fmt(cost)}－${fmt(residual)}）÷ ${life} ＝ ${fmt(annual)}万円`,
+   '取得原価から残存価額を控除した償却可能額を、耐用年数で規則的に配分する。',
+   '減価償却は時価下落の測定ではなく、取得原価の期間配分。')}},
+ {id:'allow',s:'F',name:'貸倒引当金',topic:'流動資産',desc:'差額補充法',gen(){
+   const receivable=ri(1000,5000,100),rate=ri(1,5),target=receivable*rate/100,existing=ri(0,Math.max(0,target-10),10),expense=target-existing;
+   return infQ(this,`決算日に売掛金等が${fmt(receivable)}万円ある。貸倒実績率${rate}%で貸倒引当金を設定する。決算整理前の貸倒引当金残高は${fmt(existing)}万円（貸方）である。差額補充法による貸倒引当金繰入額はいくらか。`,expense,'万円',
+   `${fmt(receivable)} × ${rate}% － ${fmt(existing)} ＝ ${fmt(expense)}万円`,
+   'まず必要な引当金残高を求め、すでにある残高との差額だけを繰り入れる。',
+   '残高設定型の問題は「必要残高－既存残高」の順で考える。')}},
+ {id:'fifo',s:'F',name:'棚卸資産',topic:'流動資産',desc:'先入先出法',gen(){
+   const q1=ri(50,100,10),q2=ri(50,100,10),c1=ri(80,140,10),c2=ri(150,220,10),extra=ri(10,Math.max(10,q1-10),10),ending=q2+extra,ans=q2*c2+extra*c1;
+   return infQ(this,`商品を第1回に${q1}個（1個${fmt(c1)}円）、第2回に${q2}個（1個${fmt(c2)}円）仕入れた。期末在庫は${ending}個である。先入先出法による期末棚卸資産額はいくらか。`,ans,'円',
+   `${q2}×${fmt(c2)} ＋ ${extra}×${fmt(c1)} ＝ ${fmt(ans)}円`,
+   '先入先出法では、期末在庫は後から仕入れた層から残っていると考える。',
+   '払出し順と期末に残る層は表裏の関係。')}},
+ {id:'fx',s:'F',name:'外貨換算',topic:'外貨換算',desc:'外貨建債権債務',gen(){
+   const usd=ri(10000,50000,5000),r1=ri(130,155),diff=ri(2,10),up=Math.random()<.5,r2=up?r1+diff:r1-diff,receivable=Math.random()<.5;
+   const gain=(receivable&&up)||(!receivable&&!up),amt=usd*diff,kind=receivable?'売掛金':'買掛金',dir=gain?'為替差益':'為替差損';
+   return infQ(this,`${kind} ${fmt(usd)}米ドルを1ドル${r1}円で計上している。決算時の為替相場は1ドル${r2}円である。このとき生じる${dir}の金額はいくらか。`,amt,'円',
+   `${fmt(usd)} × |${r2}－${r1}| ＝ ${fmt(amt)}円`,
+   `${kind}の円換算額が決算レートでどれだけ変わったかを見る。方向は債権と債務で逆になる。`,
+   '外貨建金銭債権債務は、外貨額×レート差で換算差額を捉える。')}},
+ {id:'tax',s:'F',name:'税効果会計',topic:'法人税等',desc:'一時差異×税率',gen(){
+   const diff=ri(200,1600,100),rate=[25,30,35][ri(0,2)],asset=Math.random()<.5,ans=diff*rate/100;
+   return infQ(this,`${asset?'将来減算':'将来加算'}一時差異が${fmt(diff)}万円、法定実効税率が${rate}%である。その他の条件を無視した場合、繰延税金${asset?'資産':'負債'}はいくらか。`,ans,'万円',
+   `${fmt(diff)} × ${rate}% ＝ ${fmt(ans)}万円`,
+   `${asset?'将来減算一時差異→将来の税負担減→資産':'将来加算一時差異→将来の税負担増→負債'}。`,
+   '税効果は一時差異の方向を判定してから税率を掛ける。')}},
+ {id:'impair',s:'F',name:'減損会計',topic:'固定資産の減損',desc:'回収可能価額',gen(){
+   const carrying=ri(1200,3000,100),loss=ri(100,700,100),recover=carrying-loss,other=recover-ri(100,500,100),useHigh=Math.random()<.5,vi=useHigh?recover:other,ns=useHigh?other:recover;
+   return infQ(this,`固定資産の帳簿価額は${fmt(carrying)}万円、使用価値は${fmt(vi)}万円、正味売却価額は${fmt(ns)}万円である。減損損失はいくらか。`,loss,'万円',
+   `回収可能価額＝max(${fmt(vi)}, ${fmt(ns)})＝${fmt(recover)}、${fmt(carrying)}－${fmt(recover)}＝${fmt(loss)}万円`,
+   '回収可能価額は使用価値と正味売却価額の高い方。',
+   '減損損失＝帳簿価額－回収可能価額。まず回収可能価額を確定する。')}},
+ {id:'goodwill',s:'F',name:'のれん',topic:'企業結合・事業分離',desc:'取得時のれん',gen(){
+   const net=ri(1000,4000,100),pct=[60,70,80,90][ri(0,3)],share=net*pct/100,gw=ri(100,600,50),price=share+gw;
+   return infQ(this,`P社はS社株式の${pct}%を${fmt(price)}万円で取得して支配を獲得した。取得日時点のS社の識別可能純資産の時価は${fmt(net)}万円である。単純化して考えたとき、のれんはいくらか。`,gw,'万円',
+   `${fmt(price)} － ${fmt(net)}×${pct}% ＝ ${fmt(gw)}万円`,
+   '取得原価と、取得した持分に対応する識別可能純資産との差額を見る。',
+   'のれんは「取得に払った対価－取得した純資産持分」の差額から考える。')}},
+ {id:'nci',s:'F',name:'非支配株主持分',topic:'連結財務諸表',desc:'取得時NCI',gen(){
+   const net=ri(1000,5000,100),pct=[60,70,80,90][ri(0,3)],nci=net*(100-pct)/100;
+   return infQ(this,`P社がS社株式の${pct}%を取得して支配を獲得した。取得日時点のS社の識別可能純資産の時価は${fmt(net)}万円である。非支配株主持分はいくらか。`,nci,'万円',
+   `${fmt(net)} × ${100-pct}% ＝ ${fmt(nci)}万円`,
+   '親会社が保有していない割合を純資産に掛ける。',
+   '連結では100%取り込んだ後、親会社持分と非支配持分へ帰属を分ける。')}},
+ {id:'unreal',s:'F',name:'未実現利益',topic:'連結財務諸表',desc:'棚卸資産・ダウンストリーム',gen(){
+   const ending=ri(200,1200,100),rate=[10,20,25][ri(0,2)],ans=ending*rate/100;
+   return infQ(this,`親会社から子会社への商品販売（ダウンストリーム）について、期末に子会社が保有する内部取引価格ベースの棚卸資産は${fmt(ending)}万円である。売価に対する利益率は${rate}%である。消去すべき未実現利益はいくらか。`,ans,'万円',
+   `${fmt(ending)} × ${rate}% ＝ ${fmt(ans)}万円`,
+   '問題文が「売価に対する利益率」としているので、内部取引価格にそのまま利益率を掛ける。',
+   '未実現利益は、期末に企業集団外へまだ実現していない内部利益を消す。')}},
+ {id:'revenue',s:'F',name:'収益認識',topic:'収益認識',desc:'取引価格の配分',gen(){
+   const ratios=[[3,2],[2,1],[4,1],[5,3]],ab=ratios[ri(0,ratios.length-1)],base=ri(100,300,50),a=ab[0]*base,b=ab[1]*base,unit=ri(80,180,10),price=(ab[0]+ab[1])*unit,ans=ab[0]*unit;
+   return infQ(this,`契約の取引価格は${fmt(price)}万円である。履行義務Aの独立販売価格は${fmt(a)}万円、Bは${fmt(b)}万円である。独立販売価格の比率で配分すると、Aへの配分額はいくらか。`,ans,'万円',
+   `${fmt(price)} × ${fmt(a)} ÷ (${fmt(a)}＋${fmt(b)}) ＝ ${fmt(ans)}万円`,
+   '取引価格は、原則として各履行義務の独立販売価格の相対的比率で配分する。',
+   '配分問題は「全体×対象の比率」。比率の分母は独立販売価格の合計。')}}
+];
+let infiniteFilter='MIX',infiniteSession=[],infiniteIndex=0,infiniteCorrect=0,infiniteAnswered=false;
+function ri(min,max,step=1){const n=Math.floor((max-min)/step);return min+Math.floor(Math.random()*(n+1))*step}
+function fmt(n){return Number(n).toLocaleString('ja-JP')}
+function infQ(t,q,answer,unit,formula,key,general){return {template:t.id,name:t.name,topic:t.topic,q,answer,unit,formula,key,general}}
+function infTemplate(id){return INF_TEMPLATES.find(t=>t.id===id)}
+function makeInfiniteQuestion(id='MIX'){const t=id==='MIX'?INF_TEMPLATES[Math.floor(Math.random()*INF_TEMPLATES.length)]:infTemplate(id);return t.gen()}
+function infiniteSummaryHTML(){const inf=state.infinite||{answered:0,correct:0,topic:{}},rate=inf.answered?Math.round(inf.correct/inf.answered*100):null;return `<div class="summary"><div class="card"><b>${inf.answered||0}</b><span>累計回答</span></div><div class="card"><b>${rate===null?'—':rate+'%'}</b><span>累計正答率</span></div></div>`}
+function renderInfiniteSetup(){const area=document.getElementById('infiniteArea');if(!area)return;area.innerHTML=`<div class="infinity-hero"><div class="eyebrow">RULE-BASED GENERATOR</div><div class="section-title"><h2 style="color:#fff;font-size:23px">財務・無限計算演習</h2><span class="infinity-mark">∞</span></div><p class="sub">問題文・数値・正答をブラウザ内で自動生成。AI APIは使わないので、答えは数式から確定します。</p>${infiniteSummaryHTML()}</div><div class="section"><div class="section-title"><h2>出題する型</h2><span class="pill">10テンプレート</span></div><div class="generator-grid" id="generatorGrid"><button class="generator-chip ${infiniteFilter==='MIX'?'selected':''}" data-inf-template="MIX"><b>∞ ランダムMIX</b><small>全テンプレートから毎回選択</small></button>${INF_TEMPLATES.map(t=>`<button class="generator-chip ${infiniteFilter===t.id?'selected':''}" data-inf-template="${t.id}"><b>${t.name}</b><small>${t.desc}</small></button>`).join('')}</div></div><div class="section card"><div class="section-title"><h2>セッション</h2><span class="infinity-badge">毎回新しい数字</span></div><p class="sub" style="margin-bottom:12px">まず10問。終了後は同じ設定で何度でも再生成できます。</p><button class="primary" id="startInfinite10">10問を生成して開始</button></div><p class="section infinity-note">収録中：減価償却、貸倒引当金、先入先出法、外貨換算、税効果、減損、のれん、非支配株主持分、未実現利益、収益認識。基本計算を反復するためのオリジナル問題です。</p>`;area.querySelectorAll('[data-inf-template]').forEach(b=>b.onclick=()=>{infiniteFilter=b.dataset.infTemplate;renderInfiniteSetup()});document.getElementById('startInfinite10').onclick=()=>startInfinite(10)}
+function startInfinite(count=10){infiniteSession=Array.from({length:count},()=>makeInfiniteQuestion(infiniteFilter));infiniteIndex=0;infiniteCorrect=0;infiniteAnswered=false;renderInfiniteQuestion()}
+function renderInfiniteQuestion(){const area=document.getElementById('infiniteArea');if(infiniteIndex>=infiniteSession.length){renderInfiniteEnd();return}const q=infiniteSession[infiniteIndex],progress=Math.round(infiniteIndex/infiniteSession.length*100);area.innerHTML=`<div class="practice-meta"><span>無限計算演習 ・ ${q.name}</span><span>${infiniteIndex+1} / ${infiniteSession.length}</span></div><div class="bar"><div style="width:${progress}%"></div></div><div class="question-card"><div class="topic">財務会計論 ＞ ${q.topic} <span class="infinity-badge" style="margin-left:6px">自動生成</span></div><div class="question">${q.q}</div></div><div class="calc-input-wrap"><input id="calcAnswer" class="calc-input" inputmode="decimal" autocomplete="off" placeholder="答えを入力" aria-label="計算結果"><span class="calc-unit">${q.unit}</span></div><button class="primary" id="submitCalc" style="margin-top:12px">解答する</button><div id="calcFeedback"></div>`;infiniteAnswered=false;const input=document.getElementById('calcAnswer');setTimeout(()=>input.focus(),50);document.getElementById('submitCalc').onclick=submitInfiniteAnswer;input.addEventListener('keydown',e=>{if(e.key==='Enter')submitInfiniteAnswer()})}
+function parseCalcValue(v){const s=String(v).replace(/[,\s￥¥円万]/g,'').trim();return s===''?NaN:Number(s)}
+function submitInfiniteAnswer(){if(infiniteAnswered)return;const q=infiniteSession[infiniteIndex],input=document.getElementById('calcAnswer'),val=parseCalcValue(input.value);if(!Number.isFinite(val)){showToast('数値を入力してください');return}infiniteAnswered=true;const ok=Math.abs(val-q.answer)<1e-9;if(ok)infiniteCorrect++;recordInfinite(q,ok);input.disabled=true;document.getElementById('submitCalc').disabled=true;const box=document.getElementById('calcFeedback');box.className='calc-feedback';box.innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?'○ 正解':'× 不正解'}</div>${ok?'':`<p class="explain">正答：<b>${fmt(q.answer)}${q.unit}</b></p>`}<div class="calc-formula">${q.formula}</div><div class="keybox"><small>判断ポイント</small><div>${q.key}</div></div><div class="keybox" style="background:#f9f5ff"><small style="color:#6941c6">一般化</small><div>${q.general}</div></div><div class="btn-row"><button class="secondary same-type" id="sameTypeNext">同じ型でもう1問</button><button class="primary" id="infiniteNext">${infiniteIndex===infiniteSession.length-1?'結果を見る':'次の問題'}</button></div>`;document.getElementById('sameTypeNext').onclick=()=>{const t=infTemplate(q.template);infiniteSession.splice(infiniteIndex+1,0,t.gen());infiniteIndex++;renderInfiniteQuestion();window.scrollTo({top:0,behavior:'smooth'})};document.getElementById('infiniteNext').onclick=()=>{infiniteIndex++;renderInfiniteQuestion();window.scrollTo({top:0,behavior:'smooth'})}}
+function recordInfinite(q,ok){state.infinite=state.infinite||{answered:0,correct:0,topic:{}};state.infinite.topic=state.infinite.topic||{};state.infinite.answered++;state.infinite.correct+=ok?1:0;state.infinite.topic[q.template]=state.infinite.topic[q.template]||{answered:0,correct:0};state.infinite.topic[q.template].answered++;state.infinite.topic[q.template].correct+=ok?1:0;state.answered++;state.correct+=ok?1:0;const dk=dayKey();state.history[dk]=state.history[dk]||{answered:0,correct:0};state.history[dk].answered++;state.history[dk].correct+=ok?1:0;state.subject.F=state.subject.F||{answered:0,correct:0};state.subject.F.answered++;state.subject.F.correct+=ok?1:0;const tk=`F|${q.topic}`;state.topic[tk]=state.topic[tk]||{answered:0,correct:0};state.topic[tk].answered++;state.topic[tk].correct+=ok?1:0;save()}
+function renderInfiniteEnd(){const rate=infiniteSession.length?Math.round(infiniteCorrect/infiniteSession.length*100):0;document.getElementById('infiniteArea').innerHTML=`<div class="session-end"><div class="eyebrow">INFINITE SESSION COMPLETE</div><h1>計算演習 完了</h1><div class="big">${infiniteCorrect}/${infiniteSession.length}</div><p class="sub">正答率 ${rate}%。同じ設定でも数字は毎回作り直されます。</p><button class="primary" id="againInfinite">新しく10問生成</button><button class="secondary" id="changeInfinite" style="margin-top:10px">出題する型を変更</button></div>`;document.getElementById('againInfinite').onclick=()=>startInfinite(10);document.getElementById('changeInfinite').onclick=renderInfiniteSetup}
+function renderInfiniteStats(){const el=document.getElementById('infiniteStats');if(!el)return;const inf=state.infinite||{answered:0,correct:0,topic:{}},rate=inf.answered?Math.round(inf.correct/inf.answered*100):null;const rows=Object.entries(inf.topic||{}).map(([id,st])=>({t:infTemplate(id),st,r:st.answered?Math.round(st.correct/st.answered*100):0})).sort((a,b)=>a.r-b.r).slice(0,5);el.innerHTML=`<div class="statline"><b>${rate===null?'未実施':rate+'%'}</b><span>${inf.answered||0}問回答</span></div><div class="bar"><div style="width:${rate||0}%"></div></div>${rows.length?`<div style="margin-top:10px">${rows.map(x=>`<div class="due-row"><div><b>${x.t?.name||'計算'}</b><br><span>${x.st.answered}問回答</span></div><span>${x.r}%</span></div>`).join('')}</div>`:'<div class="empty" style="margin-top:10px">無限演習を始めると、型ごとの正答率が表示されます。</div>'}`}
+
 function renderAll(){renderHome();renderWeak();renderRecord()}
-document.getElementById('startDaily').onclick=()=>startSession('daily');document.getElementById('startSmart').onclick=()=>startSession('smart',{count:10});document.getElementById('startTodayRange').onclick=()=>state.todayRange.length?startSession('today'):go('setup');document.getElementById('startWeak').onclick=()=>startSession('weak',{subject:weakFilter});document.getElementById('startCustom').onclick=()=>{const m=document.querySelector('.mode.selected')?.dataset.mode||'random';startSession(m==='smart'?'smart':m==='weak'?'weak':'custom',{count:10,keys:state.selectedTopics})};document.getElementById('saveTodayRange').onclick=()=>{if(!state.selectedTopics.length){showToast('論点を1つ以上選んでください');return}state.todayRange=[...state.selectedTopics];save();showToast('今日の範囲を保存しました')};document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{document.querySelectorAll('.mode').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});document.getElementById('resetData').onclick=()=>{if(confirm('学習記録をすべてリセットしますか？\nこの操作は取り消せません。')){[STORAGE,OLD4,OLD3,OLD2,OLD].forEach(k=>localStorage.removeItem(k));state=fresh();renderAll();showToast('学習記録をリセットしました')}};
+document.getElementById('startDaily').onclick=()=>{genSubjects=new Set(['F','M','A','C']);genTopics=new Set(Object.entries(OFFICIAL_SCOPE).flatMap(([s,ts])=>ts.map(t=>`${s}|${t}`)));genFormat='mix';genCount=20;startGeneratedSession()};document.getElementById('openGenerator').onclick=()=>go('generator');document.getElementById('openCurated').onclick=()=>go('setup');document.getElementById('startSmart').onclick=()=>startSession('smart',{count:10});document.getElementById('startWeak').onclick=()=>startSession('weak',{subject:weakFilter});document.getElementById('startCustom').onclick=()=>{const m=document.querySelector('.mode.selected')?.dataset.mode||'random';startSession(m==='smart'?'smart':m==='weak'?'weak':'custom',{count:10,keys:state.selectedTopics})};document.getElementById('saveTodayRange').onclick=()=>{if(!state.selectedTopics.length){showToast('論点を1つ以上選んでください');return}state.todayRange=[...state.selectedTopics];save();showToast('今日の範囲を保存しました')};document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{document.querySelectorAll('.mode').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});document.getElementById('resetData').onclick=()=>{if(confirm('学習記録をすべてリセットしますか？\nこの操作は取り消せません。')){[STORAGE,OLD4,OLD3,OLD2,OLD].forEach(k=>localStorage.removeItem(k));state=fresh();renderAll();showToast('学習記録をリセットしました')}};
 
 
 // --- FINAL: exam countdown / backup / restore ---
@@ -341,7 +758,7 @@ function updateExamCountdown(){
   e.textContent=days>0?`あと${days}日`:days===0?'今日':'試験日経過';
 }
 function exportLearningData(){
-  const payload={app:'CPA SHORT',version:'FINAL 1.1',exportedAt:new Date().toISOString(),state:normalizeState(state)};
+  const payload={app:'CPA SHORT',version:'FINAL 1.3',exportedAt:new Date().toISOString(),state:normalizeState(state)};
   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
@@ -374,6 +791,15 @@ document.getElementById('importData').onchange=e=>importLearningData(e.target.fi
 updateExamCountdown();
 
 
+document.getElementById('setupInfinite').onclick=()=>go('generator');
+
+document.getElementById('genAllSubjects').onclick=()=>{genSubjects=new Set(['F','M','A','C']);genTopics=new Set(Object.entries(OFFICIAL_SCOPE).flatMap(([s,ts])=>ts.map(t=>`${s}|${t}`)));renderGenerator()};
+document.getElementById('genAllTopics').onclick=()=>{[...genSubjects].forEach(s=>subjectTopicKeys(s).forEach(k=>genTopics.add(k)));renderGenerator()};
+document.querySelectorAll('[data-gen-format]').forEach(b=>b.onclick=()=>{genFormat=b.dataset.genFormat;renderGenerator()});
+document.querySelectorAll('[data-gen-count]').forEach(b=>b.onclick=()=>{genCount=Number(b.dataset.genCount);renderGenerator()});
+document.getElementById('startGenerated').onclick=()=>startGeneratedSession();
+document.getElementById('quitGenerated').onclick=()=>{if(!genAnswered&&genIndex<genSession.length&&genIndex>0&&!confirm('生成セッションを終了しますか？'))return;go('home')};
+
 // --- English / mini mock inherited in v4 ---
 document.getElementById('homeEnglish').onclick=()=>startSession('english',{count:10});
 document.getElementById('startEnglish').onclick=()=>startSession('english',{count:10});
@@ -385,7 +811,7 @@ function startMock(){mockQuestions=buildMock();mockIndex=0;mockAnswers={};mockRe
 function updateMockTimer(){const e=document.getElementById('mockClock');if(e)e.textContent=fmtTime(mockRemaining)}
 function currentMockSubject(){return mockQuestions[mockIndex]?.s}
 function renderMock(){if(mockFinished)return;if(mockIndex>=mockQuestions.length){finishMock(false);return}const q=mockQuestions[mockIndex],area=document.getElementById('mockArea'),isEn=q.lang==='en';const subjectStart={C:0,M:4,A:8,F:12}[q.s],subjectEnd={C:4,M:8,A:12,F:20}[q.s],subjectNo=mockIndex-subjectStart+1,subjectTotal=subjectEnd-subjectStart;const target=MOCK_PLAN.find(x=>x.s===q.s);area.innerHTML=`<div class=\"timer-shell\"><div class=\"timer\"><div><small>残り時間</small><br><strong id=\"mockClock\">${fmtTime(mockRemaining)}</strong></div><div style=\"text-align:right\"><small>${SUBJECTS[q.s].name}</small><br><b>${subjectNo} / ${subjectTotal}</b></div></div></div><div class=\"mock-progress\">${mockQuestions.map((_,i)=>`<span class=\"mock-dot ${i<mockIndex?'done':i===mockIndex?'current':''}\"></span>`).join('')}</div><div class=\"practice-meta\"><span>Q ${mockIndex+1} / 20</span><span>${target.seconds/60}分目安 / 科目</span></div><div class=\"question-card\"><div class=\"topic\">${SUBJECTS[q.s].name} ＞ ${q.topic} ${isEn?'<span class=\"pill english\" style=\"margin-left:6px\">ENGLISH</span>':''}</div><div class=\"question ${isEn?'en':''}\">${q.q}</div></div><div class=\"mock-choice\"><button data-mock-answer=\"true\" class=\"${mockAnswers[q.id]===true?'selected':''}\">○</button><button data-mock-answer=\"false\" class=\"${mockAnswers[q.id]===false?'selected':''}\">×</button></div><button class=\"primary\" id=\"mockNext\" style=\"margin-top:14px\">${mockIndex===19?'採点する':'次の問題'}</button><p class=\"sub\" style=\"font-size:12px;text-align:center;margin-top:12px\">模試中は正解・解説を表示しません</p>`;area.querySelectorAll('[data-mock-answer]').forEach(b=>b.onclick=()=>{mockAnswers[q.id]=b.dataset.mockAnswer==='true';renderMock()});document.getElementById('mockNext').onclick=()=>{mockIndex++;renderMock()};}
-function finishMock(timeUp){if(mockFinished)return;mockFinished=true;clearInterval(mockTimer);let total=0,by={C:0,M:0,A:0,F:0},enCorrect=0,enTotal=0;for(const q of mockQuestions){const ok=mockAnswers[q.id]===q.a;if(ok){total+=25;by[q.s]+=25}if(q.lang==='en'){enTotal++;if(ok)enCorrect++}}state.mockLog=state.mockLog||[];state.mockLog.unshift({date:new Date().toISOString(),score:total,timeUp,english:{correct:enCorrect,total:enTotal}});state.mockLog=state.mockLog.slice(0,20);save();document.getElementById('mockArea').innerHTML=`<div class=\"session-end\"><div class=\"eyebrow\">${timeUp?'TIME UP':'MINI MOCK COMPLETE'}</div><h1>採点結果</h1><div class=\"score\">${total}<small> / 500</small></div><p class=\"sub\">20問を各25点として換算したミニ模試スコア。実際の本試験の問題数・個別配点を再現したものではありません。</p><div class=\"result-grid\"><div class=\"result-tile\"><b>${by.C}/100</b><span>企業法</span></div><div class=\"result-tile\"><b>${by.M}/100</b><span>管理会計論</span></div><div class=\"result-tile\"><b>${by.A}/100</b><span>監査論</span></div><div class=\"result-tile\"><b>${by.F}/200</b><span>財務会計論</span></div></div><div class=\"official-note\" style=\"margin-top:14px\">英語問題 ${enCorrect}/${enTotal} 正解。FINAL版の模試では、英語配点を全体の約5％になるよう1問だけ組み込んでいます。</div><button class=\"primary\" id=\"mockReview\" style=\"margin-top:16px\">間違えた問題を復習へ</button><button class=\"secondary\" data-screen=\"exam\" style=\"margin-top:10px\">実戦モードへ</button></div>`;for(const q of mockQuestions){if(mockAnswers[q.id]!==q.a&&!state.weak.includes(q.id))state.weak.push(q.id)}save();document.getElementById('mockReview').onclick=()=>go('weak')}
+function finishMock(timeUp){if(mockFinished)return;mockFinished=true;clearInterval(mockTimer);let total=0,by={C:0,M:0,A:0,F:0},enCorrect=0,enTotal=0;for(const q of mockQuestions){const ok=mockAnswers[q.id]===q.a;if(ok){total+=25;by[q.s]+=25}if(q.lang==='en'){enTotal++;if(ok)enCorrect++}}state.mockLog=state.mockLog||[];state.mockLog.unshift({date:new Date().toISOString(),score:total,timeUp,english:{correct:enCorrect,total:enTotal}});state.mockLog=state.mockLog.slice(0,20);save();document.getElementById('mockArea').innerHTML=`<div class=\"session-end\"><div class=\"eyebrow\">${timeUp?'TIME UP':'MINI MOCK COMPLETE'}</div><h1>採点結果</h1><div class=\"score\">${total}<small> / 500</small></div><p class=\"sub\">20問を各25点として換算したミニ模試スコア。実際の本試験の問題数・個別配点を再現したものではありません。</p><div class=\"result-grid\"><div class=\"result-tile\"><b>${by.C}/100</b><span>企業法</span></div><div class=\"result-tile\"><b>${by.M}/100</b><span>管理会計論</span></div><div class=\"result-tile\"><b>${by.A}/100</b><span>監査論</span></div><div class=\"result-tile\"><b>${by.F}/200</b><span>財務会計論</span></div></div><div class=\"official-note\" style=\"margin-top:14px\">英語問題 ${enCorrect}/${enTotal} 正解。FINAL 1.3の模試では、英語配点を全体の約5％になるよう1問だけ組み込んでいます。</div><button class=\"primary\" id=\"mockReview\" style=\"margin-top:16px\">間違えた問題を復習へ</button><button class=\"secondary\" data-screen=\"exam\" style=\"margin-top:10px\">実戦モードへ</button></div>`;for(const q of mockQuestions){if(mockAnswers[q.id]!==q.a&&!state.weak.includes(q.id))state.weak.push(q.id)}save();document.getElementById('mockReview').onclick=()=>go('weak')}
 document.getElementById('startMock').onclick=startMock;
 document.getElementById('quitMock').onclick=()=>{if(mockFinished||confirm('ミニ模試を終了しますか？')){clearInterval(mockTimer);mockFinished=true;go('exam')}};
 
