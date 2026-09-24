@@ -170,7 +170,7 @@ button:disabled{cursor:not-allowed}
 </head>
 <body>
 <div class="app">
-<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 1.4</span></div><div class="date" id="todayLabel"></div></header>
+<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 2.2</span></div><div class="date" id="todayLabel"></div></header>
 <main>
 <section id="home" class="screen active">
   <h1>毎回ちがう短答を、<br>判断基準で解く。</h1>
@@ -236,14 +236,19 @@ button:disabled{cursor:not-allowed}
   </div>
 
   <div class="section card">
-    <div class="section-title"><h2>出題形式</h2><span class="gen-badge">AUTO · 文面も生成</span></div>
+    <div class="section-title"><h2>出題形式</h2><span class="gen-badge">DEEP · 新規優先</span></div>
     <div class="gen-format-grid" id="genFormatGrid">
       <button class="gen-format selected" data-gen-format="mix"><b>自動MIX</b><small>○×・2記述・3記述・対応する計算を自動で混ぜる</small></button>
       <button class="gen-format" data-gen-format="single"><b>○×</b><small>1つの記述をすばやく判定</small></button>
       <button class="gen-format" data-gen-format="count2"><b>2記述</b><small>A・Bのうち正しい記述はいくつか</small></button>
       <button class="gen-format" data-gen-format="count3"><b>3記述</b><small>A〜Cのうち正しい記述はいくつか</small></button>
+      <button class="gen-format" data-gen-format="best4"><b>4択・正しい1つ</b><small>4記述から正しいものを選ぶ</small></button>
+      <button class="gen-format" data-gen-format="wrong4"><b>4択・誤り1つ</b><small>4記述から誤っているものを選ぶ</small></button>
       <button class="gen-format" data-gen-format="calc"><b>計算</b><small>財務・管理の対応論点で数値を毎回生成</small></button>
       <button class="gen-format" data-gen-format="theory"><b>理論MIX</b><small>計算を除き、理論形式だけを混ぜる</small></button>
+      <button class="gen-format" data-gen-format="journal"><b>仕訳判断</b><small>財務は条件から仕訳・勘定処理を判定</small></button>
+      <button class="gen-format" data-gen-format="condition"><b>条件変更</b><small>支配継続/喪失など、条件差で処理が変わる問題</small></button>
+      <button class="gen-format" data-gen-format="compound"><b>複合論点</b><small>関連するルールを組み合わせた初見問題</small></button>
     </div>
   </div>
 
@@ -302,7 +307,7 @@ button:disabled{cursor:not-allowed}
     <button class="primary" id="startMock" style="margin-top:16px">ミニ模試を開始</button>
   </div>
   <div class="section card"><div class="section-title"><h2>English drill</h2><span class="pill english">令和9年対応</span></div><p class="sub" style="margin-bottom:12px">財務・管理・監査のオリジナル英語問題。答えた後に日本語で判断軸を確認する。</p><button class="tonal" id="startEnglish" style="width:100%">英語問題を10問</button></div>
-  <div class="section official-note">令和9年短答では、英語問題は財務会計論・管理会計論・監査論の3科目で出題され、3科目合計で総点数の5〜6％程度。FINAL 1.4の英語問題は公式公表の重点範囲を参考にしたオリジナル問題です。</div>
+  <div class="section official-note">令和9年短答では、英語問題は財務会計論・管理会計論・監査論の3科目で出題され、3科目合計で総点数の5〜6％程度。FINAL 2.2の英語問題は公式公表の重点範囲を参考にしたオリジナル問題です。</div>
   <div class="section"><h2>英語重点テーマ</h2><div class="english-focus"><span class="focus-chip">Consolidation</span><span class="focus-chip">Impairment</span><span class="focus-chip">Foreign currency</span><span class="focus-chip">CVP / Contribution margin</span><span class="focus-chip">Variance analysis</span><span class="focus-chip">Investment appraisal</span><span class="focus-chip">Audit objective</span><span class="focus-chip">Audit planning</span><span class="focus-chip">Audit report</span></div></div>
 </section>
 
@@ -321,7 +326,7 @@ button:disabled{cursor:not-allowed}
   <div class="section card"><div class="section-title"><h2>復習スケジュール</h2><span class="pill">SMART</span></div><div class="memory-grid"><div class="memory-tile"><b id="dueTodayStat">0</b><span>今日まで</span></div><div class="memory-tile"><b id="dueWeekStat">0</b><span>7日以内</span></div><div class="memory-tile"><b id="stableStat">0%</b><span>7日以上の間隔</span></div></div><div id="duePreview" style="margin-top:10px"></div></div>
   <div class="section card"><h2>直近14日</h2><div class="heatmap" id="heatmap"></div><div class="day-labels" id="dayLabels"></div></div>
   <div class="section card"><h2>科目別</h2><div id="subjectStats"></div></div>
-  <div class="section card"><div class="section-title"><h2>無限短答</h2><span class="gen-badge">DEFAULT</span></div><div id="generatedStats"></div></div>
+  <div class="section card"><div class="section-title"><h2>深掘り無限短答</h2><span class="gen-badge">新規優先</span></div><div id="generatedStats"></div></div>
   <div class="section card"><div class="section-title"><h2>財務・無限計算</h2><span class="infinity-badge">∞</span></div><div id="infiniteStats"></div></div>
   <div class="section card"><div class="section-title"><h2>英語問題</h2><span class="pill english">EN</span></div><div id="englishStat"></div></div>
   <div class="section card"><h2>論点別・要注意</h2><div id="topicStats"></div></div>
@@ -343,8 +348,8 @@ button:disabled{cursor:not-allowed}
       <div class="about-row"><b>学習データ</b><span>v1〜v4から自動移行</span></div>
     </div>
   </div>
-  <div class="section final-banner">FINAL 1.4は、4科目・全65大項目の知識カードから文章そのものを内部変形し、過去セッションの同一文言も避ける生成版です。</div>
-  <div class="section note">無限短答の理論生成は、アプリ内の正誤が確定したオリジナル知識カードを再構成する方式です。自由生成AIではないため、未知の細目を新規創作するものではありません。</div>
+  <div class="section final-banner">FINAL 2.2は、財務会計論FINAL 2.0・管理会計論FINAL 2.1を維持したまま、監査論を教材準拠の構造化ルール先行生成エンジンへ更新した版です。</div>
+  <div class="section note">財務会計論FINAL 2.0・管理会計論FINAL 2.1のエンジンはそのまま維持。監査論FINAL 2.2は「内部ルール・条件 → 正答確定 → 問題文 → 典型誤答ロジック → 正答一意性検証」の順で生成します。企業法は従来エンジンを維持しています。</div>
   <div class="section"><button class="secondary" id="resetData" style="color:var(--bad)">学習記録をすべてリセット</button></div>
 </section>
 </main>
@@ -352,6 +357,7 @@ button:disabled{cursor:not-allowed}
 <nav aria-label="メインナビゲーション"><button class="nav-btn active" data-screen="home"><span class="ico">⌂</span>ホーム</button><button class="nav-btn" data-screen="generator"><span class="ico">∞</span>無限</button><button class="nav-btn" data-screen="exam"><span class="ico">◷</span>実戦</button><button class="nav-btn" data-screen="weak"><span class="ico">◇</span>復習</button><button class="nav-btn" data-screen="record"><span class="ico">▥</span>分析</button></nav>
 <div class="toast" id="toast"></div>
 <script>
+const APP_ENGINE_VERSION={app:'FINAL 2.2',F:'2.0-rule-first',M:'2.1-rule-first',A:'2.2-rule-first',C:'1.5'};
 const SUBJECTS={
  F:{name:'財務会計論',short:'財務'}, M:{name:'管理会計論',short:'管理'}, A:{name:'監査論',short:'監査'}, C:{name:'企業法',short:'企業'}
 };
@@ -418,7 +424,14 @@ const EXTRA_QUESTIONS=[{"s":"F","topic":"財務会計の意義と機能","q":"�
 QUESTIONS.push(...EXTRA_QUESTIONS);
 const STORAGE='cpa-short-final', OLD4='cpa-short-v4', OLD3='cpa-short-v3', OLD2='cpa-short-v2', OLD='cpa-short-v1';
 const fresh=()=>({answered:0,correct:0,weak:[],uncertain:[],history:{},topic:{},subject:{},question:{},review:{},todayRange:[],selectedSubjects:['F'],selectedTopics:[],sessionLog:[],english:{answered:0,correct:0},mockLog:[],infinite:{answered:0,correct:0,topic:{}},generated:{answered:0,correct:0,subject:{},topic:{},format:{}},migrated:false,migratedFrom:null});
-function normalizeState(x){const base={...fresh(),...x};base.review=base.review||{};base.infinite=base.infinite||{answered:0,correct:0,topic:{}};base.infinite.topic=base.infinite.topic||{};base.generated=base.generated||{answered:0,correct:0,subject:{},topic:{},format:{}};base.generated.subject=base.generated.subject||{};base.generated.topic=base.generated.topic||{};base.generated.format=base.generated.format||{};base.generated.seenVariants=Array.isArray(base.generated.seenVariants)?base.generated.seenVariants:[];return base}
+function normalizeState(x){const base={...fresh(),...x};base.review=base.review||{};base.infinite=base.infinite||{answered:0,correct:0,topic:{}};base.infinite.topic=base.infinite.topic||{};base.generated=base.generated||{answered:0,correct:0,subject:{},topic:{},format:{}};base.generated.subject=base.generated.subject||{};base.generated.topic=base.generated.topic||{};base.generated.format=base.generated.format||{};base.generated.seenVariants=Array.isArray(base.generated.seenVariants)?base.generated.seenVariants:[];
+base.generated.recentConcepts=Array.isArray(base.generated.recentConcepts)?base.generated.recentConcepts:[];
+base.generated.conceptUse=base.generated.conceptUse||{};
+base.generated.topicUse=base.generated.topicUse||{};
+base.generated.seq=Number(base.generated.seq||0);
+base.generated.managementSignatures=Array.isArray(base.generated.managementSignatures)?base.generated.managementSignatures:[];
+base.generated.auditSignatures=Array.isArray(base.generated.auditSignatures)?base.generated.auditSignatures:[];
+return base}
 function load(){try{const final=JSON.parse(localStorage.getItem(STORAGE)||'null');if(final)return normalizeState(final);const v4=JSON.parse(localStorage.getItem(OLD4)||'null');if(v4)return {...normalizeState(v4),migrated:true,migratedFrom:'v4'};const v3=JSON.parse(localStorage.getItem(OLD3)||'null');if(v3)return {...normalizeState(v3),migrated:true,migratedFrom:'v3'};const v2=JSON.parse(localStorage.getItem(OLD2)||'null');if(v2)return {...normalizeState(v2),migrated:true,migratedFrom:'v2'};const v1=JSON.parse(localStorage.getItem(OLD)||'null');if(v1){const oldTopic={};Object.entries(v1.topic||{}).forEach(([k,val])=>oldTopic[k.includes('|')?k:`F|${k}`]=val);return {...fresh(),answered:v1.answered||0,correct:v1.correct||0,weak:v1.weak||[],uncertain:v1.uncertain||[],history:v1.history||{},topic:oldTopic,subject:{F:{answered:v1.answered||0,correct:v1.correct||0}},migrated:true,migratedFrom:'v1'}}}catch(e){}return fresh()}
 let state=load(),session=[],sessionIndex=0,sessionCorrect=0,answeredCurrent=false,currentMode='daily',weakFilter='ALL';
 function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state))}catch(e){}renderAll()}
@@ -516,6 +529,691 @@ let genTopics=new Set(Object.entries(OFFICIAL_SCOPE).flatMap(([s,ts])=>ts.map(t=
 let genFormat='mix',genCount=20,genSession=[],genIndex=0,genCorrect=0,genAnswered=false;
 
 
+// --- FINAL 2.0: Finance Accounting rule-first generator ---------------------
+// Design principle: resolve structured facts -> determine accounting result -> render question text.
+// This block is used only when subject F (財務会計論) is generated.
+const FINANCE_ENGINE_V2={version:'2.0',mode:'rule-first',sourcePolicy:'CPA project materials; knowledge structure and calculation logic only'};
+const FINANCE_SOURCE_MAP_V2={
+  consolidation:['財務会計論(計算)_テキスト_6_2026-2027.pdf 第29章I〜IV','財務会計論(計算)_テキスト_7_2026-2027_20260205訂正反映版.pdf 第29章V〜VII','財務会計論(理論)_テキスト_3_2026-2027.pdf 第35章'],
+  combination:['財務会計論(計算)_テキスト_10_2026-2027.pdf 第39章・第40章','財務会計論(理論)_テキスト_3_2026-2027.pdf 第38章・第39章'],
+  financial:['財務会計論(計算)_テキスト_2_2026-2027.pdf 第9章〜第13章','財務会計論(理論)_テキスト_3_2026-2027.pdf 第33章'],
+  revenue:['財務会計論(計算)_テキスト_5_2026-2027_20250427訂正反映版.pdf 第28章I・II','財務会計論(理論)_テキスト_3_2026-2027.pdf 第34章'],
+  retirement:['財務会計論(計算)_テキスト_4_2026-2027.pdf 第21章','財務会計論(理論)_テキスト_2_2026-2027_2025年3月の基準改正反映版.pdf 第24章'],
+  tax:['財務会計論(理論)_テキスト_2_2026-2027_2025年3月の基準改正反映版.pdf 第29章','財務会計論(計算)_テキスト_6_2026-2027.pdf 第29章IV'],
+  impairment:['財務会計論(理論)_テキスト_2_2026-2027_2025年3月の基準改正反映版.pdf 第23章'],
+  fx:['財務会計論(計算)_テキスト_4_2026-2027.pdf 第18章','財務会計論(理論)_テキスト_2_2026-2027_2025年3月の基準改正反映版.pdf 第28章'],
+  fixed:['財務会計論(計算)_テキスト_1_2026-2027.pdf 第2章','財務会計論(理論)_テキスト_1_2026-2027.pdf 固定資産関連章'],
+  inventory:['財務会計論(計算)_テキスト_1_2026-2027.pdf 第5章','財務会計論(理論)_テキスト_2_2026-2027_2025年3月の基準改正反映版.pdf 第21章'],
+  lease:['財務会計論(理論)_改正論点追加コンパクトサマリー_1_2026-2027.pdf リース改正論点','財務会計論(理論)_テキスト_2_2026-2027_2025年3月の基準改正反映版.pdf 第30章']
+};
+function fr(id,topic,major,middle,micro,conditions,judgment,conclusion,formula,journal,exceptions,related,contrasts,traps,combine,forbid,source){
+  const arr=v=>Array.isArray(v)?v:(v==null||v===''?[]:[v]);
+  return {id,topic,major,middle,micro,conditions:arr(conditions),judgment,conclusion,formula:formula||'',journal:journal||'',exceptions:arr(exceptions),related:arr(related),contrasts:arr(contrasts),traps:arr(traps),combine:arr(combine),forbid:arr(forbid),source};
+}
+const FINANCE_RULES_V2=[
+  // 連結財務諸表
+  fr('FCON01','連結財務諸表','連結','資本連結','支配獲得','新たに支配を獲得する','取得日を基準に取得法で処理する','取得原価と識別可能純資産の持分額等からのれん等を認識する','のれん＝取得原価－取得時点の識別可能純資産の取得持分相当額','','', ['段階取得','非支配株主持分'],['支配継続中の追加取得'],['支配継続でも毎回のれんを追加認識する'],['control','goodwill'],['loss_control'], 'consolidation'),
+  fr('FCON02','連結財務諸表','連結','資本連結','追加取得','すでに支配している子会社株式を追加取得する','支配が継続しているかを判定する','支配継続なら資本取引として処理し、新たなのれんは認識しない','','親会社持分と非支配株主持分の振替・差額は資本剰余金等として処理','支配を喪失する売却は別処理',['非支配株主持分','一部売却'],['支配喪失'],['追加取得額と純資産持分額との差額を新規のれんにする'],['control','equity_tx'],['loss_control'],'consolidation'),
+  fr('FCON03','連結財務諸表','連結','資本連結','一部売却・支配継続','子会社株式を一部売却するが支配は維持する','売却後も支配関係が継続するかを判定する','支配継続なら資本取引として処理する','','親会社持分と非支配株主持分を調整し、差額は資本剰余金等','支配を喪失する場合を除く',['追加取得','非支配株主持分'],['支配喪失'],['支配継続でも売却損益を連結損益として計上する'],['control','equity_tx'],['loss_control'],'consolidation'),
+  fr('FCON04','連結財務諸表','連結','資本連結','支配喪失','子会社株式の売却等で支配を失う','支配喪失の有無と残存持分を確認する','子会社を連結範囲から外し、残存持分があれば支配喪失時の基準で再測定を含む処理を行う','','','支配継続中の一部売却とは区別',['一部売却','持分法'],['支配継続'],['支配を失っても従来の連結をそのまま継続する'],['loss_control','remeasure'],['equity_tx'],'consolidation'),
+  fr('FCON05','連結財務諸表','連結','成果連結','棚卸資産の未実現利益','企業集団内売買の棚卸資産が期末に外部未販売で残る','外部に実現したかを確認する','期末残高に含まれる内部利益を消去する','未実現利益＝期末内部在庫の売価×売価利益率 または 原価×原価利益率','','外部販売済部分は消去対象外',['棚卸資産','非支配株主持分'],['売価利益率と原価利益率'],['売価利益率を原価に掛ける'],['unrealized','inventory_margin'],[],'consolidation'),
+  fr('FCON06','連結財務諸表','連結','成果連結','固定資産の未実現利益','企業集団内で固定資産を売買し外部未売却','内部利益と減価償却への波及を追う','内部売却益を消去し、以後の減価償却費を連結上あるべき額へ修正する','当期修正＝内部利益消去＋内部利益に対応する減価償却修正','','非償却資産は減価償却修正なし',['固定資産','翌期開始仕訳'],['当期と翌期'],['売却益だけ消去し減価償却差額は放置する'],['unrealized','fixed_asset','period_shift'],[],'consolidation'),
+  fr('FCON07','連結財務諸表','連結','成果連結','債権債務・貸倒引当金','企業集団内の債権債務が対応する','相殺対象と関連する貸倒引当金を確認する','債権債務を相殺し、内部債権に設定された貸倒引当金も連結上修正する','','','第三者向け債権は対象外',['貸倒引当金','税効果'],['内部取引と外部取引'],['債権債務だけ消去し内部債権の引当金は残す'],['elimination','allowance'],[],'consolidation'),
+  // 企業結合・事業分離
+  fr('FCOMB01','企業結合・事業分離','企業結合','取得','取得企業の識別','企業結合が取得に該当する','誰が支配を獲得したかを判定する','取得企業が取得法により取得日を基準として処理する','','','共通支配下取引等は別枠',['のれん','取得関連費用'],['共通支配下取引'],['法形式だけで取得企業を決める'],['combination','control'],[],'combination'),
+  fr('FCOMB02','企業結合・事業分離','企業結合','取得','取得原価・時価','取得対価を交付して支配を獲得する','取得日の価値を基準に取得対価を測定する','取得原価と取得した識別可能資産負債の時価等を基礎に処理する','','','共通支配下では簿価引継ぎが中心',['時価評価','のれん'],['取得原価と時価'],['被取得企業の簿価だけで取得原価を決める'],['combination','fair_value'],['common_control'],'combination'),
+  fr('FCOMB03','企業結合・事業分離','企業結合','共通支配下取引','帳簿価額の引継ぎ','結合当事者が取引前後で同一の支配下にある','支配が外部から新たに獲得された取引かを判定する','共通支配下取引では原則として帳簿価額を基礎とする','','','取得とは区別',['企業結合','純資産'],['取得'],['共通支配下でも全面時価評価して新規のれんを計上する'],['common_control','book_value'],['fair_value'],'combination'),
+  fr('FSEP01','企業結合・事業分離','事業分離','分離元企業','投資の継続・清算','事業を他社へ移転し対価を受け取る','移転した事業への投資が継続しているか、清算されたかを判断する','対価の性質と投資継続性に応じて移転損益や受取対価の測定を決める','','','対価が現金か株式か、個別か連結かで分岐',['企業結合','持分継続'],['現金対価と株式対価'],['対価の種類を見ず常に同じ損益を計上する'],['separation','consideration'],[],'combination'),
+  // 金融商品
+  fr('FFIN01','金融商品','金融商品','有価証券','売買目的有価証券','短期的な価格変動による利益獲得を目的に保有','保有目的で分類する','期末は時価評価し、評価差額を当期損益に計上する','評価差額＝期末時価－直前帳簿価額','有価証券評価損益／売買目的有価証券','市場価格がない場合等は別論点',['その他有価証券','満期保有目的債券'],['当期損益と純資産直入'],['評価差額をその他有価証券評価差額金にする'],['securities','fair_value','pl'],[],'financial'),
+  fr('FFIN02','金融商品','金融商品','有価証券','その他有価証券','売買目的・満期保有・子会社関連等に該当しない','保有目的と分類を確認する','期末時価評価し、通常の評価差額は純資産に反映する','','','減損に該当する場合は別処理',['売買目的有価証券','減損'],['当期損益と純資産直入'],['通常の評価差額をすべて当期損益にする'],['securities','fair_value','oci'],[],'financial'),
+  fr('FFIN03','金融商品','金融商品','有価証券','満期保有目的の債券','満期まで保有する意図・能力等を満たす債券','分類要件と取得価額・額面差額の性質を確認する','償却原価法の対象となる場合、利息法等により帳簿価額を調整する','期末簿価＝期首簿価±償却額','','要件を失えば振替論点',['債券利息','実効利子率'],['時価評価と償却原価'],['毎期時価評価差額を当期損益にする'],['securities','amortized_cost'],[],'financial'),
+  fr('FFIN04','金融商品','金融商品','有価証券','市場価格のない株式等','市場価格が把握できない株式等','市場価格の有無と減損の要否を確認する','通常は取得原価を基礎とし、実質価額の著しい低下等では減損を検討する','','','市場価格がある有価証券とは評価方法が異なる',['減損','子会社株式'],['取得原価と時価'],['市場価格がなくても毎期任意の時価で評価する'],['securities','cost'],[],'financial'),
+  fr('FFIN05','金融商品','金融商品','貸倒引当金','債権区分','金銭債権に回収不能見込がある','債権の区分と回収可能性に応じて見積方法を選ぶ','必要な貸倒引当金残高を見積り、既存残高との差額を調整する','繰入額＝必要残高－決算整理前残高','貸倒引当金繰入／貸倒引当金','個別評価と一括評価で見積方法が異なる',['債権','連結債権債務'],['一般債権と貸倒懸念債権等'],['債権残高×率をそのまま毎期の費用とする'],['allowance','receivable'],[],'financial'),
+  // 収益認識
+  fr('FREV01','収益認識','収益認識','5ステップ','契約の識別','顧客との契約が存在する','まず契約が基準上の要件を満たすか確認する','契約→履行義務→取引価格→配分→履行義務充足時の収益認識の順で判断する','','','各Stepを飛ばして順序を入れ替えない',['履行義務','取引価格'],['Stepの前後'],['契約識別直後に取引価格を配分する'],['revenue','steps'],[],'revenue'),
+  fr('FREV02','収益認識','収益認識','Step2','履行義務の識別','契約で複数の財・サービスを約束する','約束した財・サービスが別個かを判定する','別個の財・サービス等を履行義務として識別する','','','一連の財・サービスが単一の履行義務になる場合あり',['独立販売価格','契約変更'],['別個か一体か'],['契約書の行数と履行義務数を一致させる'],['revenue','performance_obligation'],[],'revenue'),
+  fr('FREV03','収益認識','収益認識','Step3','変動対価','値引き・リベート・業績連動等で対価が変動する','取引価格に含める額と重大な戻入れの可能性を評価する','変動対価は見積り、制限の考え方を踏まえて取引価格に含める','','','不確実性が高い場合は全額を無条件に含めない',['取引価格','返品'],['固定対価と変動対価'],['最大見込額を必ず全額収益認識する'],['revenue','variable_consideration'],[],'revenue'),
+  fr('FREV04','収益認識','収益認識','Step4','取引価格の配分','複数の履行義務がある','契約開始時点の独立販売価格の比率等を基準に配分する','取引価格を原則として独立販売価格の相対比率で配分する','配分額＝取引価格×各履行義務の独立販売価格÷独立販売価格合計','','値引きや変動対価を特定履行義務へ配分する例外あり',['履行義務','独立販売価格'],['総額配分と個別配分例外'],['原価比率で機械的に配分する'],['revenue','allocation'],[],'revenue'),
+  fr('FREV05','収益認識','収益認識','Step5','一時点・一定期間','履行義務を充足する','支配の移転態様から一定期間か一時点かを判定する','一定期間の要件を満たせば進捗に応じて、満たさなければ支配移転時点で収益認識する','','','進捗を合理的に測定できない場合等の論点あり',['支配移転','工事'],['一定期間と一時点'],['常に検収日だけで収益を認識する'],['revenue','timing'],[],'revenue'),
+  // 退職給付
+  fr('FRET01','退職給付','退職給付','基礎','退職給付債務と年金資産','確定給付制度を採用する','債務と年金資産の関係を把握する','退職給付債務から年金資産を控除した額を基礎に負債・資産を把握する','純額＝退職給付債務－年金資産','','未認識項目の扱いは個別・連結で差がある',['数理計算上の差異','過去勤務費用'],['個別と連結'],['年金資産を負債に加算する'],['retirement','net'],[],'retirement'),
+  fr('FRET02','退職給付','退職給付','差異','数理計算上の差異','実績と計算基礎の差異等が生じる','発生額と費用処理期間を確認する','定めた方法により複数期間にわたり費用処理することがある','','','当期一括処理を採る場合等は設定に従う',['退職給付費用','その他の包括利益'],['当期と翌期'],['発生額は必ず全額当期の退職給付費用にする'],['retirement','difference','period_shift'],[],'retirement'),
+  fr('FRET03','退職給付','退職給付','差異','過去勤務費用','給付水準の改訂等により債務が変動する','発生原因と費用処理方法を識別する','過去勤務費用は定めた期間にわたり費用処理する','','','制度変更の内容による',['数理計算上の差異','退職給付費用'],['数理差異との区別'],['過去勤務費用を年金資産の運用損益として処理する'],['retirement','past_service'],[],'retirement'),
+  fr('FRET04','退職給付','退職給付','退職給付信託','年金資産性','信託設定した資産が年金資産の要件を満たす','拠出後の処分制限や退職給付への充当等を確認する','要件を満たす退職給付信託は年金資産として扱う','','','単なる社内積立は同じでない',['年金資産','有価証券'],['自由処分可能資産との違い'],['名目上信託しただけで無条件に年金資産になる'],['retirement','trust'],[],'retirement'),
+  // 税効果
+  fr('FTAX01','法人税等','税効果会計','対象差異','一時差異','会計上の資産負債額と税務上の額等に差異がある','将来解消時に課税所得を増減させるかを判定する','将来減算一時差異は回収可能性を考慮して繰延税金資産、将来加算一時差異は原則として繰延税金負債の対象','税額影響＝一時差異×適用税率','繰延税金資産・負債／法人税等調整額等','例外的に認識しない一時差異あり',['回収可能性','税率変更'],['将来減算と将来加算'],['差異の符号だけで資産・負債を決める'],['tax','temporary_difference'],[],'tax'),
+  fr('FTAX02','法人税等','税効果会計','対象差異','永久差異','会計と税務に差があるが将来も解消しない','将来解消する差異かを確認する','永久差異は税効果会計の対象となる一時差異ではない','','','税率差異等と混同しない',['一時差異','交際費等'],['一時差異と永久差異'],['会計税務差異ならすべて繰延税金を計上する'],['tax','permanent_difference'],[],'tax'),
+  fr('FTAX03','法人税等','税効果会計','測定','税率変更','繰延税金資産・負債を計上後に適用税率が変更される','将来解消時に適用される税率を確認する','変更後の適切な税率で繰延税金資産・負債を再測定する','再測定差額＝一時差異×新旧税率差','','','法定実効税率の扱いに留意',['一時差異','法人税等調整額'],['旧税率と新税率'],['当初計上時の税率を満期まで固定する'],['tax','rate_change'],[],'tax'),
+  fr('FTAX04','法人税等','税効果会計','連結','未実現利益の税効果','連結上内部利益を消去する','連結上の帳簿価額と税務上の額の差を把握する','未実現利益消去に伴う一時差異について税効果を認識する','税効果額＝消去した内部利益×税率','','税率主体等に留意',['連結財務諸表','棚卸資産'],['会計消去と税務未消去'],['未実現利益を消去しても税効果は一切生じない'],['tax','unrealized'],[],'tax'),
+  // 減損
+  fr('FIMP01','固定資産の減損','減損','手順','減損の兆候','資産・資産グループに収益性低下を示す事象がある','まず兆候の有無を判定する','兆候がある場合に減損損失の認識判定へ進む','','','兆候なしでも常に認識判定するわけではない',['認識判定','グルーピング'],['兆候ありとなし'],['すべての固定資産に毎期必ず減損損失を計上する'],['impairment','indicator'],[],'impairment'),
+  fr('FIMP02','固定資産の減損','減損','認識','割引前将来キャッシュ・フロー','減損の兆候がある','帳簿価額と割引前将来キャッシュ・フロー総額を比較する','帳簿価額が割引前将来キャッシュ・フロー総額を上回る場合に減損損失を認識する','','','測定段階では割引前CFそのものを減額後簿価にしない',['使用価値','回収可能価額'],['認識と測定'],['認識判定で割引後キャッシュ・フローだけを比較する'],['impairment','recognition'],[],'impairment'),
+  fr('FIMP03','固定資産の減損','減損','測定','回収可能価額','減損損失の認識が必要','正味売却価額と使用価値を比較する','帳簿価額を回収可能価額まで減額し、その減少額を減損損失とする','減損損失＝帳簿価額－max(正味売却価額,使用価値)','減損損失／固定資産等','認識不要なら測定しない',['正味売却価額','使用価値'],['割引前CFと回収可能価額'],['回収可能価額は正味売却価額と使用価値の低い方'],['impairment','measurement'],[],'impairment'),
+  fr('FIMP04','固定資産の減損','減損','単位','資産のグルーピング','複数資産が一体でキャッシュ・フローを生む','他の資産から概ね独立したキャッシュ・フローを生む最小単位を考える','適切な資産グループ単位で兆候・認識・測定を行う','','','共用資産・のれんは追加論点',['のれん','共用資産'],['単独資産と資産グループ'],['法的な資産単位ごとに必ず別々に判定する'],['impairment','grouping'],[],'impairment'),
+  // 外貨換算
+  fr('FFX01','外貨換算','外貨換算','外貨建取引','取引発生時','外貨建取引が発生する','発生時点の為替相場等で円換算する','取引発生時は発生時の為替相場を基礎に円換算する','円貨額＝外貨額×取引時レート','','予約レートを用いる特例等は別論点',['決算時換算','為替予約'],['取引時と決算時'],['将来の決算日レートで最初から記帳する'],['fx','transaction_date'],[],'fx'),
+  fr('FFX02','外貨換算','外貨換算','外貨建債権債務','決算時換算','外貨建金銭債権債務が決算日に残る','決算時の為替相場で換算替えし差額を把握する','決算時換算差額は原則として為替差損益となる','為替差額＝外貨額×(決算時レート－直前換算レート)','','ヘッジ指定等は別論点',['為替差損益','為替予約'],['債権と債務'],['外貨建金銭債権債務を取得時レートのまま据え置く'],['fx','closing_rate'],[],'fx'),
+  fr('FFX03','外貨換算','外貨換算','有価証券','外貨建有価証券','外貨建有価証券を保有する','有価証券の保有目的別評価と外貨換算を組み合わせる','分類に応じた評価方法と適切な為替相場を組み合わせて円換算する','','','有価証券分類により差額処理が異なる',['金融商品','その他有価証券'],['取得原価と時価'],['すべての外貨建有価証券を同じ方法で換算する'],['fx','securities'],[],'fx'),
+  fr('FFX04','外貨換算','外貨換算','在外子会社','連結換算','在外子会社の財務諸表を連結する','資産負債・収益費用等の換算レートと差額の帰属を区別する','在外子会社財務諸表を所定のレートで換算し換算差額を純資産の適切な区分へ反映する','','','在外支店と在外子会社で考え方が異なる',['連結財務諸表','為替換算調整勘定'],['在外支店と在外子会社'],['すべての項目を取得時レートだけで換算する'],['fx','foreign_sub'],[],'fx'),
+  // 固定資産
+  fr('FFIX01','固定資産','固定資産','取得','取得原価','固定資産を取得し使用可能にするための支出がある','取得に直接要した付随費用かを判定する','取得原価には購入代価に加え、原則として取得に直接要した付随費用を含める','取得原価＝購入代価＋付随費用等','固定資産／現金預金等','通常の維持管理費は期間費用',['減価償却','資本的支出'],['取得原価と時価'],['取得関連支出はすべて当期費用にする'],['fixed','cost'],[],'fixed'),
+  fr('FFIX02','固定資産','固定資産','事後支出','資本的支出・修繕費','取得後に改良・修繕支出がある','資産価値・耐用年数増加等の効果か、原状維持かを判定する','資本的支出は資産計上、収益的支出は修繕費等として費用処理する','','固定資産／現金 または 修繕費／現金','実態に応じて区分',['減価償却','取得原価'],['資本的支出と収益的支出'],['金額が大きければ必ず資本的支出'],['fixed','subsequent'],[],'fixed'),
+  fr('FFIX03','固定資産','固定資産','減価償却','見積り変更','耐用年数や残存価額等の見積りが変更される','会計方針変更か見積り変更かを区別する','会計上の見積り変更は原則として変更時点以降へ将来に向かって反映する','','','過年度を機械的に遡及修正しない',['会計上の変更','減価償却'],['当期と翌期'],['耐用年数変更は必ず過年度へ遡及する'],['fixed','estimate','period_shift'],[],'fixed'),
+  fr('FFIX04','固定資産','固定資産','減価償却','定額法','取得原価・残存価額・耐用年数が与えられる','償却可能額を耐用年数へ規則的に配分する','定額法では償却可能額を耐用年数で配分し、当期使用期間が短ければ月割等を行う','減価償却費＝(取得原価－残存価額)÷耐用年数×使用期間割合','減価償却費／減価償却累計額','取得・売却時期により月割計算',['取得原価','見積り変更'],['当期と翌期'],['期末時価の下落額をそのまま減価償却費にする'],['fixed','depreciation','period_shift'],[],'fixed'),
+  // 棚卸資産
+  fr('FINV01','流動資産','棚卸資産','期末評価','収益性の低下','通常の販売目的で棚卸資産を保有','取得原価と正味売却価額を比較する','正味売却価額が取得原価より下落している場合、収益性低下に基づき簿価を切り下げる','評価損＝取得原価－正味売却価額（正の場合）','棚卸資産評価損／商品等','正味売却価額が異常な場合等の論点あり',['正味売却価額','売上原価'],['取得原価と時価'],['市場価格が上昇したら評価益を計上する'],['inventory','lower_cost'],[],'inventory'),
+  fr('FINV02','流動資産','棚卸資産','払出計算','先入先出法','異なる単価で複数回取得する','先に取得したものから払い出す仮定を置く','期末には相対的に新しい取得層が残る','期末在庫＝残存数量×対応する取得単価','','','移動平均法等は別計算',['売上原価','払出単価'],['先入先出と平均法'],['期末在庫を古い仕入層だけで構成する'],['inventory','fifo'],[],'inventory'),
+  fr('FINV03','流動資産','棚卸資産','売価還元法','原価率・売価利益率','売価情報から原価を推定する','原価率と売価利益率を区別する','原価率＝1－売価利益率。売価に原価率を掛けて原価を見積もる','原価＝売価×原価率＝売価×(1－売価利益率)','','','原価に売価利益率を掛ける場合とは分母が違う',['未実現利益','粗利益率'],['原価率と売価利益率'],['売価利益率をそのまま売価に掛けて原価を求める'],['inventory','margin_rate'],[],'inventory'),
+  fr('FINV04','流動資産','棚卸資産','売上原価','三分法','期首商品・当期仕入・期末商品がある','販売可能原価から期末棚卸高を控除する','売上原価は期首棚卸高＋当期仕入高－期末棚卸高で求める','売上原価＝期首棚卸＋当期仕入－期末棚卸','仕入／繰越商品 等の決算整理','仕入値引・返品等は仕入高調整',['棚卸資産','売上総利益'],['期首と期末'],['期末棚卸高を売上原価に加算する'],['inventory','cogs'],[],'inventory'),
+  // リース（改正論点サマリーを優先）
+  fr('FLEASE01','リース','リース','識別','リースを含む契約','特定された資産の使用が契約に含まれる','顧客が使用からの経済的利益のほぼすべてを得る権利と使用を指図する権利を持つかを判定する','双方を満たせば契約はリースを含む','','','供給者が実質的な代替権を持つ場合は特定資産性を欠くことがある',['特定された資産','代替権'],['リースを含む/含まない'],['資産名が契約に書かれていれば必ずリース'],['lease','identify'],[],'lease'),
+  fr('FLEASE02','リース','リース','借手','リース期間','解約不能期間に延長・解約オプションがある','オプション行使の合理的確実性を評価する','解約不能期間に、行使が合理的に確実な延長期間等を加味して借手のリース期間を決定する','','','購入オプション等との関係に留意',['リース負債','オプション'],['行使する/しない'],['契約書の最短期間だけを常にリース期間にする'],['lease','term'],[],'lease'),
+  fr('FLEASE03','リース','リース','借手','リース負債の当初測定','開始日時点で未払リース料がある','未払リース料の範囲と割引率を確定する','リース負債は原則として未払リース料の現在価値で測定する','リース負債＝Σ(将来リース料÷(1＋割引率)^期間)','使用権資産／リース負債','短期・少額リースの簡便法等',['使用権資産','割引率'],['額面と現在価値'],['未払リース料の単純合計を必ず負債計上する'],['lease','liability','pv'],[],'lease'),
+  fr('FLEASE04','リース','リース','借手','使用権資産の当初測定','リース負債を当初認識する','負債に開始日前後の支払・直接コスト・原状回復等とインセンティブを反映する','使用権資産はリース負債を基礎に所定の加減算をして測定する','使用権資産＝リース負債＋開始日までの支払＋当初直接コスト等－リース・インセンティブ','使用権資産／リース負債等','簡便法適用時を除く',['リース負債','資産除去債務'],['負債額と使用権資産額'],['使用権資産は常にリース負債と同額で一切調整しない'],['lease','rou_asset'],[],'lease'),
+  fr('FLEASE05','リース','リース','借手','短期・少額リース','開始日に借手のリース期間が12か月以内で購入オプションを含まない等','短期リース・少額リースの要件を確認する','要件を満たし簡便的取扱いを選択した場合、使用権資産・リース負債を認識せずリース料を費用処理できる','','支払リース料／現金預金','選択単位等に留意',['リース期間','少額リース'],['原則処理と簡便法'],['13か月のリースでも短期リースに該当する'],['lease','exemption'],[],'lease'),
+  fr('FLEASE06','リース','リース','契約変更','独立したリースか','契約変更で使用権が追加され範囲が拡大する','追加対価が独立価格に見合うかを確認する','範囲拡大かつ対価が独立価格に見合う等の要件を満たせば変更を独立したリースとして処理する','','','要件を満たさない変更は既存リースの再測定等',['リース負債','使用権資産'],['独立したリース/既存リースの変更'],['範囲が拡大すれば対価に関係なく必ず独立リース'],['lease','modification'],[],'lease')
+];
+const FINANCE_RULE_INDEX_V2=Object.fromEntries(FINANCE_RULES_V2.map(x=>[x.id,x]));
+const FINANCE_DEEP_TOPICS_V2=new Set(FINANCE_RULES_V2.map(x=>x.topic));
+const FINANCE_PRIORITY_TOPICS_V2=['連結財務諸表','企業結合・事業分離','金融商品','収益認識','退職給付','法人税等','固定資産の減損','外貨換算','固定資産','流動資産','リース'];
+function fnum(n){return Number.isInteger(n)?fmt(n):String(Math.round(n*100)/100)}
+function fItem(rule,q,a,ex,key,general,variantKey){return {id:rule.id,s:'F',topic:rule.topic,q:cleanStatement(q),a:!!a,ex,key:key||rule.judgment,general:general||rule.conclusion,variantKey:variantKey||`F2|${rule.id}|${a?'T':'F'}|${normalizeGeneratedText(q)}`}}
+function fComposeStatement(rule,cond,claim){
+  const contrast=rule.contrasts?.[0];
+  const forms=[
+    `${cond}場合、${claim}`,
+    `${cond}とき、会計処理としては${claim}`,
+    `前提を「${cond}」とする。このとき、${claim}`,
+    `${rule.micro}について、${cond}ならば、${claim}`,
+    `判断対象が「${rule.micro}」であり、${cond}ときは、${claim}`,
+    contrast?`${contrast}との区別に留意する。${cond}場合には、${claim}`:`${cond}という条件では、${claim}`
+  ];
+  return rand(forms);
+}
+function fTrueItem(rule,condition){
+  const cond=condition||rand(rule.conditions);
+  const q=fComposeStatement(rule,cond,rule.conclusion);
+  return fItem(rule,q,true,`適用条件は「${cond}」。${rule.judgment}。したがって、${rule.conclusion}`,rule.judgment,rule.conclusion,`F2|${rule.id}|T|${normalizeGeneratedText(q)}`);
+}
+function fFalseItem(rule,condition){
+  const cond=condition||rand(rule.conditions);
+  const trap=rule.traps.length?rand(rule.traps):`この場合も通常の処理を行わない`;
+  const q=fComposeStatement(rule,cond,trap);
+  return fItem(rule,q,false,`誤り。判断基準は「${rule.judgment}」。正しくは、${rule.conclusion}`,rule.judgment,rule.conclusion,`F2|${rule.id}|F|${normalizeGeneratedText(q)}`);
+}
+function fRuleNovelty(rule){const cm=conceptMeta(rule.id),tm=topicMeta(`F|${rule.topic}`),recent=recentConceptSet().has(rule.id)?1:0;return cm.n*900+tm.n*100+recent*5000+cm.last*.001+Math.random()*8}
+function fPickRule(topicKeys,filter=()=>true){
+  const allowed=new Set(topicKeys.map(k=>k.split('|').slice(1).join('|')));
+  const pool=FINANCE_RULES_V2.filter(r=>allowed.has(r.topic)&&filter(r));
+  if(!pool.length)return null;return pool.slice().sort((a,b)=>fRuleNovelty(a)-fRuleNovelty(b))[0];
+}
+function fPickRules(topicKeys,n,filter=()=>true){
+  const allowed=new Set(topicKeys.map(k=>k.split('|').slice(1).join('|')));
+  const pool=FINANCE_RULES_V2.filter(r=>allowed.has(r.topic)&&filter(r)).sort((a,b)=>fRuleNovelty(a)-fRuleNovelty(b));
+  const out=[],maj=new Set();
+  for(const r of pool){if(out.length>=n)break;if(!maj.has(r.major)){out.push(r);maj.add(r.major)}}
+  for(const r of pool){if(out.length>=n)break;if(!out.includes(r))out.push(r)}return out;
+}
+function fCalc(template,topic,q,answer,unit,formula,key,general,ruleId){return {template,topic,q,answer,unit,formula,key,general,ruleId}}
+const FINANCE_CALC_BUILDERS_V2={
+  FCON01(){const r=FINANCE_RULE_INDEX_V2.FCON01,consider=ri(700,1800,50),net=ri(500,1500,50),pct=rand([60,70,80,90]),share=Math.round(net*pct/100),ans=consider-share;return fCalc('f2_goodwill',r.topic,`P社はS社株式${pct}%を${fmt(consider)}万円で取得して支配を獲得した。取得時のS社の識別可能純資産の時価は${fmt(net)}万円であり、ここでは取得持分相当額との差額をのれんとする。のれんはいくらか。`,ans,'万円',`${fmt(consider)}－${fmt(net)}×${pct}%＝${fmt(ans)}万円`,'支配獲得時だけ、取得原価と取得持分相当額の差を追う。',r.conclusion,r.id)},
+  FCON05(){const r=FINANCE_RULE_INDEX_V2.FCON05,sales=ri(600,1800,50),remain=rand([20,25,30,40,50]),margin=rand([15,20,25,30]),ending=Math.round(sales*remain/100),ans=Math.round(ending*margin/100);return fCalc('f2_unreal_sales_margin',r.topic,`親会社が子会社へ商品を${fmt(sales)}万円で販売し、そのうち売価ベースで${remain}%が期末に外部未販売である。内部売価に対する利益率は${margin}%である。消去すべき未実現利益はいくらか。`,ans,'万円',`${fmt(sales)}×${remain}%×${margin}%＝${fmt(ans)}万円`,'「売価利益率」なので期末内部売価に掛ける。原価利益率とは分母が違う。','内部利益は外部へ実現した部分だけ残せる。',r.id)},
+  FCON06(){const r=FINANCE_RULE_INDEX_V2.FCON06,profit=ri(120,480,20),life=rand([4,5,6,8]),months=rand([3,6,9,12]),dep=Math.round(profit/life*months/12),net=profit-dep;return fCalc('f2_fixed_unrealized',r.topic,`期中に親会社から子会社へ償却資産を売却し、内部売却益${fmt(profit)}万円が生じた。残存耐用年数は${life}年、当期の使用月数は${months}か月、定額法とする。当期末に連結上残る未実現利益相当額はいくらか。`,net,'万円',`${fmt(profit)}－${fmt(profit)}÷${life}×${months}/12＝${fmt(net)}万円`,'当期は売却益消去だけでなく、過大になった減価償却費の修正まで反映する。',r.conclusion,r.id)},
+  FCOMB02(){const r=FINANCE_RULE_INDEX_V2.FCOMB02,consider=ri(900,2500,100),net=ri(600,2200,100),ans=consider-net;return fCalc('f2_combination_goodwill',r.topic,`取得企業が企業結合日に支払った取得対価の時価は${fmt(consider)}万円、取得した識別可能純資産の時価は${fmt(net)}万円である。単純化して差額をのれん又は負ののれんの基礎とすると、取得対価と純資産時価の差額はいくらか。`,ans,'万円',`${fmt(consider)}－${fmt(net)}＝${fmt(ans)}万円`,'取得では簿価ではなく、取得日の時価を基礎に差額を把握する。',r.conclusion,r.id)},
+  FFIN03(){const r=FINANCE_RULE_INDEX_V2.FFIN03,face=ri(1000,3000,100),disc=ri(40,200,10),years=rand([4,5,8,10]),cost=face-disc,annual=disc/years,ans=cost+annual;return fCalc('f2_amortized_cost',r.topic,`額面${fmt(face)}万円の満期保有目的債券を${fmt(cost)}万円で取得し、額面との差額は利息調整差額である。残存期間${years}年、定額法で償却原価法を適用するものとする。1年後の帳簿価額はいくらか。`,ans,'万円',`${fmt(cost)}＋(${fmt(face)}－${fmt(cost)})÷${years}＝${fnum(ans)}万円`,'取得価額が額面未満なら、償却額を帳簿価額へ加算する。',r.conclusion,r.id)},
+  FFIN05(){const r=FINANCE_RULE_INDEX_V2.FFIN05,recv=ri(1200,6000,100),rate=rand([1,2,3,4]),need=recv*rate/100,bal=ri(0,Math.max(0,need-10),10),ans=need-bal;return fCalc('f2_allowance',r.topic,`一般債権${fmt(recv)}万円に対し貸倒実績率${rate}%で引当てる。決算整理前の貸倒引当金残高は${fmt(bal)}万円（貸方）である。差額補充法による繰入額はいくらか。`,ans,'万円',`${fmt(recv)}×${rate}%－${fmt(bal)}＝${fmt(ans)}万円`,'必要残高を先に求め、既存残高との差だけ費用化する。',r.conclusion,r.id)},
+  FREV04(){const r=FINANCE_RULE_INDEX_V2.FREV04,price=ri(900,2200,100),a=ri(300,900,50),b=ri(300,900,50),ans=price*a/(a+b);return fCalc('f2_rev_allocate',r.topic,`1つの契約の取引価格は${fmt(price)}万円で、2つの履行義務A・Bの独立販売価格はそれぞれ${fmt(a)}万円、${fmt(b)}万円である。例外的な配分はない。Aへの配分額はいくらか。`,Math.round(ans*100)/100,'万円',`${fmt(price)}×${fmt(a)}÷(${fmt(a)}＋${fmt(b)})＝${fnum(Math.round(ans*100)/100)}万円`,'取引価格は原則として独立販売価格の相対比率で配分する。',r.conclusion,r.id)},
+  FRET01(){const r=FINANCE_RULE_INDEX_V2.FRET01,obl=ri(1200,4000,100),assets=ri(500,Math.max(500,obl-100),100),ans=obl-assets;return fCalc('f2_retirement_net',r.topic,`退職給付債務が${fmt(obl)}万円、年金資産が${fmt(assets)}万円である。未認識項目等を無視した単純な純額はいくらか。`,ans,'万円',`${fmt(obl)}－${fmt(assets)}＝${fmt(ans)}万円`,'まず債務から年金資産を控除して制度の積立状況を見る。',r.conclusion,r.id)},
+  FTAX01(){const r=FINANCE_RULE_INDEX_V2.FTAX01,diff=ri(500,3000,100),rate=rand([28,30,31,32,33]),ans=diff*rate/100;return fCalc('f2_tax_temp',r.topic,`将来減算一時差異が${fmt(diff)}万円あり、回収可能性に問題はない。適用税率を${rate}%とすると、繰延税金資産はいくらか。`,ans,'万円',`${fmt(diff)}×${rate}%＝${fmt(ans)}万円`,'一時差異の性質を先に判定してから税率を掛ける。',r.conclusion,r.id)},
+  FTAX04(){const r=FINANCE_RULE_INDEX_V2.FTAX04,profit=ri(100,700,20),rate=rand([28,30,32,33]),ans=profit*rate/100;return fCalc('f2_tax_unreal',r.topic,`連結上、棚卸資産に含まれる内部未実現利益${fmt(profit)}万円を消去した。税率${rate}%で他の条件を無視すると、当該消去に対応する税効果額はいくらか。`,ans,'万円',`${fmt(profit)}×${rate}%＝${fmt(ans)}万円`,'連結上の簿価修正が一時差異を作ることを確認する。',r.conclusion,r.id)},
+  FIMP02(){const r=FINANCE_RULE_INDEX_V2.FIMP02,book=ri(1200,3500,100),cf=ri(700,3300,100);return fCalc('f2_impair_recognition',r.topic,`減損の兆候がある資産グループの帳簿価額は${fmt(book)}万円、割引前将来キャッシュ・フロー総額は${fmt(cf)}万円である。認識判定上、帳簿価額の超過額はいくらか（超過しない場合は0）。`,Math.max(0,book-cf),'万円',`${fmt(book)}－${fmt(cf)}＝${fmt(Math.max(0,book-cf))}万円（0未満なら認識不要）`,'認識判定は帳簿価額と「割引前」将来CFの比較。',r.conclusion,r.id)},
+  FIMP03(){const r=FINANCE_RULE_INDEX_V2.FIMP03,book=ri(1500,4500,100),sell=ri(700,2200,100),use=ri(800,2600,100),recover=Math.max(sell,use),ans=Math.max(0,book-recover);return fCalc('f2_impair_measure',r.topic,`減損損失の認識が必要な資産グループの帳簿価額は${fmt(book)}万円、正味売却価額${fmt(sell)}万円、使用価値${fmt(use)}万円である。減損損失はいくらか。`,ans,'万円',`回収可能価額=max(${fmt(sell)},${fmt(use)})=${fmt(recover)}万円、${fmt(book)}－${fmt(recover)}＝${fmt(ans)}万円`,'測定では正味売却価額と使用価値の「高い方」を回収可能価額にする。',r.conclusion,r.id)},
+  FFX02(){const r=FINANCE_RULE_INDEX_V2.FFX02,usd=ri(10000,60000,5000),r1=ri(125,150),delta=ri(2,9),receivable=Math.random()<.5,up=Math.random()<.5,r2=up?r1+delta:r1-delta,amt=usd*delta,kind=receivable?'売掛金':'買掛金',gain=(receivable&&up)||(!receivable&&!up);return fCalc('f2_fx_closing',r.topic,`${kind}US$${fmt(usd)}を取引時1ドル${r1}円で計上している。決算時は1ドル${r2}円である。決算時換算による為替${gain?'差益':'差損'}はいくらか。`,amt,'円',`${fmt(usd)}×|${r2}－${r1}|＝${fmt(amt)}円`,'外貨建債権と債務では、円安・円高による損益方向が逆になる。',r.conclusion,r.id)},
+  FFIX01(){const r=FINANCE_RULE_INDEX_V2.FFIX01,price=ri(800,3000,100),freight=ri(20,120,10),install=ri(20,160,10),ans=price+freight+install;return fCalc('f2_fixed_cost',r.topic,`機械を${fmt(price)}万円で購入し、取得に直接要した運賃${fmt(freight)}万円、据付費${fmt(install)}万円を支払った。いずれも取得原価算入要件を満たす。取得原価はいくらか。`,ans,'万円',`${fmt(price)}＋${fmt(freight)}＋${fmt(install)}＝${fmt(ans)}万円`,'使用可能にするため直接要した付随費用を購入代価に加える。',r.conclusion,r.id)},
+  FFIX04(){const r=FINANCE_RULE_INDEX_V2.FFIX04,cost=ri(600,2400,100),res=ri(0,200,20),life=rand([4,5,6,8,10]),months=rand([3,6,9,12]),ans=(cost-res)/life*months/12;return fCalc('f2_depreciation',r.topic,`設備を${fmt(cost)}万円で取得した。残存価額${fmt(res)}万円、耐用年数${life}年、定額法、当期使用期間${months}か月とする。当期の減価償却費はいくらか。`,Math.round(ans*100)/100,'万円',`(${fmt(cost)}－${fmt(res)})÷${life}×${months}/12＝${fnum(Math.round(ans*100)/100)}万円`,'償却可能額を耐用年数へ配分し、使用月数を反映する。',r.conclusion,r.id)},
+  FINV01(){const r=FINANCE_RULE_INDEX_V2.FINV01,cost=ri(800,2500,100),down=ri(50,500,50),nrv=cost-down;return fCalc('f2_inventory_lcm',r.topic,`通常販売目的の商品について取得原価は${fmt(cost)}万円、期末の正味売却価額は${fmt(nrv)}万円である。他の条件を無視すると棚卸資産評価損はいくらか。`,down,'万円',`${fmt(cost)}－${fmt(nrv)}＝${fmt(down)}万円`,'取得原価と正味売却価額を比較し、収益性低下分を切り下げる。',r.conclusion,r.id)},
+  FINV02(){const r=FINANCE_RULE_INDEX_V2.FINV02,q1=ri(50,120,10),q2=ri(50,120,10),p1=ri(80,140,10),p2=ri(150,230,10),end=q2+ri(10,q1-10,10),old=end-q2,ans=q2*p2+old*p1;return fCalc('f2_fifo',r.topic,`第1回仕入${q1}個（単価${p1}円）、第2回仕入${q2}個（単価${p2}円）。期末在庫は${end}個である。先入先出法による期末棚卸高はいくらか。`,ans,'円',`${q2}×${p2}＋${old}×${p1}＝${fmt(ans)}円`,'先入先出法では新しい仕入層が期末に残る。',r.conclusion,r.id)},
+  FINV03(){const r=FINANCE_RULE_INDEX_V2.FINV03,sales=ri(1000,4000,100),margin=rand([20,25,30,35,40]),ans=sales*(100-margin)/100;return fCalc('f2_margin_contrast',r.topic,`期末商品の売価が${fmt(sales)}万円、売価利益率が${margin}%である。売価利益率から原価率を求める単純化した前提で、原価はいくらか。`,ans,'万円',`${fmt(sales)}×(1－${margin}%)＝${fmt(ans)}万円`,'「売価利益率」なら原価率は1－利益率。原価利益率とは分母が違う。',r.conclusion,r.id)},
+  FINV04(){const r=FINANCE_RULE_INDEX_V2.FINV04,beg=ri(300,1000,50),buy=ri(1200,5000,100),end=ri(200,Math.min(1200,beg+buy-200),50),ans=beg+buy-end;return fCalc('f2_cogs',r.topic,`期首商品${fmt(beg)}万円、当期純仕入高${fmt(buy)}万円、期末商品${fmt(end)}万円である。売上原価はいくらか。`,ans,'万円',`${fmt(beg)}＋${fmt(buy)}－${fmt(end)}＝${fmt(ans)}万円`,'販売可能原価から期末在庫を除く。',r.conclusion,r.id)},
+  FLEASE03(){const r=FINANCE_RULE_INDEX_V2.FLEASE03,pmt=ri(120,360,10),years=rand([3,4,5]),rate=rand([2,3,4,5])/100;let pv=0;for(let t=1;t<=years;t++)pv+=pmt/Math.pow(1+rate,t);pv=Math.round(pv*100)/100;return fCalc('f2_lease_pv',r.topic,`リース開始日に、各年末${fmt(pmt)}万円を${years}年間支払う。割引率は年${rate*100}%で、他の支払はない。リース負債の当初測定額（現在価値）はいくらか。`,pv,'万円',`Σ ${fmt(pmt)}÷(1＋${rate*100}%)^t（t=1…${years}）＝約${fnum(pv)}万円`,'新リース基準では、原則として未払リース料を現在価値に割り引く。',r.conclusion,r.id)}
+};
+function fAvailableCalcRules(topicKeys){const allowed=new Set(topicKeys.map(k=>k.split('|').slice(1).join('|')));return Object.keys(FINANCE_CALC_BUILDERS_V2).map(id=>FINANCE_RULE_INDEX_V2[id]).filter(r=>r&&allowed.has(r.topic))}
+function fGenerateCalc(topicKeys){const rules=fAvailableCalcRules(topicKeys);if(!rules.length)return null;rules.sort((a,b)=>fRuleNovelty(a)-fRuleNovelty(b));const r=rules[0],c=FINANCE_CALC_BUILDERS_V2[r.id]();return {kind:'calc',format:'calc',s:'F',topics:[c.topic],calc:c,answer:c.answer,displayAnswer:`${fnum(c.answer)}${c.unit}`}}
+function fMakeSingle(topicKeys){const r=fPickRule(topicKeys);if(!r)return null;const item=Math.random()<.5?fTrueItem(r):fFalseItem(r);return {kind:'single',format:'single',s:'F',topics:[r.topic],prompt:wrapperForSingle(),items:[item],answer:item.a,displayAnswer:item.a?'○':'×'}}
+function fMakeCount(topicKeys,n=3){const rules=fPickRules(topicKeys,n);if(rules.length<2)return fMakeSingle(topicKeys);const items=rules.map(r=>Math.random()<.52?fTrueItem(r):fFalseItem(r)),answer=items.filter(x=>x.a).length;return {kind:'count',format:`count${items.length}`,s:'F',topics:[...new Set(rules.map(r=>r.topic))],prompt:`次の${items.length}つの記述のうち、正しいものはいくつあるか。`,items,answer,displayAnswer:`${answer}個`}}
+function fMakeChoice(topicKeys,wantTrue=true){const rules=fPickRules(topicKeys,4);if(rules.length<4)return fMakeCount(topicKeys,3);let items=rules.map((r,i)=>i===0?(wantTrue?fTrueItem(r):fFalseItem(r)):(wantTrue?fFalseItem(r):fTrueItem(r)));items=shuffle(items);const answer=items.findIndex(x=>x.a===wantTrue);return {kind:'choice',format:wantTrue?'best4':'wrong4',s:'F',topics:[...new Set(rules.map(r=>r.topic))],prompt:wantTrue?'次の記述のうち、正しいものを1つ選んでください。':'次の記述のうち、誤っているものを1つ選んでください。',items,answer,displayAnswer:String.fromCharCode(65+answer)}}
+function fMakeJournal(topicKeys){
+  const candidates=fPickRules(topicKeys,20,r=>r.journal&&r.journal.trim());if(!candidates.length)return fMakeChoice(topicKeys,true);
+  const r=candidates[0],correct=r.journal.split(' または ')[0],condition=rand(r.conditions),wrong=[...new Set([...(r.traps||[]).slice(0,1),`借方・貸方を逆にして ${correct}`,`当該取引について仕訳を一切行わない`])].slice(0,3);
+  while(wrong.length<3)wrong.push(`当期損益だけを計上し、関連する資産・負債は認識しない`);
+  const wrap=x=>rand([`処理案：${x}`,`仕訳・勘定処理の骨格は「${x}」とする`,`${condition}ことを前提に「${x}」と処理する`,`${r.micro}について「${x}」とする`]);
+  let items=[fItem(r,wrap(correct),true,`この条件では「${correct}」が処理の骨格。${r.judgment}`,r.judgment,r.conclusion),...wrong.map((w,i)=>fItem({...r,id:`${r.id}J${i}`},wrap(w),false,`誤り。${r.judgment}。処理の骨格は「${correct}」。`,r.judgment,r.conclusion))];items=shuffle(items);const answer=items.findIndex(x=>x.a);return {kind:'choice',format:'journal',s:'F',topics:[r.topic],prompt:`次のうち、条件に照らした仕訳・勘定処理の骨格として最も適切なものを1つ選んでください。\n条件：${condition}`,items,answer,displayAnswer:String.fromCharCode(65+answer)};
+}
+function fMakeCondition(topicKeys){
+  const pairs=[
+    ['FCON02','FCON04','A：追加取得後も支配継続','B：一部売却により支配喪失'],
+    ['FCON03','FCON04','A：一部売却後も支配継続','B：一部売却後に支配喪失'],
+    ['FIMP02','FIMP03','A：減損損失の認識判定','B：減損損失の測定'],
+    ['FFIN01','FFIN02','A：売買目的有価証券','B：その他有価証券'],
+    ['FINV03','FCON05','A：売価利益率から原価率を求める','B：連結期末在庫に含まれる売価利益率を使う'],
+    ['FLEASE05','FLEASE03','A：短期リース簡便法の要件を満たし選択','B：原則的な借手リース'],
+    ['FTAX02','FTAX01','A：永久差異','B：将来減算一時差異'],
+    ['FFIX03','FCON06','A：耐用年数の見積り変更','B：内部売却した償却資産の翌期連結修正']
+  ];
+  const allowed=new Set(topicKeys.map(k=>k.split('|').slice(1).join('|'))),usable=pairs.filter(p=>{const ta=FINANCE_RULE_INDEX_V2[p[0]]?.topic,tb=FINANCE_RULE_INDEX_V2[p[1]]?.topic;return ta===tb?allowed.has(ta):(allowed.has(ta)&&allowed.has(tb))});if(!usable.length)return fMakeChoice(topicKeys,true);
+  const [aId,bId,aLabel,bLabel]=rand(usable),a=FINANCE_RULE_INDEX_V2[aId],b=FINANCE_RULE_INDEX_V2[bId],aCond=rand(a.conditions),bCond=rand(b.conditions);
+  const pair=(ac,bc)=>rand([`${aLabel}では「${ac}」。${bLabel}では「${bc}」。`,`条件Aの結論：${ac}／条件Bの結論：${bc}`,`${aLabel}については${ac}。これに対し、${bLabel}については${bc}。`,`A（${aCond}）：${ac}。B（${bCond}）：${bc}。`]);
+  const correct=pair(a.conclusion,b.conclusion);
+  const wrong1=rand([`${aLabel}と${bLabel}は条件が異なっても常に同一の処理を行う。`,`AとBの条件差は会計処理に影響しないため、両者は同じ結論になる。`,`A・Bはいずれも条件分岐をせず同一処理とする。`]);
+  const wrong2=pair(rand(a.traps),b.conclusion);
+  const wrong3=pair(a.conclusion,rand(b.traps));
+  let items=[fItem(a,correct,true,`条件AとBの分岐点を先に特定する。A：${a.judgment}。B：${b.judgment}。`,'条件差を先に固定する','似た論点ほど「何が変わったか」を先に見る',`F2|contrast|${aId}|${bId}|T`),fItem({...a,id:`${aId}-${bId}-c1`},wrong1,false,`条件が異なるため同一処理ではない。A：${a.conclusion}／B：${b.conclusion}`,'対立条件を区別する','条件を一つ変えるだけで結論が変わる',`F2|contrast|${aId}|${bId}|F1`),fItem({...a,id:`${aId}-${bId}-c2`},wrong2,false,`Aの処理が誤り。A：${a.conclusion}`,'Aの条件を判定する',a.conclusion,`F2|contrast|${aId}|${bId}|F2`),fItem({...b,id:`${aId}-${bId}-c3`},wrong3,false,`Bの処理が誤り。B：${b.conclusion}`,'Bの条件を判定する',b.conclusion,`F2|contrast|${aId}|${bId}|F3`)];items=shuffle(items);const answer=items.findIndex(x=>x.a);return {kind:'choice',format:'condition',s:'F',topics:[...new Set([a.topic,b.topic])],prompt:'条件Aと条件Bを比較した記述として、最も適切なものを1つ選んでください。',items,answer,displayAnswer:String.fromCharCode(65+answer)};
+}
+function fCompatible(a,b){if(!a||!b)return false;if((a.forbid||[]).some(x=>(b.combine||[]).includes(x)||(b.forbid||[]).includes(x)))return false;return a.topic===b.topic||(a.combine||[]).some(x=>(b.combine||[]).includes(x))||a.related.some(x=>b.major.includes(x)||b.micro.includes(x)||b.related.includes(x))}
+function fMakeCompound(topicKeys){
+  const all=fPickRules(topicKeys,12),picked=[];for(const r of all){if(!picked.length||picked.every(p=>fCompatible(p,r))){picked.push(r);if(picked.length===3)break}}
+  if(picked.length<2)return fMakeCount(topicKeys,3);while(picked.length<3){const extra=all.find(r=>!picked.includes(r));if(!extra)break;picked.push(extra)}
+  const items=picked.map((r,i)=>i===1?fFalseItem(r):fTrueItem(r)),answer=items.filter(x=>x.a).length;return {kind:'count',format:'compound',s:'F',topics:[...new Set(picked.map(r=>r.topic))],prompt:'次の複合論点の記述A〜Cについて、正しいものの個数を答えてください。各記述は独立に判定してください。',items,answer,displayAnswer:`${answer}個`};
+}
+function fTargetTopic(topicKeys){
+  const f=topicKeys.filter(k=>k.startsWith('F|'));if(!f.length)return null;return f.slice().sort((a,b)=>{const aa=topicMeta(a),bb=topicMeta(b);return aa.n*1000+aa.last*.001+Math.random()*4-(bb.n*1000+bb.last*.001+Math.random()*4)})[0];
+}
+function hasFinanceV2Calc(topicKeys){return fAvailableCalcRules(topicKeys).length>0}
+function generateFinanceV2(format='mix',topicKeys=[]){
+  const fkeys=topicKeys.filter(k=>k.startsWith('F|'));if(!fkeys.length)return null;
+  // Explicit FINAL 2.0 formats must stay in the rule-first finance engine even when all 23 official topics are selected.
+  if(format==='calc')return fGenerateCalc(fkeys)||generateCalcQuestion(['F'],fkeys)||generateTheoryQuestion('mix',['F'],fkeys);
+  if(format==='journal')return fMakeJournal(fkeys);
+  if(format==='condition')return fMakeCondition(fkeys);
+  if(format==='compound')return fMakeCompound(fkeys);
+  const target=fTargetTopic(fkeys),targetKeys=target?[target]:fkeys,targetTopic=target?.slice(2);
+  if(targetTopic&&!FINANCE_DEEP_TOPICS_V2.has(targetTopic)){
+    const fallback=['journal','condition','compound'].includes(format)?'mix':format;
+    return generateTheoryQuestion(fallback,['F'],targetKeys)||generateTheoryQuestion('mix',['F'],fkeys);
+  }
+  let use=format;
+  if(use==='theory')use=rand(['single','single','count2','count3','best4','wrong4','journal','condition','compound']);
+  if(use==='mix')use=rand(['single','single','best4','wrong4','count2','count3','calc','calc','journal','condition','condition','compound']);
+  if(use==='calc')return fGenerateCalc(targetKeys)||fGenerateCalc(fkeys);
+  if(use==='single')return fMakeSingle(targetKeys);
+  if(use==='count2')return fMakeCount(targetKeys,2);
+  if(use==='count3')return fMakeCount(targetKeys,3);
+  if(use==='best4')return fMakeChoice(targetKeys,true);
+  if(use==='wrong4')return fMakeChoice(targetKeys,false);
+  if(use==='journal')return fMakeJournal(targetKeys);
+  if(use==='condition')return fMakeCondition(fkeys);
+  if(use==='compound')return fMakeCompound(fkeys);
+  return fMakeSingle(targetKeys);
+}
+
+
+
+// --- FINAL 2.1: Management Accounting rule-first generator -----------------
+// Source-first design: rules/conditions -> correct result -> wording/options.
+// This block is routed only for subject M. Finance V2, Audit and Corporate Law are untouched.
+const MANAGEMENT_ENGINE_V21={version:'2.1',mode:'rule-first',subject:'M',sourcePolicy:'CPA管理会計論 project materials; extract knowledge structure, judgment rules and calculation logic only'};
+const MANAGEMENT_SOURCE_MAP_V21={
+  '原価計算の基礎知識':['管理会計論_テキスト_1_2026-2027 第1〜2章','管理会計論_テキスト付録_原価計算基準_2026-2027','管理会計論_短答対策問題集_理論編-1_2026-2027'],
+  '実際原価計算':['管理会計論_テキスト_1_2026-2027 第3〜6章','管理会計論_短答対策問題集_計算編-1_2026-2027 第1章','管理会計論_論文対策集-理論_1_2026'],
+  '個別原価計算・製造間接費':['管理会計論_テキスト_1_2026-2027 第7・9章','管理会計論_短答対策問題集_計算編-1_2026-2027 第2〜3章','管理会計論_論文対策集-計算_1_2026 Q1〜Q4'],
+  '総合原価計算':['管理会計論_テキスト_2_2026-2027 第10〜11章','管理会計論_短答対策問題集_計算編-1_2026-2027 第4章','管理会計論_論文対策集-計算_1_2026 Q5〜Q10'],
+  '連産品・副産物':['管理会計論_テキスト_2_2026-2027 第12〜14章','管理会計論_短答対策問題集_計算編-1_2026-2027 第5章','管理会計論_論文対策集-理論_1_2026'],
+  '標準原価計算':['管理会計論_テキスト_2_2026-2027 第15章','管理会計論_短答対策問題集_計算編-1_2026-2027 第6章','管理会計論_論文対策集-計算_1_2026 Q11〜Q18'],
+  '直接原価計算':['管理会計論_テキスト_3_2026-2027 第17章','管理会計論_短答対策問題集_計算編-2_2026-2027 第7章','管理会計論_論文対策集-理論_1_2026 第5章'],
+  '管理会計の基礎知識':['管理会計論_テキスト_3_2026-2027 第18章','管理会計論_論文対策集-理論_1_2026'],
+  '財務情報分析':['管理会計論_テキスト_3_2026-2027 第21章','管理会計論_短答対策問題集_計算編-2_2026-2027 第10章','管理会計論_論文対策集-計算_2_2026 Q40'],
+  '短期利益計画':['管理会計論_テキスト_3_2026-2027 第19章','管理会計論_短答対策問題集_計算編-2_2026-2027 第8章','管理会計論_論文対策集-理論_2_2026'],
+  '予算管理':['管理会計論_テキスト_3_2026-2027 第20章','管理会計論_短答対策問題集_計算編-2_2026-2027 第9章','管理会計論_論文対策集-計算_1_2026 Q19〜Q20'],
+  '資金・キャッシュフロー管理':['管理会計論_テキスト_3_2026-2027 第22章','管理会計論_短答対策問題集_計算編-2_2026-2027 第11章','管理会計論_論文対策集-計算_2_2026 Q21〜Q23'],
+  'コスト・マネジメント':['管理会計論_テキスト_4_2026-2027 第27〜28章','管理会計論_短答対策問題集_計算編-2_2026-2027 第15〜16章','管理会計論_論文対策集-計算_2_2026 Q31〜Q36'],
+  '差額原価収益分析':['管理会計論_テキスト_4_2026-2027 第23〜24章','管理会計論_短答対策問題集_計算編-2_2026-2027 第12章','管理会計論_論文対策集-計算_2_2026 Q24〜Q26'],
+  '投資計画':['管理会計論_テキスト_4_2026-2027 第25章','管理会計論_短答対策問題集_計算編-2_2026-2027 第13章','管理会計論_論文対策集-計算_2_2026 Q27〜Q30','管理会計論_論文対策集-理論_2_2026 第9章'],
+  '分権化・グループ経営':['管理会計論_テキスト_4_2026-2027 第26章','管理会計論_短答対策問題集_計算編-2_2026-2027 第14章','管理会計論_論文対策集-計算_2_2026 Q37〜Q39']
+};
+function mr(o){
+  const arr=v=>Array.isArray(v)?v:(v==null||v===''?[]:[v]);
+  return {id:o.id,topic:o.topic,major:o.major||o.topic,middle:o.middle||'',micro:o.micro||'',
+    conditions:arr(o.conditions),prerequisites:arr(o.prerequisites),judgment:o.judgment||'',conclusion:o.conclusion||'',
+    formula:o.formula||'',steps:arr(o.steps),journal:o.journal||'',exceptions:arr(o.exceptions),related:arr(o.related),contrasts:arr(o.contrasts),
+    traps:arr(o.traps),trapReasons:arr(o.trapReasons||'条件・計算対象・分母のいずれかを取り違える典型ミス。'),
+    combine:arr(o.combine),forbid:arr(o.forbid),difficulty:o.difficulty||'A',formats:arr(o.formats||['single','count','choice','condition','compound']),
+    source:arr(o.source||MANAGEMENT_SOURCE_MAP_V21[o.topic]),trace:o.trace||null};
+}
+const MANAGEMENT_RULES_V21=[
+// 1 原価計算総論
+mr({id:'MBASE01',topic:'原価計算の基礎知識',middle:'原価計算制度',micro:'制度と特殊原価調査',conditions:'財務会計機構と有機的に結びつき継続的に行う',judgment:'制度としての原価計算か、意思決定等のための随時的な特殊原価調査かを目的と反復性で区別する。',conclusion:'原価計算制度は財務会計と有機的に結びつき、継続的・組織的に実施される。',traps:'特殊原価調査も財務会計機構と常に結合した継続的制度である。',related:'管理会計の基礎知識',combine:'base'}),
+mr({id:'MBASE02',topic:'原価計算の基礎知識',middle:'原価概念',micro:'実際原価と標準原価',conditions:'予定価格等を用いる場合を含む',judgment:'実際原価は実際消費量を基礎とし、標準原価は科学的・統計的に設定した標準を基礎とする。',conclusion:'予定価格を用いても、実際消費量を基礎とする限り実際原価計算の枠内にあり得る。',traps:'予定価格を一部でも用いた時点で必ず標準原価計算になる。',related:'標準原価計算',combine:'base'}),
+mr({id:'MBASE03',topic:'原価計算の基礎知識',middle:'原価配分',micro:'原価発生原因主義',conditions:'共通原価を原価計算対象へ配分する',judgment:'原価の発生と計算対象との因果関係をできるだけ反映する配賦基準を選ぶ。',conclusion:'原価発生原因主義では、原価の発生原因との対応関係が高い配賦基準を優先する。',traps:'負担能力だけを唯一の配賦基準とし、因果関係は考慮しない。',related:'個別原価計算・製造間接費',combine:'allocation'}),
+mr({id:'MBASE04',topic:'原価計算の基礎知識',middle:'原価分類',micro:'固定費・変動費',conditions:'関連範囲内で操業度が変化する',judgment:'総額の挙動で分類する。変動費総額は操業度に比例し、固定費総額は一定範囲で概ね一定。',conclusion:'固定費は操業度が変化しても総額が一定範囲で概ね一定である一方、単位当たり固定費は操業度により変化する。',traps:'固定費は単位当たり額が常に一定である。',related:'短期利益計画',combine:'cost-behavior'}),
+// 2 実際原価
+mr({id:'MACT01',topic:'実際原価計算',middle:'材料費',micro:'材料副費の予定配賦',conditions:'材料副費を予定率で配賦する',judgment:'実際発生額と予定配賦額との差額を材料副費配賦差異として把握する。',conclusion:'材料副費を予定配賦した場合、実際発生額との差額を配賦差異として把握する。',formula:'配賦差異＝実際材料副費－予定配賦額',traps:'予定配賦額をそのまま実際発生額とみなし差異を認識しない。',combine:'actual-cost'}),
+mr({id:'MACT02',topic:'実際原価計算',middle:'材料費',micro:'材料消費価格差異',conditions:'予定消費価格を用いる',judgment:'実際消費数量に予定価格を乗じた予定消費額と、実際消費額の差を価格差異として把握する。',conclusion:'材料消費価格差異は、原則として実際消費数量を共通数量として価格差を測る。',formula:'価格差異＝実際消費数量×（実際消費価格－予定消費価格）',traps:'標準消費数量を用いて材料消費価格差異を計算する。',related:'標準原価計算',combine:'variance'}),
+mr({id:'MACT03',topic:'実際原価計算',middle:'労務費',micro:'賃率差異',conditions:'予定賃率を用いる',judgment:'実際作業時間を共通時間として実際賃率と予定賃率の差を測る。',conclusion:'賃率差異は実際作業時間に実際賃率と予定賃率の差を乗じて求める。',formula:'賃率差異＝実際時間×（実際賃率－予定賃率）',traps:'標準作業時間を用いて賃率差異を計算する。',combine:'variance'}),
+mr({id:'MACT04',topic:'実際原価計算',middle:'製造間接費',micro:'予定配賦',conditions:'予定配賦率を用いる',judgment:'予定配賦率×実際配賦基準量で予定配賦額を計算し、実際発生額との差を配賦差異とする。',conclusion:'製造間接費の予定配賦額は、予定配賦率に実際の配賦基準量を乗じて計算する。',formula:'予定配賦額＝予定配賦率×実際配賦基準量',traps:'予定配賦率に予定配賦基準量を乗じた額を個々の実際配賦額とする。',combine:'overhead'}),
+mr({id:'MACT05',topic:'実際原価計算',middle:'製造間接費',micro:'予算差異・操業度差異',conditions:'公式法変動予算を採用する',judgment:'実際操業度に対応する予算許容額と実際発生額の差が予算差異、基準操業度と実際操業度の固定費配賦差が操業度差異。',conclusion:'操業度差異は主として固定費の回収不足・超過を表す。',formula:'操業度差異＝固定費率×（基準操業度－実際操業度）',traps:'操業度差異を変動費率だけで計算する。',combine:'overhead'}),
+mr({id:'MACT06',topic:'実際原価計算',middle:'製造間接費',micro:'基準操業度',conditions:'固定費総額が同じで基準操業度のみ異なる',judgment:'固定費率は固定費予算額を基準操業度で除するため、基準操業度が高いほど単位当たり固定費率は低くなる。',conclusion:'固定費予算額が同じなら、基準操業度を高く設定するほど固定費率は低下する。',traps:'固定費率は基準操業度と無関係で常に一定である。',combine:'overhead',trace:{changed:'基準操業度',element:'固定費率'}}),
+// 3 部門別・個別
+mr({id:'MJOB01',topic:'個別原価計算・製造間接費',middle:'個別原価計算',micro:'製造指図書別集計',conditions:'異種製品を個別指図で製造する',judgment:'直接費は製造指図書に賦課し、間接費は合理的基準で配賦する。',conclusion:'個別原価計算では、原価を製造指図書別に集計して製品原価を計算する。',traps:'製造指図書を用いず期間総額のみで製品原価を算定する。',combine:'job'}),
+mr({id:'MJOB02',topic:'個別原価計算・製造間接費',middle:'個別原価計算',micro:'正常仕損費',conditions:'正常仕損が特定製造指図書に起因する',judgment:'仕損の発生原因が特定指図書に明確に帰属するなら、その指図書へ直接負担させる処理があり得る。共通原因なら間接費処理を検討する。',conclusion:'正常仕損費の負担先は、特定指図書との因果関係の有無を踏まえて決める。',traps:'正常仕損費は原因に関係なく必ず全製品へ一律配賦する。',combine:'job-spoilage'}),
+mr({id:'MJOB03',topic:'個別原価計算・製造間接費',middle:'個別原価計算',micro:'補修可能仕損',conditions:'補修により良品化できる',judgment:'仕損品そのものを廃棄する処理ではなく、補修に要した追加原価の帰属を原因別に判断する。',conclusion:'補修可能仕損では、補修原価の発生原因に応じて特定指図書または間接費へ負担させる。',traps:'補修可能でも必ず仕損品全額を廃棄損として処理する。',combine:'job-spoilage'}),
+mr({id:'MDEPT01',topic:'個別原価計算・製造間接費',middle:'部門別計算',micro:'直接配賦法',conditions:'補助部門費を製造部門へ配賦する',judgment:'直接配賦法では補助部門相互の用役授受を無視し、製造部門のみに配賦する。',conclusion:'直接配賦法は補助部門相互間の用役授受を計算上無視する。',traps:'直接配賦法は補助部門相互の用役授受を完全に反映する。',combine:'department'}),
+mr({id:'MDEPT02',topic:'個別原価計算・製造間接費',middle:'部門別計算',micro:'階梯式配賦法',conditions:'補助部門費を一定順位で順次配賦する',judgment:'いったん配賦を終えた補助部門には原則として逆戻りして配賦しない。',conclusion:'階梯式配賦法では配賦順位を定め、先に配賦済みの補助部門への戻し配賦を行わない。',traps:'階梯式配賦法ではすべての補助部門相互用役を連立方程式で完全反映する。',combine:'department'}),
+mr({id:'MDEPT03',topic:'個別原価計算・製造間接費',middle:'部門別計算',micro:'相互配賦法',conditions:'補助部門相互の用役授受を反映する',judgment:'連立方程式等により相互授受を反映して補助部門費を確定する。',conclusion:'相互配賦法は補助部門間の相互用役授受を反映できる。',traps:'相互配賦法では補助部門相互の用役授受を無視する。',combine:'department'}),
+mr({id:'MDEPT04',topic:'個別原価計算・製造間接費',middle:'部門別計算',micro:'複数基準配賦・責任会計',conditions:'補助部門費に固定費と変動費が含まれる',judgment:'原価発生原因・管理可能性に応じて複数基準や予定配賦を用いるほど、受入部門に他部門の非能率等を転嫁しにくい。',conclusion:'複数基準・予定配賦の活用は、単一基準の実際配賦より責任会計上の統制可能性を高めやすい。',traps:'責任会計では他部門の非能率を受入部門へできるだけ転嫁することが望ましい。',combine:'department'}),
+// 4 総合原価
+mr({id:'MPROC01',topic:'総合原価計算',middle:'単純総合原価計算',micro:'平均法',conditions:'月初仕掛品が存在する',judgment:'月初仕掛品原価と当月製造費用を合算し、月初仕掛品と当月投入を区別せず平均化する。',conclusion:'平均法では月初仕掛品原価と当月製造費用を合算して完成品換算量単価を求める。',traps:'平均法では月初仕掛品原価を当月製造費用から完全に分離して単価計算する。',contrasts:'先入先出法',combine:'process'}),
+mr({id:'MPROC02',topic:'総合原価計算',middle:'単純総合原価計算',micro:'先入先出法',conditions:'月初仕掛品が存在する',judgment:'月初仕掛品の前月までの原価と当月投入原価を区別し、当月作業分の完成品換算量で当月単価を測る。',conclusion:'先入先出法では、月初仕掛品の当月加工分を当月完成品換算量に含める。',traps:'先入先出法でも月初仕掛品を100%当月投入品として換算量に含める。',contrasts:'平均法',combine:'process'}),
+mr({id:'MPROC03',topic:'総合原価計算',middle:'仕損・減損',micro:'度外視法',conditions:'正常仕損費を独立計算しない',judgment:'正常仕損の原価を独立して測定せず、良品等の単価に吸収させる。',conclusion:'度外視法では正常仕損費を独立の原価項目として計算せず、良品側に負担させる。',traps:'度外視法では正常仕損費を必ず独立計算してから良品へ配賦する。',contrasts:'非度外視法',combine:'spoilage'}),
+mr({id:'MPROC04',topic:'総合原価計算',middle:'仕損・減損',micro:'非度外視法',conditions:'正常仕損費を明示的に把握する',judgment:'仕損品の完成品換算量と原価を計算し、その正常仕損費を負担対象へ配賦する。',conclusion:'非度外視法では正常仕損費を独立に計算して適切な良品等へ負担させる。',traps:'非度外視法でも仕損品の完成品換算量は常にゼロとする。',contrasts:'度外視法',combine:'spoilage'}),
+mr({id:'MPROC05',topic:'総合原価計算',middle:'仕損・減損',micro:'正常仕損と異常仕損',conditions:'正常許容範囲を超える仕損が発生する',judgment:'正常仕損は良品原価へ負担させる一方、異常仕損は原則として製品原価から区分して異常損失として扱う。',conclusion:'異常仕損費は正常な製造原価と区分して把握する。',traps:'異常仕損費も正常仕損費と同様に無条件で良品原価へ算入する。',combine:'spoilage'}),
+mr({id:'MPROC06',topic:'総合原価計算',middle:'仕損・減損',micro:'発生点と負担関係',conditions:'仕損が工程途中の検査点で発見される',judgment:'その仕損発生点を通過した良品・仕掛品等だけが正常仕損費の負担対象となる考え方をとる。',conclusion:'正常仕損の発生点より前にしか進んでいない月末仕掛品は、その正常仕損費を負担しない場合がある。',traps:'正常仕損費は仕掛品の進捗度に関係なく必ず全数量へ一律負担させる。',combine:'spoilage',trace:{changed:'仕損発生点',element:'正常仕損費の負担対象'}}),
+mr({id:'MPROC07',topic:'総合原価計算',middle:'追加材料',micro:'投入点と完成品換算量',conditions:'追加材料を工程途中の特定点で投入する',judgment:'月末仕掛品が投入点を通過したかどうかで、その材料の完成品換算量への算入が変わる。',conclusion:'定点投入材料は、仕掛品が投入点を通過していれば当該材料について100%投入済みとして扱う。',traps:'定点投入材料は加工進捗度と同じ割合だけ常に投入済みとする。',combine:'process-material',trace:{changed:'材料投入点',element:'材料完成品換算量'}}),
+mr({id:'MPROC08',topic:'総合原価計算',middle:'工程別総合原価計算',micro:'累加法・非累加法',conditions:'複数工程で連続生産する',judgment:'累加法は前工程費を次工程へ引き継ぐ。非累加法は工程別原価を独立的に把握し最終的に集計する。',conclusion:'累加法では前工程費が次工程の原価要素として累積される。',traps:'非累加法でも前工程原価をそのまま次工程費として順次累積する。',combine:'process'}),
+// 5 組別・等級別・連産品
+mr({id:'MJOINT01',topic:'連産品・副産物',middle:'組別・等級別',micro:'組別総合原価計算',conditions:'同一工程で種類の異なる製品群を連続生産する',judgment:'組直接費を各組へ賦課し、組間接費を合理的基準で各組へ配賦した上で組別に総合原価計算する。',conclusion:'組別総合原価計算では、組直接費と組間接費を区別して各組の原価を求める。',traps:'組間接費も配賦せず全額を特定の一組だけへ賦課する。',combine:'joint-grade'}),
+mr({id:'MJOINT02',topic:'連産品・副産物',middle:'組別・等級別',micro:'等級別総合原価計算',conditions:'同種製品を品質・サイズ等の等級別に生産する',judgment:'等価係数等を使って等級品間の価値・原価負担関係を反映する。',conclusion:'等級別総合原価計算では、等価係数を用いて各等級品へ原価を按分する方法がある。',traps:'等級が異なっても数量だけで必ず同額単価を付す。',combine:'joint-grade'}),
+mr({id:'MJOINT03',topic:'連産品・副産物',middle:'連産品',micro:'NRV基準',conditions:'分離点に市場価格がなく追加加工後に販売する',judgment:'最終売価から分離後加工費・必要な販管費等を控除した正味実現可能価額を基礎に連結原価を配賦する。',conclusion:'分離点価格が得られない連産品では、正味実現可能価額を用いた連結原価配賦が可能である。',formula:'NRV＝見積売価－分離後追加加工費－関連販売費等',traps:'分離後追加加工費を連結原価に加えてからNRVを計算する。',combine:'joint'}),
+mr({id:'MJOINT04',topic:'連産品・副産物',middle:'連産品',micro:'追加加工意思決定',conditions:'分離後に追加加工して販売可能',judgment:'分離点までの連結原価は追加加工の意思決定には埋没しているため、追加収益と追加加工費を比較する。',conclusion:'追加加工の採否では、配賦済み連結原価を関連原価として含めない。',traps:'追加加工の採否では配賦連結原価を必ず追加加工費に加える。',related:'差額原価収益分析',combine:['joint','decision']}),
+mr({id:'MJOINT05',topic:'連産品・副産物',middle:'副産物',micro:'副産物価額の処理',conditions:'主産物と同時に価値の小さい副産物が生じる',judgment:'副産物の見積価額等を主産物の製造原価から控除する等の処理がある。',conclusion:'副産物価額を主産物原価から控除する処理では、主産物が負担する原価が減少する。',traps:'副産物価額を主産物原価へ追加加算する。',combine:'joint'}),
+// 6 標準原価
+mr({id:'MSTD01',topic:'標準原価計算',middle:'直接材料費差異',micro:'価格差異',conditions:'実際購入・消費単価と標準単価が異なる',judgment:'価格要因だけを抽出するため実際数量を共通数量にして単価差を測る。',conclusion:'材料価格差異は実際数量×（実際価格－標準価格）を基本とする。',formula:'MPV＝AQ×(AP－SP)',traps:'標準数量×（実際価格－標準価格）で価格差異を測る。',combine:'std-var'}),
+mr({id:'MSTD02',topic:'標準原価計算',middle:'直接材料費差異',micro:'数量差異',conditions:'実際消費数量と標準消費数量が異なる',judgment:'数量要因だけを抽出するため標準価格を共通単価にする。',conclusion:'材料数量差異は標準価格×（実際数量－標準数量）を基本とする。',formula:'MQV＝SP×(AQ－SQ)',traps:'実際価格×（実際数量－標準数量）で数量差異を測る。',combine:'std-var'}),
+mr({id:'MSTD03',topic:'標準原価計算',middle:'直接労務費差異',micro:'賃率差異・時間差異',conditions:'実際賃率・時間が標準と異なる',judgment:'賃率差異は実際時間、時間差異は標準賃率を共通要素として分解する。',conclusion:'賃率差異はAH×(AR－SR)、時間差異はSR×(AH－SH)で測る。',formula:'LRV＝AH×(AR－SR), LEV＝SR×(AH－SH)',traps:'時間差異を実際賃率×(AH－SH)で計算する。',combine:'std-var'}),
+mr({id:'MSTD04',topic:'標準原価計算',middle:'製造間接費差異',micro:'予算・能率・操業度差異',conditions:'標準操業度と実際操業度が異なる',judgment:'変動費部分と固定費部分、実際操業度・標準操業度・基準操業度のどれを比較しているかを分ける。',conclusion:'操業度差異は基準操業度と標準操業度等の差から固定費の配賦過不足を捉える。',traps:'製造間接費差異はすべて材料価格差異と同じ二分法だけで処理できる。',combine:'std-oh'}),
+mr({id:'MSTD05',topic:'標準原価計算',middle:'差異の詳細分析',micro:'配合差異・歩留差異',conditions:'複数材料を一定配合で投入する',judgment:'総投入量の差と投入構成比の差を分けて材料数量差異を詳細化する。',conclusion:'配合差異は材料構成比のずれ、歩留差異は総投入量と産出量の関係のずれを捉える。',traps:'配合差異と歩留差異は常に同一の原因を表す。',combine:'std-var'}),
+mr({id:'MSTD06',topic:'標準原価計算',middle:'仕損・減損',micro:'正常仕損を織り込む標準',conditions:'正常仕損率を標準に含める',judgment:'正常な仕損を標準消費量に織り込み、標準を超える異常部分を差異として管理する。',conclusion:'正常仕損を標準に織り込む場合、正常範囲内の仕損は標準原価の一部となる。',traps:'正常仕損もすべて異常差異として処理する。',combine:['std-var','spoilage']}),
+mr({id:'MSTD07',topic:'標準原価計算',middle:'記帳方法',micro:'シングル・パーシャルプラン',conditions:'仕掛品勘定への記入を標準または実際で行う',judgment:'どの時点で標準原価を記帳し差異を分離するかで方式を区別する。',conclusion:'シングルプランとパーシャルプランでは、仕掛品勘定への記入額と差異認識のタイミングが異なる。',traps:'両方式は仕掛品勘定への記入方法が完全に同一である。',combine:'std-ledger'}),
+// 7 直接原価
+mr({id:'MDIR01',topic:'直接原価計算',middle:'損益計算',micro:'製造固定費',conditions:'直接原価計算を採用する',judgment:'変動製造原価のみを製品原価とし、製造固定費は発生期の期間原価とする。',conclusion:'直接原価計算では製造固定費を製品原価へ配賦せず期間原価として処理する。',traps:'直接原価計算でも製造固定費を在庫へ配賦して繰り延べる。',contrasts:'全部原価計算',combine:'direct'}),
+mr({id:'MDIR02',topic:'直接原価計算',middle:'利益差異',micro:'棚卸資産増減',conditions:'製造固定費率が一定で期首・期末在庫が変化する',judgment:'全部原価計算では固定製造費が在庫に繰延・前期在庫から解放されるため、期末在庫固定費－期首在庫固定費が利益差の基本となる。',conclusion:'期末在庫に含まれる固定製造費が期首在庫分を上回れば、全部原価計算の営業利益は直接原価計算より大きくなる。',formula:'全部利益－直接利益＝期末在庫中固定製造費－期首在庫中固定製造費',traps:'在庫が増加すると直接原価計算の利益が必ず全部原価計算より大きくなる。',combine:'direct',trace:{changed:'棚卸数量',element:'固定製造費の繰延額'}}),
+mr({id:'MDIR03',topic:'直接原価計算',middle:'固定費調整',micro:'財務会計への調整',conditions:'直接原価計算資料から全部原価利益へ調整する',judgment:'期首在庫に含まれる固定製造費を費用化し、期末在庫に含まれる固定製造費を繰り延べる方向で調整する。',conclusion:'直接原価利益から全部原価利益へは、期末固定製造費繰延額を加え、期首固定製造費取崩額を控除する。',traps:'期首と期末の固定製造費調整を逆方向に行う。',combine:'direct'}),
+mr({id:'MDIR04',topic:'直接原価計算',middle:'セグメント損益',micro:'貢献利益・管理可能固定費',conditions:'製品・事業部別の収益性を評価する',judgment:'変動費控除後の貢献利益、さらに個別固定費を控除したセグメント利益等を段階的に見る。',conclusion:'共通固定費を恣意的に配賦した最終利益だけでなく、貢献利益や個別固定費控除後利益も見る。',traps:'共通固定費を必ず売上高比で配賦した利益だけが短期意思決定に適切である。',related:'差額原価収益分析',combine:['direct','decision']}),
+// 8 管理会計基礎
+mr({id:'MMGT01',topic:'管理会計の基礎知識',middle:'責任会計',micro:'責任センター',conditions:'組織単位へ責任を付与する',judgment:'原価・収益・利益・投資センターは管理者が責任を負う対象範囲で区別する。',conclusion:'投資センターは利益だけでなく投下資本の利用についても責任を負う。',traps:'コストセンターは投下資本利益率の最大化に最終責任を負う。',related:'分権化・グループ経営',combine:'control'}),
+mr({id:'MMGT02',topic:'管理会計の基礎知識',middle:'マネジメント・コントロール',micro:'意思決定と業績評価',conditions:'管理会計情報を利用する',judgment:'意思決定目的と業績評価目的では関連する原価・責任範囲が異なる場合がある。',conclusion:'同じ原価情報でも、意思決定目的と業績評価目的で適切な集計範囲が異なることがある。',traps:'意思決定用原価と業績評価用原価は常に完全に同一である。',combine:'control'}),
+mr({id:'MMGT03',topic:'管理会計の基礎知識',middle:'BSC',micro:'4つの視点と因果関係',conditions:'戦略を指標へ展開する',judgment:'財務、顧客、内部業務プロセス、学習と成長の視点を因果の連鎖として設計する。',conclusion:'BSCでは財務指標だけでなく非財務指標も戦略との因果関係を意識して組み合わせる。',traps:'BSCは財務指標だけで構成し非財務指標を排除する。',combine:'strategy'}),
+mr({id:'MMGT04',topic:'管理会計の基礎知識',middle:'品質原価',micro:'予防・評価・失敗原価',conditions:'品質関連コストを分類する',judgment:'不良防止が予防、検査が評価、社内発見不良が内部失敗、顧客流出後が外部失敗。',conclusion:'保証修理やクレーム対応は外部失敗原価に分類される。',traps:'製品検査費を外部失敗原価に分類する。',combine:'quality'}),
+// 9 財務分析
+mr({id:'MFINA01',topic:'財務情報分析',middle:'収益性分析',micro:'ROI分解',conditions:'投下資本利益率を分析する',judgment:'利益率と資本回転率へ分解して原因を見る。',conclusion:'ROIは売上高利益率×資本回転率に分解できる。',formula:'ROI＝利益/売上高×売上高/投下資本',traps:'ROIは売上高利益率と資本回転率の和である。',combine:'ratio'}),
+mr({id:'MFINA02',topic:'財務情報分析',middle:'安全性分析',micro:'流動比率・当座比率',conditions:'短期支払能力を分析する',judgment:'当座比率は流動資産から棚卸資産等を除いた当座資産を分子にするため、通常は流動比率より厳しい。',conclusion:'当座比率は流動比率より換金性の高い資産に絞って短期安全性を測る。',traps:'当座比率の分子には棚卸資産を必ず全額含める。',combine:'ratio'}),
+mr({id:'MFINA03',topic:'財務情報分析',middle:'安全性分析',micro:'固定長期適合率',conditions:'固定資産の長期資金による賄いを分析する',judgment:'固定資産を自己資本と固定負債等の長期資金でどの程度賄っているかを見る。',conclusion:'固定長期適合率は固定資産と長期的な資金調達との対応を見る指標である。',traps:'固定長期適合率は短期売上債権の回収速度を測る指標である。',combine:'ratio'}),
+mr({id:'MFINA04',topic:'財務情報分析',middle:'安全性分析',micro:'インタレスト・カバレッジ',conditions:'利息支払余力を分析する',judgment:'利払前の利益等を支払利息で除して利息負担能力を見る。',conclusion:'インタレスト・カバレッジ・レシオは、利益等が支払利息を何倍カバーするかを見る。',traps:'支払利息を利益で除した比率が大きいほど常に支払余力が高い。',combine:'ratio'}),
+mr({id:'MFINA05',topic:'財務情報分析',middle:'回転率・回転期間',micro:'平均残高',conditions:'一定期間のフローと時点残高を対応させる',judgment:'期間の売上高等と対応させる残高には期首期末平均を用いるのが基本。',conclusion:'回転率・回転期間では、フローとの期間対応のため平均残高を用いることが多い。',traps:'回転率は必ず期末残高だけを用いなければならない。',combine:'ratio'}),
+// 10 CVP
+mr({id:'MCVP01',topic:'短期利益計画',middle:'CVP分析',micro:'損益分岐点',conditions:'単一製品・線形の収益費用構造',judgment:'単位貢献利益が固定費をちょうど回収する数量を求める。',conclusion:'損益分岐点販売数量は固定費÷単位貢献利益で求める。',formula:'BEP数量＝固定費/(単価－単位変動費)',traps:'固定費を販売単価で割って損益分岐点数量を求める。',combine:'cvp'}),
+mr({id:'MCVP02',topic:'短期利益計画',middle:'CVP分析',micro:'目標利益',conditions:'税引前目標営業利益を設定する',judgment:'固定費に目標利益を加えた必要貢献利益を単位貢献利益で回収する。',conclusion:'目標利益販売数量は（固定費＋目標利益）÷単位貢献利益で求める。',formula:'Q＝(F＋目標利益)/CMu',traps:'固定費から目標利益を控除して必要販売数量を求める。',combine:'cvp'}),
+mr({id:'MCVP03',topic:'短期利益計画',middle:'CVP分析',micro:'安全余裕率',conditions:'実際売上高が損益分岐点売上高を上回る',judgment:'損益分岐点まで売上がどれだけ下落しても赤字にならない余裕を実際売上高に対する比率で示す。',conclusion:'安全余裕率＝（実際売上高－損益分岐点売上高）÷実際売上高。',traps:'安全余裕率の分母には損益分岐点売上高だけを用いる。',combine:'cvp'}),
+mr({id:'MCVP04',topic:'短期利益計画',middle:'CVP分析',micro:'営業レバレッジ',conditions:'売上高の変化が営業利益に与える感応度を測る',judgment:'一定時点の営業レバレッジ度は貢献利益÷営業利益で表される。固定費依存が高いほど一般に大きくなる。',conclusion:'営業レバレッジ度＝貢献利益÷営業利益で、売上変化率に対する営業利益変化率の倍率を示す。',formula:'DOL＝CM/営業利益',traps:'営業レバレッジ度＝営業利益÷貢献利益である。',combine:'cvp',trace:{changed:'固定費構成',element:'営業利益の感応度'}}),
+mr({id:'MCVP05',topic:'短期利益計画',middle:'多品種CVP',micro:'セールスミックス',conditions:'販売構成比が一定',judgment:'各製品の貢献利益を販売ミックスで加重平均して複合単位または加重平均貢献利益率を作る。',conclusion:'多品種CVPでは、販売ミックスが一定なら加重平均貢献利益率を用いて損益分岐点を求められる。',traps:'多品種でも各製品の貢献利益率を単純平均すれば販売ミックスは不要である。',combine:'cvp'}),
+mr({id:'MCVP06',topic:'短期利益計画',middle:'原価分解',micro:'高低点法',conditions:'総原価と操業度データから変動費率を推定する',judgment:'最高操業度点と最低操業度点の原価差÷操業度差で単位変動費を推定する。',conclusion:'高低点法では原価の最高額ではなく操業度の最高点・最低点を用いる。',traps:'総原価が最大・最小の月を操業度に関係なく必ず選ぶ。',combine:'cost-behavior'}),
+// 11 予算
+mr({id:'MBUD01',topic:'予算管理',middle:'総合予算',micro:'マスター・バジェット',conditions:'企業全体の期間予算を編成する',judgment:'販売予算を起点に製造・仕入・費用・資金予算等を連動させ、予算損益・予算資金等へ統合する。',conclusion:'総合予算では個別予算を相互に連動させ、企業全体の計画へ統合する。',traps:'各個別予算は相互の数量・金額関係を無視して独立に作成する。',combine:'budget'}),
+mr({id:'MBUD02',topic:'予算管理',middle:'予算差異分析',micro:'売上高差異',conditions:'実績売上高と予算売上高が異なる',judgment:'価格要因と数量要因を分離し、必要に応じて販売数量差異をミックス・総数量へ分解する。',conclusion:'売上高差異は販売価格差異と販売数量差異等へ分解して原因分析できる。',traps:'売上高差異は価格差異だけで説明し販売数量の影響を無視する。',combine:'budget-var'}),
+mr({id:'MBUD03',topic:'予算管理',middle:'販売数量差異',micro:'市場占拠率・市場規模',conditions:'市場全体数量と自社シェアが変化する',judgment:'自社販売数量変化を市場規模要因と市場占拠率要因に分解する。',conclusion:'販売数量差異を市場規模差異と市場占拠率差異へ分解すると外部市場変化と自社シェア変化を分けられる。',traps:'市場規模の変化と市場占拠率の変化は分解不能である。',combine:'budget-var'}),
+mr({id:'MBUD04',topic:'予算管理',middle:'予算編成',micro:'参加型予算とスラック',conditions:'現場管理者が予算編成へ参加する',judgment:'情報活用・動機づけの利点がある一方、達成しやすい予算を作る予算スラックの可能性にも注意する。',conclusion:'ボトムアップ型予算には現場情報を反映しやすい利点と予算スラックのリスクがある。',traps:'参加型予算では予算スラックが生じる可能性はない。',combine:'budget'}),
+mr({id:'MBUD05',topic:'予算管理',middle:'予算方式',micro:'ゼロベース予算・継続予算',conditions:'予算の見直し方法を選ぶ',judgment:'ZBBは既存予算を所与とせずゼロから必要性を検討し、継続予算は一定期間を常に先まで延長する。',conclusion:'ゼロベース予算は前期実績を自動的な出発点とせず活動の必要性を再検討する。',traps:'ゼロベース予算は前期予算へ一律増減率を掛ける増分予算そのものである。',combine:'budget'}),
+// 12 資金CF
+mr({id:'MCASH01',topic:'資金・キャッシュフロー管理',middle:'運転資金',micro:'営業循環日数',conditions:'棚卸・売上債権の資金拘束期間を測る',judgment:'棚卸資産回転期間と売上債権回転期間を合計して営業循環日数を捉える。',conclusion:'営業循環日数は棚卸資産回転期間＋売上債権回転期間で表される。',traps:'営業循環日数は仕入債務回転期間だけで決まる。',combine:'cash-cycle'}),
+mr({id:'MCASH02',topic:'資金・キャッシュフロー管理',middle:'運転資金',micro:'CCC',conditions:'仕入債務による支払猶予を考慮する',judgment:'営業循環日数から仕入債務回転期間を控除して、営業活動で資金が拘束される正味期間を測る。',conclusion:'CCC＝棚卸資産回転期間＋売上債権回転期間－仕入債務回転期間。',formula:'CCC＝DIH＋DSO－DPO',traps:'CCCでは仕入債務回転期間を加算する。',combine:'cash-cycle'}),
+mr({id:'MCASH03',topic:'資金・キャッシュフロー管理',middle:'運転資金',micro:'売上増加と必要運転資金',conditions:'売上増加に伴い売上債権・棚卸資産・仕入債務が増加する',judgment:'追加資金拘束は売上債権増＋棚卸資産増－仕入債務増で測る。',conclusion:'必要運転資金の増加額は、売上債権増加＋棚卸資産増加－仕入債務増加を基本とする。',formula:'ΔNWC＝ΔAR＋ΔInventory－ΔAP',traps:'仕入債務の増加も資金拘束として加算する。',combine:'cash-cycle'}),
+mr({id:'MCASH04',topic:'資金・キャッシュフロー管理',middle:'資金予算',micro:'回収・支払サイト',conditions:'売上・仕入の現金化時期が翌月以降にずれる',judgment:'損益の発生時点ではなく実際の回収・支払条件に従って月別現金収支を配置する。',conclusion:'資金予算では売上計上月ではなく回収サイトに従って現金流入を計上する。',traps:'掛売上は売上計上月に必ず全額現金流入として扱う。',combine:'cash-budget'}),
+// 13 cost management + ABC
+mr({id:'MCM01',topic:'コスト・マネジメント',middle:'原価企画',micro:'許容原価',conditions:'市場価格と目標利益から原価目標を設定する',judgment:'市場起点で許容原価を逆算する。',conclusion:'許容原価＝目標販売価格－目標利益で求める。',formula:'Allowable cost＝Target price－Target profit',traps:'許容原価は現行原価に目標利益を加えて求める。',combine:'target-cost'}),
+mr({id:'MCM02',topic:'コスト・マネジメント',middle:'原価企画',micro:'成行原価と原価低減目標',conditions:'設計段階で見積原価が許容原価を上回る',judgment:'成行原価と目標原価・許容原価のギャップをVE等で低減する。',conclusion:'原価企画は製造開始後だけでなく企画・設計段階から原価を作り込む。',traps:'原価企画は製造開始後の実際原価差異分析だけを指す。',combine:'target-cost'}),
+mr({id:'MCM03',topic:'コスト・マネジメント',middle:'VE',micro:'価値向上',conditions:'機能と原価の関係を見直す',judgment:'必要機能を維持・向上しつつライフサイクル視点で原価を低減する。',conclusion:'VEは機能と原価の関係を分析し、価値向上を図る手法である。',traps:'VEは機能を一切考えず単純な値下げだけを目的とする。',combine:'target-cost'}),
+mr({id:'MCM04',topic:'コスト・マネジメント',middle:'原価改善・原価維持',micro:'製造段階の改善',conditions:'量産開始後に継続的原価低減を図る',judgment:'原価改善は現状標準等をさらに引き下げる活動、原価維持は設定標準を守る統制。',conclusion:'原価改善は量産段階で継続的に原価水準を引き下げる活動である。',traps:'原価改善と原価維持は完全に同じ活動である。',combine:'kaizen'}),
+mr({id:'MABC01',topic:'コスト・マネジメント',middle:'ABC',micro:'活動基準原価計算',conditions:'製造間接費が多様な活動により発生する',judgment:'資源原価を活動へ集計し、活動原価をコスト・ドライバーで原価計算対象へ配賦する。',conclusion:'ABCは活動とコスト・ドライバーを介して間接費を原価計算対象へ配賦する。',traps:'ABCではすべての間接費を直接作業時間だけで一律配賦する。',combine:'abc'}),
+mr({id:'MABC02',topic:'コスト・マネジメント',middle:'ABC/ABM',micro:'未利用能力',conditions:'供給した資源能力の一部が未利用',judgment:'利用活動に消費された資源と未利用能力を区分し、未利用能力原価を製品へ機械的に押し込まない分析が可能。',conclusion:'ABC/資源消費の分析では未利用能力原価を識別して管理対象にできる。',traps:'未利用能力原価は必ず製品へ全額配賦しなければならない。',combine:'abc'}),
+// 14 tactical decisions
+mr({id:'MDEC01',topic:'差額原価収益分析',middle:'関連原価',micro:'埋没原価',conditions:'代替案間で発生額が変化しない原価',judgment:'どの案を選んでも変わらない過去支出等は意思決定に無関連。',conclusion:'埋没原価は代替案間で変化しないため、差額原価収益分析から除外する。',traps:'すでに支出した取得原価は金額が大きいほど必ず意思決定へ含める。',combine:'decision'}),
+mr({id:'MDEC02',topic:'差額原価収益分析',middle:'関連原価',micro:'機会原価',conditions:'ある案を選ぶと他の利用機会を失う',judgment:'断念する代替機会から得られたはずの最大利益を選択案の関連原価として考慮する。',conclusion:'機会原価は会計帳簿に計上されていなくても意思決定上の関連原価となる。',traps:'帳簿に記録されない機会原価は意思決定で無視する。',combine:'decision'}),
+mr({id:'MDEC03',topic:'差額原価収益分析',middle:'特別注文',micro:'遊休能力あり',conditions:'特別注文を受けても通常販売を減らさない',judgment:'追加収益と追加的に発生する変動費・回避不能でない増分固定費等を比較し、失われる通常貢献利益はない。',conclusion:'遊休能力内の特別注文では、通常販売を犠牲にしない限り機会原価はゼロである。',traps:'遊休能力が十分でも通常販売の貢献利益を必ず機会原価に加える。',combine:'decision',trace:{changed:'遊休能力',element:'機会原価'}}),
+mr({id:'MDEC04',topic:'差額原価収益分析',middle:'特別注文',micro:'能力制約あり',conditions:'特別注文のため通常品販売を減らす必要がある',judgment:'失われる通常品の貢献利益を機会原価として特別注文の関連原価へ加える。',conclusion:'能力制約下の特別注文では、犠牲にする通常品の貢献利益が機会原価となる。',traps:'能力制約があっても機会原価は常にゼロである。',combine:'decision',trace:{changed:'能力制約',element:'機会原価'}}),
+mr({id:'MDEC05',topic:'差額原価収益分析',middle:'自製か購入か',micro:'遊休設備の代替利用',conditions:'購入に切り替えると設備を他用途へ転用できる',judgment:'回避可能な自製原価だけでなく、転用により得られる利益を自製案の機会原価として考慮する。',conclusion:'自製設備の転用利益がある場合、その利益は自製を続けることの機会原価になる。',traps:'自製か購入かでは転用可能性を一切考慮しない。',combine:'decision'}),
+mr({id:'MDEC06',topic:'差額原価収益分析',middle:'追加加工',micro:'分離後加工',conditions:'追加加工すると販売価額が上昇する',judgment:'追加収益と追加加工費を比較する。分離点以前の原価は両案共通で埋没。',conclusion:'追加加工は、追加収益が追加加工費を上回るなら経済的に有利である。',traps:'追加加工前までの共通原価を追加加工案だけの関連原価に含める。',combine:['decision','joint']}),
+mr({id:'MDEC07',topic:'差額原価収益分析',middle:'セグメント廃止',micro:'回避可能固定費',conditions:'赤字セグメントの廃止を検討する',judgment:'帳簿上の配賦共通固定費ではなく、廃止により実際に回避できる固定費と失われる貢献利益を比較する。',conclusion:'セグメント廃止で回避できない共通固定費は、廃止意思決定の関連原価ではない。',traps:'配賦された固定費は廃止すれば必ず全額消滅する。',combine:['decision','direct']}),
+mr({id:'MDEC08',topic:'差額原価収益分析',middle:'在庫意思決定',micro:'EOQ',conditions:'需要一定・発注費と保管費のトレードオフ',judgment:'年間発注費と年間保管費が等しくなる点で在庫関連総原価が最小となる基本モデル。',conclusion:'基本EOQは√(2×年間需要量×1回発注費÷単位当たり年間保管費)で求める。',formula:'EOQ＝√(2DS/H)',traps:'安全在庫が一定量存在するだけでEOQそのものが必ず増加する。',combine:'inventory-decision'}),
+mr({id:'MDEC09',topic:'差額原価収益分析',middle:'最適セールスミックス',micro:'単一制約資源',conditions:'ボトルネック資源が1つ',judgment:'制約資源1単位当たり貢献利益の高い製品を優先する。',conclusion:'単一制約下では、製品1個当たりではなく制約資源1単位当たり貢献利益で優先順位を決める。',traps:'制約資源がある場合も単位当たり販売価格だけで優先順位を決める。',combine:'decision'}),
+// 15 capital budgeting
+mr({id:'MINV01',topic:'投資計画',middle:'DCF',micro:'NPV',conditions:'割引率として資本コストを用いる',judgment:'将来増分CFを現在価値へ割り引き、初期投資等を控除して価値増加額を測る。',conclusion:'独立投資案ではNPVが正なら、資本コストを上回る価値を生むとして採用方向となる。',formula:'NPV＝Σ CFt/(1+r)^t－初期投資',traps:'NPVでは将来CFを割り引かず単純合計だけで判断する。',combine:'dcf'}),
+mr({id:'MINV02',topic:'投資計画',middle:'DCF',micro:'収益性指数',conditions:'投資規模当たりの現在価値を比較する',judgment:'将来CF現在価値÷初期投資額等で比率化し、1超を採用基準とする基本形。',conclusion:'収益性指数が1を超える独立投資案はNPVが正となる基本関係がある。',traps:'収益性指数が1未満でもNPVは必ず正になる。',combine:'dcf'}),
+mr({id:'MINV03',topic:'投資計画',middle:'DCF',micro:'IRR',conditions:'典型的独立投資でCF符号変化が1回',judgment:'NPVをゼロにする割引率を求め、資本コストと比較する。',conclusion:'典型的独立投資案ではIRRが資本コストを上回ればNPVも正となり、採否判断は整合する。',traps:'典型的独立投資でもIRRとNPVの採否は必ず逆になる。',combine:'dcf'}),
+mr({id:'MINV04',topic:'投資計画',middle:'DCF',micro:'NPVとIRRの順位矛盾',conditions:'相互排他的で規模・CFタイミングが異なる投資案',judgment:'IRRは比率、NPVは価値増加額で再投資前提も異なるため順位が一致しない場合がある。価値最大化ではNPVの加法性が重要。',conclusion:'相互排他的投資案ではNPV法とIRR法の順位付けが一致しない場合がある。',traps:'相互排他的投資案でもNPVとIRRの順位は常に一致する。',combine:'dcf',trace:{changed:'投資案の排他性・規模・時期',element:'NPVとIRRの順位整合性'}}),
+mr({id:'MINV05',topic:'投資計画',middle:'税引後CF',micro:'減価償却のタックス・シールド',conditions:'法人税を考慮し減価償却費は非現金費用',judgment:'減価償却費自体はCF流出ではないが、損金算入により税額を減らすためDep×税率の節税CFを生む。',conclusion:'減価償却費のタックス・シールドは減価償却費×税率である。',formula:'OCF＝(現金収入－現金支出)×(1－t)+Dep×t',traps:'減価償却費全額を現金流出として税引後CFから控除する。',combine:'dcf-tax',trace:{changed:'法人税の有無',element:'減価償却タックス・シールド'}}),
+mr({id:'MINV06',topic:'投資計画',middle:'投資CF',micro:'正味運転資本',conditions:'プロジェクトで売上債権・棚卸資産等への資金拘束が増える',judgment:'正味運転資本増加は損益ではなく資金拘束なのでCF流出、減少・最終回収はCF流入。',conclusion:'正味運転資本の増加はCF流出として、回収はCF流入として扱う。',traps:'正味運転資本増加は費用でないためCFにも一切影響しない。',combine:'dcf-wc',trace:{changed:'運転資本投資',element:'初期・期中・終端CF'}}),
+mr({id:'MINV07',topic:'投資計画',middle:'終端CF',micro:'設備売却の税引後CF',conditions:'設備を帳簿価額と異なる価額で売却する',judgment:'売却代金に加え、売却益なら税負担、売却損なら節税効果を反映する。',conclusion:'税引後売却CFは売却価額＋（帳簿価額－売却価額）×税率で表せる。',formula:'After-tax salvage＝S+(BV-S)t',traps:'税引後売却CFでは売却価額だけを用い売却損益の税効果を無視する。',combine:'dcf-tax',trace:{changed:'売却価額と帳簿価額',element:'終端税引後CF'}}),
+mr({id:'MINV08',topic:'投資計画',middle:'投資CF',micro:'財務CF除外',conditions:'WACC等の資本コストで事業CFを割り引く',judgment:'利息・借入元本等の資金調達CFを事業CFへ重複算入すると資本コストとの二重計算になる。',conclusion:'WACCで割り引く設備投資評価では、通常、利息や借入返済等の財務CFを投資案CFから除く。',traps:'借入利息は必ず営業CFへ含めた上でWACCでも割り引く。',combine:'dcf'}),
+// 16 decentralization
+mr({id:'MDIV01',topic:'分権化・グループ経営',middle:'業績評価',micro:'ROI',conditions:'投資センターの資本効率を評価する',judgment:'利益を投下資本で除し、売上高利益率×資本回転率に分解できる。',conclusion:'ROIは利益÷投下資本であり、利益率と回転率へ分解できる。',formula:'ROI＝Profit/Investment',traps:'ROIは利益額だけを示し投下資本の大きさを無視する。',combine:'division'}),
+mr({id:'MDIV02',topic:'分権化・グループ経営',middle:'業績評価',micro:'RI',conditions:'最低要求利益を資本コストで設定する',judgment:'実際利益から投下資本×要求利益率を控除した残余利益額で評価する。',conclusion:'RI＝利益－投下資本×要求利益率で求める。',formula:'RI＝Profit－Investment×required rate',traps:'RIはROIと同じ比率指標である。',combine:'division'}),
+mr({id:'MDIV03',topic:'分権化・グループ経営',middle:'業績評価',micro:'管理者業績と事業部業績',conditions:'本社配賦費や管理不能項目が存在する',judgment:'管理者が統制できる項目と事業部全体が負担すべき項目を区別して評価する。',conclusion:'管理者業績評価では、原則として管理不能な本社共通費等を機械的に責任負担させない。',traps:'管理者業績は管理不能な本社共通費を含めた最終利益だけで評価すべきである。',combine:'division'}),
+mr({id:'MDIV04',topic:'分権化・グループ経営',middle:'内部振替価格',micro:'遊休能力あり',conditions:'供給事業部に遊休能力があり外部販売を犠牲にしない',judgment:'内部振替の機会原価はゼロとなり、供給側の最低振替価格は追加的な差額原価が基本。',conclusion:'遊休能力がある場合の最低振替価格は、追加的差額原価を下限とするのが基本である。',traps:'遊休能力があっても失われない外部販売利益を必ず機会原価に加える。',combine:['division','decision'],trace:{changed:'供給能力の余裕',element:'最低振替価格の機会原価'}}),
+mr({id:'MDIV05',topic:'分権化・グループ経営',middle:'内部振替価格',micro:'完全操業',conditions:'供給事業部が完全操業で内部振替により外部販売を失う',judgment:'供給側の差額原価に、失われる外部販売の貢献利益を機会原価として加える。',conclusion:'完全操業時の最低振替価格には、供給事業部の機会原価を含める。',traps:'完全操業でも最低振替価格は変動製造原価だけでよい。',combine:['division','decision'],trace:{changed:'完全操業',element:'最低振替価格の機会原価'}}),
+mr({id:'MDIV06',topic:'分権化・グループ経営',middle:'価値評価',micro:'EVA',conditions:'資本コスト控除後の経済利益を測る',judgment:'税引後営業利益から投下資本に対する資本コスト額を控除する。',conclusion:'EVAはNOPAT－投下資本×資本コスト率を基本とする。',formula:'EVA＝NOPAT－IC×WACC',traps:'EVAは売上高から変動費だけを控除した貢献利益である。',combine:'value'})
+];
+const MANAGEMENT_RULE_INDEX_V21=Object.fromEntries(MANAGEMENT_RULES_V21.map(r=>[r.id,r]));
+const MANAGEMENT_TOPIC_RULES_V21=Object.fromEntries(OFFICIAL_SCOPE.M.map(t=>[t,MANAGEMENT_RULES_V21.filter(r=>r.topic===t)]));
+
+function mNum(x,d=2){const n=Number(x);if(!Number.isFinite(n))return String(x);const z=Math.round(n*Math.pow(10,d))/Math.pow(10,d);return Number.isInteger(z)?fmt(z):z.toLocaleString('ja-JP',{maximumFractionDigits:d})}
+function mCalc(template,ruleId,variant,question,answer,unit,formula,key,general,vars={},distractors=[]){
+  const r=MANAGEMENT_RULE_INDEX_V21[ruleId];return {template,ruleId,variant,topic:r.topic,q:question,answer,unit,formula,key,general,vars,distractors,featureKey:`${template}|${variant}`};
+}
+function mSem(parts){return `M21|${parts.map(x=>String(x??'')).join('|')}`}
+function mInstanceSignature(c){const vars=Object.entries(c?.vars||{}).sort(([a],[b])=>a.localeCompare(b)).map(([k,v])=>`${k}=${Number.isFinite(v)?Math.round(v*10000)/10000:v}`).join(';');return mSem(['instance',c?.ruleId,c?.featureKey,vars])}
+function mSignatureHistory(){return new Set((state.generated?.managementSignatures||[]).slice(-1200))}
+function mRuleNovelty(r){const cm=conceptMeta(r.id),tm=topicMeta(`M|${r.topic}`);return cm.n*1000+tm.n*130+(recentConceptSet().has(r.id)?4500:0)+cm.last*.001+Math.random()*8}
+function mAllowedRules(topicKeys){const allowed=new Set(topicKeys.filter(k=>k.startsWith('M|')).map(k=>k.slice(2)));return MANAGEMENT_RULES_V21.filter(r=>allowed.has(r.topic))}
+function mPickRules(topicKeys,n=1,pred=null){let p=mAllowedRules(topicKeys).filter(r=>!pred||pred(r));p.sort((a,b)=>mRuleNovelty(a)-mRuleNovelty(b));const out=[],topics=new Set();for(const r of p){if(out.length>=n)break;if(!topics.has(r.topic)){out.push(r);topics.add(r.topic)}}for(const r of p){if(out.length>=n)break;if(!out.includes(r))out.push(r)}return out}
+function mItem(r,text,a,ex,key,general,variant){return {id:r.id,q:cleanStatement(text),a:!!a,ex,key,general,variantKey:mSem(['item',r.id,variant])}}
+function mTrueItem(r){const c=r.conditions.length?rand(r.conditions):'';const variants=[r.conclusion,`${c?`「${c}」という条件では、`:''}${r.conclusion}`,`${r.micro}について、${r.conclusion}`];const i=ri(0,variants.length-1);return mItem(r,variants[i],true,`${r.judgment}${r.formula?` 計算関係は「${r.formula}」。`:''}`,r.judgment,r.conclusion,`T${i}`)}
+function mFalseItem(r){const trap=rand(r.traps)||`「${r.conclusion.replace(/である|となる|する/g,'ではない')}」`;const i=r.traps.indexOf(trap);return mItem(r,trap,false,`誤り。${r.judgment}${r.formula?` 計算関係は「${r.formula}」。`:''}`,r.judgment,r.conclusion,`F${Math.max(i,0)}`)}
+function mTargetTopic(topicKeys){const ks=topicKeys.filter(k=>k.startsWith('M|')&&MANAGEMENT_TOPIC_RULES_V21[k.slice(2)]?.length);if(!ks.length)return null;return ks.sort((a,b)=>{const aa=topicMeta(a),bb=topicMeta(b);return aa.n*1000+aa.last*.001+Math.random()*6-(bb.n*1000+bb.last*.001+Math.random()*6)})[0]}
+
+// Calculation builders create a valid state first, derive the answer, validate it, and only then render wording.
+const MANAGEMENT_CALC_BUILDERS_V21={
+ MACT02(){const r=MANAGEMENT_RULE_INDEX_V21.MACT02,AQ=ri(400,1600,100),SP=ri(40,100,5),delta=rand([-10,-5,5,10,15]),AP=SP+delta,ans=AQ*(AP-SP);return mCalc('m21_mat_actual_price','MACT02','price-var',`材料を${fmt(AQ)}kg消費した。予定消費価格は1kg当たり${fmt(SP)}円、実際消費価格は${fmt(AP)}円であった。材料消費価格差異を「不利＋、有利－」で求めなさい。`,ans,'円',`${fmt(AQ)}×(${fmt(AP)}－${fmt(SP)})＝${fmt(ans)}円`,'価格差異は実際数量を共通数量にする。',r.conclusion,{AQ,SP,AP},[AQ*(AP-SP)*-1,(AQ-100)*(AP-SP),AQ*(AP-SP)+SP]);},
+ MACT03(){const r=MANAGEMENT_RULE_INDEX_V21.MACT03,AH=ri(300,1200,50),SR=ri(1200,2400,100),delta=rand([-200,-100,100,200]),AR=SR+delta,ans=AH*(AR-SR);return mCalc('m21_labor_rate','MACT03','rate-var',`実際直接作業時間${fmt(AH)}時間、予定賃率${fmt(SR)}円/時、実際賃率${fmt(AR)}円/時であった。賃率差異を「不利＋、有利－」で求めなさい。`,ans,'円',`${fmt(AH)}×(${fmt(AR)}－${fmt(SR)})＝${fmt(ans)}円`,'賃率差異は実際時間×賃率差。',r.conclusion,{AH,SR,AR},[ans*-1,(AH+50)*(AR-SR),AH*(AR-SR)+SR]);},
+ MACT04(){const r=MANAGEMENT_RULE_INDEX_V21.MACT04,budget=ri(1800000,4200000,100000),base=ri(6000,12000,500),actualH=ri(Math.round(base*.7/100)*100,Math.round(base*1.15/100)*100,100),rate=budget/base,alloc=rate*actualH,actual=alloc+rand([-1,1])*ri(50000,300000,10000),ans=actual-alloc;return mCalc('m21_oh_alloc','MACT04','planned-allocation',`製造間接費予算${fmt(budget)}円、基準操業度${fmt(base)}時間から予定配賦率を設定した。当月実際操業度は${fmt(actualH)}時間、実際発生額は${fmt(actual)}円である。配賦差異を「実際発生額－予定配賦額」で求めなさい。`,ans,'円',`${fmt(budget)}÷${fmt(base)}×${fmt(actualH)}＝${fmt(alloc)}円（予定配賦額）、${fmt(actual)}－${fmt(alloc)}＝${fmt(ans)}円`,'予定率→実際操業度へ配賦→実際発生額との差。',r.conclusion,{budget,base,actualH,actual},[actual-budget,budget-actual,actual-rate*base]);},
+ MDEPT03(){const r=MANAGEMENT_RULE_INDEX_V21.MDEPT03,a0=ri(500,900,50),b0=ri(400,800,50),ab=rand([.1,.2]),ba=rand([.1,.2]);const den=1-ab*ba,A=(a0+ba*b0)/den,B=b0+ab*A,ans=Math.round(A*100)/100;return mCalc('m21_reciprocal','MDEPT03',`reciprocal-${ab}-${ba}`,`補助部門Aの自己費は${fmt(a0)}万円、Bは${fmt(b0)}万円。Aは用役の${ab*100}%をBへ、Bは${ba*100}%をAへ提供し、残りを製造部門へ提供する。相互配賦法（連立方程式）によるA部門の相互配賦後原価を求めなさい。`,ans,'万円',`A=${fmt(a0)}＋${ba}B, B=${fmt(b0)}＋${ab}A → A≈${mNum(ans)}万円`,'相互配賦法では補助部門相互の用役を連立で反映する。',r.conclusion,{a0,b0,ab,ba},[a0+ba*b0,a0+ab*b0,b0+ab*a0]);},
+ MJOB01(){const r=MANAGEMENT_RULE_INDEX_V21.MJOB01,dm=ri(300,900,50),dl=ri(200,700,50),hours=ri(80,240,10),ohRate=ri(20,60,5),oh=hours*ohRate,ans=dm+dl+oh;return mCalc('m21_job_cost','MJOB01','job-sheet',`製造指図書#Aの直接材料費${fmt(dm)}千円、直接労務費${fmt(dl)}千円、配賦基準量${fmt(hours)}時間、製造間接費予定配賦率${fmt(ohRate)}千円/時である。指図書#Aの製造原価を求めなさい。`,ans,'千円',`${fmt(dm)}＋${fmt(dl)}＋${fmt(hours)}×${fmt(ohRate)}＝${fmt(ans)}千円`,'直接費を賦課し、間接費を予定配賦する。',r.conclusion,{dm,dl,hours,ohRate},[dm+dl+ohRate,dm+oh,dl+oh]);},
+ MPROC01(){const r=MANAGEMENT_RULE_INDEX_V21.MPROC01,open=ri(100,300,20),started=ri(700,1200,50),end=ri(100,300,20),completed=open+started-end,ep=rand([.3,.4,.5,.6,.7]),matEU=completed+end,convEU=completed+end*ep,mr0=ri(20,60,5),cr0=ri(30,80,5),matTotal=matEU*mr0,convTotal=convEU*cr0,openCost=Math.round((matTotal+convTotal)*.18/10)*10,current=matTotal+convTotal-openCost,endCost=end*mr0+end*ep*cr0,ans=Math.round(endCost*100)/100;return mCalc('m21_process_avg','MPROC01',`avg-eup-${ep}`,`平均法。月初仕掛品${fmt(open)}個、当月投入${fmt(started)}個、完成品${fmt(completed)}個、月末仕掛品${fmt(end)}個（加工進捗度${ep*100}%）。材料は始点投入。月初仕掛品原価と当月製造費用の合計は材料費${mNum(matTotal)}千円、加工費${mNum(convTotal)}千円である。月末仕掛品原価を求めなさい。`,ans,'千円',`材料単価=${mNum(matTotal)}÷${mNum(matEU)}=${mNum(mr0)}、加工単価=${mNum(convTotal)}÷${mNum(convEU)}=${mNum(cr0)}。月末=${fmt(end)}×${mNum(mr0)}＋${fmt(end)}×${ep}×${mNum(cr0)}=${mNum(ans)}千円`,'平均法では月初原価と当月費用を合算した総原価を総換算量で平均する。',r.conclusion,{open,started,end,completed,ep,matTotal,convTotal,current,openCost},[end*(mr0+cr0),end*ep*(mr0+cr0),end*mr0+end*(1-ep)*cr0]);},
+ MPROC02(){const r=MANAGEMENT_RULE_INDEX_V21.MPROC02,open=ri(100,300,20),op=rand([.2,.3,.4,.5]),started=ri(700,1200,50),end=ri(100,250,10),ep=rand([.3,.4,.5,.6]),completed=open+started-end,sc=completed-open,convEU=open*(1-op)+sc+end*ep,matEU=sc+end,matRate=ri(20,60,5),convRate=ri(30,80,5),currentMat=matEU*matRate,currentConv=convEU*convRate,ans=Math.round(convEU*100)/100;return mCalc('m21_process_fifo','MPROC02',`fifo-eup-${op}-${ep}`,`先入先出法。月初仕掛品${fmt(open)}個（加工進捗度${op*100}%）、当月投入${fmt(started)}個、完成品${fmt(completed)}個、月末仕掛品${fmt(end)}個（加工進捗度${ep*100}%）。材料は始点投入である。当月加工費の完成品換算量を求めなさい。`,ans,'個',`${fmt(open)}×(1－${op})＋(${fmt(completed)}－${fmt(open)})＋${fmt(end)}×${ep}＝${mNum(ans)}個`,'FIFOでは月初仕掛品の未加工部分だけを当月換算量へ含める。',r.conclusion,{open,op,started,end,ep,completed,currentMat,currentConv},[completed+end*ep,open*op+sc+end*ep,sc+end*ep]);},
+ MPROC03(){const r=MANAGEMENT_RULE_INDEX_V21.MPROC03,input=ri(800,1500,50),loss=ri(40,150,10),good=input-loss,unit=ri(50,120,5),totalCost=good*unit,ans=unit;return mCalc('m21_process_spoilage_ignore','MPROC03',`ignore-normal-${loss}`,`月初・月末仕掛品はない。工程終点で正常仕損${fmt(loss)}個が発生し、完成良品は${fmt(good)}個であった。正常仕損は度外視法で処理し、当月総製造費用は${fmt(totalCost)}円である。完成良品1個当たり原価を求めなさい。`,ans,'円/個',`${fmt(totalCost)}÷${fmt(good)}＝${fmt(ans)}円/個`,'度外視法では正常仕損費を独立計算せず、正常仕損を除く良品数量側へ原価を吸収させる。',r.conclusion,{input,loss,good,totalCost},[totalCost/input,totalCost/(good+loss/2),totalCost/loss]);},
+ MPROC04(){const r=MANAGEMENT_RULE_INDEX_V21.MPROC04,input=ri(800,1500,50),loss=ri(40,150,10),good=input-loss,baseRate=ri(50,120,5),totalCost=input*baseRate,ans=loss*baseRate;return mCalc('m21_process_spoilage_nonignore','MPROC04',`nonignore-normal-${loss}`,`月初・月末仕掛品はない。工程終点で正常仕損${fmt(loss)}個、完成良品${fmt(good)}個が生じた。非度外視法により、仕損品を含む完成品換算量${fmt(input)}個に対する当月総製造費用は${fmt(totalCost)}円である。独立計算される正常仕損費を求めなさい。`,ans,'円',`${fmt(totalCost)}÷${fmt(input)}＝${fmt(baseRate)}円/個、${fmt(loss)}×${fmt(baseRate)}＝${fmt(ans)}円`,'非度外視法では仕損品の完成品換算量と原価を明示し、その正常仕損費を負担対象へ配賦する。',r.conclusion,{input,loss,good,baseRate,totalCost},[0,loss*(totalCost/good),baseRate]);},
+ MPROC05(){const r=MANAGEMENT_RULE_INDEX_V21.MPROC05,input=ri(900,1600,50),normal=ri(30,100,10),extra=ri(20,80,10),actual=normal+extra,good=input-actual,unit=ri(50,120,5),totalCost=input*unit,ans=extra*unit;return mCalc('m21_process_abnormal_spoilage','MPROC05',`abnormal-${normal}-${extra}`,`月初・月末仕掛品はなく、仕損は工程終点で発見される。投入量${fmt(input)}個、正常仕損許容量${fmt(normal)}個、実際仕損量${fmt(actual)}個、仕損を含む完成品換算量1個当たり原価${fmt(unit)}円である。異常仕損費を求めなさい。`,ans,'円',`異常仕損量=${fmt(actual)}－${fmt(normal)}=${fmt(extra)}個、${fmt(extra)}×${fmt(unit)}＝${fmt(ans)}円`,'正常許容量を超える部分だけを異常仕損として正常な製品原価から区分する。',r.conclusion,{input,normal,extra,actual,good,unit,totalCost},[actual*unit,normal*unit,extra*(totalCost/good)]);},
+ MPROC07(){const r=MANAGEMENT_RULE_INDEX_V21.MPROC07,total=ri(700,1400,50),end=ri(100,300,20),completed=total-end,inputPoint=rand([.3,.5,.7]),endP=rand([.2,.4,.6,.8]),endMatEU=endP>=inputPoint?end:0,ans=completed+endMatEU;return mCalc('m21_mid_material','MPROC07',`point-${inputPoint}-${endP}`,`追加材料Xは工程の${inputPoint*100}%地点で一括投入される。当月完成品${fmt(completed)}個、月末仕掛品${fmt(end)}個（加工進捗度${endP*100}%）で、月初仕掛品はない。材料Xの完成品換算量を求めなさい。`,ans,'個',`${fmt(completed)}＋${endP>=inputPoint?fmt(end):'0'}＝${fmt(ans)}個`,'定点投入材料は、月末仕掛品が投入点を通過したかで0%/100%を判定する。',r.conclusion,{total,end,completed,inputPoint,endP},[completed+end*endP,completed+end,completed]);},
+ MJOINT03(){const r=MANAGEMENT_RULE_INDEX_V21.MJOINT03,salesA=ri(1200,2400,100),salesB=ri(800,1800,100),postA=ri(200,500,50),postB=ri(100,400,50),joint=ri(900,1700,100),nA=salesA-postA,nB=salesB-postB,ans=Math.round(joint*nA/(nA+nB)*100)/100;return mCalc('m21_joint_nrv','MJOINT03','nrv-allocation',`連結原価${fmt(joint)}万円を製品A・BへNRV基準で配賦する。Aの最終売価${fmt(salesA)}万円・分離後加工費${fmt(postA)}万円、Bの最終売価${fmt(salesB)}万円・分離後加工費${fmt(postB)}万円。販売費等は無視する。Aへの連結原価配賦額を求めなさい。`,ans,'万円',`AのNRV=${fmt(nA)}、B=${fmt(nB)}。${fmt(joint)}×${fmt(nA)}÷(${fmt(nA)}＋${fmt(nB)})＝${mNum(ans)}万円`,'分離点価格がなければ分離後加工費を控除したNRVで比率を作る。',r.conclusion,{salesA,salesB,postA,postB,joint},[joint*salesA/(salesA+salesB),joint*postA/(postA+postB),joint*nB/(nA+nB)]);},
+ MSTD01(){const r=MANAGEMENT_RULE_INDEX_V21.MSTD01,AQ=ri(800,1800,100),SP=ri(50,100,5),AP=SP+rand([-10,-5,5,10]),ans=AQ*(AP-SP);return mCalc('m21_std_mpv','MSTD01','material-price',`実際材料消費量${fmt(AQ)}kg、標準価格${fmt(SP)}円/kg、実際価格${fmt(AP)}円/kg。材料価格差異を「不利＋、有利－」で求めなさい。`,ans,'円',`${fmt(AQ)}×(${fmt(AP)}－${fmt(SP)})＝${fmt(ans)}円`,'価格差異には実際数量を使う。',r.conclusion,{AQ,SP,AP},[ans*-1,(AQ-100)*(AP-SP),SP*(AQ-(AQ-100))]);},
+ MSTD02(){const r=MANAGEMENT_RULE_INDEX_V21.MSTD02,SQ=ri(700,1600,100),AQ=SQ+rand([-200,-100,100,200]),SP=ri(40,100,5),ans=SP*(AQ-SQ);return mCalc('m21_std_mqv','MSTD02','material-quantity',`標準消費量${fmt(SQ)}kg、実際消費量${fmt(AQ)}kg、標準価格${fmt(SP)}円/kg。材料数量差異を「不利＋、有利－」で求めなさい。`,ans,'円',`${fmt(SP)}×(${fmt(AQ)}－${fmt(SQ)})＝${fmt(ans)}円`,'数量差異には標準価格を使う。',r.conclusion,{SQ,AQ,SP},[ans*-1,(SP+5)*(AQ-SQ),SP*(AQ+SQ)]);},
+ MSTD03(){const r=MANAGEMENT_RULE_INDEX_V21.MSTD03,SH=ri(500,1200,50),AH=SH+rand([-100,-50,50,100]),SR=ri(1200,2200,100),AR=SR+rand([-200,-100,100,200]),variant=rand(['rate','time']);const ans=variant==='rate'?AH*(AR-SR):SR*(AH-SH),q=variant==='rate'?'賃率差異':'時間差異',formula=variant==='rate'?`${fmt(AH)}×(${fmt(AR)}－${fmt(SR)})`:`${fmt(SR)}×(${fmt(AH)}－${fmt(SH)})`;return mCalc('m21_std_labor','MSTD03',variant,`標準時間${fmt(SH)}h、実際時間${fmt(AH)}h、標準賃率${fmt(SR)}円/h、実際賃率${fmt(AR)}円/h。${q}を「不利＋、有利－」で求めなさい。`,ans,'円',`${formula}＝${fmt(ans)}円`,'賃率差異は実際時間、時間差異は標準賃率を共通要素にする。',r.conclusion,{SH,AH,SR,AR},[ans*-1,variant==='rate'?SH*(AR-SR):AR*(AH-SH),variant==='rate'?SR*(AH-SH):AH*(AR-SR)]);},
+ MDIR02(){const r=MANAGEMENT_RULE_INDEX_V21.MDIR02,beg=ri(0,300,50),end=ri(0,400,50),fixedRate=ri(20,80,5),ans=(end-beg)*fixedRate;return mCalc('m21_abs_var_profit','MDIR02',`inventory-${beg===0?'no-beg':'beg'}-${end>beg?'increase':end<beg?'decrease':'flat'}`,`期首製品在庫${fmt(beg)}個、期末製品在庫${fmt(end)}個。棚卸資産に配賦される単位当たり固定製造費は${fmt(fixedRate)}円で一定とする。全部原価計算の営業利益－直接原価計算の営業利益を求めなさい。`,ans,'円',`(${fmt(end)}－${fmt(beg)})×${fmt(fixedRate)}＝${fmt(ans)}円`,'利益差は期末在庫固定費－期首在庫固定費。',r.conclusion,{beg,end,fixedRate},[ans*-1,(end+beg)*fixedRate,(end-beg)*fixedRate*-1]);},
+ MFINA01(){const r=MANAGEMENT_RULE_INDEX_V21.MFINA01,sales=ri(2000,6000,100),margin=rand([.08,.1,.12,.15,.18]),turn=rand([1.2,1.5,1.8,2,2.5]),profit=sales*margin,capital=sales/turn,ans=Math.round((profit/capital*100)*100)/100;return mCalc('m21_roi_analysis','MFINA01','dupont',`売上高${fmt(sales)}万円、売上高利益率${margin*100}%、資本回転率${turn}回である。ROIを求めなさい。`,ans,'%',`${margin*100}%×${turn}＝${mNum(ans)}%`,'ROIは売上高利益率×資本回転率。',r.conclusion,{sales,margin,turn,profit,capital},[margin*100+turn,margin*100/turn,turn*100]);},
+ MFINA04(){const r=MANAGEMENT_RULE_INDEX_V21.MFINA04,op=ri(600,1800,100),interest=ri(100,400,50),ans=op/interest;return mCalc('m21_icr','MFINA04','coverage',`利払前の利益を${fmt(op)}万円、支払利息を${fmt(interest)}万円とする。単純化したインタレスト・カバレッジ・レシオを求めなさい。`,Math.round(ans*100)/100,'倍',`${fmt(op)}÷${fmt(interest)}＝${mNum(ans)}倍`,'利息を何倍カバーできるかを見る。',r.conclusion,{op,interest},[interest/op,op-interest,interest/op*100]);},
+ MCVP01(){const r=MANAGEMENT_RULE_INDEX_V21.MCVP01,p=ri(800,1800,100),v=ri(300,p-200,50),F=ri(600000,1800000,100000),cm=p-v,ans=F/cm;return mCalc('m21_bep','MCVP01','units',`製品単価${fmt(p)}円、単位変動費${fmt(v)}円、固定費${fmt(F)}円である。損益分岐点販売数量を求めなさい。`,Math.round(ans*100)/100,'個',`${fmt(F)}÷(${fmt(p)}－${fmt(v)})＝${mNum(ans)}個`,'固定費を単位貢献利益で回収する。',r.conclusion,{p,v,F},[F/p,F/v,(F+cm)/cm]);},
+ MCVP02(){const r=MANAGEMENT_RULE_INDEX_V21.MCVP02,p=ri(800,1800,100),v=ri(300,p-200,50),F=ri(600000,1500000,100000),target=ri(200000,800000,100000),cm=p-v,ans=(F+target)/cm;return mCalc('m21_target_profit','MCVP02','units',`単価${fmt(p)}円、単位変動費${fmt(v)}円、固定費${fmt(F)}円。税引前目標営業利益${fmt(target)}円を達成する販売数量を求めなさい。`,Math.round(ans*100)/100,'個',`(${fmt(F)}＋${fmt(target)})÷(${fmt(p)}－${fmt(v)})＝${mNum(ans)}個`,'固定費と目標利益の合計を貢献利益で回収。',r.conclusion,{p,v,F,target},[(F-target)/cm,(F+target)/p,target/cm]);},
+ MCVP04(){const r=MANAGEMENT_RULE_INDEX_V21.MCVP04,sales=ri(3000,8000,500),cmr=rand([.3,.35,.4,.45,.5]),F=Math.round(sales*cmr*rand([.4,.5,.6])*10)/10,cm=sales*cmr,op=cm-F,ans=cm/op;return mCalc('m21_dol','MCVP04','dol',`売上高${fmt(sales)}万円、貢献利益率${cmr*100}%、固定費${mNum(F)}万円である。営業レバレッジ度を求めなさい。`,Math.round(ans*100)/100,'倍',`貢献利益${mNum(cm)}÷営業利益${mNum(op)}＝${mNum(ans)}倍`,'営業レバレッジ度は貢献利益÷営業利益。',r.conclusion,{sales,cmr,F,cm,op},[op/cm,cm/F,sales/op]);},
+ MCVP05(){const r=MANAGEMENT_RULE_INDEX_V21.MCVP05,cmA=ri(200,600,50),cmB=ri(100,500,50),mixA=rand([.4,.5,.6,.7]),F=ri(500000,1500000,100000),wcm=cmA*mixA+cmB*(1-mixA),ans=F/wcm;return mCalc('m21_multi_cvp','MCVP05',`mix-${mixA}`,`製品Aの単位貢献利益${fmt(cmA)}円、Bは${fmt(cmB)}円。販売数量構成はA ${mixA*100}%、B ${(1-mixA)*100}%で固定され、固定費は${fmt(F)}円。総販売数量ベースの損益分岐点数量を求めなさい。`,Math.round(ans*100)/100,'個',`加重平均単位貢献利益=${fmt(cmA)}×${mixA}+${fmt(cmB)}×${1-mixA}=${mNum(wcm)}円。${fmt(F)}÷${mNum(wcm)}=${mNum(ans)}個`,'販売ミックスで貢献利益を加重平均する。',r.conclusion,{cmA,cmB,mixA,F},[F/((cmA+cmB)/2),F/cmA,F/cmB]);},
+ MBUD02(){const r=MANAGEMENT_RULE_INDEX_V21.MBUD02,bq=ri(800,1600,100),bp=ri(1000,1800,100),aq=bq+rand([-200,-100,100,200]),ap=bp+rand([-200,-100,100,200]),variant=rand(['price','quantity']);const ans=variant==='price'?aq*(ap-bp):bp*(aq-bq);return mCalc('m21_sales_variance','MBUD02',variant,`予算販売数量${fmt(bq)}個・予算価格${fmt(bp)}円、実際販売数量${fmt(aq)}個・実際価格${fmt(ap)}円である。${variant==='price'?'販売価格差異':'販売数量差異'}を「有利＋、不利－」の増分利益方向で求めなさい。`,ans,'円',variant==='price'?`${fmt(aq)}×(${fmt(ap)}－${fmt(bp)})＝${fmt(ans)}円`:`${fmt(bp)}×(${fmt(aq)}－${fmt(bq)})＝${fmt(ans)}円`,'価格差異は実際数量、数量差異は予算価格を共通要素にする。',r.conclusion,{bq,bp,aq,ap},[ans*-1,variant==='price'?bq*(ap-bp):ap*(aq-bq),variant==='price'?bp*(aq-bq):aq*(ap-bp)]);},
+ MCASH02(){const r=MANAGEMENT_RULE_INDEX_V21.MCASH02,dih=ri(25,90,5),dso=ri(20,75,5),dpo=ri(15,60,5),ans=dih+dso-dpo;return mCalc('m21_ccc','MCASH02','cycle',`棚卸資産回転期間${fmt(dih)}日、売上債権回転期間${fmt(dso)}日、仕入債務回転期間${fmt(dpo)}日である。CCCを求めなさい。`,ans,'日',`${fmt(dih)}＋${fmt(dso)}－${fmt(dpo)}＝${fmt(ans)}日`,'仕入債務は資金支払を遅らせるため控除。',r.conclusion,{dih,dso,dpo},[dih+dso+dpo,dih-dso+dpo,dso+dpo-dih]);},
+ MCASH03(){const r=MANAGEMENT_RULE_INDEX_V21.MCASH03,ar=ri(100,500,50),inv=ri(100,400,50),ap=ri(50,300,50),ans=ar+inv-ap;return mCalc('m21_nwc_need','MCASH03','growth',`売上増加に伴い売上債権が${fmt(ar)}万円、棚卸資産が${fmt(inv)}万円、仕入債務が${fmt(ap)}万円それぞれ増加する。追加で必要となる正味運転資金を求めなさい。`,ans,'万円',`${fmt(ar)}＋${fmt(inv)}－${fmt(ap)}＝${fmt(ans)}万円`,'営業資産増は拘束、仕入債務増は資金調達効果。',r.conclusion,{ar,inv,ap},[ar+inv+ap,ar-inv+ap,ar+ap-inv]);},
+ MCM01(){const r=MANAGEMENT_RULE_INDEX_V21.MCM01,price=ri(5000,12000,500),profitRate=rand([.1,.15,.2,.25]),profit=price*profitRate,ans=price-profit;return mCalc('m21_target_cost','MCM01',`profit-${profitRate}`,`目標販売価格${fmt(price)}円、売価に対する目標利益率${profitRate*100}%である。許容原価を求めなさい。`,ans,'円',`${fmt(price)}－${fmt(price)}×${profitRate*100}%＝${fmt(ans)}円`,'市場価格から目標利益を控除して許容原価を逆算する。',r.conclusion,{price,profitRate},[price+profit,profit,price*(1+profitRate)]);},
+ MABC01(){const r=MANAGEMENT_RULE_INDEX_V21.MABC01,pool=ri(800000,1800000,100000),totalDriver=ri(400,1000,50),prodDriver=ri(40,250,10),rate=pool/totalDriver,ans=rate*prodDriver;return mCalc('m21_abc','MABC01','activity-driver',`ある活動原価プールは${fmt(pool)}円、総コスト・ドライバー量は${fmt(totalDriver)}回である。製品Xが${fmt(prodDriver)}回を消費した。Xへ配賦する活動原価を求めなさい。`,ans,'円',`${fmt(pool)}÷${fmt(totalDriver)}×${fmt(prodDriver)}＝${fmt(ans)}円`,'活動原価率×製品のドライバー消費量。',r.conclusion,{pool,totalDriver,prodDriver},[pool/prodDriver*totalDriver,pool/totalDriver,pool*prodDriver]);},
+ MDEC03(){const r=MANAGEMENT_RULE_INDEX_V21.MDEC03,q=ri(500,1800,100),price=ri(700,1400,50),varc=ri(350,price-100,50),extraFixed=rand([0,50000,100000]),profit=q*(price-varc)-extraFixed,ans=price>varc+extraFixed/q?1:0;return mCalc('m21_special_idle','MDEC03',extraFixed?'idle-fixed':'idle',`遊休能力の範囲内で特別注文${fmt(q)}個を1個${fmt(price)}円で受ける。単位変動原価${fmt(varc)}円、注文に固有の追加固定費${fmt(extraFixed)}円。通常販売への影響はない。受注による差額利益を求めなさい。`,profit,'円',`${fmt(q)}×(${fmt(price)}－${fmt(varc)})－${fmt(extraFixed)}＝${fmt(profit)}円`,'遊休能力内なので通常販売の機会原価はゼロ。',r.conclusion,{q,price,varc,extraFixed},[q*(price-varc),q*(price-varc)-extraFixed-q*price,profit-extraFixed]);},
+ MDEC04(){const r=MANAGEMENT_RULE_INDEX_V21.MDEC04,q=ri(400,1200,100),price=ri(800,1500,50),varc=ri(300,700,50),lost=ri(50,200,10),opp=ri(250,600,50),profit=q*(price-varc)-lost*opp;return mCalc('m21_special_constrained','MDEC04','opportunity',`能力制約のため、特別注文${fmt(q)}個を受けると通常品${fmt(lost)}個を減産する。特別注文単価${fmt(price)}円、単位変動原価${fmt(varc)}円、通常品の単位貢献利益${fmt(opp)}円。受注による差額利益を求めなさい。`,profit,'円',`${fmt(q)}×(${fmt(price)}－${fmt(varc)})－${fmt(lost)}×${fmt(opp)}＝${fmt(profit)}円`,'失われる通常品貢献利益を機会原価として控除。',r.conclusion,{q,price,varc,lost,opp},[q*(price-varc),profit-lost*opp,q*(price-varc)-lost*price]);},
+ MDEC06(){const r=MANAGEMENT_RULE_INDEX_V21.MDEC06,q=ri(500,1500,100),before=ri(800,1400,50),after=before+ri(150,500,50),process=ri(100,450,50),incRev=q*(after-before),incCost=q*process,ans=incRev-incCost;return mCalc('m21_further_process','MDEC06','incremental',`分離点で1個${fmt(before)}円で販売できる製品を、1個当たり追加加工費${fmt(process)}円で加工すると${fmt(after)}円で販売できる。数量${fmt(q)}個。追加加工による差額利益を求めなさい。`,ans,'円',`${fmt(q)}×[(${fmt(after)}－${fmt(before)})－${fmt(process)}]＝${fmt(ans)}円`,'分離点以前の原価は両案共通で埋没。',r.conclusion,{q,before,after,process},[q*(after-process),q*(after-before),q*(after-before+process)]);},
+ MDEC08(){const r=MANAGEMENT_RULE_INDEX_V21.MDEC08,D=ri(20000,80000,5000),S=ri(1000,5000,500),H=ri(100,500,50),ans=Math.sqrt(2*D*S/H);return mCalc('m21_eoq','MDEC08','basic',`年間需要量${fmt(D)}個、1回当たり発注費${fmt(S)}円、1個当たり年間保管費${fmt(H)}円。基本EOQを求めなさい。`,Math.round(ans*100)/100,'個',`√(2×${fmt(D)}×${fmt(S)}÷${fmt(H)})＝${mNum(ans)}個`,'発注費と保管費のトレードオフを平方根公式で解く。',r.conclusion,{D,S,H},[D*S/H,Math.sqrt(D*S/H),2*D*S/H]);},
+ MDEC09(){const r=MANAGEMENT_RULE_INDEX_V21.MDEC09,cmA=ri(300,800,50),cmB=ri(300,800,50),hA=rand([2,3,4,5]),hB=rand([2,3,4,5]),a=cmA/hA,b=cmB/hB,ans=a>=b?1:2;return mCalc('m21_bottleneck','MDEC09',`rank-${a>=b?'A':'B'}`,`制約工程1時間当たりの優先順位を決める。製品Aは単位貢献利益${fmt(cmA)}円・制約時間${hA}時間、Bは単位貢献利益${fmt(cmB)}円・制約時間${hB}時間。優先すべき製品をA=1、B=2で答えなさい。`,ans,'',`A=${mNum(a)}円/時、B=${mNum(b)}円/時 → ${a>=b?'A':'B'}を優先`,'制約資源1単位当たり貢献利益で順位付け。',r.conclusion,{cmA,cmB,hA,hB},[ans===1?2:1,0,3]);},
+ MINV01(){const r=MANAGEMENT_RULE_INDEX_V21.MINV01,I=ri(1000,4000,100),years=rand([3,4,5]),rate=rand([.05,.08,.1,.12]),cf=ri(Math.ceil(I/years/50)*50,Math.ceil(I/(years*.6)/50)*50,50);let pv=0;for(let t=1;t<=years;t++)pv+=cf/Math.pow(1+rate,t);const ans=Math.round((pv-I)*100)/100;return mCalc('m21_npv','MINV01',`annuity-${years}-${rate}`,`初期投資${fmt(I)}万円、各年末の増分CF${fmt(cf)}万円が${years}年間、割引率${rate*100}%である。残存価額等はない。NPVを求めなさい。`,ans,'万円',`${years}年間のCF現在価値－${fmt(I)}＝${mNum(ans)}万円`,'将来CFを各期割り引いて初期投資を控除する。',r.conclusion,{I,years,rate,cf},[cf*years-I,pv,ans+I*rate]);},
+ MINV05(){const r=MANAGEMENT_RULE_INDEX_V21.MINV05,revenue=ri(1500,3500,100),cash=ri(700,1800,100),dep=ri(200,600,50),tax=rand([.3,.35,.4]),ans=(revenue-cash)*(1-tax)+dep*tax;return mCalc('m21_aftertax_ocf','MINV05',`tax-${tax}`,`年間現金収入${fmt(revenue)}万円、年間現金支出費用${fmt(cash)}万円、減価償却費${fmt(dep)}万円、実効税率${tax*100}%である。税引後営業CFを求めなさい。`,ans,'万円',`(${fmt(revenue)}－${fmt(cash)})×(1－${tax})＋${fmt(dep)}×${tax}＝${mNum(ans)}万円`,'減価償却費は非現金費用だが節税効果Dep×税率を生む。',r.conclusion,{revenue,cash,dep,tax},[(revenue-cash-dep)*(1-tax),(revenue-cash)*(1-tax)-dep, (revenue-cash)*(1-tax)]);},
+ MINV06(){const r=MANAGEMENT_RULE_INDEX_V21.MINV06,nwc=ri(200,800,50),years=rand([3,4,5]),rate=rand([.05,.08,.1]),pvRecovery=nwc/Math.pow(1+rate,years),ans=Math.round((-nwc+pvRecovery)*100)/100;return mCalc('m21_nwc_pv','MINV06',`nwc-recovery-${years}-${rate}`,`プロジェクト開始時に正味運転資本${fmt(nwc)}万円を追加投資し、${years}年後末に全額回収する。割引率${rate*100}%とする。運転資本に関するNPVへの影響額を求めなさい。`,ans,'万円',`－${fmt(nwc)}＋${fmt(nwc)}÷(1＋${rate})^${years}＝${mNum(ans)}万円`,'開始時は資金拘束で流出、終了時回収は終端流入。',r.conclusion,{nwc,years,rate},[0,-nwc,nwc+pvRecovery]);},
+ MINV07(){const r=MANAGEMENT_RULE_INDEX_V21.MINV07,S=ri(200,1000,50),BV=ri(200,1000,50),tax=rand([.3,.35,.4]),ans=S+(BV-S)*tax;return mCalc('m21_salvage_tax','MINV07',`${S>=BV?'gain':'loss'}-${tax}`,`設備の売却価額${fmt(S)}万円、売却時帳簿価額${fmt(BV)}万円、税率${tax*100}%である。売却損益が課税所得へ反映されるとき、税引後売却CFを求めなさい。`,ans,'万円',`${fmt(S)}＋(${fmt(BV)}－${fmt(S)})×${tax}＝${mNum(ans)}万円`,'売却益なら納税流出、売却損なら節税流入。',r.conclusion,{S,BV,tax},[S,S-(BV-S)*tax,S+(S-BV)*tax]);},
+ MDIV01(){const r=MANAGEMENT_RULE_INDEX_V21.MDIV01,profit=ri(300,1200,50),capital=ri(2000,6000,100),ans=profit/capital*100;return mCalc('m21_div_roi','MDIV01','roi',`事業部利益${fmt(profit)}万円、投下資本${fmt(capital)}万円。ROIを求めなさい。`,Math.round(ans*100)/100,'%',`${fmt(profit)}÷${fmt(capital)}×100＝${mNum(ans)}%`,'利益を投下資本で除す。',r.conclusion,{profit,capital},[capital/profit*100,profit/capital,profit*capital/100]);},
+ MDIV02(){const r=MANAGEMENT_RULE_INDEX_V21.MDIV02,profit=ri(400,1400,50),capital=ri(2500,7000,100),rate=rand([.06,.08,.1,.12]),ans=profit-capital*rate;return mCalc('m21_ri','MDIV02',`rate-${rate}`,`事業部利益${fmt(profit)}万円、投下資本${fmt(capital)}万円、最低要求利益率${rate*100}%である。残余利益RIを求めなさい。`,ans,'万円',`${fmt(profit)}－${fmt(capital)}×${rate}＝${mNum(ans)}万円`,'利益から資本コスト額を控除。',r.conclusion,{profit,capital,rate},[profit/capital*100,profit+capital*rate,capital*rate]);},
+ MDIV04(){const r=MANAGEMENT_RULE_INDEX_V21.MDIV04,varc=ri(300,800,50),extra=ri(0,150,50),ans=varc+extra;return mCalc('m21_transfer_idle','MDIV04','idle',`供給事業部には十分な遊休能力がある。内部振替品1個当たり変動製造原価${fmt(varc)}円、内部振替に固有の追加費用${fmt(extra)}円。外部販売の犠牲はない。供給事業部の最低振替価格を求めなさい。`,ans,'円',`${fmt(varc)}＋${fmt(extra)}＋機会原価0＝${fmt(ans)}円`,'遊休能力があれば失われる外部貢献利益はない。',r.conclusion,{varc,extra},[varc,varc+extra+100,extra]);},
+ MDIV05(){const r=MANAGEMENT_RULE_INDEX_V21.MDIV05,varc=ri(300,800,50),external=ri(varc+200,varc+700,50),sell=ri(50,150,50),opp=external-varc-sell,ans=varc+opp;return mCalc('m21_transfer_full','MDIV05','full',`供給事業部は完全操業である。内部振替品1個当たり変動製造原価${fmt(varc)}円。外部販売価格${fmt(external)}円、外部販売時のみ発生する販売費${fmt(sell)}円。内部振替1個で外部販売1個を失う。最低振替価格を求めなさい。`,ans,'円',`${fmt(varc)}＋[${fmt(external)}－${fmt(varc)}－${fmt(sell)}]＝${fmt(ans)}円`,'完全操業では失われる外部貢献利益を機会原価として加える。',r.conclusion,{varc,external,sell,opp},[varc,external,varc+sell]);},
+ MDIV06(){const r=MANAGEMENT_RULE_INDEX_V21.MDIV06,nopat=ri(600,1800,100),ic=ri(4000,9000,500),wacc=rand([.06,.08,.1,.12]),ans=nopat-ic*wacc;return mCalc('m21_eva','MDIV06',`wacc-${wacc}`,`NOPAT ${fmt(nopat)}万円、投下資本${fmt(ic)}万円、WACC ${wacc*100}%である。EVAを求めなさい。`,ans,'万円',`${fmt(nopat)}－${fmt(ic)}×${wacc}＝${mNum(ans)}万円`,'NOPATから投下資本の資本コスト額を控除。',r.conclusion,{nopat,ic,wacc},[nopat+ic*wacc,ic*wacc,nopat/ic*100]);}
+};
+function mCalcBuilderEntries(topicKeys){const allowed=new Set(topicKeys.filter(k=>k.startsWith('M|')).map(k=>k.slice(2)));return Object.entries(MANAGEMENT_CALC_BUILDERS_V21).filter(([id])=>allowed.has(MANAGEMENT_RULE_INDEX_V21[id]?.topic))}
+function hasManagementV21Calc(topicKeys){return mCalcBuilderEntries(topicKeys).length>0}
+function mValidCalc(c){if(!c||!Number.isFinite(Number(c.answer))||!c.q||!c.formula)return false;if(Math.abs(Number(c.answer))>1e15)return false;for(const v of Object.values(c.vars||{})){if(typeof v==='number'&&!Number.isFinite(v))return false}return true}
+function mGenerateCalc(topicKeys,avoidRecent=true){const entries=mCalcBuilderEntries(topicKeys);if(!entries.length)return null;const history=mSignatureHistory();let best=null;for(let round=0;round<Math.max(20,entries.length*4);round++){const [id,builder]=entries[round%entries.length];let c;try{c=builder()}catch(e){continue}if(!mValidCalc(c))continue;const sig=mSem(['calc',c.ruleId,c.featureKey]);const score=(history.has(sig)&&avoidRecent?100000:0)+mRuleNovelty(MANAGEMENT_RULE_INDEX_V21[c.ruleId])+Math.random()*10;if(!best||score<best.score)best={c,sig,score};if(score<10000&&round>=entries.length-1)break}if(!best)return null;const c=best.c;return {kind:'calc',format:'calc',s:'M',topics:[c.topic],calc:c,answer:c.answer,displayAnswer:`${mNum(c.answer)}${c.unit}`,ruleIds:[c.ruleId],semanticSignature:best.sig,instanceSignature:mInstanceSignature(c)}}
+function mMakeSingle(topicKeys){const r=mPickRules(topicKeys,1)[0];if(!r)return null;const item=Math.random()<.52?mTrueItem(r):mFalseItem(r),sig=mSem(['single',r.id,item.a?'T':'F',item.variantKey]);return {kind:'single',format:'single',s:'M',topics:[r.topic],prompt:wrapperForSingle(),items:[item],answer:item.a,displayAnswer:item.a?'○':'×',ruleIds:[r.id],semanticSignature:sig}}
+function mMakeCount(topicKeys,n=3){const rules=mPickRules(topicKeys,n);if(rules.length<2)return mMakeSingle(topicKeys);const items=rules.map((r,i)=>(i+Math.floor(Math.random()*2))%2?mTrueItem(r):mFalseItem(r)),answer=items.filter(x=>x.a).length,sig=mSem(['count',items.length,...rules.map(r=>r.id).sort(),items.map(x=>x.a?'T':'F').join('')]);return {kind:'count',format:`count${items.length}`,s:'M',topics:[...new Set(rules.map(r=>r.topic))],prompt:`次の${items.length}つの記述のうち、正しいものはいくつあるか。`,items,answer,displayAnswer:`${answer}個`,ruleIds:rules.map(r=>r.id),semanticSignature:sig}}
+function mCalcChoice(topicKeys){const q=mGenerateCalc(topicKeys,true);if(!q)return null;const c=q.calc,nums=[c.answer,...(c.distractors||[])].filter(Number.isFinite);const uniq=[];for(const x of nums)if(!uniq.some(y=>Math.abs(y-x)<1e-9))uniq.push(x);if(uniq.length<4)return null;let vals=shuffle(uniq.slice(0,4));const items=vals.map((v,i)=>{const ok=Math.abs(v-c.answer)<1e-9;return {id:`${c.ruleId}-N${i}`,q:`計算結果は ${mNum(v)}${c.unit} となる。`,a:ok,ex:ok?`正しい。${c.formula}`:`誤り。正しくは ${mNum(c.answer)}${c.unit}。${c.key}`,key:c.key,general:c.general,variantKey:mSem(['numopt',c.ruleId,c.featureKey,i,ok?'T':'F'])}});const answer=items.findIndex(x=>x.a),sig=mSem(['calc-choice',c.ruleId,c.featureKey]);return {kind:'choice',format:'best4',s:'M',topics:[c.topic],prompt:`次の計算問題について、正しい計算結果を1つ選んでください。\n${c.q}`,items,answer,displayAnswer:String.fromCharCode(65+answer),ruleIds:[c.ruleId],semanticSignature:sig,instanceSignature:mInstanceSignature(c)}}
+function mMakeChoice(topicKeys,wantTrue=true){if(wantTrue&&Math.random()<.38){const cc=mCalcChoice(topicKeys);if(cc)return cc}const rules=mPickRules(topicKeys,4);if(rules.length<4)return mMakeCount(topicKeys,3);let items=rules.map((r,i)=>i===0?(wantTrue?mTrueItem(r):mFalseItem(r)):(wantTrue?mFalseItem(r):mTrueItem(r)));items=shuffle(items);const answer=items.findIndex(x=>x.a===wantTrue),sig=mSem([wantTrue?'best4':'wrong4',...rules.map(r=>r.id).sort(),items.map(x=>x.a?'T':'F').join('')]);return {kind:'choice',format:wantTrue?'best4':'wrong4',s:'M',topics:[...new Set(rules.map(r=>r.topic))],prompt:wantTrue?'次の記述のうち、正しいものを1つ選んでください。':'次の記述のうち、誤っているものを1つ選んでください。',items,answer,displayAnswer:String.fromCharCode(65+answer),ruleIds:rules.map(r=>r.id),semanticSignature:sig}}
+
+const MANAGEMENT_CONDITION_BUILDERS_V21=[
+ function(topicKeys){if(!topicKeys.includes('M|直接原価計算'))return null;const fixed=ri(30,70,10),beg=ri(0,200,50),end1=beg+ri(100,300,50),end2=Math.max(0,beg-ri(0,beg,50)),d1=(end1-beg)*fixed,d2=(end2-beg)*fixed;return {rules:['MDIR02'],topic:'直接原価計算',tag:'inventory-change',a:`A：期末在庫${end1}個（期首${beg}個）では、全部－直接利益差は${fmt(d1)}円。`,b:`B：期末在庫${end2}個（期首${beg}個）では、全部－直接利益差は${fmt(d2)}円。`,why:'変わった条件は期末在庫数量。変化する計算要素は在庫へ繰り延べる固定製造費。',wrong:[`AとBで在庫数量が変わっても利益差は変化しない。`,`利益差は常に直接原価計算の方が固定費率分だけ大きい。`,`固定製造費率ではなく販売単価だけで利益差が決まる。`]}}
+ ,function(topicKeys){if(!topicKeys.includes('M|差額原価収益分析'))return null;const q=ri(500,1000,100),p=ri(900,1300,50),v=ri(400,700,50),lost=ri(100,300,50),cm=ri(250,500,50),idle=q*(p-v),full=idle-lost*cm;return {rules:['MDEC03','MDEC04'],topic:'差額原価収益分析',tag:'idle-capacity',a:`A：遊休能力ありなら差額利益は${fmt(idle)}円（機会原価0）。`,b:`B：通常品${lost}個を犠牲にするなら差額利益は${fmt(full)}円（機会原価${fmt(lost*cm)}円）。`,why:'変わった条件は遊休能力。通常販売を失うと機会原価が追加される。',wrong:[`能力制約の有無にかかわらず機会原価は常に0円。`,`遊休能力がある場合だけ通常販売の貢献利益を機会原価に加える。`,`特別注文では埋没原価をすべて再計算に含める。`]}}
+ ,function(topicKeys){if(!topicKeys.includes('M|総合原価計算'))return null;const end=ri(100,300,50),point=.5,p1=.4,p2=.7,comp=ri(600,1000,100),e1=comp,e2=comp+end;return {rules:['MPROC07'],topic:'総合原価計算',tag:'material-point',a:`A：月末進捗${p1*100}%（投入点${point*100}%未通過）なら材料換算量は${fmt(e1)}個。`,b:`B：月末進捗${p2*100}%（投入点通過）なら材料換算量は${fmt(e2)}個。`,why:'変わった条件は月末仕掛品が材料投入点を通過したか。通過すると月末分が材料換算量へ100%加わる。',wrong:[`投入点に関係なく材料換算量は常に加工換算量と同じ。`,`月末進捗が高いほど材料換算量は必ず進捗率比例になる。`,`定点投入材料は完成品換算量に一切含めない。`]}}
+ ,function(topicKeys){if(!topicKeys.includes('M|総合原価計算'))return null;const open=ri(100,300,50),op=rand([.2,.3,.4,.5]),started=ri(700,1100,50),end=ri(100,250,50),ep=rand([.3,.5,.7]),completed=open+started-end,avg=completed+end*ep,fifo=open*(1-op)+(completed-open)+end*ep;return {rules:['MPROC01','MPROC02'],topic:'総合原価計算',tag:'average-fifo',a:`A：同じ数量データを平均法で処理すると加工費換算量は${mNum(avg)}個。`,b:`B：先入先出法へ変更すると当月加工費換算量は${mNum(fifo)}個。`,why:`変わった条件は原価計算方法。平均法は月初仕掛品を当月投入分と区別せず、先入先出法は月初${fmt(open)}個の未加工部分${(1-op)*100}%だけを当月作業量に含めるため、換算量が変わる。`,wrong:[`平均法と先入先出法では月初仕掛品の扱いが同じなので加工費換算量も必ず同じ。`,`先入先出法では月初仕掛品${fmt(open)}個を100%当月加工量に含める。`,`平均法では月末仕掛品の加工進捗度を無視する。`]}}
+ ,function(topicKeys){if(!topicKeys.includes('M|総合原価計算'))return null;const input=ri(800,1400,50),loss=ri(40,120,10),good=input-loss,base=ri(50,100,5),nonIgnore=loss*base,total=input*base,ignoreUnit=total/good;return {rules:['MPROC03','MPROC04'],topic:'総合原価計算',tag:'ignore-nonignore',a:`A：度外視法では正常仕損費を独立項目として計算せず、総原価${fmt(total)}円を良品${fmt(good)}個へ吸収させる。`,b:`B：非度外視法では仕損を含む換算量${fmt(input)}個で単価を求め、正常仕損費${fmt(nonIgnore)}円を独立計算する。`,why:`変わった条件は正常仕損の処理方法。変化する計算要素は正常仕損費を独立に測定するかどうかであり、この単純な設例では最終的に良品へ負担される総原価自体は同じ${fmt(total)}円である。`,wrong:[`度外視法でも正常仕損費${fmt(nonIgnore)}円を必ず独立計算する。`,`非度外視法では仕損品の完成品換算量を常に0とする。`,`処理方法を変えると当月に発生した総製造費用そのものが${fmt(nonIgnore)}円だけ消滅する。`]}}
+ ,function(topicKeys){if(!topicKeys.includes('M|総合原価計算'))return null;const normal=ri(30,90,10),extra=ri(20,70,10),actual=normal+extra,unit=ri(50,110,5),abnormal=extra*unit;return {rules:['MPROC05'],topic:'総合原価計算',tag:'normal-abnormal',a:`A：実際仕損量が正常許容量${fmt(normal)}個以内なら、異常仕損量は0個。`,b:`B：実際仕損量が${fmt(actual)}個へ増えると、超過${fmt(extra)}個が異常仕損となり、単価${fmt(unit)}円なら異常仕損費は${fmt(abnormal)}円。`,why:'変わった条件は実際仕損量が正常許容量を超えるかどうか。超過部分だけを異常仕損として正常な製品原価から区分する。',wrong:[`正常許容量を超えた場合でも実際仕損量の全量が異常仕損となる。`,`正常仕損も異常仕損も常に全額を良品原価へ算入する。`,`異常仕損量は正常許容量－実際仕損量で求める。`]}}
+ ,function(topicKeys){if(!topicKeys.includes('M|投資計画'))return null;const rev=ri(1600,2600,100),cash=ri(700,1300,100),dep=ri(200,500,50),tax=.4,noTax=rev-cash,withTax=(rev-cash)*(1-tax)+dep*tax;return {rules:['MINV05'],topic:'投資計画',tag:'tax-shield',a:`A：法人税なしなら営業CFは${fmt(noTax)}万円。`,b:`B：税率40%なら営業CFは${fmt(withTax)}万円（減価償却節税${fmt(dep*tax)}万円を含む）。`,why:'変わった条件は法人税。課税後の現金利益に減価償却タックス・シールドが加わる。',wrong:[`法人税を考慮しても営業CFは一切変わらない。`,`法人税ありでは減価償却費全額をCF流出として控除する。`,`減価償却の節税額は減価償却費÷税率である。`]}}
+ ,function(topicKeys){if(!topicKeys.includes('M|投資計画'))return null;const nwc=ri(200,600,50),years=4,rate=.1,effect=-nwc+nwc/Math.pow(1+rate,years);return {rules:['MINV06'],topic:'投資計画',tag:'working-capital',a:`A：運転資本投資なしなら運転資本のNPV影響は0。`,b:`B：開始時${nwc}万円投資・4年末全額回収ならNPV影響は${mNum(effect)}万円。`,why:'変わった条件は運転資本。開始時の資金拘束と終端回収の時点差がNPVを変える。',wrong:[`運転資本は費用でないためNPVにも影響しない。`,`運転資本増加は開始時CF流入である。`,`終端で回収する運転資本は割引せず開始時価額と必ず相殺する。`]}}
+ ,function(topicKeys){if(!topicKeys.includes('M|分権化・グループ経営'))return null;const vc=ri(400,700,50),ep=vc+ri(250,500,50),sell=ri(50,100,50),idle=vc,full=ep-sell;return {rules:['MDIV04','MDIV05'],topic:'分権化・グループ経営',tag:'transfer-capacity',a:`A：遊休能力ありの最低振替価格は${fmt(idle)}円。`,b:`B：完全操業で外部販売を1個失う場合は${fmt(full)}円。`,why:'変わった条件は供給事業部の操業状態。完全操業では失われる外部貢献利益が機会原価として加わる。',wrong:[`操業状態が変わっても最低振替価格は常に外部販売価格そのもの。`,`遊休能力がある場合の方が機会原価は大きい。`,`完全操業でも機会原価は0である。`]}}
+ ,function(topicKeys){if(!topicKeys.includes('M|投資計画'))return null;return {rules:['MINV03','MINV04'],topic:'投資計画',tag:'npv-irr',a:'A：典型的な独立投資案の採否では、NPV法とIRR法の判定は整合する。',b:'B：相互排他的で規模やCF時期が異なる案の順位付けでは、NPV法とIRR法が一致しない場合がある。',why:'変わった条件は「独立案の採否」か「相互排他的案の順位付け」か。比率指標IRRと価値額NPVの性質差が表面化する。',wrong:['独立投資案の採否でもNPVとIRRは必ず不整合になる。','相互排他的案でもNPVとIRRの順位は例外なく一致する。','NPVとIRRはどちらも同じ再投資前提・同じ規模尺度なので常に同じ順位になる。']}}
+];
+function mMakeCondition(topicKeys){const candidates=shuffle(MANAGEMENT_CONDITION_BUILDERS_V21).map(fn=>fn(topicKeys)).filter(Boolean);if(!candidates.length)return mMakeChoice(topicKeys,true);const x=candidates[0],correct=`${x.a} ${x.b} ${x.why}`,texts=[correct,...x.wrong],items=shuffle(texts.map((t,i)=>{const ok=t===correct;const r=MANAGEMENT_RULE_INDEX_V21[x.rules[0]];return {id:`${x.rules.join('-')}-COND${i}`,q:t,a:ok,ex:ok?`正しい。${x.why}`:`誤り。${correct}`,key:x.why,general:'条件変更問題は「変わった条件→変わる計算要素→結論」の順に追跡する。',variantKey:mSem(['conditem',x.tag,i,ok?'T':'F'])}}));const answer=items.findIndex(i=>i.a),sig=mSem(['condition',x.tag,...x.rules]);return {kind:'choice',format:'condition',s:'M',topics:[x.topic],prompt:'条件Aから条件Bへ1つの前提を変えたときの処理の変化として、最も適切なものを1つ選んでください。',items,answer,displayAnswer:String.fromCharCode(65+answer),ruleIds:x.rules,semanticSignature:sig}}
+function mCompatible(a,b){if(!a||!b)return false;if((a.forbid||[]).some(x=>(b.combine||[]).includes(x)))return false;const tagsA=new Set(a.combine||[]),tagsB=new Set(b.combine||[]);if([...tagsA].some(x=>tagsB.has(x)))return true;const natural=[['decision','direct'],['decision','joint'],['decision','division'],['dcf','dcf-tax'],['dcf','dcf-wc'],['process','spoilage'],['std-var','spoilage'],['budget-var','cvp'],['ratio','division']];return natural.some(([x,y])=>(tagsA.has(x)&&tagsB.has(y))||(tagsA.has(y)&&tagsB.has(x)))}
+function mMakeCompound(topicKeys){const all=mPickRules(topicKeys,20),picked=[];for(const r of all){if(!picked.length||picked.every(p=>mCompatible(p,r))){picked.push(r);if(picked.length===3)break}}if(picked.length<2){const same=all.filter(r=>all[0]&&r.topic===all[0].topic).slice(0,3);if(same.length>=2)picked.splice(0,picked.length,...same)}if(picked.length<2)return mMakeCount(topicKeys,3);const items=picked.map((r,i)=>i===1?mFalseItem(r):mTrueItem(r)),answer=items.filter(x=>x.a).length,sig=mSem(['compound',...picked.map(r=>r.id).sort(),items.map(x=>x.a?'T':'F').join('')]);return {kind:'count',format:'compound',s:'M',topics:[...new Set(picked.map(r=>r.topic))],prompt:'次の複合問題について、各記述を独立に判定し、正しいものの個数を答えてください。関連する計算・意思決定の流れに矛盾がないかも確認してください。',items,answer,displayAnswer:`${answer}個`,ruleIds:picked.map(r=>r.id),semanticSignature:sig}}
+function mMakeErrorSpotting(topicKeys){const q=mGenerateCalc(topicKeys,true);if(!q)return mMakeChoice(topicKeys,false);const c=q.calc,r=MANAGEMENT_RULE_INDEX_V21[c.ruleId];const nums=[...(c.distractors||[])].filter(Number.isFinite).filter(v=>Math.abs(v-c.answer)>1e-9);const wrong=[...new Set(nums.map(v=>mNum(v)))].slice(0,3);if(wrong.length<3)return mMakeChoice(topicKeys,false);const presented=wrong[0];const correct=`提示された計算結果${presented}${c.unit}は誤りである。正しくは${mNum(c.answer)}${c.unit}であり、${c.key}`;const falseTexts=[`提示された計算結果${presented}${c.unit}は正しいため、修正は不要である。`,`提示計算を修正すると正答は${wrong[1]}${c.unit}となる。`,`提示計算を修正すると正答は${wrong[2]}${c.unit}となる。`];let items=[{id:`${c.ruleId}-ERR-T`,q:correct,a:true,ex:`${c.formula}`,key:c.key,general:c.general,variantKey:mSem(['err',c.ruleId,c.featureKey,'T'])},...falseTexts.map((t,i)=>({id:`${c.ruleId}-ERR-${i}`,q:t,a:false,ex:`誤り。正答は${mNum(c.answer)}${c.unit}。${c.key}`,key:c.key,general:c.general,variantKey:mSem(['err',c.ruleId,c.featureKey,`F${i}`])}))];items=shuffle(items);const answer=items.findIndex(x=>x.a),sig=mSem(['error',c.ruleId,c.featureKey]);return {kind:'choice',format:'journal',s:'M',topics:[c.topic],prompt:`学習者が次の問題を「${presented}${c.unit}」と計算した。誤りの指摘・修正として正しいものを1つ選んでください。\n${c.q}`,items,answer,displayAnswer:String.fromCharCode(65+answer),ruleIds:[c.ruleId],semanticSignature:sig,instanceSignature:mInstanceSignature(c)}}
+function generateManagementV21(format='mix',topicKeys=[]){const mkeys=topicKeys.filter(k=>k.startsWith('M|'));if(!mkeys.length)return null;const target=mTargetTopic(mkeys),targetKeys=target?[target]:mkeys;let use=format;if(use==='theory')use=rand(['single','single','count2','count3','best4','wrong4','condition','compound']);if(use==='mix')use=rand(['single','single','best4','wrong4','count2','count3','calc','calc','condition','condition','compound','journal']);if(use==='calc')return mGenerateCalc(targetKeys)||mGenerateCalc(mkeys)||mMakeSingle(targetKeys);if(use==='single')return mMakeSingle(targetKeys);if(use==='count2')return mMakeCount(targetKeys,2);if(use==='count3')return mMakeCount(targetKeys,3);if(use==='best4')return mMakeChoice(targetKeys,true);if(use==='wrong4')return mMakeChoice(targetKeys,false);if(use==='condition')return mMakeCondition(mkeys);if(use==='compound')return mMakeCompound(mkeys);if(use==='journal')return mMakeErrorSpotting(targetKeys);return mMakeSingle(targetKeys)}
+
+// --- FINAL 2.2: Audit rule-first structured generator -----------------------
+// Source structure: CPA監査論2026 テキスト1-3／短答対策問題集1-2／論文対策集1-2／資料集1。
+// Rule-first flow: facts/conditions -> internal conclusion -> wording -> trap distractors -> uniqueness validation.
+const AUDIT_SOURCE_V22={
+  T1:'監査論テキスト1 2026（第1章 監査総論・第2章 監査主体論・第3章 監査実施論）',
+  T2:'監査論テキスト2 2026（第4章 監査報告論・第5章 他者の作業・第6章 その他Ⅰ）',
+  T3:'監査論テキスト3 2026（第7章 保証業務・第8章 監査制度論・第9〜12章 その他）',
+  Q1:'監査論短答対策問題集1 2026',Q2:'監査論短答対策問題集2 2026',
+  E1:'監査論論文対策集1 2026',E2:'監査論論文対策集2 2026',R:'監査論資料集1 2026（監査基準等）'
+};
+function aRule(x){return Object.freeze({
+  id:x.id,topic:x.topic,major:x.major,middle:x.middle,micro:x.micro,
+  applicability:x.applicability||'当該論点が監査判断に関係する場合',prerequisites:x.prerequisites||[],
+  actor:x.actor||'監査人',target:x.target||'財務諸表',timing:x.timing||'監査期間中',phase:x.phase||'監査全般',
+  judgment:x.judgment||x.principle,principle:x.principle,conclusion:x.conclusion||x.principle,
+  procedures:x.procedures||[],evidence:x.evidence||'',exceptions:x.exceptions||[],related:x.related||x.combine||[],contrasts:x.contrasts||x.trapReasons||[],
+  traps:x.traps||[],trapReasons:x.trapReasons||[],combine:x.combine||[],forbid:x.forbid||[],difficulty:x.difficulty||2,
+  formats:x.formats||['single','best4','wrong4','count','case','compound'],source:x.source||AUDIT_SOURCE_V22.T1
+})}
+const AUDIT_RULES_V22=[
+// 第1章 監査総論／基礎
+ aRule({id:'AOBJ01',topic:'公認会計士監査の基礎',major:'第1章 監査総論',middle:'財務諸表監査の目的',micro:'合理的保証',actor:'監査人',target:'財務諸表全体',phase:'監査全般',principle:'監査人は、財務諸表全体に重要な虚偽表示がないかについて合理的な保証を得ることを目標とする。',conclusion:'絶対的保証ではなく合理的保証を得る。',evidence:'監査リスクを許容可能な低い水準に抑えるため十分かつ適切な監査証拠を入手する。',traps:['監査人は財務諸表に虚偽表示が一切存在しないことを絶対的に保証する。','無限定適正意見は企業の将来存続を保証する。'],trapReasons:['合理的保証と絶対的保証の混同','監査意見の対象と将来保証の混同'],combine:['assurance','risk','evidence'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AOBJ02',topic:'公認会計士監査の基礎',major:'第1章 監査総論',middle:'財務諸表監査の前提',micro:'経営者の財務諸表作成責任',actor:'経営者',target:'財務諸表',principle:'財務諸表を適用される財務報告の枠組みに準拠して作成する責任は経営者にある。',conclusion:'財務諸表作成責任は監査人へ移転しない。',traps:['監査済財務諸表については作成責任が監査人へ移転する。'],trapReasons:['監査人の意見表明責任との逆転'],combine:['responsibility','report'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AOBJ03',topic:'公認会計士監査の基礎',major:'第1章 監査総論',middle:'財務諸表監査の前提',micro:'内部統制整備運用責任',actor:'経営者',target:'財務報告に係る内部統制',principle:'不正又は誤謬による重要な虚偽表示のない財務諸表を作成するために必要と判断する内部統制を整備・運用する責任は経営者にある。',traps:['財務報告に係る内部統制の整備・運用は監査人の責任である。'],trapReasons:['経営者責任と監査人の評価責任の混同'],combine:['responsibility','control'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AOBJ04',topic:'公認会計士監査の基礎',major:'第1章 監査総論',middle:'監査人の責任',micro:'意見表明責任',actor:'監査人',target:'財務諸表',principle:'監査人の責任は、実施した監査に基づいて財務諸表に対する意見を表明することである。',traps:['監査人は財務諸表そのものを作成する責任を負う。'],trapReasons:['作成責任と意見表明責任の逆転'],combine:['responsibility','report'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AOBJ05',topic:'監査基準',major:'第1章 監査総論',middle:'監査人の基本姿勢',micro:'職業的専門家としての懐疑心',actor:'監査人',principle:'監査人は、誤謬又は不正による重要な虚偽表示の可能性を示す状況に注意し、監査証拠を批判的に評価する姿勢を保持する。',traps:['過去に経営者が誠実であった場合、監査人は職業的懐疑心を解除できる。'],trapReasons:['経営者の誠実性と懐疑心の継続を混同'],combine:['skepticism','fraud','evidence'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AOBJ06',topic:'監査基準',major:'第1章 監査総論',middle:'監査人の基本姿勢',micro:'職業的専門家としての判断',actor:'監査人',principle:'監査人は、監査計画・重要性・リスク評価・監査手続・証拠評価などにおいて職業的専門家としての判断を行う。',traps:['監査基準に数値基準がない事項では、監査人は判断を行わず経営者の判断に従う。'],trapReasons:['専門家判断の役割を否定'],combine:['judgment','planning','risk'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AOBJ07',topic:'監査基準',major:'第1章 監査総論',middle:'監査の限界',micro:'監査の固有の限界',principle:'監査には固有の限界があるため、監査リスクをゼロにすることはできない。',traps:['監査手続を十分に増やせば監査リスクを必ずゼロにできる。'],trapReasons:['合理的保証と絶対的保証の混同'],combine:['assurance','risk'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AOBJ08',topic:'公認会計士監査の基礎',major:'第1章 監査総論',middle:'監査報告の意味',micro:'無限定適正意見の意味',principle:'無限定適正意見は、財務諸表が適用される財務報告の枠組みに照らして適正に表示されているとの意見であり、企業の将来性や経営の有効性を保証するものではない。',traps:['無限定適正意見は、経営者の経営判断が最善であったことを保証する。'],trapReasons:['財務諸表監査の対象範囲を経営評価へ拡張'],combine:['report','responsibility'],source:AUDIT_SOURCE_V22.T1}),
+// リスク・重要性・計画・内部統制
+ aRule({id:'ARSK01',topic:'監査基準',major:'第3章 監査実施論',middle:'リスク・アプローチ',micro:'監査リスクの構成',phase:'リスク評価',principle:'監査リスクは、重要な虚偽表示リスクと発見リスクの組合せとして捉える。',traps:['監査リスクは固有リスクと統制リスクだけで構成され、発見リスクは含まれない。'],trapReasons:['重要な虚偽表示リスクと監査リスクの混同'],combine:['risk','procedure'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK02',topic:'監査基準',major:'第3章 監査実施論',middle:'リスク・アプローチ',micro:'重要な虚偽表示リスク',phase:'リスク評価',principle:'重要な虚偽表示リスクは、監査が実施されていない状態で財務諸表に重要な虚偽表示が存在するリスクで、固有リスクと統制リスクから構成される。',traps:['重要な虚偽表示リスクには、監査人の手続が虚偽表示を発見できないリスクも含まれる。'],trapReasons:['発見リスクを重要な虚偽表示リスクへ混入'],combine:['risk','control'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK03',topic:'監査基準',major:'第3章 監査実施論',middle:'リスク・アプローチ',micro:'固有リスク',phase:'リスク評価',principle:'固有リスクは、関連する内部統制を考慮する前に、取引種類・勘定残高・注記事項に係る主張が重要な虚偽表示となる可能性である。',traps:['固有リスクは内部統制が有効に運用されない可能性をいう。'],trapReasons:['固有リスクと統制リスクの混同'],combine:['risk','estimate'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK04',topic:'監査基準',major:'第3章 監査実施論',middle:'リスク・アプローチ',micro:'統制リスク',phase:'リスク評価',principle:'統制リスクは、発生し得る虚偽表示が企業の内部統制によって適時に防止又は発見・是正されないリスクである。',traps:['統制リスクは監査人が適切な監査手続を実施しても虚偽表示を発見できないリスクである。'],trapReasons:['統制リスクと発見リスクの混同'],combine:['risk','control'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK05',topic:'監査基準',major:'第3章 監査実施論',middle:'リスク・アプローチ',micro:'発見リスク',phase:'リスク対応',principle:'発見リスクは、監査リスクを許容可能な低い水準に抑えるために実施した監査手続が存在する虚偽表示を発見しないリスクである。',traps:['発見リスクは企業の内部統制が虚偽表示を防止できないリスクである。'],trapReasons:['発見リスクと統制リスクの混同'],combine:['risk','procedure'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK06',topic:'監査基準',major:'第3章 監査実施論',middle:'リスク対応',micro:'RMM上昇時の発見リスク',phase:'リスク対応',principle:'重要な虚偽表示リスクを高く評価した場合、許容できる発見リスクを低くし、より強い監査手続を計画する方向となる。',traps:['重要な虚偽表示リスクが高いほど、監査人は発見リスクを高く設定して手続を減らす。'],trapReasons:['リスク相互関係の方向を逆転'],combine:['risk','evidence','procedure'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK07',topic:'監査基準',major:'第3章 監査実施論',middle:'監査計画',micro:'監査計画の継続的修正',phase:'計画',principle:'監査計画は監査中に新たな事実やリスクを把握した場合に必要に応じて修正する。',traps:['監査計画は監査開始時に確定した後、監査終了まで変更してはならない。'],trapReasons:['計画を固定的文書と誤認'],combine:['planning','risk'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK08',topic:'監査基準',major:'第3章 監査実施論',middle:'重要性',micro:'重要性の利用',phase:'計画・評価',principle:'重要性は監査の計画、監査手続の実施、識別した虚偽表示の評価及び監査意見形成に用いられる。',traps:['重要性は監査意見の形成時だけに用いられ、監査計画には用いない。'],trapReasons:['重要性の利用時点を終盤だけに限定'],combine:['materiality','planning','report'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK09',topic:'監査基準',major:'第3章 監査実施論',middle:'重要性',micro:'重要性と監査手続',phase:'計画',principle:'一般に重要性の基準値を低く設定するほど、より小さな虚偽表示も対象となるため必要な監査証拠は増える方向となる。',traps:['重要性の基準値を低くするほど監査手続の範囲を狭めることができる。'],trapReasons:['重要性と監査範囲の関係を逆転'],combine:['materiality','evidence','procedure'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK10',topic:'監査基準',major:'第3章 監査実施論',middle:'内部統制',micro:'内部統制の理解',phase:'リスク評価',principle:'監査人は、重要な虚偽表示リスクを識別・評価し監査手続を立案するため、監査に関連する内部統制を理解する。',traps:['内部統制を理解する目的は、企業の内部統制の有効性に常に意見を表明するためである。'],trapReasons:['財務諸表監査と内部統制監査の目的を混同'],combine:['control','risk','procedure'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK11',topic:'監査基準',major:'第3章 監査実施論',middle:'内部統制',micro:'質問だけでは不十分',phase:'リスク評価',principle:'内部統制のデザイン及び適用を理解する際、質問だけでは十分でなく、観察や文書閲覧等の手続を組み合わせる。',traps:['内部統制のデザインと適用の理解は経営者への質問だけで十分である。'],trapReasons:['質問の証拠力を過大評価'],combine:['control','evidence','procedure'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK12',topic:'監査基準',major:'第3章 監査実施論',middle:'統制テスト',micro:'統制依拠時の運用評価手続',phase:'リスク対応',applicability:'監査人が統制の運用有効性に依拠する場合',principle:'統制の運用有効性に依拠して実証手続を設計する場合、関連する統制について運用評価手続を実施する。',traps:['統制に依拠する場合でも、内部統制を理解していれば運用評価手続は不要である。'],trapReasons:['内部統制の理解と運用有効性のテストを混同'],combine:['control','testcontrol','substantive'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK13',topic:'監査基準',major:'第3章 監査実施論',middle:'統制テスト',micro:'実証手続のみでは十分でない場合',phase:'リスク対応',applicability:'実証手続のみでは十分かつ適切な監査証拠を入手できない場合',principle:'実証手続のみでは十分かつ適切な監査証拠を入手できないリスクについては、関連する統制の運用有効性をテストする必要がある。',traps:['実証手続だけで十分な証拠を入手できない場合でも、統制テストは任意である。'],trapReasons:['統制テストが必要となる第二の条件を見落とす'],combine:['control','testcontrol','substantive'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK14',topic:'監査基準',major:'第3章 監査実施論',middle:'統制テスト',micro:'統制非依拠時',phase:'リスク対応',applicability:'統制に依拠せず、実証手続のみで十分な証拠を入手できる場合',principle:'統制に依拠せず、かつ実証手続のみで十分な証拠を入手できる場合、当該統制の運用評価手続を必ずしも実施する必要はない。',traps:['財務諸表監査ではすべての重要な統制について必ず運用評価手続を行う。'],trapReasons:['内部統制監査との混同'],combine:['control','testcontrol','substantive'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK15',topic:'監査基準',major:'第3章 監査実施論',middle:'実証手続',micro:'重要な取引種類等への実証手続',phase:'リスク対応',principle:'重要な取引種類、勘定残高及び注記事項については、評価したリスクにかかわらず実証手続を立案・実施する。',traps:['統制リスクを低く評価した重要勘定については実証手続をすべて省略できる。'],trapReasons:['統制依拠による実証手続の完全省略と誤認'],combine:['substantive','control','risk'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ARSK16',topic:'監査基準',major:'第3章 監査実施論',middle:'特別な検討を必要とするリスク',micro:'特別な検討を必要とするリスクへの対応',phase:'リスク対応',principle:'特別な検討を必要とするリスクについては、そのリスクに特化した実証手続を含む対応を行う。',traps:['特別な検討を必要とするリスクであっても通常リスクと同じ定型手続だけで足りる。'],trapReasons:['リスクに応じた手続の強化を無視'],combine:['risk','substantive','fraud'],source:AUDIT_SOURCE_V22.T1}),
+// 監査証拠・手続
+ aRule({id:'AEVD01',topic:'監査基準',major:'第3章 監査実施論',middle:'監査証拠',micro:'十分性',phase:'証拠評価',principle:'監査証拠の十分性は、監査証拠の量に関する尺度である。',traps:['監査証拠の十分性は、その証拠の信頼性や目的適合性という質をいう。'],trapReasons:['十分性と適切性の混同'],combine:['evidence'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD02',topic:'監査基準',major:'第3章 監査実施論',middle:'監査証拠',micro:'適切性',phase:'証拠評価',principle:'監査証拠の適切性は、目的適合性と信頼性からなる監査証拠の質に関する尺度である。',traps:['監査証拠の適切性は入手した証拠の件数だけで判断する。'],trapReasons:['質と量の混同'],combine:['evidence'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD03',topic:'監査基準',major:'第3章 監査実施論',middle:'監査証拠',micro:'証拠の質と量',phase:'証拠評価',principle:'監査証拠の質が高ければ必要量が減ることはあるが、質の低い証拠を単に大量に集めてもその不十分な質を補えない場合がある。',traps:['信頼性の低い証拠でも数量を十分増やせば必ず適切性を補える。'],trapReasons:['十分性で適切性を完全代替できると誤認'],combine:['evidence','risk'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD04',topic:'監査基準',major:'第3章 監査実施論',middle:'監査証拠',micro:'外部証拠の信頼性',principle:'一般に、企業から独立した外部情報源から入手した監査証拠は、内部で作成された証拠より信頼性が高い傾向にある。',traps:['企業内部で作成された証拠は、外部証拠より常に信頼性が高い。'],trapReasons:['証拠の信頼性の一般原則を逆転'],combine:['evidence','confirmation'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD05',topic:'監査基準',major:'第3章 監査実施論',middle:'質問',micro:'質問の限界',procedures:['質問'],principle:'質問は有用な監査手続であるが、通常、重要な虚偽表示がないことや統制の運用有効性について質問だけで十分な証拠とはならない。',traps:['経営者が明確に回答すれば、質問だけで統制の運用有効性について十分な監査証拠となる。'],trapReasons:['口頭回答の証拠力を過大評価'],combine:['inquiry','evidence','control'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD06',topic:'監査基準',major:'第3章 監査実施論',middle:'観察',micro:'観察の時点性',procedures:['観察'],principle:'観察は、他者が実施しているプロセスや手続を監査人が見る手続であり、観察した時点に関する証拠を提供する。',traps:['観察によれば、観察していない全期間にわたり統制が同じように運用されたことを直接証明できる。'],trapReasons:['観察証拠の時点性を無視'],combine:['observation','evidence','control'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD07',topic:'監査基準',major:'第3章 監査実施論',middle:'実査',micro:'有形資産の実在性',procedures:['実査'],principle:'実査は資産を物理的に検査する手続で、資産の実在性について信頼性の高い証拠を提供し得る。',traps:['実査を行えば、その資産の所有権・権利義務についても常に十分な証拠が得られる。'],trapReasons:['実在性と権利義務の主張を混同'],combine:['inspection','evidence','assertion'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD08',topic:'監査基準',major:'第3章 監査実施論',middle:'再計算',micro:'計算の正確性',procedures:['再計算'],principle:'再計算は、文書又は記録の数学的正確性を監査人が検証する手続である。',traps:['再計算は企業の統制手続を監査人が独立して再び実施することをいう。'],trapReasons:['再計算と再実施の混同'],combine:['recalculation','evidence'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD09',topic:'監査基準',major:'第3章 監査実施論',middle:'再実施',micro:'統制・手続の再実施',procedures:['再実施'],principle:'再実施は、企業の内部統制の一部として実施された手続等を監査人が独立して実施する手続である。',traps:['再実施とは帳簿の足し算を監査人がやり直すことだけをいう。'],trapReasons:['再実施と再計算の混同'],combine:['reperformance','control','evidence'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD10',topic:'監査基準',major:'第3章 監査実施論',middle:'確認',micro:'外部確認',procedures:['確認'],principle:'確認は、第三者から監査人へ直接、紙面・電子媒体等で回答を得る監査手続である。',traps:['確認状への回答は被監査会社を経由して監査人が受領することが原則である。'],trapReasons:['外部確認の独立性を損なう経路を正当化'],combine:['confirmation','evidence'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD11',topic:'監査基準',major:'第3章 監査実施論',middle:'確認',micro:'消極的確認',procedures:['消極的確認'],principle:'消極的確認は積極的確認より説得力の弱い証拠であり、一定の厳しい条件を満たす場合を除き、単独で実証手続として用いない。',traps:['消極的確認は回答がないこと自体が強い証拠なので、重要な売掛金に常に単独で使用できる。'],trapReasons:['消極的確認の証拠力を過大評価'],combine:['confirmation','evidence','risk'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD12',topic:'監査基準',major:'第3章 監査実施論',middle:'分析的手続',micro:'リスク評価手続としての分析',procedures:['分析的手続'],phase:'リスク評価',principle:'監査人はリスク評価手続として分析的手続を実施し、異常な関係や変動から重要な虚偽表示リスクの識別に役立てる。',traps:['分析的手続は監査の最終段階でしか使用できない。'],trapReasons:['分析的手続の使用局面を限定'],combine:['analytics','risk'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD13',topic:'監査基準',major:'第3章 監査実施論',middle:'分析的手続',micro:'実証的分析手続',procedures:['実証的分析手続'],phase:'リスク対応',principle:'分析的手続は、条件が適切な場合には実証手続として利用できる。',traps:['分析的手続はリスク評価目的に限られ、実証手続として使用できない。'],trapReasons:['分析的手続の複数目的を混同'],combine:['analytics','substantive'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD14',topic:'監査基準',major:'第3章 監査実施論',middle:'分析的手続',micro:'最終分析的手続',phase:'監査終盤',principle:'監査の最終段階では、財務諸表が監査人の企業理解と整合しているかを総括的に評価する分析的手続を実施する。',traps:['最終分析的手続は個々の勘定残高の詳細テストを必ず置き換える。'],trapReasons:['総括的レビューと詳細実証手続の混同'],combine:['analytics','completion'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD15',topic:'監査基準',major:'第3章 監査実施論',middle:'監査サンプリング',micro:'サンプリングリスク',phase:'リスク対応',principle:'監査サンプリングには、抽出したサンプルに基づく結論が母集団全体を対象とした場合の結論と異なる可能性であるサンプリングリスクがある。',traps:['サンプリングリスクは、監査人が不適切な監査手続を選択するリスクだけをいう。'],trapReasons:['サンプリングリスクと非サンプリングリスクの混同'],combine:['sampling','evidence'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEVD16',topic:'監査基準',major:'第3章 監査実施論',middle:'監査サンプリング',micro:'サンプル選択',phase:'リスク対応',principle:'サンプルは母集団の各抽出単位に選択の機会が与えられるように選択し、母集団について合理的な結論を形成できるようにする。',traps:['監査人が容易に検証できる項目だけを選べば監査サンプリングとして十分である。'],trapReasons:['代表性を無視した恣意的選択'],combine:['sampling','evidence'],source:AUDIT_SOURCE_V22.T1}),
+// 見積り・確認書・特定項目
+ aRule({id:'AEST01',topic:'監査基準',major:'第3章 監査実施論',middle:'会計上の見積り',micro:'見積りの不確実性',phase:'リスク評価・対応',principle:'会計上の見積りでは見積りの不確実性や経営者の偏向の可能性を考慮して重要な虚偽表示リスクを評価する。',traps:['会計上の見積りは金額が計算で算定されるため、経営者の偏向を検討する必要はない。'],trapReasons:['見積りの主観性を無視'],combine:['estimate','risk','skepticism'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEST02',topic:'監査基準',major:'第3章 監査実施論',middle:'会計上の見積り',micro:'監査人の対応',phase:'リスク対応',principle:'監査人は、経営者の見積りプロセスの検討、監査人の独自見積額・許容範囲の設定、期末後の事象の検討などから適切な対応を選択する。',traps:['見積りの監査では経営者が用いた計算を再計算する方法しか認められない。'],trapReasons:['見積り監査の対応手段を単一化'],combine:['estimate','procedure','evidence'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEST03',topic:'監査基準',major:'第3章 監査実施論',middle:'経営者確認書',micro:'確認書の役割',timing:'監査報告日近く',procedures:['経営者確認書'],principle:'監査人は一定の事項について経営者から書面による確認を入手するが、経営者確認書は他の必要な監査証拠の代替にはならない。',traps:['経営者確認書を入手すれば、同一事項について他の監査証拠を入手する必要はなくなる。'],trapReasons:['確認書の証拠力を過大評価'],combine:['writtenrep','evidence','responsibility'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AEST04',topic:'監査基準',major:'第3章 監査実施論',middle:'経営者確認書',micro:'確認書を拒否した場合',phase:'監査終盤',principle:'必要な経営者確認書の提供を経営者が拒否した場合、監査人は経営者の誠実性への影響を評価し、監査証拠への影響及び監査意見への影響を検討する。',traps:['必要な経営者確認書を拒否されても口頭確認があれば監査意見への影響は一切ない。'],trapReasons:['書面確認拒否の重大性を過小評価'],combine:['writtenrep','evidence','report'],source:AUDIT_SOURCE_V22.T1}),
+// 監査報告
+ aRule({id:'AREP01',topic:'監査基準',major:'第4章 監査報告論',middle:'監査意見',micro:'無限定適正意見',phase:'意見形成',principle:'財務諸表に重要な虚偽表示がなく、十分かつ適切な監査証拠を入手した場合、無限定適正意見を表明する。',traps:['重要でない虚偽表示が一つでも残れば必ず限定付適正意見となる。'],trapReasons:['重要性を無視'],combine:['report','materiality','evidence'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP02',topic:'監査基準',major:'第4章 監査報告論',middle:'監査意見の除外事項',micro:'重要な虚偽表示・非広範',phase:'意見形成',applicability:'重要な虚偽表示が存在し、その影響が重要だが広範ではない場合',principle:'重要な虚偽表示が存在し、その影響が重要だが広範ではない場合、限定付適正意見を表明する。',traps:['重要だが広範でない虚偽表示がある場合は不適正意見を表明する。','証拠が入手できない場合と同様に意見不表明とする。'],trapReasons:['限定付と不適正の混同','虚偽表示と証拠不足の混同'],combine:['report','misstatement','pervasive'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP03',topic:'監査基準',major:'第4章 監査報告論',middle:'監査意見の除外事項',micro:'重要な虚偽表示・広範',phase:'意見形成',applicability:'重要な虚偽表示が存在し、その影響が重要かつ広範な場合',principle:'重要な虚偽表示の影響が重要かつ広範な場合、不適正意見を表明する。',traps:['重要かつ広範な虚偽表示がある場合は意見不表明とする。'],trapReasons:['不適正意見と意見不表明の原因を混同'],combine:['report','misstatement','pervasive'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP04',topic:'監査基準',major:'第4章 監査報告論',middle:'監査範囲の制約',micro:'証拠不足・非広範',phase:'意見形成',applicability:'十分かつ適切な監査証拠を入手できず、未発見の虚偽表示の可能性が重要だが広範ではない場合',principle:'証拠不足による潜在的影響が重要だが広範でない場合、限定付適正意見を表明する。',traps:['証拠不足による潜在的影響が重要だが広範でない場合は不適正意見を表明する。'],trapReasons:['証拠不足と既知の虚偽表示を混同'],combine:['report','scope','evidence','pervasive'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP05',topic:'監査基準',major:'第4章 監査報告論',middle:'監査範囲の制約',micro:'証拠不足・広範',phase:'意見形成',applicability:'十分かつ適切な監査証拠を入手できず、未発見の虚偽表示の可能性が重要かつ広範な場合',principle:'証拠不足による潜在的影響が重要かつ広範な場合、意見不表明とする。',traps:['証拠不足による潜在的影響が重要かつ広範なら不適正意見とする。'],trapReasons:['不適正意見と意見不表明の原因を混同'],combine:['report','scope','evidence','pervasive'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP06',topic:'監査基準',major:'第4章 監査報告論',middle:'監査範囲の制約',micro:'代替的監査手続',phase:'リスク対応・意見形成',principle:'当初予定した手続を実施できなくても、代替的監査手続により十分かつ適切な監査証拠を入手できれば、その事項だけを理由に監査範囲の制約とはしない。',traps:['予定した監査手続を一つ実施できなければ、代替手続の結果にかかわらず必ず限定付適正意見となる。'],trapReasons:['目的と手段を混同し代替手続を無視'],combine:['report','scope','evidence'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP07',topic:'監査基準',major:'第4章 監査報告論',middle:'監査意見',micro:'経営者による修正',phase:'意見形成',principle:'識別した重要な虚偽表示を経営者が適切に修正し、他に意見変形事由がなければ、その虚偽表示を理由とする意見変形は不要となる。',traps:['監査人が一度重要な虚偽表示を発見した以上、経営者が修正しても必ず限定付適正意見とする。'],trapReasons:['修正前の事実を固定して判断'],combine:['report','misstatement','correction'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP08',topic:'監査基準',major:'第4章 監査報告論',middle:'強調事項区分',micro:'強調事項',phase:'報告',principle:'強調事項区分は、財務諸表に適切に表示又は注記されている事項のうち、利用者が財務諸表を理解する基礎として特に重要であると監査人が判断した事項に注意を喚起するために用いる。',traps:['財務諸表に重要な虚偽表示がある場合、その代わりに強調事項区分を記載すれば無限定適正意見にできる。'],trapReasons:['強調事項を意見変形の代替と誤認'],combine:['report','emphasis'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP09',topic:'監査基準',major:'第4章 監査報告論',middle:'その他の事項区分',micro:'その他の事項',phase:'報告',principle:'その他の事項区分は、財務諸表に表示又は注記されていない事項で、監査・監査人の責任又は監査報告書の理解に関連し、利用者の理解に必要と監査人が判断した事項を記載する。',traps:['その他の事項区分は、財務諸表の注記事項を特に強調するための区分である。'],trapReasons:['強調事項区分との混同'],combine:['report','othermatter'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP10',topic:'監査基準',major:'第4章 監査報告論',middle:'監査上の主要な検討事項',micro:'KAMの選定',phase:'報告',principle:'監査上の主要な検討事項は、監査役等とコミュニケーションを行った事項の中から、監査人が当年度の財務諸表監査において特に重要であると判断した事項を選定する。',traps:['KAMは経営者が選定して監査人に指定する事項である。'],trapReasons:['KAM選定主体の混同'],combine:['report','kam','communication'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP11',topic:'監査基準',major:'第4章 監査報告論',middle:'監査上の主要な検討事項',micro:'KAMと意見変形',phase:'報告',principle:'KAMの記載は、限定付適正意見・不適正意見などの意見変形の代替ではない。',traps:['重要な虚偽表示をKAMに記載すれば、監査意見を変形しなくてもよい。'],trapReasons:['KAMと監査意見の役割を混同'],combine:['report','kam','misstatement'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP12',topic:'監査基準',major:'第4章 監査報告論',middle:'その他の記載内容',micro:'監査人の通読責任',phase:'報告',principle:'監査人はその他の記載内容を通読し、監査済財務諸表又は監査で得た知識との重要な相違があるか等を検討する。',traps:['その他の記載内容は監査対象外なので、監査人は読む必要がない。'],trapReasons:['監査意見の対象外であることと通読責任を混同'],combine:['report','otherinfo'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AREP13',topic:'監査基準',major:'第4章 監査報告論',middle:'その他の記載内容',micro:'その他の記載内容への意見',phase:'報告',principle:'その他の記載内容に関する監査人の作業は、通常、当該情報に監査意見又は保証結論を表明するものではない。',traps:['その他の記載内容区分がある場合、監査人はその他の記載内容全体に監査意見を表明する。'],trapReasons:['通読責任と保証業務を混同'],combine:['report','otherinfo','assurance'],source:AUDIT_SOURCE_V22.T2}),
+// 継続企業・後発事象
+ aRule({id:'AGC01',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'継続企業',micro:'経営者の評価',actor:'経営者',target:'継続企業の前提',principle:'継続企業の前提を用いて財務諸表を作成することの適切性を評価し、必要な開示を行う責任は経営者にある。',traps:['継続企業の前提の評価は監査人だけの責任であり、経営者は評価を行わない。'],trapReasons:['経営者責任と監査人の検討責任の逆転'],combine:['goingconcern','responsibility'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AGC02',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'継続企業',micro:'重要な不確実性・適切な開示',phase:'意見形成',applicability:'継続企業の前提に関する重要な不確実性が存在し、財務諸表の開示が適切な場合',principle:'継続企業の前提に関する重要な不確実性が存在し開示が適切な場合、他に問題がなければ無限定適正意見とし、監査報告書に「継続企業の前提に関する重要な不確実性」区分を設ける。',traps:['重要な不確実性が存在するだけで必ず限定付適正意見となる。','適切な開示があっても強調事項区分で代用する。'],trapReasons:['不確実性の存在と開示不備の混同','専用区分と強調事項の混同'],combine:['goingconcern','report','disclosure'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AGC03',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'継続企業',micro:'重要な不確実性・不適切な開示',phase:'意見形成',applicability:'継続企業の前提に関する重要な不確実性が存在し必要な開示が不十分な場合',principle:'必要な継続企業の開示が不十分で、その虚偽表示が重要である場合、重要性と広範性に応じて限定付適正意見又は不適正意見を検討する。',traps:['開示が不十分でも専用区分を追加するだけで常に無限定適正意見となる。'],trapReasons:['開示不備という虚偽表示を専用区分で補えると誤認'],combine:['goingconcern','report','disclosure','pervasive'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AGC04',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'継続企業',micro:'継続企業の前提が不適切',phase:'意見形成',applicability:'継続企業の前提を用いた財務諸表作成が不適切な場合',principle:'継続企業の前提を用いた財務諸表作成自体が不適切である場合、不適正意見を表明する。',traps:['継続企業の前提が不適切でも、注記さえあれば無限定適正意見となる。'],trapReasons:['開示で会計処理の基礎の不適切さを治癒できると誤認'],combine:['goingconcern','report'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'ASEV01',topic:'監査基準',major:'第4章 監査報告論',middle:'後発事象',micro:'監査報告日前の後発事象',timing:'決算日後から監査報告日まで',phase:'監査終盤',principle:'監査人は監査報告日までの期間について、財務諸表の修正又は開示を必要とする事象を識別するための監査手続を実施する。',traps:['監査人の後発事象手続は決算日で終了し、監査報告日までの事象は検討しない。'],trapReasons:['監査人の責任期間を決算日で打ち切る'],combine:['subsequent','timing','report'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'ASEV02',topic:'監査基準',major:'第4章 監査報告論',middle:'後発事象',micro:'監査報告日後・財務諸表公表日前の事後判明事実',timing:'監査報告日後から財務諸表公表日まで',phase:'報告後',principle:'監査報告日後は後発事象を探索する継続的義務はないが、監査報告日に知っていれば監査報告書を修正した可能性のある事実を知った場合は必要な対応を行う。',traps:['監査報告日後も財務諸表公表日まで監査人は新事実を積極的に探索し続ける義務がある。'],trapReasons:['探索義務と知った後の対応義務を混同'],combine:['subsequent','timing','report'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'ASEV03',topic:'監査基準',major:'第4章 監査報告論',middle:'後発事象',micro:'財務諸表公表後の事後判明事実',timing:'財務諸表公表後',phase:'報告後',principle:'財務諸表公表後も新事実を探索する義務はないが、監査報告日に知っていれば監査報告書を修正した可能性のある事実を知った場合は、経営者等と協議し必要な対応を検討する。',traps:['財務諸表公表後に判明した事実は、どのような内容でも監査人は一切対応しない。'],trapReasons:['公表後の対応可能性を否定'],combine:['subsequent','timing','report'],source:AUDIT_SOURCE_V22.T2}),
+// 不正・違法行為・コミュニケーション・関連当事者
+ aRule({id:'AFRD01',topic:'不正リスク対応',major:'第6章 その他Ⅰ',middle:'不正',micro:'不正防止発見の第一義的責任',actor:'経営者及び監査役等',principle:'不正の防止及び発見に対する第一義的責任は経営者及び監査役等にある。',traps:['不正の防止及び発見に対する第一義的責任は外部監査人にある。'],trapReasons:['不正対応における責任主体を逆転'],combine:['fraud','responsibility'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AFRD02',topic:'不正リスク対応',major:'第6章 その他Ⅰ',middle:'不正',micro:'不正による虚偽表示リスク',phase:'リスク評価',principle:'監査人は、職業的懐疑心を保持し、不正による重要な虚偽表示リスクを識別・評価し、それに対応する監査手続を実施する。',traps:['誤謬による虚偽表示だけを検討すればよく、不正リスクは監査対象外である。'],trapReasons:['監査目的から不正を除外'],combine:['fraud','risk','skepticism'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AFRD03',topic:'不正リスク対応',major:'第6章 その他Ⅰ',middle:'不正',micro:'経営者による内部統制の無効化',phase:'リスク対応',principle:'経営者による内部統制の無効化にはすべての企業で不正リスクが存在するため、仕訳テスト等の所定の対応を行う。',traps:['内部統制が有効と評価されていれば、経営者による内部統制の無効化リスクへの対応は不要である。'],trapReasons:['経営者overrideの特性を無視'],combine:['fraud','control','procedure'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AFRD04',topic:'不正リスク対応',major:'第6章 その他Ⅰ',middle:'不正',micro:'収益認識に関する不正リスク',phase:'リスク評価',principle:'収益認識には不正リスクが存在するとの推定を前提に検討し、その推定を反証した場合には理由を文書化する。',traps:['収益認識に不正リスクを推定する必要はなく、監査人が任意に検討すればよい。'],trapReasons:['収益認識リスクの推定を見落とす'],combine:['fraud','revenue','risk'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AFRD05',topic:'不正リスク対応',major:'第6章 その他Ⅰ',middle:'不正',micro:'不正識別時のコミュニケーション',phase:'リスク対応・報告',principle:'不正又は不正の疑いを識別した場合、関係者の職位や内容に応じて適切な経営者又は監査役等へ適時にコミュニケーションを行う。',traps:['不正の疑いは監査報告書で最終的に報告すれば足り、監査役等への適時なコミュニケーションは不要である。'],trapReasons:['監査中のコミュニケーション責任を無視'],combine:['fraud','communication'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'ALAW01',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'法令違反',micro:'法令違反への対応',phase:'リスク評価・対応',principle:'監査人は、財務諸表に重要な影響を及ぼす法令違反の可能性を考慮し、識別又は疑いがある場合には内容を理解して財務諸表への影響を評価する。',traps:['法令違反は法律専門家の領域なので、財務諸表に重要な影響があっても監査人は考慮しない。'],trapReasons:['財務諸表への影響と監査責任を切り離す'],combine:['law','risk','communication'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'ACOM01',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'監査役等とのコミュニケーション',micro:'コミュニケーションの目的',actor:'監査人',target:'監査役等',phase:'監査全般',principle:'監査人は、監査の計画した範囲・時期、監査上の重要な発見事項、監査人の独立性等について監査役等と適切にコミュニケーションを行う。',traps:['監査役等とのコミュニケーションは監査終了後の監査意見だけに限られる。'],trapReasons:['双方向コミュニケーションの範囲を過小評価'],combine:['communication','kam','quality'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'ACOM02',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'内部統制の不備',micro:'重要な不備のコミュニケーション',phase:'監査実施',principle:'監査人は監査中に識別した内部統制の重要な不備を、適切な責任者及び監査役等に適時にコミュニケーションする。',traps:['内部統制の重要な不備は財務諸表監査の対象外なので、監査役等へ伝達しない。'],trapReasons:['内部統制監査との区別をコミュニケーション不要と誤解'],combine:['communication','control'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'ARPT01',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'関連当事者',micro:'関連当事者関係・取引',phase:'リスク評価・対応',principle:'監査人は関連当事者関係及び取引を理解し、通常の取引過程から外れる重要な関連当事者取引などに伴う重要な虚偽表示リスクへ対応する。',traps:['関連当事者取引は当事者間の合意であるため、通常取引と同じ扱いで追加的な検討は不要である。'],trapReasons:['関連当事者取引特有のリスクを無視'],combine:['relatedparty','risk','fraud'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'ARPT02',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'関連当事者',micro:'独立第三者間取引と同等との主張',phase:'リスク対応',principle:'関連当事者取引が独立第三者間取引と同等の条件で実施されたとの経営者の主張を監査する場合、その主張を裏付ける十分かつ適切な監査証拠を入手する。',traps:['経営者が独立第三者間取引と同等と説明すれば、その主張を監査証拠なしに受け入れる。'],trapReasons:['経営者の説明を証拠で裏付けない'],combine:['relatedparty','evidence','skepticism'],source:AUDIT_SOURCE_V22.T2}),
+// 他者の作業・初年度
+ aRule({id:'AGRP01',topic:'監査基準',major:'第5章 他者の作業',middle:'グループ監査',micro:'グループ監査責任者の責任',actor:'グループ監査責任者',target:'グループ財務諸表',principle:'グループ監査責任者はグループ監査意見に対して責任を負い、構成単位監査人を利用してもその責任は軽減されない。',traps:['構成単位監査人を利用した範囲については、グループ監査責任者の責任は構成単位監査人へ移転する。'],trapReasons:['他者利用と最終責任の移転を混同'],combine:['group','responsibility','evidence'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AGRP02',topic:'監査基準',major:'第5章 他者の作業',middle:'グループ監査',micro:'構成単位監査人の利用',phase:'計画・リスク対応',principle:'構成単位監査人を利用する場合、グループ監査チームはその適格性・独立性等を理解し、構成単位の作業に関与してグループ監査に必要な十分かつ適切な監査証拠を得る。',traps:['構成単位監査人が監査報告書を発行していれば、グループ監査チームはその作業に一切関与しなくてよい。'],trapReasons:['構成単位監査人の作業を無条件に受入れ'],combine:['group','evidence','quality'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AGRP03',topic:'監査基準',major:'第5章 他者の作業',middle:'専門家の業務の利用',micro:'監査人の利用する専門家',phase:'計画・リスク対応',principle:'会計・監査以外の専門分野の専門家の業務を利用する場合、監査人は専門家の適性・能力・客観性等を評価し、その業務の適切性を評価する。',traps:['専門家の業務を利用した事項については、監査人はその結果を評価せず専門家の結論をそのまま採用する。'],trapReasons:['専門家利用と監査人責任の放棄を混同'],combine:['expert','evidence','responsibility'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AGRP04',topic:'監査基準',major:'第5章 他者の作業',middle:'内部監査人の作業',micro:'内部監査人の作業の利用',phase:'計画・リスク対応',principle:'内部監査人の作業を利用する場合、監査人は内部監査機能の客観性、能力、体系的・規律あるアプローチ等を評価する。',traps:['内部監査部門が存在すれば、その作業は評価せず外部監査の証拠として利用できる。'],trapReasons:['内部監査の組織内立場と客観性評価を無視'],combine:['internalaudit','evidence'],source:AUDIT_SOURCE_V22.T2}),
+ aRule({id:'AINI01',topic:'監査基準',major:'第12章 その他Ⅱ',middle:'初年度監査',micro:'期首残高',timing:'初年度監査',phase:'計画・リスク対応',principle:'初年度監査では、期首残高に当期財務諸表へ重要な影響を与える虚偽表示が含まれていないこと等について十分かつ適切な監査証拠を入手する。',traps:['初年度監査では当期取引だけを監査すればよく、期首残高は前任監査人の責任なので検討不要である。'],trapReasons:['期首残高の当期影響を無視'],combine:['initial','evidence','timing'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AINI02',topic:'監査基準',major:'第6章 その他Ⅰ',middle:'監査人の交代',micro:'前任監査人とのコミュニケーション',timing:'監査契約の受嘱前後',phase:'契約・計画',principle:'監査人の交代に際しては、関係する倫理・守秘義務等に留意しつつ前任監査人との適切なコミュニケーションを行い、監査受嘱・計画に必要な情報を得る。',traps:['前任監査人とのコミュニケーションは独立性を損なうため禁止される。'],trapReasons:['監査人交代時の情報引継ぎの趣旨を逆転'],combine:['initial','communication','quality'],source:AUDIT_SOURCE_V22.T2}),
+// 品質管理・倫理・独立性
+ aRule({id:'AQLT01',topic:'品質管理',major:'第2章 監査主体論',middle:'品質管理',micro:'監査事務所の品質管理',actor:'監査事務所',principle:'監査事務所は、監査業務の品質を合理的に確保するための品質管理システムを整備・運用する。',traps:['監査業務の品質は個々の業務執行社員だけの責任であり、監査事務所としての品質管理は不要である。'],trapReasons:['事務所レベルと業務レベルの品質管理を混同'],combine:['quality','ethics'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AQLT02',topic:'品質管理',major:'第2章 監査主体論',middle:'品質管理',micro:'監査業務レベルの品質',actor:'監査責任者',principle:'監査責任者は、担当する監査業務の全体的な品質に対して責任を負う。',traps:['監査チームの各メンバーに作業を分担すれば、監査責任者は業務全体の品質責任を負わない。'],trapReasons:['作業分担と最終責任の混同'],combine:['quality','responsibility'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AQLT03',topic:'品質管理',major:'第2章 監査主体論',middle:'品質管理',micro:'審査',phase:'監査報告前',principle:'審査が要求される監査業務では、監査報告書の日付以前に必要な審査を完了する。',traps:['審査が必要な監査でも、監査報告書発行後に審査すれば足りる。'],trapReasons:['審査の時点を取り違える'],combine:['quality','timing','report'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AETH01',topic:'公認会計士監査の基礎',major:'第8章 監査制度論',middle:'職業倫理',micro:'独立性',actor:'監査人',principle:'監査人は監査業務において精神的独立性を保持し、外観的にも独立性を損なう状況を避ける必要がある。',traps:['監査人本人が主観的に公正であれば、外観上の独立性は問題にならない。'],trapReasons:['精神的独立性と外観的独立性の片方だけを重視'],combine:['ethics','independence','quality'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AETH02',topic:'公認会計士監査の基礎',major:'第8章 監査制度論',middle:'職業倫理',micro:'独立性が確保できない場合',actor:'監査人',applicability:'独立性への阻害要因をセーフガード等によって許容可能な水準まで軽減できない場合',principle:'独立性を確保できない場合、監査業務を引き受け又は継続することはできない。',traps:['独立性が損なわれても監査手続を増やせば監査を継続できる。'],trapReasons:['主体条件の欠缺を監査手続で補えると誤認'],combine:['ethics','independence','acceptance'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AETH03',topic:'品質管理',major:'第2章 監査主体論',middle:'監査契約',micro:'契約の受嘱・継続',phase:'契約',principle:'監査事務所は、依頼人の誠実性、業務を実施する能力・時間・資源、職業倫理上の要求事項を満たせるか等を検討して契約の受嘱・継続を判断する。',traps:['監査報酬を支払える顧客であれば、独立性や業務遂行能力を検討せず受嘱できる。'],trapReasons:['受嘱・継続の品質管理要件を無視'],combine:['quality','acceptance','ethics'],source:AUDIT_SOURCE_V22.T1}),
+// 保証業務・期中レビュー・中間監査
+ aRule({id:'AASR01',topic:'保証業務',major:'第7章 保証業務',middle:'保証業務の概念的枠組み',micro:'合理的保証業務',principle:'合理的保証業務では、保証業務リスクを合理的に低い水準に抑え、結論を積極的形式で表明する。',traps:['合理的保証業務では保証業務リスクをゼロにし、絶対的保証を提供する。'],trapReasons:['合理的保証と絶対的保証の混同'],combine:['assurance','risk'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AASR02',topic:'保証業務',major:'第7章 保証業務',middle:'保証業務の概念的枠組み',micro:'限定的保証業務',principle:'限定的保証業務では、合理的保証業務より保証業務リスクを高い水準に設定でき、通常は消極的形式で結論を表明する。',traps:['限定的保証業務は合理的保証業務より高い保証水準を提供する。'],trapReasons:['合理的保証と限定的保証の保証水準を逆転'],combine:['assurance','review'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AASR03',topic:'保証業務',major:'第7章 保証業務',middle:'保証業務の要素',micro:'三者関係',principle:'保証業務は、業務実施者、主題に責任を負う者、想定利用者という三者関係を含む。',traps:['保証業務では業務実施者と主題に責任を負う者が必ず同一人である。'],trapReasons:['保証業務の三者関係を崩す'],combine:['assurance','responsibility'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AREV01',topic:'中間監査・期中レビュー',major:'第7章 保証業務',middle:'期中レビュー制度',micro:'期中レビューの保証水準',phase:'期中レビュー',principle:'期中レビューは年度の財務諸表監査より低い保証水準の限定的保証業務である。',traps:['期中レビューは年度監査と同一の合理的保証を提供する。'],trapReasons:['レビューと監査の保証水準を混同'],combine:['review','assurance'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AREV02',topic:'中間監査・期中レビュー',major:'第7章 保証業務',middle:'期中レビュー制度',micro:'期中レビュー手続',phase:'期中レビュー',procedures:['質問','分析的手続','その他の期中レビュー手続'],principle:'期中レビューは質問及び分析的手続を基本として必要なその他のレビュー手続を行う。',traps:['期中レビューでは年度監査と同じ範囲の実査・確認等の実証手続を必ず実施する。'],trapReasons:['限定的保証と合理的保証の手続範囲を混同'],combine:['review','procedure','assurance'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AREV03',topic:'中間監査・期中レビュー',major:'第7章 保証業務',middle:'期中レビュー制度',micro:'年度監査との関係',phase:'期中レビュー',principle:'期中レビューは年度の財務諸表監査を前提として実施され、年度監査で得た企業・内部統制の理解等を活用し、レビュー結果を年度監査計画にも反映する。',traps:['期中レビューと年度監査は相互に独立しており、得た理解や結果を相互利用しない。'],trapReasons:['年度監査との連携を無視'],combine:['review','planning','control'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AREV04',topic:'中間監査・期中レビュー',major:'第7章 保証業務',middle:'期中レビュー制度',micro:'期中レビューの重要性',phase:'期中レビュー計画',principle:'年度監査の重要性の基準値を超える期中レビューの重要性を安易に設定すると年度監査で重要となる虚偽表示を見逃す可能性があるため、年度監査との関係を考慮する。',traps:['中間期間の数値が小さいので、期中レビューの重要性は年度監査より必ず大きく設定する。'],trapReasons:['期中レビュー重要性の考え方を逆転'],combine:['review','materiality'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AMID01',topic:'中間監査・期中レビュー',major:'第12章 その他Ⅱ',middle:'中間監査',micro:'中間監査の位置付け',phase:'中間監査',principle:'中間監査は期中レビューとは異なり、中間財務諸表に対して監査基準とは別に中間監査基準に基づく監査を行う制度である。',traps:['中間監査と期中レビューは名称だけが違い、保証水準・適用基準・結論形式も完全に同一である。'],trapReasons:['中間監査とレビューを混同'],combine:['interim','review','assurance'],source:AUDIT_SOURCE_V22.T3}),
+// 内部統制監査
+ aRule({id:'AICR01',topic:'内部統制監査',major:'第7章 保証業務',middle:'内部統制報告制度',micro:'経営者の評価責任',actor:'経営者',target:'財務報告に係る内部統制',principle:'経営者は財務報告に係る内部統制を整備・運用し、その有効性を評価して内部統制報告書を作成する。',traps:['内部統制報告書は監査人が作成し、経営者はそれを承認するだけである。'],trapReasons:['経営者評価と監査人監査の責任を逆転'],combine:['ic-audit','responsibility'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AICR02',topic:'内部統制監査',major:'第7章 保証業務',middle:'内部統制監査',micro:'内部統制監査の目的',actor:'監査人',target:'内部統制報告書',principle:'内部統制監査の目的は、経営者が作成した内部統制報告書が内部統制の評価基準に準拠し、適正に表示されているかについて意見を表明することである。',traps:['内部統制監査では監査人が経営者に代わって内部統制の有効性を直接評価し、その評価結果だけを報告する。'],trapReasons:['経営者評価に対する監査という構造を無視'],combine:['ic-audit','responsibility','report'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AICR03',topic:'内部統制監査',major:'第7章 保証業務',middle:'内部統制監査',micro:'財務諸表監査との一体的実施',phase:'計画・実施',principle:'内部統制監査と財務諸表監査は、同一の監査人が一体的に実施し、監査証拠を相互に利用して効果的かつ効率的に行う。',traps:['内部統制監査と財務諸表監査では同じ監査証拠を利用してはならない。'],trapReasons:['一体的実施の趣旨を逆転'],combine:['ic-audit','control','evidence'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AICR04',topic:'内部統制監査',major:'第7章 保証業務',middle:'内部統制監査',micro:'開示すべき重要な不備',phase:'意見形成',principle:'評価基準日時点に開示すべき重要な不備が存在する場合、経営者は内部統制が有効でない旨を内部統制報告書に記載する。',traps:['開示すべき重要な不備が存在しても、財務諸表に虚偽表示が発生していなければ内部統制は必ず有効と評価する。'],trapReasons:['統制不備と実際の虚偽表示発生を同一視'],combine:['ic-audit','control','report'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AICR05',topic:'内部統制監査',major:'第7章 保証業務',middle:'内部統制監査',micro:'内部統制監査と財務諸表監査の相違',principle:'財務諸表監査では内部統制の有効性への依拠が不要な場合もあるが、内部統制監査では内部統制報告書に対する意見形成のため内部統制の有効性評価が中心となる。',traps:['財務諸表監査でも内部統制監査でも、すべての内部統制の有効性を必ず同じ範囲でテストする。'],trapReasons:['両監査の目的の違いを無視'],combine:['ic-audit','control','testcontrol'],source:AUDIT_SOURCE_V22.T3}),
+// 追加の実施・報告論点
+ aRule({id:'ADOC01',topic:'監査基準',major:'第3章 監査実施論',middle:'監査調書',micro:'監査調書の目的',phase:'監査全般',principle:'監査調書は、監査人が監査基準に準拠して監査を実施したこと及び監査意見の基礎となる十分かつ適切な監査証拠を得たことを示す記録となる。',traps:['監査調書は被監査会社の所有物であり、会社の承認なく監査人が保管してはならない。'],trapReasons:['監査調書の作成・管理主体を混同'],combine:['documentation','evidence','quality'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ADOC02',topic:'監査基準',major:'第3章 監査実施論',middle:'監査調書',micro:'監査調書の適時作成',phase:'監査全般',principle:'監査調書は監査作業に並行して適時に作成し、最終的な監査ファイルの取りまとめを所定の期間内に行う。',traps:['監査調書は監査報告書発行後に記憶を頼りにまとめて作成すればよい。'],trapReasons:['適時な文書化を軽視'],combine:['documentation','quality','timing'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AMIS01',topic:'監査基準',major:'第3章 監査実施論',middle:'識別した虚偽表示の評価',micro:'未修正の虚偽表示',phase:'監査終盤',principle:'監査人は識別した虚偽表示を集計し、経営者に修正を求め、未修正の虚偽表示が個別又は集計して重要かを評価する。',traps:['個々の虚偽表示が重要性を下回れば、集計した影響を評価する必要はない。'],trapReasons:['個別重要性だけを見て累積影響を無視'],combine:['misstatement','materiality','report'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'AMIS02',topic:'監査基準',major:'第3章 監査実施論',middle:'識別した虚偽表示の評価',micro:'虚偽表示の質的重要性',phase:'監査終盤',principle:'虚偽表示の重要性は金額の大きさだけでなく、その性質や発生状況など質的要因も考慮して判断する。',traps:['重要性は金額だけで機械的に決まり、質的要因は考慮しない。'],trapReasons:['重要性の質的側面を無視'],combine:['misstatement','materiality'],source:AUDIT_SOURCE_V22.T1}),
+ aRule({id:'ASVC01',topic:'監査基準',major:'第12章 その他Ⅱ',middle:'受託会社の利用',micro:'サービス組織',phase:'リスク評価',principle:'企業が財務報告に関連するサービス組織を利用している場合、監査人は当該サービスが企業の情報システム及び内部統制に与える影響を理解し、必要な対応を行う。',traps:['会計処理を外部サービス組織へ委託していれば、その部分は企業の監査範囲から除外される。'],trapReasons:['外部委託と経営者責任・監査範囲を混同'],combine:['serviceorg','control','risk'],source:AUDIT_SOURCE_V22.T3}),
+ aRule({id:'AENG01',topic:'品質管理',major:'第12章 その他Ⅱ',middle:'監査契約',micro:'監査契約条件の合意',phase:'契約',principle:'監査人は監査開始に先立ち、監査の目的・範囲、監査人と経営者の責任など監査契約条件について経営者等と合意する。',traps:['監査契約条件は監査人内部の事項なので経営者と合意する必要はない。'],trapReasons:['監査契約の前提条件と責任分担を無視'],combine:['acceptance','responsibility','quality'],source:AUDIT_SOURCE_V22.T3})
+];
+const AUDIT_RULE_INDEX_V22=Object.fromEntries(AUDIT_RULES_V22.map(r=>[r.id,r]));
+function aSem(parts){return parts.flat().map(x=>String(x??'').replace(/\s+/g,' ').trim()).join('|')}
+function aHistory(){return new Set((state.generated?.auditSignatures||[]).slice(-1800))}
+function aTopicKeys(keys){return keys.filter(k=>k.startsWith('A|'))}
+function aAllowedRules(topicKeys){const ts=new Set(aTopicKeys(topicKeys).map(k=>k.slice(2)));return AUDIT_RULES_V22.filter(r=>ts.has(r.topic))}
+function aRuleScore(r){const cm=state.generated?.conceptUse?.[r.id]||{n:0,last:-1},now=Number(state.generated?.seq||0),recent=cm.last>=0?Math.max(0,100-(now-cm.last)*6):0;return cm.n*14+recent+Math.random()*5}
+function aPickRules(topicKeys,n=1,filter=null){let pool=aAllowedRules(topicKeys).filter(r=>!filter||filter(r));pool=pool.map(r=>({r,score:aRuleScore(r)})).sort((a,b)=>a.score-b.score);const out=[];for(const x of pool){if(!out.includes(x.r))out.push(x.r);if(out.length>=n)break}return out}
+function aRuleSignature(r,format,variant='',compound=[]){return aSem(['A2.2',r.major,r.micro,r.applicability,r.actor,r.timing,(r.exceptions||[]).join('~'),r.conclusion,format,variant,...compound])}
+function aTrueItem(r,variant='base'){
+  const q=lexicalVariant(r.principle),vk=aRuleSignature(r,'item-true',variant);
+  return {id:r.id,q,a:true,ex:`正しい。${r.conclusion}${r.evidence?` ${r.evidence}`:''}`,key:r.judgment,general:`${r.major} ＞ ${r.middle} ＞ ${r.micro}：条件・主体・時点を固定して判断する。`,variantKey:vk,ruleId:r.id,source:r.source};
+}
+function aFalseItem(r,idx=null){
+  const traps=r.traps||[];if(!traps.length)return null;const i=idx==null?Math.floor(Math.random()*traps.length):idx%traps.length,q=cleanStatement(traps[i]);
+  return {id:r.id,q,a:false,ex:`誤り。${r.principle}`,key:r.judgment,general:`典型誤答：${r.trapReasons[i]||r.trapReasons[0]||'条件又は主体の取り違え'}。`,variantKey:aRuleSignature(r,'item-false',i),ruleId:r.id,source:r.source,trapReason:r.trapReasons[i]||r.trapReasons[0]||''};
+}
+function aMakeSingle(topicKeys){const r=aPickRules(topicKeys,1,r=>(r.traps||[]).length)[0];if(!r)return null;const item=Math.random()<.5?aTrueItem(r):aFalseItem(r);return {kind:'single',format:'single',s:'A',topics:[r.topic],prompt:wrapperForSingle(),items:[item],answer:item.a,displayAnswer:item.a?'○':'×',ruleIds:[r.id],semanticSignature:aRuleSignature(r,'single',item.a?'T':item.trapReason)}}
+function aMakeCount(topicKeys,n=3,countWrong=false){const rs=aPickRules(topicKeys,Math.max(n,4),r=>(r.traps||[]).length).slice(0,n);if(rs.length<n)return aMakeSingle(topicKeys);const bits=rs.map((_,i)=>((i+Math.floor(Math.random()*2))%2)===0);if(bits.every(Boolean))bits[0]=false;if(bits.every(x=>!x))bits[0]=true;const items=rs.map((r,i)=>bits[i]?aTrueItem(r,`c${i}`):aFalseItem(r,i));const answer=countWrong?items.filter(x=>!x.a).length:items.filter(x=>x.a).length;return {kind:'count',format:countWrong?`wrongCount${n}`:`count${n}`,s:'A',topics:[...new Set(rs.map(r=>r.topic))],prompt:`次の${n}つの記述のうち、${countWrong?'誤っている':'正しい'}ものはいくつあるか。`,items,answer,displayAnswer:`${answer}個`,ruleIds:rs.map(r=>r.id),semanticSignature:aSem(['A2.2',countWrong?'wrong-count':'right-count',n,...items.map(x=>x.variantKey).sort()])}}
+function aMakeChoice(topicKeys,wantTrue=true){const rs=aPickRules(topicKeys,8,r=>(r.traps||[]).length);if(rs.length<4)return aMakeCount(topicKeys,3,false);const pick=rs.slice(0,4);let items=pick.map((r,i)=>i===0?(wantTrue?aTrueItem(r,'choice'):aFalseItem(r,i)):(wantTrue?aFalseItem(r,i):aTrueItem(r,'choice')));items=shuffle(items);const valid=items.filter(x=>x.a===wantTrue);if(valid.length!==1)return null;const answer=items.findIndex(x=>x.a===wantTrue);return {kind:'choice',format:wantTrue?'best4':'wrong4',s:'A',topics:[...new Set(pick.map(r=>r.topic))],prompt:wantTrue?'次の記述のうち、正しいものを1つ選んでください。':'次の記述のうち、誤っているものを1つ選んでください。',items,answer,displayAnswer:String.fromCharCode(65+answer),ruleIds:pick.map(r=>r.id),semanticSignature:aSem(['A2.2',wantTrue?'best4':'wrong4',...items.map(x=>x.variantKey).sort()])}}
+function aChoiceFromTexts(topic,format,prompt,correct,wrongs,ruleIds,trace,signatureParts){let raw=[{t:correct,ok:true},...wrongs.slice(0,3).map(t=>({t,ok:false}))];raw=shuffle(raw);const items=raw.map((x,i)=>({id:ruleIds[0],q:cleanStatement(x.t),a:x.ok,ex:x.ok?`正しい。${trace}`:`誤り。${trace}`,key:trace,general:'条件→適用ルール→結論の順に追跡する。',variantKey:aSem(['A2.2',format,...signatureParts,i,x.ok?'T':'F'])}));const answer=items.findIndex(x=>x.a);if(answer<0||items.filter(x=>x.a).length!==1)return null;return {kind:'choice',format,s:'A',topics:[topic],prompt,items,answer,displayAnswer:String.fromCharCode(65+answer),ruleIds,semanticSignature:aSem(['A2.2',format,...signatureParts])}}
+function aReportConclusion(f){
+  if(f.goingConcernBaseInappropriate)return '不適正意見';
+  if(f.gcUncertainty&&f.gcDisclosureAdequate&&!f.otherIssue)return '無限定適正意見＋「継続企業の前提に関する重要な不確実性」区分';
+  if(f.corrected&&!f.otherIssue)return '無限定適正意見';
+  if(f.basis==='misstatement')return !f.material?'無限定適正意見':(f.pervasive?'不適正意見':'限定付適正意見');
+  if(f.basis==='scope')return !f.material?'無限定適正意見':(f.pervasive?'意見不表明':'限定付適正意見');
+  return '無限定適正意見';
+}
+function aMakeReport(topicKeys){if(!aTopicKeys(topicKeys).includes('A|監査基準'))return aMakeChoice(topicKeys,true);const basis=rand(['misstatement','scope']),material=Math.random()<.75,pervasive=material&&Math.random()<.45,corrected=basis==='misstatement'&&Math.random()<.2;const f={basis,material,pervasive,corrected},c=aReportConclusion(f);const facts=basis==='misstatement'?`監査人は${material?'重要な':'重要でない'}虚偽表示を識別し、${corrected?'経営者はこれを適切に修正した':`経営者は修正せず、その影響は${pervasive?'広範である':'広範ではない'}`}。`:`監査人は十分かつ適切な監査証拠を入手できず、未発見の虚偽表示の潜在的影響は${material?'重要':'重要でない'}${material?`かつ${pervasive?'広範である':'広範ではない'}`:''}。`;
+  const trace=`判断軸は「${basis==='misstatement'?'既知の虚偽表示':'監査証拠を入手できない範囲制約'}」→重要性→広範性。結論は${c}。`;
+  const opts=['無限定適正意見','限定付適正意見','不適正意見','意見不表明'].filter(x=>x!==c);return aChoiceFromTexts('監査基準','report',`次の事例における監査意見として最も適切なものを1つ選んでください。\n${facts}`,c,opts,[basis==='misstatement'?(pervasive?'AREP03':'AREP02'):(pervasive?'AREP05':'AREP04')],trace,[basis,material,pervasive,corrected,c]);
+}
+const AUDIT_CONDITION_BUILDERS_V22=[
+ function(keys){if(!keys.includes('A|監査基準'))return null;return {topic:'監査基準',rules:['AREP02','AREP03'],tag:'report-misstatement-pervasive',before:'重要な虚偽表示があり、影響は広範ではない。',after:'虚偽表示の金額・内容は同じだが、影響が広範となった。',old:'限定付適正意見',now:'不適正意見',impact:'既知の重要な虚偽表示について「広範性」が変化した。'}} ,
+ function(keys){if(!keys.includes('A|監査基準'))return null;return {topic:'監査基準',rules:['AREP04','AREP05'],tag:'report-scope-pervasive',before:'十分かつ適切な監査証拠を入手できず、潜在的影響は重要だが広範ではない。',after:'証拠不足は同じだが、潜在的影響が広範となった。',old:'限定付適正意見',now:'意見不表明',impact:'範囲制約について「広範性」が変化した。'}} ,
+ function(keys){if(!keys.includes('A|監査基準'))return null;return {topic:'監査基準',rules:['AREP02','AREP07'],tag:'misstatement-correction',before:'重要だが広範でない虚偽表示を経営者が修正しない。',after:'同じ虚偽表示を経営者が適切に修正した。',old:'限定付適正意見',now:'他に問題がなければ無限定適正意見',impact:'変更された条件は「経営者が修正したか」。'}} ,
+ function(keys){if(!keys.includes('A|監査基準'))return null;return {topic:'監査基準',rules:['AGC02','AGC03'],tag:'gc-disclosure',before:'継続企業の前提に関する重要な不確実性があり、必要な開示は適切である。',after:'重要な不確実性は同じだが、必要な開示が不十分となった。',old:'無限定適正意見＋専用区分',now:'重要性・広範性に応じ限定付適正意見又は不適正意見',impact:'変更された条件は「開示の適切性」。専用区分は開示不備を治癒しない。'}} ,
+ function(keys){if(!keys.includes('A|監査基準'))return null;return {topic:'監査基準',rules:['ARSK12','ARSK14'],tag:'control-reliance',before:'統制に依拠せず、実証手続のみで十分な証拠を得られる。',after:'同じ統制について運用有効性に依拠して実証手続を設計する。',old:'運用評価手続は必須ではない',now:'関連する統制の運用評価手続が必要',impact:'変更された条件は「統制に依拠するか」。'}} ,
+ function(keys){if(!keys.includes('A|監査基準'))return null;return {topic:'監査基準',rules:['ARSK13','ARSK14'],tag:'substantive-alone',before:'実証手続のみで十分かつ適切な監査証拠を入手できる。',after:'取引が高度に自動化され、実証手続のみでは十分な証拠を入手できない。',old:'統制に依拠しないなら運用評価手続は必須ではない',now:'関連する統制の運用評価手続が必要',impact:'変更された条件は「実証手続のみで十分な証拠を入手できるか」。'}} ,
+ function(keys){if(!keys.includes('A|監査基準'))return null;return {topic:'監査基準',rules:['ASEV01','ASEV02'],tag:'subsequent-timing',before:'事実が監査報告日前に発生・判明した。',after:'同じ内容の事実を監査報告日後に初めて知った。',old:'監査報告日までの後発事象手続の対象として検討する',now:'積極的探索義務はないが、知った場合は必要な対応を検討する',impact:'変更された条件は「監査報告日前か後か」。'}} ,
+ function(keys){if(!keys.includes('A|監査基準'))return null;return {topic:'監査基準',rules:['AGRP01','AGRP02'],tag:'group-component',before:'構成単位監査人を利用しない。',after:'重要な構成単位について構成単位監査人を利用する。',old:'グループ監査チームが必要な証拠を直接入手する',now:'構成単位監査人の適格性等を理解し作業へ関与するが、グループ監査意見の責任は移転しない',impact:'変更された条件は「構成単位監査人の利用」。責任主体は変わらない。'}} ,
+ function(keys){if(!keys.includes('A|公認会計士監査の基礎'))return null;return {topic:'公認会計士監査の基礎',rules:['AETH02'],tag:'independence',before:'独立性への阻害要因を許容可能な水準まで軽減できる。',after:'阻害要因を許容可能な水準まで軽減できず、独立性を確保できない。',old:'他の受嘱条件を満たせば監査を継続し得る',now:'監査業務を引き受け又は継続できない',impact:'変更された条件は「独立性を確保できるか」。手続追加では補えない。'}} ,
+ function(keys){if(!keys.includes('A|監査基準'))return null;return {topic:'監査基準',rules:['ARSK06','AEVD03'],tag:'risk-evidence',before:'重要な虚偽表示リスクを相対的に低く評価した。',after:'同じ主張について重要な虚偽表示リスクを高く評価した。',old:'相対的に高い発見リスクを許容し得る',now:'発見リスクを低くし、より説得力のある証拠・強い手続が必要',impact:'変更された条件は「評価した重要な虚偽表示リスク」。'}} ,
+ function(keys){if(!keys.includes('A|保証業務'))return null;return {topic:'保証業務',rules:['AASR01','AASR02'],tag:'assurance-level',before:'限定的保証業務として実施する。',after:'同じ主題を合理的保証業務として実施する。',old:'合理的保証より低い保証水準・通常は消極的形式',now:'保証業務リスクを合理的に低い水準まで抑え、積極的形式で結論',impact:'変更された条件は「要求される保証水準」。'}}
+];
+function aMakeCondition(topicKeys){const xs=shuffle(AUDIT_CONDITION_BUILDERS_V22.map(fn=>fn(aTopicKeys(topicKeys))).filter(Boolean));if(!xs.length)return aMakeChoice(topicKeys,true);const x=xs[0],correct=`変更前：${x.old}。変更後：${x.now}。`;const wrong=[`変更前後とも結論は「${x.old}」のままで変わらない。`,`変更後は必ず「無限定適正意見」となる。`,`変更後は監査人の判断を行わず、経営者の判断に従う。`];const trace=`${x.impact} 変更前の結論＝${x.old}、変更後の結論＝${x.now}。`;const q=aChoiceFromTexts(x.topic,'condition',`条件を1つだけ変更した。結論の変化として最も適切なものを1つ選んでください。\n【変更前】${x.before}\n【変更後】${x.after}`,correct,wrong,x.rules,trace,[x.tag,x.before,x.after,x.old,x.now]);if(q)q.conditionTrace={before:x.before,after:x.after,affectedRule:x.rules,oldConclusion:x.old,newConclusion:x.now};return q}
+const AUDIT_PROCEDURE_SCENARIOS_V22=[
+ {topic:'監査基準',id:'P-AR',rules:['AEVD10'],facts:'売掛金の実在性について、得意先という企業外部の第三者から直接証拠を得たい。',correct:'得意先に対する外部確認',wrong:['売掛金元帳の足し算の再計算','経営者への質問だけ','固定資産の実査'],why:'売掛金の実在性に対し独立した外部証拠を直接得る確認が適合する。'},
+ {topic:'監査基準',id:'P-INV',rules:['AEVD07'],facts:'期末に倉庫にある棚卸資産の現物が実際に存在するかを直接確かめたい。',correct:'棚卸資産の実査・実地棚卸への立会を通じた観察',wrong:['経営者確認書だけ','銀行への確認','売上総利益率の分析だけ'],why:'有形資産の実在性には物理的検査や棚卸立会が直接的である。'},
+ {topic:'監査基準',id:'P-CALC',rules:['AEVD08'],facts:'減価償却費の計算式に基づく数学的正確性を確かめたい。',correct:'再計算',wrong:['再実施','観察','質問だけ'],why:'数学的正確性の検証は再計算が適合する。'},
+ {topic:'監査基準',id:'P-CTRL',rules:['AEVD09','ARSK12'],facts:'企業が実施した承認統制が設計どおりに作動することを、監査人が独立にやり直して確かめたい。',correct:'再実施',wrong:['再計算だけ','消極的確認だけ','分析的手続だけ'],why:'企業の統制手続を監査人が独立してやり直すのは再実施である。'},
+ {topic:'監査基準',id:'P-ANL',rules:['AEVD12'],facts:'監査計画段階で売上高と売掛金の異常な関係を把握し、リスクの高い領域を識別したい。',correct:'分析的手続',wrong:['経営者確認書だけ','実査だけ','監査報告書の強調事項記載'],why:'計画・リスク評価段階では分析的手続が異常な関係の識別に有用である。'},
+ {topic:'監査基準',id:'P-INQ',rules:['AEVD05'],facts:'内部統制の運用有効性を評価する。担当者への質問では「常に実施している」と回答された。',correct:'質問だけで結論せず、観察・文書閲覧・再実施等の他の手続と組み合わせる',wrong:['担当者の回答をそのまま十分な証拠とする','質問をせず経営者確認書だけで代替する','統制テストを行わず必ず無限定適正意見とする'],why:'質問だけでは通常、統制の運用有効性について十分な監査証拠とならない。'}
+];
+function aMakeProcedure(topicKeys){const allowed=new Set(aTopicKeys(topicKeys).map(k=>k.slice(2))),xs=AUDIT_PROCEDURE_SCENARIOS_V22.filter(x=>allowed.has(x.topic));if(!xs.length)return aMakeChoice(topicKeys,true);const x=rand(xs);return aChoiceFromTexts(x.topic,'procedure',`次の監査目的・状況に最も適合する監査人の対応を1つ選んでください。\n${x.facts}`,x.correct,x.wrong,x.rules,x.why,[x.id,x.facts,x.correct])}
+const AUDIT_RESPONSIBILITY_SCENARIOS_V22=[
+ {topic:'公認会計士監査の基礎',id:'R-FS',rules:['AOBJ02','AOBJ04'],facts:'監査済財務諸表について、財務諸表の作成と監査意見の表明の責任を区分する。',correct:'財務諸表の作成は経営者、監査意見の表明は監査人が責任を負う',wrong:['財務諸表の作成も監査意見も監査人が責任を負う','監査済であれば財務諸表の作成責任は監査人へ移る','監査意見は経営者が表明し、監査人は内部統制を作成する'],why:'作成責任と意見表明責任は分離される。'},
+ {topic:'不正リスク対応',id:'R-FRAUD',rules:['AFRD01','AFRD02'],facts:'財務諸表監査における不正の防止・発見と監査人の役割を区分する。',correct:'不正防止・発見の第一義的責任は経営者及び監査役等にあり、監査人は不正による重要な虚偽表示リスクを考慮して監査する',wrong:['不正防止の第一義的責任は外部監査人にある','監査人は不正を考慮する必要がない','不正防止の責任は構成単位監査人だけにある'],why:'経営者側の第一義的責任と監査人の合理的保証責任を区分する。'},
+ {topic:'内部統制監査',id:'R-IC',rules:['AICR01','AICR02'],facts:'内部統制報告制度における経営者と監査人の責任を区分する。',correct:'経営者が内部統制を評価し内部統制報告書を作成し、監査人がその報告書に対して意見を表明する',wrong:['監査人が内部統制報告書を作成し経営者が監査する','監査人が経営者に代わり内部統制を整備・運用する','経営者は内部統制の有効性を評価しない'],why:'経営者評価に対する監査という二層構造である。'},
+ {topic:'監査基準',id:'R-GROUP',rules:['AGRP01'],facts:'グループ監査で構成単位監査人の作業を利用した。',correct:'グループ監査意見に対する責任はグループ監査責任者に残る',wrong:['利用した部分の責任はすべて構成単位監査人へ移る','グループ監査責任者は構成単位監査人の作業を理解しなくてよい','構成単位監査人を利用すれば十分な証拠がなくても意見を表明できる'],why:'他者の作業利用は最終的な監査責任を移転しない。'}
+];
+function aMakeResponsibility(topicKeys){const allowed=new Set(aTopicKeys(topicKeys).map(k=>k.slice(2))),xs=AUDIT_RESPONSIBILITY_SCENARIOS_V22.filter(x=>allowed.has(x.topic));if(!xs.length)return aMakeChoice(topicKeys,true);const x=rand(xs);return aChoiceFromTexts(x.topic,'responsibility',`主体と責任の判断として最も適切なものを1つ選んでください。\n${x.facts}`,x.correct,x.wrong,x.rules,x.why,[x.id,x.facts])}
+function aCompatible(a,b){if(!a||!b)return false;if((a.forbid||[]).some(x=>(b.combine||[]).includes(x))||(b.forbid||[]).some(x=>(a.combine||[]).includes(x)))return false;const A=new Set(a.combine||[]),B=new Set(b.combine||[]);if([...A].some(x=>B.has(x)))return true;const natural=[['risk','control'],['risk','procedure'],['risk','evidence'],['report','misstatement'],['report','goingconcern'],['report','subsequent'],['fraud','communication'],['fraud','risk'],['group','evidence'],['review','assurance'],['ic-audit','control'],['quality','ethics'],['responsibility','report']];return natural.some(([x,y])=>(A.has(x)&&B.has(y))||(A.has(y)&&B.has(x)))}
+function aMakeCompound(topicKeys){const all=aPickRules(topicKeys,24,r=>(r.traps||[]).length),picked=[];for(const r of all){if(!picked.length||picked.every(p=>aCompatible(p,r))){picked.push(r);if(picked.length===3)break}}if(picked.length<2)return aMakeCount(topicKeys,3,false);const items=picked.map((r,i)=>i===1?aFalseItem(r,i):aTrueItem(r,`compound${i}`)),answer=items.filter(x=>x.a).length;return {kind:'count',format:'compound',s:'A',topics:[...new Set(picked.map(r=>r.topic))],prompt:'次の複合問題について、各記述を独立に判定し、正しいものの個数を答えてください。論点間の監査判断のつながりにも注意してください。',items,answer,displayAnswer:`${answer}個`,ruleIds:picked.map(r=>r.id),semanticSignature:aSem(['A2.2','compound',...items.map(x=>x.variantKey).sort()])}}
+const AUDIT_ERROR_SCENARIOS_V22=[
+ {topic:'監査基準',id:'E-REPORT1',rules:['AREP03','AREP05'],stem:'学習者は「影響が重要かつ広範なら、原因を問わず意見不表明」と判断した。',correct:'誤り。既知の虚偽表示が重要かつ広範なら不適正意見、証拠不足の潜在的影響が重要かつ広範なら意見不表明である',wrong:['正しい。広範性だけで意見不表明に決まる','誤り。両方とも不適正意見である','誤り。両方とも限定付適正意見である'],why:'まず「虚偽表示が存在する」のか「証拠が取れない」のかを分け、その後に重要性・広範性を見る。'},
+ {topic:'監査基準',id:'E-EVID1',rules:['AEVD01','AEVD02'],stem:'学習者は「証拠を大量に集めれば適切性も自動的に高くなる」と判断した。',correct:'誤り。十分性は量、適切性は目的適合性・信頼性という質であり、量を増やしても低い質を必ず補えるわけではない',wrong:['正しい。量と質は同じ概念である','誤り。十分性が質で適切性が量である','正しい。内部証拠を大量に集めれば外部証拠より必ず強くなる'],why:'十分性と適切性は別の軸で評価する。'},
+ {topic:'監査基準',id:'E-CTRL1',rules:['ARSK12','ARSK14'],stem:'学習者は「内部統制を理解した以上、すべての統制について運用評価手続が必須」と判断した。',correct:'誤り。統制に依拠せず実証手続のみで十分な証拠を得られるなら、すべての統制の運用評価手続が必須とは限らない',wrong:['正しい。理解と運用評価は同じ手続である','正しい。財務諸表監査は内部統制監査と同じ目的である','誤り。内部統制の理解自体も不要である'],why:'内部統制の理解と、運用有効性に依拠するための統制テストを区別する。'},
+ {topic:'監査基準',id:'E-GC1',rules:['AGC02','AGC03'],stem:'学習者は「継続企業の重要な不確実性があれば、開示が適切でも必ず限定付適正意見」と判断した。',correct:'誤り。重要な不確実性があり開示が適切なら、他に問題がなければ無限定適正意見とし専用区分を設ける',wrong:['正しい。重要な不確実性の存在だけで限定付適正意見になる','誤り。必ず不適正意見となる','誤り。強調事項区分だけを記載し専用区分は使用しない'],why:'不確実性の存在と開示の適切性を分ける。'},
+ {topic:'公認会計士監査の基礎',id:'E-IND1',rules:['AETH02'],stem:'学習者は「独立性が損なわれても、監査手続を増やして監査リスクを下げれば監査を継続できる」と判断した。',correct:'誤り。独立性は監査人の主体条件であり、確保できない状態を監査手続の追加で補うことはできない',wrong:['正しい。独立性は発見リスクの一部である','正しい。監査証拠が多ければ独立性は不要である','誤り。独立性は経営者だけに要求される'],why:'独立性は手続の強弱とは別の前提条件である。'}
+];
+function aMakeErrorSpotting(topicKeys){const allowed=new Set(aTopicKeys(topicKeys).map(k=>k.slice(2))),xs=AUDIT_ERROR_SCENARIOS_V22.filter(x=>allowed.has(x.topic));if(!xs.length)return aMakeChoice(topicKeys,false);const x=rand(xs);return aChoiceFromTexts(x.topic,'journal',`次の判断過程の誤りを最も適切に指摘したものを1つ選んでください。\n${x.stem}`,x.correct,x.wrong,x.rules,x.why,[x.id,x.stem])}
+function aMakeCase(topicKeys){const choices=[()=>aMakeReport(topicKeys),()=>aMakeProcedure(topicKeys),()=>aMakeResponsibility(topicKeys),()=>aMakeCondition(topicKeys)];for(const fn of shuffle(choices)){const q=fn();if(q)return {...q,format:'case',semanticSignature:aSem(['A2.2','case',q.semanticSignature])}}return aMakeChoice(topicKeys,true)}
+function aValidate(q){if(!q||q.s!=='A'||!Array.isArray(q.items)||!q.items.length)return false;if(q.kind==='single')return typeof q.answer==='boolean'&&q.items.length===1&&q.items[0].a===q.answer;if(q.kind==='choice'){const wantFalse=q.format==='wrong4';const expected=wantFalse?false:true;return Number.isInteger(q.answer)&&q.answer>=0&&q.answer<q.items.length&&q.items.filter(x=>x.a===expected).length===1&&q.items[q.answer].a===expected;}if(q.kind==='count'){const isWrong=String(q.format).startsWith('wrongCount');const expected=isWrong?q.items.filter(x=>!x.a).length:q.items.filter(x=>x.a).length;return q.answer===expected}return false}
+function aGenerateCandidate(use,topicKeys){if(use==='single')return aMakeSingle(topicKeys);if(use==='count2')return aMakeCount(topicKeys,2,false);if(use==='count3')return aMakeCount(topicKeys,3,false);if(use==='wrongcount2')return aMakeCount(topicKeys,2,true);if(use==='wrongcount3')return aMakeCount(topicKeys,3,true);if(use==='best4')return aMakeChoice(topicKeys,true);if(use==='wrong4')return aMakeChoice(topicKeys,false);if(use==='condition')return aMakeCondition(topicKeys);if(use==='case')return aMakeCase(topicKeys);if(use==='procedure')return aMakeProcedure(topicKeys);if(use==='report')return aMakeReport(topicKeys);if(use==='responsibility')return aMakeResponsibility(topicKeys);if(use==='compound')return aMakeCompound(topicKeys);if(use==='journal')return aMakeErrorSpotting(topicKeys);return aMakeSingle(topicKeys)}
+function generateAuditV22(format='mix',topicKeys=[]){
+  const keys=aTopicKeys(topicKeys);if(!keys.length)return null;const history=aHistory();
+  const theoryPool=['single','best4','wrong4','count2','count3','wrongcount2','wrongcount3','condition','case','procedure','report','responsibility','compound','journal'];
+  const mixPool=['single','best4','wrong4','count2','count3','wrongcount2','wrongcount3','condition','case','procedure','report','responsibility','compound','journal'];
+  let first=format;if(format==='theory')first=rand(theoryPool);if(format==='mix')first=rand(mixPool);if(format==='calc')first=rand(['case','procedure','report','condition']);
+  const fallback=(format==='mix'||format==='theory')?shuffle(['best4','wrong4','count3','wrongcount3','compound','condition','case','procedure','report','responsibility','journal','single']):[];
+  const uses=[first,...fallback.filter(x=>x!==first)];let best=null;
+  for(const use of uses){
+    for(let i=0;i<80;i++){
+      const q=aGenerateCandidate(use,keys);if(!aValidate(q))continue;
+      const seen=history.has(q.semanticSignature),score=(seen?100000:0)+(q.ruleIds||[]).reduce((sum,id)=>sum+aRuleScore(AUDIT_RULE_INDEX_V22[id]||{}),0)+Math.random()*10;
+      if(!best||score<best.score)best={q,score};
+      if(!seen&&i>8)return q;
+    }
+    if(best&&best.score<100000)return best.q;
+  }
+  return best?.q||null
+}
+
+
 function officialTheoryPool(subjects=[...genSubjects],topicKeys=[...genTopics]){
   const ss=new Set(subjects),keys=new Set(topicKeys);
   return QUESTIONS.filter(q=>q.lang!=='en'&&ss.has(q.s)&&keys.has(`${q.s}|${q.topic}`)&&OFFICIAL_SCOPE[q.s]?.includes(q.topic));
@@ -523,149 +1221,83 @@ function officialTheoryPool(subjects=[...genSubjects],topicKeys=[...genTopics]){
 function subjectTopicKeys(s){return (OFFICIAL_SCOPE[s]||[]).map(t=>`${s}|${t}`)}
 function rand(a){return a[Math.floor(Math.random()*a.length)]}
 function sampleUnique(a,n){return shuffle(a).slice(0,Math.min(n,a.length))}
-function cleanStatement(s){
-  return String(s||'').replace(/\s+/g,' ').trim().replace(/[。．]+$/,'')+'。';
-}
-function normalizeGeneratedText(s){
-  return String(s||'').replace(/\s+/g,'').replace(/[「」『』（）()、。,.・：:]/g,'');
-}
+function cleanStatement(s){return String(s||'').replace(/\s+/g,' ').trim().replace(/[。．]+$/,'')+'。'}
+function normalizeGeneratedText(s){return String(s||'').replace(/\s+/g,'').replace(/[「」『』（）()、。,.・：:]/g,'')}
 function lexicalVariant(s){
   let x=cleanStatement(s);
-  const swaps=[
-    ['常に','いかなる場合でも'],['必ず','例外なく'],['一切','まったく'],
-    ['まったく','一切'],['重要である','重要となる'],['必要である','求められる'],
-    ['必要となる','求められる'],['異なる','同一ではない'],['同一である','同じである'],
-    ['考慮する','考慮に入れる'],['考慮しない','考慮に入れない'],
-    ['認識する','計上する'],['認識しない','計上しない'],
-    ['区別する','分けて考える'],['確認する','確かめる']
-  ];
-  const candidates=swaps.filter(([a])=>x.includes(a));
-  if(candidates.length){
-    const [a,b]=rand(candidates);x=x.replace(a,b);
-  }
-  return cleanStatement(x);
+  const swaps=[['常に','いかなる場合でも'],['必ず','例外なく'],['一切','まったく'],['まったく','一切'],['重要である','重要となる'],['必要である','求められる'],['必要となる','求められる'],['異なる','同一ではない'],['同一である','同じである'],['考慮する','考慮に入れる'],['考慮しない','考慮に入れない'],['認識する','計上する'],['認識しない','計上しない'],['区別する','分けて考える'],['確認する','確かめる']];
+  const c=swaps.filter(([a])=>x.includes(a));if(c.length){const [a,b]=rand(c);x=x.replace(a,b)}return cleanStatement(x);
 }
 function safeNegate(s){
   let x=cleanStatement(s);
-  const rules=[
-    [/である。$/,'ではない。'],
-    [/となる。$/,'とはならない。'],
-    [/になる。$/,'にはならない。'],
-    [/がある。$/,'はない。'],
-    [/を行う。$/,'を行わない。'],
-    [/を認識する。$/,'を認識しない。'],
-    [/を計上する。$/,'を計上しない。'],
-    [/を用いる。$/,'を用いない。'],
-    [/を含む。$/,'を含まない。'],
-    [/が必要である。$/,'は必要ない。'],
-    [/が重要である。$/,'は重要ではない。']
-  ];
-  for(const [re,to] of rules){
-    if(re.test(x))return x.replace(re,to);
-  }
-  return null;
+  const rules=[[/である。$/,'ではない。'],[/となる。$/,'とはならない。'],[/になる。$/,'にはならない。'],[/がある。$/,'はない。'],[/を行う。$/,'を行わない。'],[/を認識する。$/,'を認識しない。'],[/を計上する。$/,'を計上しない。'],[/を用いる。$/,'を用いない。'],[/を含む。$/,'を含まない。'],[/が必要である。$/,'は必要ない。'],[/が重要である。$/,'は重要ではない。']];
+  for(const [re,to] of rules)if(re.test(x))return x.replace(re,to);return null;
 }
 function makeStatementVariants(base){
-  const raw=[];
-  // 1. Original statement with safe lexical alternatives
-  raw.push({q:cleanStatement(base.q),a:!!base.a,kind:'base'});
-  const lex=lexicalVariant(base.q);
-  if(normalizeGeneratedText(lex)!==normalizeGeneratedText(base.q))raw.push({q:lex,a:!!base.a,kind:'lex'});
-
-  // 2. Explanation is written as the correct accounting/legal principle.
-  if(base.ex){
-    const ex=cleanStatement(base.ex);
-    raw.push({q:ex,a:true,kind:'ex'});
-    const exLex=lexicalVariant(ex);
-    if(normalizeGeneratedText(exLex)!==normalizeGeneratedText(ex))raw.push({q:exLex,a:true,kind:'exlex'});
-    const neg=safeNegate(ex);
-    if(neg)raw.push({q:neg,a:false,kind:'exneg'});
-  }
-
-  // 3. General principle is also a verified positive rule.
-  if(base.general){
-    const g=cleanStatement(base.general);
-    if(g.length>=10){
-      raw.push({q:g,a:true,kind:'general'});
-      const gLex=lexicalVariant(g);
-      if(normalizeGeneratedText(gLex)!==normalizeGeneratedText(g))raw.push({q:gLex,a:true,kind:'genlex'});
-      const neg=safeNegate(g);
-      if(neg)raw.push({q:neg,a:false,kind:'genneg'});
-    }
-  }
-
-  const seen=new Set();
-  return raw.filter(v=>{
-    const k=`${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`;
-    if(seen.has(k))return false;seen.add(k);return true;
-  }).map((v,i)=>({
-    ...base,
-    q:v.q,
-    a:v.a,
-    variantKind:v.kind,
-    variantKey:`${base.s}|${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`
-  }));
+  const raw=[{q:cleanStatement(base.q),a:!!base.a,kind:'base'}];
+  const lex=lexicalVariant(base.q);if(normalizeGeneratedText(lex)!==normalizeGeneratedText(base.q))raw.push({q:lex,a:!!base.a,kind:'lex'});
+  if(base.ex){const ex=cleanStatement(base.ex);raw.push({q:ex,a:true,kind:'ex'});const exLex=lexicalVariant(ex);if(normalizeGeneratedText(exLex)!==normalizeGeneratedText(ex))raw.push({q:exLex,a:true,kind:'exlex'});const neg=safeNegate(ex);if(neg)raw.push({q:neg,a:false,kind:'exneg'})}
+  if(base.general){const g=cleanStatement(base.general);if(g.length>=10){raw.push({q:g,a:true,kind:'general'});const gl=lexicalVariant(g);if(normalizeGeneratedText(gl)!==normalizeGeneratedText(g))raw.push({q:gl,a:true,kind:'genlex'});const neg=safeNegate(g);if(neg)raw.push({q:neg,a:false,kind:'genneg'})}}
+  const seen=new Set();return raw.filter(v=>{const k=`${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`;if(seen.has(k))return false;seen.add(k);return true}).map(v=>({...base,q:v.q,a:v.a,variantKind:v.kind,variantKey:`${base.s}|${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`}));
 }
-function recentVariantSet(){
-  return new Set((state.generated?.seenVariants||[]).slice(-600));
+function recentVariantSet(){return new Set((state.generated?.seenVariants||[]).slice(-700))}
+function recentConceptSet(){return new Set((state.generated?.recentConcepts||[]).slice(-160))}
+function conceptMeta(id){return state.generated?.conceptUse?.[id]||{n:0,last:-999999}}
+function topicMeta(k){return state.generated?.topicUse?.[k]||{n:0,last:-999999}}
+function baseNoveltyScore(base){
+  const cm=conceptMeta(base.id),tm=topicMeta(`${base.s}|${base.topic}`),recent=recentConceptSet().has(base.id)?1:0;
+  return cm.n*1000 + tm.n*120 + recent*5000 + cm.last*.001 + Math.random()*5;
+}
+function pickNovelBases(pool,n,predicate=null){
+  let p=predicate?pool.filter(predicate):pool.slice();
+  if(!p.length)return [];
+  p.sort((a,b)=>baseNoveltyScore(a)-baseNoveltyScore(b));
+  const chosen=[];
+  const usedTopics=new Set();
+  for(const b of p){
+    if(chosen.length>=n)break;
+    if(!usedTopics.has(`${b.s}|${b.topic}`)){chosen.push(b);usedTopics.add(`${b.s}|${b.topic}`)}
+  }
+  if(chosen.length<n)for(const b of p){if(chosen.length>=n)break;if(!chosen.some(x=>x.id===b.id))chosen.push(b)}
+  return chosen;
 }
 function chooseVariantForBase(base,avoidRecent=true){
-  const variants=makeStatementVariants(base);
-  if(!variants.length)return {...base,variantKey:`${base.s}|${base.a?'T':'F'}|${normalizeGeneratedText(base.q)}`};
-  if(avoidRecent){
-    const recent=recentVariantSet();
-    const fresh=variants.filter(v=>!recent.has(v.variantKey));
-    if(fresh.length)return rand(fresh);
-  }
+  const variants=makeStatementVariants(base);if(!variants.length)return {...base,variantKey:`${base.s}|${base.a?'T':'F'}|${normalizeGeneratedText(base.q)}`};
+  if(avoidRecent){const r=recentVariantSet(),fresh=variants.filter(v=>!r.has(v.variantKey));if(fresh.length)return rand(fresh)}
   return rand(variants);
 }
-function wrapperForSingle(){
-  return rand([
-    '次の記述の正誤を判定してください。',
-    '短答式として、次の記述は正しいか。',
-    '次の説明が正しければ○、誤っていれば×。',
-    '判断基準に照らして、次の記述を判定してください。',
-    '次の記述について、会計・法令上の取扱いとして適切か判定してください。'
-  ]);
-}
+function wrapperForSingle(){return rand(['次の記述の正誤を判定してください。','短答式として、次の記述は正しいか。','次の説明が正しければ○、誤っていれば×。','判断基準に照らして、次の記述を判定してください。','次の記述について、会計・法令上の取扱いとして適切か判定してください。'])}
 function generateTheoryQuestion(format='mix',subjects=[...genSubjects],topicKeys=[...genTopics],avoidRecent=true){
-  const pool=officialTheoryPool(subjects,topicKeys);
-  if(!pool.length)return null;
+  const pool=officialTheoryPool(subjects,topicKeys);if(!pool.length)return null;
   let use=format;
-  if(use==='mix'||use==='theory')use=rand(['single','count2','count3']);
-  if(use==='count3'&&pool.length<3)use=pool.length>=2?'count2':'single';
-  if(use==='count2'&&pool.length<2)use='single';
+  if(use==='mix'||use==='theory')use=rand(['single','single','count2','count3','best4','wrong4']);
 
   if(use==='single'){
-    // Try several bases to obtain a recently unseen wording.
-    const bases=sampleUnique(pool,Math.min(pool.length,30));
-    let b=null;
-    for(const base of bases){
-      const candidate=chooseVariantForBase(base,avoidRecent);
-      if(!recentVariantSet().has(candidate.variantKey)){b=candidate;break}
-      if(!b)b=candidate;
-    }
-    b=b||chooseVariantForBase(rand(pool),false);
+    const b0=pickNovelBases(pool,1)[0]||rand(pool),b=chooseVariantForBase(b0,avoidRecent);
     return {kind:'single',format:'single',s:b.s,topics:[b.topic],prompt:wrapperForSingle(),items:[b],answer:b.a,displayAnswer:b.a?'○':'×'};
   }
 
-  const n=use==='count3'?3:2;
-  const availableSubjects=[...new Set(pool.map(x=>x.s))];
-  const s=rand(availableSubjects);
-  const subjectPool=pool.filter(x=>x.s===s);
-  const actualN=Math.min(n,subjectPool.length);
-  const bases=sampleUnique(subjectPool,actualN);
-  if(bases.length<2)return generateTheoryQuestion('single',subjects,topicKeys,avoidRecent);
+  if(use==='best4'||use==='wrong4'){
+    const wantTrue=use==='best4',sCandidates=[...new Set(pool.map(x=>x.s))];
+    const viable=sCandidates.filter(s=>{
+      const sp=pool.filter(x=>x.s===s);return sp.filter(x=>x.a===wantTrue).length>=1&&sp.filter(x=>x.a!==wantTrue).length>=3;
+    });
+    if(!viable.length)return generateTheoryQuestion('count3',subjects,topicKeys,avoidRecent);
+    const s=rand(viable),sp=pool.filter(x=>x.s===s);
+    const target=pickNovelBases(sp,1,x=>x.a===wantTrue)[0];
+    const others=pickNovelBases(sp.filter(x=>x.id!==target.id),3,x=>x.a!==wantTrue);
+    let bases=[target,...others];if(bases.length<4)return generateTheoryQuestion('count3',subjects,topicKeys,avoidRecent);
+    bases=shuffle(bases);const items=bases.map(b=>chooseVariantForBase(b,avoidRecent));
+    const answer=items.findIndex(x=>x.a===wantTrue);
+    return {kind:'choice',format:use,s,topics:[...new Set(items.map(x=>x.topic))],prompt:wantTrue?'次の記述のうち、正しいものを1つ選んでください。':'次の記述のうち、誤っているものを1つ選んでください。',items,answer,displayAnswer:String.fromCharCode(65+answer)};
+  }
 
-  const items=bases.map(base=>chooseVariantForBase(base,avoidRecent));
-  const answer=items.filter(x=>x.a).length;
-  return {kind:'count',format:`count${items.length}`,s,topics:[...new Set(items.map(x=>x.topic))],
-    prompt:rand([
-      `次の${items.length}つの記述のうち、正しいものはいくつあるか。`,
-      `A〜${String.fromCharCode(64+items.length)}の記述について、正しいものの個数を答えてください。`,
-      `次の各記述を判定した場合、正しい記述はいくつになるか。`
-    ]),
-    items,answer,displayAnswer:`${answer}個`};
+  const n=use==='count3'?3:2;
+  const sCandidates=[...new Set(pool.map(x=>x.s))],s=rand(sCandidates),sp=pool.filter(x=>x.s===s);
+  const bases=pickNovelBases(sp,n);
+  if(bases.length<2)return generateTheoryQuestion('single',subjects,topicKeys,avoidRecent);
+  const items=bases.map(b=>chooseVariantForBase(b,avoidRecent)),answer=items.filter(x=>x.a).length;
+  return {kind:'count',format:`count${items.length}`,s,topics:[...new Set(items.map(x=>x.topic))],prompt:rand([`次の${items.length}つの記述のうち、正しいものはいくつあるか。`,`A〜${String.fromCharCode(64+items.length)}の記述について、正しいものの個数を答えてください。`,`次の各記述を判定した場合、正しい記述はいくつになるか。`]),items,answer,displayAnswer:`${answer}個`};
 }
 function availableCalcTemplates(subjects=[...genSubjects],topicKeys=[...genTopics]){
   const ss=new Set(subjects),keys=new Set(topicKeys);
@@ -678,13 +1310,18 @@ function generateCalcQuestion(subjects=[...genSubjects],topicKeys=[...genTopics]
   return {kind:'calc',format:'calc',s:t?.s||'F',topics:[q.topic],calc:q,answer:q.answer,displayAnswer:`${fmt(q.answer)}${q.unit}`};
 }
 function generateOne(format=genFormat,subjects=[...genSubjects],topicKeys=[...genTopics]){
+  // Subject-specific engines are isolated: F=FINAL 2.0, M=FINAL 2.1, A=FINAL 2.2; C remains legacy.
+  if(subjects.length===1&&subjects[0]==='F')return generateFinanceV2(format,topicKeys);
+  if(subjects.length===1&&subjects[0]==='M')return generateManagementV21(format,topicKeys);
+  if(subjects.length===1&&subjects[0]==='A')return generateAuditV22(format,topicKeys);
   if(format==='calc')return generateCalcQuestion(subjects,topicKeys)||generateTheoryQuestion('mix',subjects,topicKeys);
   if(format==='theory')return generateTheoryQuestion('theory',subjects,topicKeys);
   if(format==='mix'){
     const calcs=availableCalcTemplates(subjects,topicKeys);
-    const pickCalc=calcs.length&&Math.random()<0.22;
+    const pickCalc=calcs.length&&Math.random()<0.18;
     return pickCalc?generateCalcQuestion(subjects,topicKeys):generateTheoryQuestion('mix',subjects,topicKeys);
   }
+  if(['journal','condition','compound'].includes(format))return generateTheoryQuestion('mix',subjects,topicKeys);
   return generateTheoryQuestion(format,subjects,topicKeys);
 }
 function generatedQuestionTitle(q){
@@ -718,6 +1355,9 @@ function renderGenerator(){
 
 function generatedSignature(q){
   if(!q)return '';
+  if(q.s==='M'&&q.instanceSignature)return q.instanceSignature;
+  if(q.s==='M'&&q.semanticSignature)return q.semanticSignature;
+  if(q.s==='A'&&q.semanticSignature)return q.semanticSignature;
   if(q.kind==='calc'){
     const c=q.calc||{};
     return `calc|${q.s}|${c.template||''}|${normalizeGeneratedText(c.q||'')}|${c.answer}|${c.unit||''}`;
@@ -726,48 +1366,45 @@ function generatedSignature(q){
   return `${q.kind}|${q.format}|${q.s}|${parts}`;
 }
 function generatedCardIds(q){
+  if((q?.s==='M'||q?.s==='A')&&Array.isArray(q.ruleIds))return q.ruleIds;
   return q&&q.kind!=='calc'?(q.items||[]).map(x=>x.id):[];
 }
 
+
+function makeSubjectPlan(subjects,count){
+  const ss=subjects.slice();
+  if(ss.length===4&&ss.includes('F')&&ss.includes('M')&&ss.includes('A')&&ss.includes('C')&&count===20){
+    return shuffle([...Array(8).fill('F'),...Array(4).fill('M'),...Array(4).fill('A'),...Array(4).fill('C')]);
+  }
+  return Array.from({length:count},(_,i)=>ss[i%ss.length]);
+}
 function startGeneratedSession(opts={}){
   const subjects=opts.subjects||[...genSubjects],topics=opts.topics||[...genTopics],format=opts.format||genFormat,count=opts.count||genCount;
   if(!subjects.length||!topics.length){showToast('科目・論点を1つ以上選んでください');return}
-  if(format==='calc'&&!availableCalcTemplates(subjects,topics).length){showToast('選択範囲には計算テンプレートがありません');return}
+  if(format==='calc'&&!availableCalcTemplates(subjects,topics).length&&!hasFinanceV2Calc(topics)&&!hasManagementV21Calc(topics)&&!subjects.includes('A')){showToast('選択範囲には計算テンプレートがありません');return}
 
   genSession=[];
-  const seen=new Set();
-  const recent=recentVariantSet();
-  const usedCards=new Set();
-  let attempts=0;
-  let allowCardReuse=false;
-  let allowRecentReuse=false;
-  const maxAttempts=Math.max(1800,count*180);
+  const seen=new Set(),recent=recentVariantSet(),usedCards=new Set(),managementSemanticSeen=new Set(),auditSemanticSeen=new Set();
+  const plan=makeSubjectPlan(subjects,count);
+  let attempts=0,planIndex=0,allowCardReuse=false,allowRecentReuse=false,allowManagementSemanticReuse=false,allowAuditSemanticReuse=false;
+  const maxAttempts=Math.max(2400,count*220);
 
-  while(genSession.length<count && attempts<maxAttempts){
-    attempts++;
-    if(attempts>Math.max(420,count*45))allowCardReuse=true;
-    if(attempts>Math.max(1100,count*110))allowRecentReuse=true;
-
-    const q=generateOne(format,subjects,topics);
-    if(!q)continue;
-
-    const sig=generatedSignature(q);
-    if(!sig||seen.has(sig))continue;
-
-    const variantKeys=q.kind==='calc'?[]:(q.items||[]).map(x=>x.variantKey).filter(Boolean);
-    if(!allowRecentReuse && variantKeys.some(k=>recent.has(k)))continue;
-
-    const cardIds=generatedCardIds(q);
-    if(!allowCardReuse && cardIds.some(id=>usedCards.has(id)))continue;
-
-    seen.add(sig);
-    cardIds.forEach(id=>usedCards.add(id));
-    genSession.push(q);
+  while(genSession.length<count&&attempts<maxAttempts){
+    attempts++;if(attempts>Math.max(180,count*18)){allowManagementSemanticReuse=true;allowAuditSemanticReuse=true}if(attempts>Math.max(650,count*55))allowCardReuse=true;if(attempts>Math.max(1700,count*150))allowRecentReuse=true;
+    const s=plan[planIndex%plan.length],subTopics=topics.filter(k=>k.startsWith(`${s}|`));
+    if(!subTopics.length){planIndex++;continue}
+    const q=generateOne(format,[s],subTopics);if(!q){planIndex++;continue}
+    const sig=generatedSignature(q);if(!sig||seen.has(sig))continue;
+    if(q.s==='M'&&q.semanticSignature&&!allowManagementSemanticReuse&&managementSemanticSeen.has(q.semanticSignature))continue;
+    if(q.s==='A'&&q.semanticSignature&&!allowAuditSemanticReuse&&auditSemanticSeen.has(q.semanticSignature))continue;
+    const vks=q.kind==='calc'?[]:(q.items||[]).map(x=>x.variantKey).filter(Boolean);
+    if(!allowRecentReuse&&vks.some(k=>recent.has(k)))continue;
+    const ids=generatedCardIds(q);if(!allowCardReuse&&ids.some(id=>usedCards.has(id)))continue;
+    seen.add(sig);if(q.s==='M'&&q.semanticSignature)managementSemanticSeen.add(q.semanticSignature);if(q.s==='A'&&q.semanticSignature)auditSemanticSeen.add(q.semanticSignature);ids.forEach(id=>usedCards.add(id));genSession.push(q);planIndex++;
   }
 
-  if(!genSession.length){showToast('この条件では重複なしの問題を生成できません');return}
-  if(genSession.length<count)showToast(`この条件では重複なしで${genSession.length}問生成しました`);
-
+  if(!genSession.length){showToast('この条件では新しい問題を生成できません');return}
+  if(genSession.length<count)showToast(`新規優先で${genSession.length}問生成しました`);
   genIndex=0;genCorrect=0;genAnswered=false;go('genPractice');renderGeneratedQuestion();
 }
 function renderGeneratedQuestion(){
@@ -781,6 +1418,7 @@ function renderGeneratedQuestion(){
   }else{
     body=`<div class="question-card"><div class="topic">${generatedQuestionTitle(q)} <span class="gen-badge">内部生成</span></div><div class="question" style="font-size:15px">${q.prompt}</div><div class="gen-question-list">${q.items.map((x,i)=>`<div class="gen-statement"><div class="letter">${String.fromCharCode(65+i)}</div><div>${x.q}</div></div>`).join('')}</div></div>`;
     if(q.kind==='single')body+=`<div class="answer-grid"><button class="answer" data-gen-answer="true">○</button><button class="answer" data-gen-answer="false">×</button></div>`;
+    else if(q.kind==='choice')body+=`<div class="gen-answer-grid">${q.items.map((_,i)=>`<button class="gen-answer" data-gen-answer="${i}">${String.fromCharCode(65+i)}</button>`).join('')}</div>`;
     else body+=`<div class="gen-answer-grid">${Array.from({length:q.items.length+1},(_,i)=>`<button class="gen-answer" data-gen-answer="${i}">${i}個</button>`).join('')}</div>`;
   }
   area.innerHTML=`<div class="practice-meta"><span>無限短答 ・ ${SUBJECTS[q.s].short}</span><span>${genIndex+1} / ${genSession.length}</span></div><div class="bar"><div style="width:${progress}%"></div></div>${body}<div id="genFeedback"></div>`;
@@ -806,21 +1444,39 @@ function submitGeneratedAnswer(ans){
   document.getElementById('genNext').onclick=()=>{genIndex++;renderGeneratedQuestion();window.scrollTo({top:0,behavior:'smooth'})};
 }
 function recordGenerated(q,ok){
-  state.generated=state.generated||{answered:0,correct:0,subject:{},topic:{},format:{},seenVariants:[]};
-  const g=state.generated;g.seenVariants=Array.isArray(g.seenVariants)?g.seenVariants:[];g.answered++;g.correct+=ok?1:0;g.subject[q.s]=g.subject[q.s]||{answered:0,correct:0};g.subject[q.s].answered++;g.subject[q.s].correct+=ok?1:0;g.format[q.format]=g.format[q.format]||{answered:0,correct:0};g.format[q.format].answered++;g.format[q.format].correct+=ok?1:0;
+  state.generated=state.generated||{answered:0,correct:0,subject:{},topic:{},format:{},seenVariants:[],recentConcepts:[],conceptUse:{},topicUse:{},seq:0};
+  const g=state.generated;g.seenVariants=Array.isArray(g.seenVariants)?g.seenVariants:[];g.recentConcepts=Array.isArray(g.recentConcepts)?g.recentConcepts:[];g.conceptUse=g.conceptUse||{};g.topicUse=g.topicUse||{};g.seq=Number(g.seq||0)+1;g.answered++;g.correct+=ok?1:0;g.subject[q.s]=g.subject[q.s]||{answered:0,correct:0};g.subject[q.s].answered++;g.subject[q.s].correct+=ok?1:0;g.format[q.format]=g.format[q.format]||{answered:0,correct:0};g.format[q.format].answered++;g.format[q.format].correct+=ok?1:0;
   q.topics.forEach(t=>{const k=`${q.s}|${t}`;g.topic[k]=g.topic[k]||{answered:0,correct:0};g.topic[k].answered++;g.topic[k].correct+=ok?1:0});
   state.answered++;state.correct+=ok?1:0;const dk=dayKey();state.history[dk]=state.history[dk]||{answered:0,correct:0};state.history[dk].answered++;state.history[dk].correct+=ok?1:0;
   state.subject[q.s]=state.subject[q.s]||{answered:0,correct:0};state.subject[q.s].answered++;state.subject[q.s].correct+=ok?1:0;
   if(q.topics.length===1){const tk=`${q.s}|${q.topics[0]}`;state.topic[tk]=state.topic[tk]||{answered:0,correct:0};state.topic[tk].answered++;state.topic[tk].correct+=ok?1:0}
   if(q.kind!=='calc'){
-    (q.items||[]).forEach(x=>{if(x.variantKey)g.seenVariants.push(x.variantKey)});
+    (q.items||[]).forEach(x=>{
+      if(x.variantKey)g.seenVariants.push(x.variantKey);
+      if(x.id!=null){
+        g.recentConcepts.push(x.id);
+        const cm=g.conceptUse[x.id]||{n:0,last:-1};cm.n++;cm.last=g.seq;g.conceptUse[x.id]=cm;
+      }
+    });
     if(g.seenVariants.length>700)g.seenVariants=g.seenVariants.slice(-700);
+    if(g.recentConcepts.length>220)g.recentConcepts=g.recentConcepts.slice(-220);
+  }
+  q.topics.forEach(t=>{const k=`${q.s}|${t}`,tm=g.topicUse[k]||{n:0,last:-1};tm.n++;tm.last=g.seq;g.topicUse[k]=tm});
+  if(q.s==='M'&&q.semanticSignature){
+    g.managementSignatures=Array.isArray(g.managementSignatures)?g.managementSignatures:[];
+    g.managementSignatures.push(q.semanticSignature);
+    if(g.managementSignatures.length>1200)g.managementSignatures=g.managementSignatures.slice(-1200);
+  }
+  if(q.s==='A'&&q.semanticSignature){
+    g.auditSignatures=Array.isArray(g.auditSignatures)?g.auditSignatures:[];
+    g.auditSignatures.push(q.semanticSignature);
+    if(g.auditSignatures.length>1800)g.auditSignatures=g.auditSignatures.slice(-1800);
   }
   save();
 }
 function renderGeneratedEnd(){
   const rate=genSession.length?Math.round(genCorrect/genSession.length*100):0;
-  document.getElementById('genPracticeArea').innerHTML=`<div class="session-end"><div class="eyebrow">INFINITE SHORT COMPLETE</div><h1>生成セッション完了</h1><div class="big">${genCorrect}/${genSession.length}</div><p class="sub">正答率 ${rate}%。次のセッションでは記述の組み合わせ・順番・計算数値をもう一度生成します。同じセッション内はもちろん、最近の別セッションで出た同一文言も避けて生成します。</p><button class="primary" id="genAgain">同じ設定でもう一度生成</button><button class="secondary" id="genBackSettings" style="margin-top:10px">生成条件を変更</button></div>`;
+  document.getElementById('genPracticeArea').innerHTML=`<div class="session-end"><div class="eyebrow">INFINITE SHORT COMPLETE</div><h1>生成セッション完了</h1><div class="big">${genCorrect}/${genSession.length}</div><p class="sub">正答率 ${rate}%。次のセッションでは、最近使った知識カードと論点を後回しにして生成します。4科目20問では財務8・管理4・監査4・企業4を基本配分にします。</p><button class="primary" id="genAgain">同じ設定でもう一度生成</button><button class="secondary" id="genBackSettings" style="margin-top:10px">生成条件を変更</button></div>`;
   document.getElementById('genAgain').onclick=()=>startGeneratedSession();
   document.getElementById('genBackSettings').onclick=()=>go('generator');
 }
@@ -926,7 +1582,7 @@ function updateExamCountdown(){
   e.textContent=days>0?`あと${days}日`:days===0?'今日':'試験日経過';
 }
 function exportLearningData(){
-  const payload={app:'CPA SHORT',version:'FINAL 1.4',exportedAt:new Date().toISOString(),state:normalizeState(state)};
+  const payload={app:'CPA SHORT',version:'FINAL 2.2',exportedAt:new Date().toISOString(),state:normalizeState(state)};
   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
@@ -979,7 +1635,7 @@ function startMock(){mockQuestions=buildMock();mockIndex=0;mockAnswers={};mockRe
 function updateMockTimer(){const e=document.getElementById('mockClock');if(e)e.textContent=fmtTime(mockRemaining)}
 function currentMockSubject(){return mockQuestions[mockIndex]?.s}
 function renderMock(){if(mockFinished)return;if(mockIndex>=mockQuestions.length){finishMock(false);return}const q=mockQuestions[mockIndex],area=document.getElementById('mockArea'),isEn=q.lang==='en';const subjectStart={C:0,M:4,A:8,F:12}[q.s],subjectEnd={C:4,M:8,A:12,F:20}[q.s],subjectNo=mockIndex-subjectStart+1,subjectTotal=subjectEnd-subjectStart;const target=MOCK_PLAN.find(x=>x.s===q.s);area.innerHTML=`<div class=\"timer-shell\"><div class=\"timer\"><div><small>残り時間</small><br><strong id=\"mockClock\">${fmtTime(mockRemaining)}</strong></div><div style=\"text-align:right\"><small>${SUBJECTS[q.s].name}</small><br><b>${subjectNo} / ${subjectTotal}</b></div></div></div><div class=\"mock-progress\">${mockQuestions.map((_,i)=>`<span class=\"mock-dot ${i<mockIndex?'done':i===mockIndex?'current':''}\"></span>`).join('')}</div><div class=\"practice-meta\"><span>Q ${mockIndex+1} / 20</span><span>${target.seconds/60}分目安 / 科目</span></div><div class=\"question-card\"><div class=\"topic\">${SUBJECTS[q.s].name} ＞ ${q.topic} ${isEn?'<span class=\"pill english\" style=\"margin-left:6px\">ENGLISH</span>':''}</div><div class=\"question ${isEn?'en':''}\">${q.q}</div></div><div class=\"mock-choice\"><button data-mock-answer=\"true\" class=\"${mockAnswers[q.id]===true?'selected':''}\">○</button><button data-mock-answer=\"false\" class=\"${mockAnswers[q.id]===false?'selected':''}\">×</button></div><button class=\"primary\" id=\"mockNext\" style=\"margin-top:14px\">${mockIndex===19?'採点する':'次の問題'}</button><p class=\"sub\" style=\"font-size:12px;text-align:center;margin-top:12px\">模試中は正解・解説を表示しません</p>`;area.querySelectorAll('[data-mock-answer]').forEach(b=>b.onclick=()=>{mockAnswers[q.id]=b.dataset.mockAnswer==='true';renderMock()});document.getElementById('mockNext').onclick=()=>{mockIndex++;renderMock()};}
-function finishMock(timeUp){if(mockFinished)return;mockFinished=true;clearInterval(mockTimer);let total=0,by={C:0,M:0,A:0,F:0},enCorrect=0,enTotal=0;for(const q of mockQuestions){const ok=mockAnswers[q.id]===q.a;if(ok){total+=25;by[q.s]+=25}if(q.lang==='en'){enTotal++;if(ok)enCorrect++}}state.mockLog=state.mockLog||[];state.mockLog.unshift({date:new Date().toISOString(),score:total,timeUp,english:{correct:enCorrect,total:enTotal}});state.mockLog=state.mockLog.slice(0,20);save();document.getElementById('mockArea').innerHTML=`<div class=\"session-end\"><div class=\"eyebrow\">${timeUp?'TIME UP':'MINI MOCK COMPLETE'}</div><h1>採点結果</h1><div class=\"score\">${total}<small> / 500</small></div><p class=\"sub\">20問を各25点として換算したミニ模試スコア。実際の本試験の問題数・個別配点を再現したものではありません。</p><div class=\"result-grid\"><div class=\"result-tile\"><b>${by.C}/100</b><span>企業法</span></div><div class=\"result-tile\"><b>${by.M}/100</b><span>管理会計論</span></div><div class=\"result-tile\"><b>${by.A}/100</b><span>監査論</span></div><div class=\"result-tile\"><b>${by.F}/200</b><span>財務会計論</span></div></div><div class=\"official-note\" style=\"margin-top:14px\">英語問題 ${enCorrect}/${enTotal} 正解。FINAL 1.4の模試では、英語配点を全体の約5％になるよう1問だけ組み込んでいます。</div><button class=\"primary\" id=\"mockReview\" style=\"margin-top:16px\">間違えた問題を復習へ</button><button class=\"secondary\" data-screen=\"exam\" style=\"margin-top:10px\">実戦モードへ</button></div>`;for(const q of mockQuestions){if(mockAnswers[q.id]!==q.a&&!state.weak.includes(q.id))state.weak.push(q.id)}save();document.getElementById('mockReview').onclick=()=>go('weak')}
+function finishMock(timeUp){if(mockFinished)return;mockFinished=true;clearInterval(mockTimer);let total=0,by={C:0,M:0,A:0,F:0},enCorrect=0,enTotal=0;for(const q of mockQuestions){const ok=mockAnswers[q.id]===q.a;if(ok){total+=25;by[q.s]+=25}if(q.lang==='en'){enTotal++;if(ok)enCorrect++}}state.mockLog=state.mockLog||[];state.mockLog.unshift({date:new Date().toISOString(),score:total,timeUp,english:{correct:enCorrect,total:enTotal}});state.mockLog=state.mockLog.slice(0,20);save();document.getElementById('mockArea').innerHTML=`<div class=\"session-end\"><div class=\"eyebrow\">${timeUp?'TIME UP':'MINI MOCK COMPLETE'}</div><h1>採点結果</h1><div class=\"score\">${total}<small> / 500</small></div><p class=\"sub\">20問を各25点として換算したミニ模試スコア。実際の本試験の問題数・個別配点を再現したものではありません。</p><div class=\"result-grid\"><div class=\"result-tile\"><b>${by.C}/100</b><span>企業法</span></div><div class=\"result-tile\"><b>${by.M}/100</b><span>管理会計論</span></div><div class=\"result-tile\"><b>${by.A}/100</b><span>監査論</span></div><div class=\"result-tile\"><b>${by.F}/200</b><span>財務会計論</span></div></div><div class=\"official-note\" style=\"margin-top:14px\">英語問題 ${enCorrect}/${enTotal} 正解。FINAL 2.2の模試では、英語配点を全体の約5％になるよう1問だけ組み込んでいます。</div><button class=\"primary\" id=\"mockReview\" style=\"margin-top:16px\">間違えた問題を復習へ</button><button class=\"secondary\" data-screen=\"exam\" style=\"margin-top:10px\">実戦モードへ</button></div>`;for(const q of mockQuestions){if(mockAnswers[q.id]!==q.a&&!state.weak.includes(q.id))state.weak.push(q.id)}save();document.getElementById('mockReview').onclick=()=>go('weak')}
 document.getElementById('startMock').onclick=startMock;
 document.getElementById('quitMock').onclick=()=>{if(mockFinished||confirm('ミニ模試を終了しますか？')){clearInterval(mockTimer);mockFinished=true;go('exam')}};
 
