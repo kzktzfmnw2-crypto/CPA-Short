@@ -170,7 +170,7 @@ button:disabled{cursor:not-allowed}
 </head>
 <body>
 <div class="app">
-<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 2.3.1</span></div><div class="date" id="todayLabel"></div></header>
+<header id="mainHeader"><div class="brand">CPA SHORT <span class="version">FINAL 2.3.2</span></div><div class="date" id="todayLabel"></div></header>
 <main>
 <section id="home" class="screen active">
   <h1>毎回ちがう短答を、<br>判断基準で解く。</h1>
@@ -349,7 +349,7 @@ button:disabled{cursor:not-allowed}
     </div>
   </div>
   <div class="section final-banner">FINAL 2.3は、財務会計論FINAL 2.0・管理会計論FINAL 2.1・監査論FINAL 2.2を維持したまま、企業法を教材準拠の構造化ルール先行生成エンジンへ更新した累積完成版です。</div>
-  <div class="section note"><b>FINAL 2.3.1：</b>○×・個数問題を中心に、解説文・学習メモ・参照先のない指示語が問題文へ混入する不具合を修正。全4科目共通の文章品質ゲートを追加しています。</div>
+  <div class="section note"><b>FINAL 2.3.2：</b>理論問題の出題文と解説文を完全分離。○×・個数問題では解説・一般化メモを問題素材として再利用せず、財務の構造化生成でも「判断対象」「留意する」等の内部メモ表現を出題文から排除しています。</div>
   <div class="section note">財務会計論FINAL 2.0・管理会計論FINAL 2.1・監査論FINAL 2.2のエンジンはそのまま維持。企業法FINAL 2.3は「内部ルール・条件 → 法的結論確定 → 問題文 → 典型誤答ロジック → 正答一意性検証」の順で生成します。</div>
   <div class="section"><button class="secondary" id="resetData" style="color:var(--bad)">学習記録をすべてリセット</button></div>
 </section>
@@ -358,7 +358,7 @@ button:disabled{cursor:not-allowed}
 <nav aria-label="メインナビゲーション"><button class="nav-btn active" data-screen="home"><span class="ico">⌂</span>ホーム</button><button class="nav-btn" data-screen="generator"><span class="ico">∞</span>無限</button><button class="nav-btn" data-screen="exam"><span class="ico">◷</span>実戦</button><button class="nav-btn" data-screen="weak"><span class="ico">◇</span>復習</button><button class="nav-btn" data-screen="record"><span class="ico">▥</span>分析</button></nav>
 <div class="toast" id="toast"></div>
 <script>
-const APP_ENGINE_VERSION={app:'FINAL 2.3.1',F:'2.0-rule-first',M:'2.1-rule-first',A:'2.2-rule-first',C:'2.3-rule-first'};
+const APP_ENGINE_VERSION={app:'FINAL 2.3.2',F:'2.0-rule-first',M:'2.1-rule-first',A:'2.2-rule-first',C:'2.3-rule-first'};
 const SUBJECTS={
  F:{name:'財務会計論',short:'財務'}, M:{name:'管理会計論',short:'管理'}, A:{name:'監査論',short:'監査'}, C:{name:'企業法',short:'企業'}
 };
@@ -621,17 +621,26 @@ const FINANCE_DEEP_TOPICS_V2=new Set(FINANCE_RULES_V2.map(x=>x.topic));
 const FINANCE_PRIORITY_TOPICS_V2=['連結財務諸表','企業結合・事業分離','金融商品','収益認識','退職給付','法人税等','固定資産の減損','外貨換算','固定資産','流動資産','リース'];
 function fnum(n){return Number.isInteger(n)?fmt(n):String(Math.round(n*100)/100)}
 function fItem(rule,q,a,ex,key,general,variantKey){return {id:rule.id,s:'F',topic:rule.topic,q:cleanStatement(q),a:!!a,ex,key:key||rule.judgment,general:general||rule.conclusion,variantKey:variantKey||`F2|${rule.id}|${a?'T':'F'}|${normalizeGeneratedText(q)}`}}
+function fNaturalCondition(cond){
+  let c=String(cond||'').replace(/\s+/g,' ').trim().replace(/[。．]+$/,'');
+  if(/外部未売却$/.test(c))c=c.replace(/外部未売却$/,'外部に未売却である');
+  else if(/棚卸資産を保有$/.test(c))c=c.replace(/棚卸資産を保有$/,'棚卸資産を保有している');
+  else if(/(?:必要|同一|別個|対象|可能|困難)$/.test(c))c+='である';
+  return c;
+}
+function fExamClaim(claim){
+  let x=String(claim||'').replace(/\s+/g,' ').trim().replace(/[。．]+$/,'');
+  // Convert internal design-language into a declarative exam proposition where possible.
+  x=x.replace(/を決める$/,'が決定される')
+     .replace(/を判断する$/,'が判断される')
+     .replace(/を確認する$/,'を確認したうえで処理する');
+  if(/必ず資本的支出$/.test(x))x+='として処理する';
+  return x;
+}
 function fComposeStatement(rule,cond,claim){
-  const contrast=rule.contrasts?.[0];
-  const forms=[
-    `${cond}場合、${claim}`,
-    `${cond}とき、会計処理としては${claim}`,
-    `前提を「${cond}」とする。このとき、${claim}`,
-    `${rule.micro}について、${cond}ならば、${claim}`,
-    `判断対象が「${rule.micro}」であり、${cond}ときは、${claim}`,
-    contrast?`${contrast}との区別に留意する。${cond}場合には、${claim}`:`${cond}という条件では、${claim}`
-  ];
-  return rand(forms);
+  const c=fNaturalCondition(cond),cl=fExamClaim(claim);
+  // Keep the visible sentence like an exam proposition; internal labels stay in metadata/explanations.
+  return cleanStatement(rand([`${c}場合、${cl}`,`${c}ときは、${cl}`]));
 }
 function fTrueItem(rule,condition){
   const cond=condition||rand(rule.conditions);
@@ -716,7 +725,7 @@ function fCompatible(a,b){if(!a||!b)return false;if((a.forbid||[]).some(x=>(b.co
 function fMakeCompound(topicKeys){
   const all=fPickRules(topicKeys,12),picked=[];for(const r of all){if(!picked.length||picked.every(p=>fCompatible(p,r))){picked.push(r);if(picked.length===3)break}}
   if(picked.length<2)return fMakeCount(topicKeys,3);while(picked.length<3){const extra=all.find(r=>!picked.includes(r));if(!extra)break;picked.push(extra)}
-  const items=picked.map((r,i)=>i===1?fFalseItem(r):fTrueItem(r)),answer=items.filter(x=>x.a).length;return {kind:'count',format:'compound',s:'F',topics:[...new Set(picked.map(r=>r.topic))],prompt:'次の複合論点の記述A〜Cについて、正しいものの個数を答えてください。各記述は独立に判定してください。',items,answer,displayAnswer:`${answer}個`};
+  const items=picked.map((r,i)=>i===1?fFalseItem(r):fTrueItem(r)),answer=items.filter(x=>x.a).length;return {kind:'count',format:'compound',s:'F',topics:[...new Set(picked.map(r=>r.topic))],prompt:'次のA〜Cの記述のうち、正しいものはいくつあるか。',items,answer,displayAnswer:`${answer}個`};
 }
 function fTargetTopic(topicKeys){
   const f=topicKeys.filter(k=>k.startsWith('F|'));if(!f.length)return null;return f.slice().sort((a,b)=>{const aa=topicMeta(a),bb=topicMeta(b);return aa.n*1000+aa.last*.001+Math.random()*4-(bb.n*1000+bb.last*.001+Math.random()*4)})[0];
@@ -1320,7 +1329,7 @@ function rand(a){return a[Math.floor(Math.random()*a.length)]}
 function sampleUnique(a,n){return shuffle(a).slice(0,Math.min(n,a.length))}
 function cleanStatement(s){return String(s||'').replace(/\s+/g,' ').trim().replace(/[。．]+$/,'')+'。'}
 function normalizeGeneratedText(s){return String(s||'').replace(/\s+/g,'').replace(/[「」『』（）()、。,.・：:]/g,'')}
-// FINAL 2.3.1: sentence-quality gate.
+// FINAL 2.3.2: exam-statement quality gate. Explanations and study notes are never question sources.
 // Explanations/learning notes may contain useful knowledge but are not always standalone true/false propositions.
 function generatedStatementQuality(text,sourceKind='item'){
   const raw=String(text||'').replace(/\s+/g,' ').trim();
@@ -1334,6 +1343,8 @@ function generatedStatementQuality(text,sourceKind='item'){
   // For explanation/general-note reuse, apply a stricter filter to imperative/heuristic endings.
   if(['ex','exlex','exneg','general','genlex','genneg'].includes(sourceKind)&&/(?:理解する|確認する|留意する|注意する|見る|考える|追う|把握する|区別する)[。．]?$/.test(raw))return {ok:false,reason:'note-not-proposition'};
   if(/^(?:正しい|誤り|解説|ポイント|判断)[:：]/.test(raw))return {ok:false,reason:'meta-prefix'};
+  // Internal reasoning / teaching-language must not leak into exam statements.
+  if(/(?:判断対象|判断ポイント|判断基準|区別に留意|留意する|理解する|押さえる|覚える|確認しておく|整理して|整理する|まず.+確認する)/.test(raw))return {ok:false,reason:'internal-or-teaching-language'};
   return {ok:true,text:s,reason:''};
 }
 function generatedQuestionQualityPass(q){
@@ -1375,11 +1386,16 @@ function safeNegate(s){
   for(const [re,to] of rules)if(re.test(x))return x.replace(re,to);return null;
 }
 function makeStatementVariants(base){
+  // FINAL 2.3.2: only the curated proposition itself may become a question statement.
+  // ex/general/key are explanation-layer data and must never be promoted into a question.
   const raw=[{q:cleanStatement(base.q),a:!!base.a,kind:'base'}];
-  const lex=lexicalVariant(base.q);if(normalizeGeneratedText(lex)!==normalizeGeneratedText(base.q))raw.push({q:lex,a:!!base.a,kind:'lex'});
-  if(base.ex){const ex=cleanStatement(base.ex);raw.push({q:ex,a:true,kind:'ex'});const exLex=lexicalVariant(ex);if(normalizeGeneratedText(exLex)!==normalizeGeneratedText(ex))raw.push({q:exLex,a:true,kind:'exlex'});const neg=safeNegate(ex);if(neg)raw.push({q:neg,a:false,kind:'exneg'})}
-  if(base.general){const g=cleanStatement(base.general);if(g.length>=10){raw.push({q:g,a:true,kind:'general'});const gl=lexicalVariant(g);if(normalizeGeneratedText(gl)!==normalizeGeneratedText(g))raw.push({q:gl,a:true,kind:'genlex'});const neg=safeNegate(g);if(neg)raw.push({q:neg,a:false,kind:'genneg'})}}
-  const seen=new Set();return raw.filter(v=>generatedStatementQuality(v.q,v.kind).ok).filter(v=>{const k=`${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`;if(seen.has(k))return false;seen.add(k);return true}).map(v=>({...base,q:cleanStatement(v.q),a:v.a,variantKind:v.kind,variantKey:`${base.s}|${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`}));
+  const lex=lexicalVariant(base.q);
+  if(normalizeGeneratedText(lex)!==normalizeGeneratedText(base.q))raw.push({q:lex,a:!!base.a,kind:'lex'});
+  const seen=new Set();
+  return raw
+    .filter(v=>generatedStatementQuality(v.q,v.kind).ok)
+    .filter(v=>{const k=`${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`;if(seen.has(k))return false;seen.add(k);return true})
+    .map(v=>({...base,q:cleanStatement(v.q),a:v.a,variantKind:v.kind,variantKey:`${base.s}|${v.a?'T':'F'}|${normalizeGeneratedText(v.q)}`}));
 }
 function recentVariantSet(){return new Set((state.generated?.seenVariants||[]).slice(-700))}
 function recentConceptSet(){return new Set((state.generated?.recentConcepts||[]).slice(-160))}
@@ -1407,7 +1423,7 @@ function chooseVariantForBase(base,avoidRecent=true){
   if(avoidRecent){const r=recentVariantSet(),fresh=variants.filter(v=>!r.has(v.variantKey));if(fresh.length)return rand(fresh)}
   return rand(variants);
 }
-function wrapperForSingle(){return rand(['次の記述の正誤を判定してください。','次の記述は正しいか。','次の記述が正しければ○、誤っていれば×を選んでください。','適用される基準・ルールに照らして、次の記述を判定してください。'])}
+function wrapperForSingle(){return rand(['次の記述は正しいか。','次の記述が正しければ○、誤っていれば×を選んでください。','次の記述の正誤を判定してください。'])}
 function generateTheoryQuestion(format='mix',subjects=[...genSubjects],topicKeys=[...genTopics],avoidRecent=true){
   const pool=officialTheoryPool(subjects,topicKeys).filter(b=>makeStatementVariants(b).length>0);if(!pool.length)return null;
   let use=format;
@@ -1438,7 +1454,7 @@ function generateTheoryQuestion(format='mix',subjects=[...genSubjects],topicKeys
   const bases=pickNovelBases(sp,n);
   if(bases.length<2)return generateTheoryQuestion('single',subjects,topicKeys,avoidRecent);
   const items=bases.map(b=>chooseVariantForBase(b,avoidRecent)),answer=items.filter(x=>x.a).length;
-  return {kind:'count',format:`count${items.length}`,s,topics:[...new Set(items.map(x=>x.topic))],prompt:rand([`次の${items.length}つの記述のうち、正しいものはいくつあるか。`,`A〜${String.fromCharCode(64+items.length)}の記述について、正しいものの個数を答えてください。`,`次の各記述を判定した場合、正しい記述はいくつになるか。`]),items,answer,displayAnswer:`${answer}個`};
+  return {kind:'count',format:`count${items.length}`,s,topics:[...new Set(items.map(x=>x.topic))],prompt:rand([`次の${items.length}つの記述のうち、正しいものはいくつあるか。`,`A〜${String.fromCharCode(64+items.length)}のうち、正しい記述はいくつあるか。`]),items,answer,displayAnswer:`${answer}個`};
 }
 function availableCalcTemplates(subjects=[...genSubjects],topicKeys=[...genTopics]){
   const ss=new Set(subjects),keys=new Set(topicKeys);
@@ -1732,7 +1748,7 @@ function updateExamCountdown(){
   e.textContent=days>0?`あと${days}日`:days===0?'今日':'試験日経過';
 }
 function exportLearningData(){
-  const payload={app:'CPA SHORT',version:'FINAL 2.3',exportedAt:new Date().toISOString(),state:normalizeState(state)};
+  const payload={app:'CPA SHORT',version:'FINAL 2.3.2',exportedAt:new Date().toISOString(),state:normalizeState(state)};
   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
